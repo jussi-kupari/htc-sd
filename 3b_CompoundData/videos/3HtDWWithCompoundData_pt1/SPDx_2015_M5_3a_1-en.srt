@@ -1,0 +1,284 @@
+0
+00:00:00,000 --> 00:00:04,741
+
+
+1
+00:00:04,741 --> 00:00:07,740
+GREGOR KICZALES: I'm going to end the week with our most elaborate world
+
+2
+00:00:07,740 --> 00:00:09,970
+program yet.
+
+3
+00:00:09,970 --> 00:00:13,170
+What we saw earlier was that cats have a mind of their own.
+
+4
+00:00:13,170 --> 00:00:18,220
+When they get to the edge of the box, they just keep walking off the screen.
+
+5
+00:00:18,220 --> 00:00:22,350
+Cows, on the other hand, cows are a docile creature.
+
+6
+00:00:22,350 --> 00:00:27,330
+When they get to the fence, they turn around and they go back the other way.
+
+7
+00:00:27,330 --> 00:00:30,320
+So we're going to do a cow animation now.
+
+8
+00:00:30,320 --> 00:00:33,840
+And you can kind of see the key way it's going to be different, right?
+
+9
+00:00:33,840 --> 00:00:35,690
+A cat only has a position.
+
+10
+00:00:35,690 --> 00:00:38,390
+It always goes the same direction.
+
+11
+00:00:38,390 --> 00:00:43,970
+But a cow has two changing properties, its position and its direction.
+
+12
+00:00:43,970 --> 00:00:46,480
+So this is going to be a compound data problem.
+
+13
+00:00:46,480 --> 00:00:50,660
+It's going to be a how to design a world's problem with compound data.
+
+14
+00:00:50,660 --> 00:00:51,790
+This is a long video.
+
+15
+00:00:51,790 --> 00:00:55,350
+You may not want to watch it all at one sitting.
+
+16
+00:00:55,350 --> 00:00:58,840
+But a world problem is a long problem, and compound data
+
+17
+00:00:58,840 --> 00:01:00,240
+makes it a bit longer.
+
+18
+00:01:00,240 --> 00:01:03,880
+And there's a couple other interesting points that happen here along the way.
+
+19
+00:01:03,880 --> 00:01:07,520
+So I would encourage you to be sure to watch this whole video through.
+
+20
+00:01:07,520 --> 00:01:10,590
+Again, a good thing to do might be to stop it every now and then
+
+21
+00:01:10,590 --> 00:01:15,250
+and try to work a bit of it on your own getting ahead of the video.
+
+22
+00:01:15,250 --> 00:01:18,950
+But don't do that when you get to the render cow
+
+23
+00:01:18,950 --> 00:01:21,190
+function because there's a special thing going
+
+24
+00:01:21,190 --> 00:01:23,130
+on there that we need to talk about.
+
+25
+00:01:23,130 --> 00:01:26,840
+What I have open here in DrRacket is the starter file.
+
+26
+00:01:26,840 --> 00:01:29,430
+We're also providing intermediate solutions
+
+27
+00:01:29,430 --> 00:01:33,610
+at different points along the way of developing the whole solution.
+
+28
+00:01:33,610 --> 00:01:37,800
+And as I said, I'll be dropping into different places in this as we go.
+
+29
+00:01:37,800 --> 00:01:41,720
+So here's the problem statement worked out in a bit more detail.
+
+30
+00:01:41,720 --> 00:01:44,850
+We're going to have a cow that walks back and forth across the screen,
+
+31
+00:01:44,850 --> 00:01:48,900
+and when it gets to the edge it changes direction and goes back the other way.
+
+32
+00:01:48,900 --> 00:01:50,880
+And we're giving you a couple nice images
+
+33
+00:01:50,880 --> 00:01:54,240
+of cows, which we got from Brown.
+
+34
+00:01:54,240 --> 00:01:59,240
+Of course, with any world program, the first step is to do an analysis.
+
+35
+00:01:59,240 --> 00:02:02,770
+I have the analysis already worked out, and here it is.
+
+36
+00:02:02,770 --> 00:02:06,210
+And mostly, it's like the analysis for the cat program.
+
+37
+00:02:06,210 --> 00:02:09,850
+A lot of the constant information is the same-- the width, the height,
+
+38
+00:02:09,850 --> 00:02:12,500
+the ctr-y, the background.
+
+39
+00:02:12,500 --> 00:02:15,636
+One difference is here the cow has two images, the image where
+
+40
+00:02:15,636 --> 00:02:18,510
+it's facing to the right and the image where it's facing to the left.
+
+41
+00:02:18,510 --> 00:02:20,190
+So that's one difference.
+
+42
+00:02:20,190 --> 00:02:23,140
+The most important difference is reflected in the center picture
+
+43
+00:02:23,140 --> 00:02:25,450
+and also in the changing information, which
+
+44
+00:02:25,450 --> 00:02:29,930
+is that here there are two changing information values associated
+
+45
+00:02:29,930 --> 00:02:36,790
+with the cow, the cow's x-coordinate and the cow's direction and speed.
+
+46
+00:02:36,790 --> 00:02:42,780
+We're going to call the direction speed dx for the change in x.
+
+47
+00:02:42,780 --> 00:02:45,680
+So that is how we're going to label the velocity, which
+
+48
+00:02:45,680 --> 00:02:49,010
+is the change in the position.
+
+49
+00:02:49,010 --> 00:02:52,310
+Another difference shows up here in the third image,
+
+50
+00:02:52,310 --> 00:02:54,550
+where I've made a detailed note to myself
+
+51
+00:02:54,550 --> 00:02:58,340
+describing what's going to happen when the cow gets to the edge.
+
+52
+00:02:58,340 --> 00:03:02,310
+So what I'm saying here is that if the cow center, cow x,
+
+53
+00:03:02,310 --> 00:03:08,549
+tries to go past width or past 0, then we're going to reset it.
+
+54
+00:03:08,549 --> 00:03:10,340
+So here the decision I'm making is that I'm
+
+55
+00:03:10,340 --> 00:03:13,750
+going to let the cow get all the way up to the edge of the box,
+
+56
+00:03:13,750 --> 00:03:15,464
+but not outside.
+
+57
+00:03:15,464 --> 00:03:17,630
+The big-bang options are relatively straightforward.
+
+58
+00:03:17,630 --> 00:03:21,780
+There's on-tick, to-draw, and on-key.
+
+59
+00:03:21,780 --> 00:03:24,230
+So now I'm going to jump to the v0 solution.
+
+60
+00:03:24,230 --> 00:03:27,240
+And in all of these solution files, you can see a list
+
+61
+00:03:27,240 --> 00:03:29,830
+of kind of where each one is in it.
+
+62
+00:03:29,830 --> 00:03:33,949
+You might choose not to read that so that you don't get too far ahead.
+
+63
+00:03:33,949 --> 00:03:36,240
+What you might want to do now is try to do some of this
+
+64
+00:03:36,240 --> 00:03:40,480
+yourself and then use these solution files to catch yourself up,
+
+65
+00:03:40,480 --> 00:03:45,100
+or watch the video to catch yourself up, or follow along with me either way.
+
+66
+00:03:45,100 --> 00:03:47,100
+So look, here's the constants, and the constants
+
+67
+00:03:47,100 --> 00:03:48,391
+are relatively straightforward.
+
+68
+00:03:48,391 --> 00:03:50,410
+There's the width, the height, the ctr-y.
+
+69
+00:03:50,410 --> 00:03:54,140
+There's two cow images and the background.
+
+70
+00:03:54,140 --> 00:03:56,580
+Nothing really new there.
+

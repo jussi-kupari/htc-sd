@@ -1,0 +1,270 @@
+
+GREGOR KICZALES: The purpose of this video
+is to just show you how we would assess a range of solutions
+according to the rubric for this design quiz,
+help you understand how to look at an HTDF design and see how good a job
+it is.
+So we'll just work through a few examples with the rubric right
+by our side.
+Here we go.
+OK, here's the first solution that we want to look at.
+And the first criteria is commit ready.
+And this is about whether the files neat and tidy,
+whether things are sitting around that shouldn't be sitting around,
+things are commented out this shouldn't be commented in and out.
+Let's see.
+There's the signature purpose.
+They're properly commented out.
+There's some tests, which are not commented out, which is good.
+Th The stub and template are commented out.
+There is the function definition.
+There's no other stuff lying around in here.
+So, we'll give a good for commit ready.
+Now let's look at design completeness.
+And it helps me to put up the rest of the steps to do this.
+So there's the rest of these steps and we'll just go through them.
+Let's see, there's the signature and it is there,
+but it is poorly formed because that comma doesn't belong there.
+And there's the purpose, and it's good.
+There should be a space right here that isn't there.
+That's kind of a detail.
+But you know, we're going to pay attention
+to details while we do this because that's
+what helps us do better next time.
+So, you know, there kind of should be a space there.
+There is some check expects, they all look well formed.
+And there is the stub, the template and the function definition's well formed.
+And I can tell all that because if I run the program right now, I get to a place
+where all my tests pass.
+So that means they were at least well formed.
+If some of them passed and some of them failed, they're still well formed.
+But we did have this problem in the signature,
+and these two problems in the purpose, so since the space problems really
+are being a little bit too picky, we'll just say there's only one problem.
+We'll give this a fair.
+But you might have also given in a poor in terms of design completeness.
+Now let's look at internal quality.
+Again, I use the recipe steps to drive me through the design step by step.
+There is the signature.
+And it is image, image to Boolean, which is what it should be.
+Later on in the course, we'll see examples
+where there are multiple signatures that could be correct.
+But really, for this function, its image, image to Boolean.
+It consumes two images.
+It has to produce a yes/no answer, that's a Boolean.
+The purpose is clear and succinct.
+It tells me when it produces true.
+It is very clear about that, otherwise it produces false.
+Now let's look at the tests and whether they're sufficient.
+And what I have to do now is look at the purpose.
+I'm going to produce true if the first image is larger,
+if the height and width are both larger than the second image.
+So let's think about that.
+This definition of larger requires comparing the height and width
+independently.
+So we can kind of build a little matrix here.
+The height of image one could be less than image two.
+Or the height of image one and two could be the same.
+Or the height of image one could be greater than the height image two.
+And then that same thing is true for the width.
+So there's three possibilities for the height,
+and three possibilities for the width.
+And those vary independently, so there's nine total possible cases here.
+This function needs nine tests in order to be sufficiently tested.
+And here we only have five.
+So that's an insufficient number of tests.
+I don't have to even in some sense go through them
+to know whether they're sufficient.
+There can't be enough of them.
+When I write tests for a function like this, the way
+I would do it as I would use rectangle in all my tests.
+Because that makes it really easy to vary the width and height.
+So I would write my test so they look something more like this.
+Now putting that aside, let's go on.
+The function name is well chosen.
+It follows the naming convention in this language,
+that functions that produce a Boolean end with a question mark.
+It separates words with a dash, which is the naming
+convention we use in this language.
+And larger dash image, I feel like that tells me
+what this function is supposed to do.
+The stub matches the signature.
+It sends two parameters.
+It produces a Boolean.
+The template matches the signature.
+It consumes two parameters, and its dot, dot, dot of the two parameters.
+The function body is clear.
+It's and of greater than the width of image one and two,
+and greater than the height of image one and image two, so that's quite clear.
+And when I run this program, all the tests pass.
+And, because there's no black or orange highlighting on this, when I'm done
+it means that the tests covered the entire program.
+But remember, there weren't enough tests.
+The tests that are there cover the whole program,
+but there weren't enough of them.
+So wrapping up an image quality, everything
+is great except for an insufficient number of tests.
+So we're going to score this as good on internal quality.
+Finally, does this function satisfy the problem statement?
+Well, it really does.
+It determines whether one image is larger than another.
+It has a very clear definition of what that means.
+So it resolved the ambiguity that so many of you
+tried to ask about on the forums.
+They did it here by using the examples to help them surface the ambiguity,
+and making very clear in the purpose what was going to happen here.
+So we're going to score this as good on satisfying the problem statement.
+So, all and all, this is quite a good solution.
+It's good on commit ready, it's fair on completeness,
+it's good on internal quality, and it's good on satisfying the problem
+statement.
+If this was your solution, I would feel very, very happy with it.
+We were pretty picky on design completeness,
+because of those spaces and that comma.
+So I wouldn't feel too bad about that, if this is your solution.
+This is a really good job.
+Here's the second submission that we want to look at.
+And again, we'll start with commit ready.
+Let's see.
+Is this file neat and tidy, and is all the commenting proper?
+Minor detail here which we haven't really talked about yet.
+But in our design guidelines, we use two semicolons
+for things that are kind of a permanent part of the file.
+So these really should be two semicolon comments right here.
+Otherwise, there's a signature and purpose.
+They're commented out.
+The check expects are not commented out.
+The stub and template are commented out.
+And there's the function definition.
+It's got this note here in the middle of it, which
+is sort of scratch work left behind.
+So this is a very good start, as the person says they got stuck.
+We'll give it a fair on commit ready.
+So even though isn't finished, it's getting points on commit ready.
+And you'll see as we go on that it will get more points.
+Let's talk about design completeness.
+We'll put up the HTDF elements.
+And here we go.
+There is the signature.
+There's the purpose.
+There's the check expects.
+There's a commented out stud, a commented out template,
+and a function definition.
+But we also need these things to be well formed.
+So let's try this.
+We know this isn't well formed.
+And in fact, it's so badly formed that I have commented out
+to test whether other things are well formed.
+Let's try to run.
+Since that's not there, let's put the stub back,
+and check whether the check expects are well formed.
+This is how you can check whether the check expects are well formed.
+You just uncomment the stub and run.
+And we've got a problem here.
+Circle is getting too many arguments.
+Yes, circle only wants a radius.
+So I can fix that.
+
+And, let's see, we've got another problem here.
+Greater than got an image as its first argument.
+Right there.
+Oh, yeah.
+Sure, the first argument to greater than is rectangle.
+Oh, we're calling our function with a call to greater than instead of
+with two images.
+This probably should be something like this.
+
+What I'm trying to show you here's something really important.
+This person was following the recipe, and that's a pretty good.
+Except, they didn't really completely follow the recipe.
+They wrote examples, and they wrote a stub,
+but they never ran the examples against just the stub.
+And if they had done that, they would have fixed this call to larger here
+to look like that.
+They then would have realized that the stub was missing a parameter.
+It needs two parameters.
+And lots of other things would have gone better from that point forward.
+So an important step of the recipe, the reason we write the stub,
+is so that you can run the tests with just the stub.
+Let me go through the rest of this a bit more quickly now.
+There's enough problems here with the well formedness.
+I'll just back it out to where it started.
+
+There's enough problems here in terms of the well formedness in the design.
+That will get a poor here on design completeness.
+In terms of internal quality, let's see, the signature, well the signature
+is not correct because it doesn't consume two images.
+The purpose is clear and succinct.
+
+The examples, it's hard with the examples of say
+whether they test the function because they're not well formed.
+But if we kind of pretend they're a bit well formed, [? 3 ?] by 3
+is bigger than a circle of size 1.
+3 by 3, the problem is that 9 is the radius, not the diameter.
+So, you know, this is bigger than that.
+This is smaller than that.
+And this is smaller than that.
+So there isn't the boundary case, the middle case,
+where they're the equal that's not checked.
+So the tests aren't really quite sufficient,
+and of course, the function definition itself is incomplete.
+So we end up at poor for internal quality.
+And does this design satisfy the problem statement?
+Well there's kind of a rule that we use, which
+is you don't lose points twice for the same thing.
+So this kind of does satisfy the problem statement,
+but it doesn't resolve the ambiguity about what larger means.
+So we'll give this a fair on satisfying the problem statement.
+The moral of the story here is following the recipe gets points in the rubric.
+But much more important than that, follow
+the recipe helps you make progress.
+And you've really got to follow it.
+You really got to do things like run the check expects against just the stub.
+Because when you do that, you find problems that you fix them right then
+and it gets you back on the tracks, in order to get to a complete design.
+So if this is your design, this is a really good start,
+but trust the recipe a little bit more and you'll
+get all the way their next time.
+And this is last one we'll look at for this week.
+And I think you can tell almost right away that this is bad.
+I mean, it's from the dark side of the force.
+It's just, sorry.
+We can't ask ourselves questions about whether the design is complete,
+or in some sense we can, but there's no signature, no purpose,
+no check expects, no stub.
+There's just kind of a function definition.
+And let me show you something.
+If I try to run this, it's not well formed.
+There's a semicolon missing here probably from the end somewhere.
+So this file never ran.
+And part of why there was no motivation to run it was there
+was no test for it to run.
+So if we do put up our criteria, I guess it's OK on commit ready.
+But it doesn't do very well on anything other than that.
+It's not complete.
+Most of the recipe elements aren't there, so they can't have high quality.
+The code doesn't run.
+And I don't know whether it satisfies the problem statement,
+or not, because there's no purpose or anything.
+Really, really, really, really, really, really, really, this
+is not the way we want to program in this course.
+This is actually pretty close to the right function definition,
+but it's not the way we want to program in this course.
+OK?
+So this, which in some sense has a better function
+definition than the previous submission we saw,
+is actually going to come away with many fewer points.
+Follow the recipe.
+It is the rule in this class.
+So what you need to do now is take your solution, take the rubric,
+take this video, and do a self-assessment of your solution
+according to the rubric.
+Obviously, you're free to improve your solution
+before you do the assessment of it.
+But if you're going to do that, let me encourage
+you to first do the assessment, then improve it, then do the re-assessment.
+You could submit the higher of the two scores, that's fine.
+But really take the trouble to do the assessment
+and figure out how well you did.
+Because as the problems get harder, if you're not following the recipe well,
+you're going to have a harder and harder time getting there.

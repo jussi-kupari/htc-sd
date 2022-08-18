@@ -1,0 +1,444 @@
+0
+00:00:00,000 --> 00:00:03,987
+
+
+1
+00:00:03,987 --> 00:00:06,070
+GREGOR KICZALES: So as I said in the introduction,
+
+2
+00:00:06,070 --> 00:00:07,778
+we're going to design some great programs
+
+3
+00:00:07,778 --> 00:00:12,740
+in this course-- some games, some animations, some information
+
+4
+00:00:12,740 --> 00:00:14,620
+visualization, some web programs.
+
+5
+00:00:14,620 --> 00:00:16,930
+Really great stuff.
+
+6
+00:00:16,930 --> 00:00:21,204
+But the thing is, you got to walk before you can run.
+
+7
+00:00:21,204 --> 00:00:24,370
+And in the same way, we've got to learn some basic building blocks before we
+
+8
+00:00:24,370 --> 00:00:26,810
+can build these great programs.
+
+9
+00:00:26,810 --> 00:00:29,366
+So that's what we're going to do for the next few videos is
+
+10
+00:00:29,366 --> 00:00:31,490
+learn some basic building blocks out of which we're
+
+11
+00:00:31,490 --> 00:00:34,050
+going to build bigger programs.
+
+12
+00:00:34,050 --> 00:00:37,120
+We're going to try to do it quickly because it isn't that exciting.
+
+13
+00:00:37,120 --> 00:00:40,300
+But we're going to try not to do it too quickly because we want everybody
+
+14
+00:00:40,300 --> 00:00:42,370
+to be able to stay with us.
+
+15
+00:00:42,370 --> 00:00:47,540
+So if maybe you've programmed before and this video seems a little slow,
+
+16
+00:00:47,540 --> 00:00:49,631
+then feel free to speed it up.
+
+17
+00:00:49,631 --> 00:00:51,380
+But most of the people who take this class
+
+18
+00:00:51,380 --> 00:00:53,120
+haven't programmed before, so we're going
+
+19
+00:00:53,120 --> 00:00:55,524
+to try to go a good speed for that.
+
+20
+00:00:55,524 --> 00:00:57,440
+And if the video's a little too fast, then you
+
+21
+00:00:57,440 --> 00:01:01,320
+can replay the part of the video that you need to replay.
+
+22
+00:01:01,320 --> 00:01:05,830
+As we go through it, I'd encourage you to have DrRacket open and follow along
+
+23
+00:01:05,830 --> 00:01:08,350
+with the examples that I'm going to do.
+
+24
+00:01:08,350 --> 00:01:10,550
+So here we go.
+
+25
+00:01:10,550 --> 00:01:13,010
+When we start Racket for the first time, we
+
+26
+00:01:13,010 --> 00:01:16,460
+have to tell it what language we're going to use.
+
+27
+00:01:16,460 --> 00:01:20,070
+Your Racket may have started up already saying, Beginning student language,
+
+28
+00:01:20,070 --> 00:01:21,900
+down in this lower left corner.
+
+29
+00:01:21,900 --> 00:01:23,400
+And if it did, then you're all set.
+
+30
+00:01:23,400 --> 00:01:25,470
+You don't need to do anything.
+
+31
+00:01:25,470 --> 00:01:29,090
+But if it didn't, then go to the Language menu.
+
+32
+00:01:29,090 --> 00:01:32,050
+Say Choose Language.
+
+33
+00:01:32,050 --> 00:01:36,500
+Make sure the How To Design Program part is opened up
+
+34
+00:01:36,500 --> 00:01:38,754
+and choose Beginning Student.
+
+35
+00:01:38,754 --> 00:01:41,170
+The way you'll get to this menu will be slightly different
+
+36
+00:01:41,170 --> 00:01:44,740
+in Windows, of course, but you're going to want to go to the Language menu
+
+37
+00:01:44,740 --> 00:01:45,630
+to do that.
+
+38
+00:01:45,630 --> 00:01:48,900
+So go to the Language menu and select Beginning Student Language,
+
+39
+00:01:48,900 --> 00:01:51,630
+and then you'll be all set to go.
+
+40
+00:01:51,630 --> 00:01:55,090
+Now that that's done, we can get started.
+
+41
+00:01:55,090 --> 00:01:57,930
+The top part of Racket here is called the Definitions Area,
+
+42
+00:01:57,930 --> 00:02:01,340
+and the bottom part is called the Interaction Area.
+
+43
+00:02:01,340 --> 00:02:04,025
+We're going to start by working up in the Definitions Area.
+
+44
+00:02:04,025 --> 00:02:07,920
+And we're going to start by writing a simple arithmetic expression.
+
+45
+00:02:07,920 --> 00:02:11,470
+I'll just put plus 3 4.
+
+46
+00:02:11,470 --> 00:02:14,400
+This is how we're going to say to add three to four
+
+47
+00:02:14,400 --> 00:02:17,700
+in the beginning student language.
+
+48
+00:02:17,700 --> 00:02:21,730
+And if I ask DrRacket to run that short program, it will.
+
+49
+00:02:21,730 --> 00:02:24,590
+And down here, it tells me that the result of that program
+
+50
+00:02:24,590 --> 00:02:26,930
+is 7, which isn't so surprising.
+
+51
+00:02:26,930 --> 00:02:29,920
+Adding 3 to 4 should produce 7.
+
+52
+00:02:29,920 --> 00:02:32,570
+This is what's called an expression.
+
+53
+00:02:32,570 --> 00:02:36,460
+And in the bottom window, we have what's called a value.
+
+54
+00:02:36,460 --> 00:02:39,190
+And the way Racket is working is we give it expressions,
+
+55
+00:02:39,190 --> 00:02:42,360
+and it evaluates the expression to produce the value.
+
+56
+00:02:42,360 --> 00:02:44,250
+Expressions can be more complicated.
+
+57
+00:02:44,250 --> 00:02:51,770
+For example, we could say plus 3 times 2 3.
+
+58
+00:02:51,770 --> 00:02:58,184
+And we can run that program, and no surprise, it produces 9.
+
+59
+00:02:58,184 --> 00:03:00,850
+We can make expressions that are even more complicated than that
+
+60
+00:03:00,850 --> 00:03:03,830
+or use other primitive operators.
+
+61
+00:03:03,830 --> 00:03:11,020
+Here we'll just divide 12 by times 2 3.
+
+62
+00:03:11,020 --> 00:03:16,490
+And unsurprisingly, that will give us 2.
+
+63
+00:03:16,490 --> 00:03:20,840
+So what we've seen so far is that the rule for the way we form an expression
+
+64
+00:03:20,840 --> 00:03:25,710
+is open parenthesis, the name of a primitive operator, like plus
+
+65
+00:03:25,710 --> 00:03:31,090
+or times or slash, and then any number of other expressions followed
+
+66
+00:03:31,090 --> 00:03:32,717
+by a close parenthesis.
+
+67
+00:03:32,717 --> 00:03:35,550
+And there's another rule that says expressions can be actual values.
+
+68
+00:03:35,550 --> 00:03:37,555
+So numbers themselves can be expressions.
+
+69
+00:03:37,555 --> 00:03:40,170
+
+
+70
+00:03:40,170 --> 00:03:42,370
+Let me show you another thing we can do.
+
+71
+00:03:42,370 --> 00:03:46,250
+We could take all of this, and if we say to Racket Comment That Out
+
+72
+00:03:46,250 --> 00:03:49,485
+with Semicolons, then it'll put a semicolon
+
+73
+00:03:49,485 --> 00:03:51,080
+in front of each of those lines.
+
+74
+00:03:51,080 --> 00:03:55,280
+And what that tells Racket is, for now, it should ignore everything on a line
+
+75
+00:03:55,280 --> 00:03:56,970
+after the first semicolon.
+
+76
+00:03:56,970 --> 00:03:59,731
+So if I would run this program now, as far as Racket's concerned,
+
+77
+00:03:59,731 --> 00:04:01,355
+there's no expressions in there at all.
+
+78
+00:04:01,355 --> 00:04:04,030
+And so there's no values that come out.
+
+79
+00:04:04,030 --> 00:04:07,780
+Let me tell you about two more primitive operations on numbers,
+
+80
+00:04:07,780 --> 00:04:10,390
+and then I'll ask you to do an exercise.
+
+81
+00:04:10,390 --> 00:04:13,340
+The first one is sqr.
+
+82
+00:04:13,340 --> 00:04:14,785
+We call it square.
+
+83
+00:04:14,785 --> 00:04:18,589
+And if I take square of 3-- and I'll show you
+
+84
+00:04:18,589 --> 00:04:23,290
+another one here at the same time-- square root of 16,
+
+85
+00:04:23,290 --> 00:04:26,710
+and I'll run these two.
+
+86
+00:04:26,710 --> 00:04:32,860
+And what you're seeing is that square squares the number, and square root
+
+87
+00:04:32,860 --> 00:04:37,190
+produces the square root of a number.
+
+88
+00:04:37,190 --> 00:04:37,690
+OK.
+
+89
+00:04:37,690 --> 00:04:40,141
+We've seen how to form expressions.
+
+90
+00:04:40,141 --> 00:04:41,890
+And we've seen a number of primitives that
+
+91
+00:04:41,890 --> 00:04:46,830
+operate on numbers, primitives like plus, and times, and divide, and minus,
+
+92
+00:04:46,830 --> 00:04:49,910
+and square, and square root.
+
+93
+00:04:49,910 --> 00:04:52,300
+What I'd like to do now is give you an exercise
+
+94
+00:04:52,300 --> 00:04:55,572
+that you can use to help reinforce what we've learned so far.
+
+95
+00:04:55,572 --> 00:04:58,405
+We'll have exercises like this throughout the videos in this course.
+
+96
+00:04:58,405 --> 00:05:00,155
+I'd like to encourage you to take the time
+
+97
+00:05:00,155 --> 00:05:04,580
+to do them just to test your understanding of what's come so far.
+
+98
+00:05:04,580 --> 00:05:05,990
+So here's the exercise.
+
+99
+00:05:05,990 --> 00:05:07,980
+I've got it in a separate file.
+
+100
+00:05:07,980 --> 00:05:10,472
+And let me just explain this big box.
+
+101
+00:05:10,472 --> 00:05:13,680
+Racket has a thing called a comment box, which you can actually add to a file
+
+102
+00:05:13,680 --> 00:05:16,600
+yourself under the Insert menu.
+
+103
+00:05:16,600 --> 00:05:19,950
+And the way to think of a comment box is, see this semicolon here?
+
+104
+00:05:19,950 --> 00:05:23,855
+It's basically saying everything in the box is a comment.
+
+105
+00:05:23,855 --> 00:05:25,770
+And what's also neat about Racket is that you
+
+106
+00:05:25,770 --> 00:05:27,790
+can put images in the middle of files.
+
+107
+00:05:27,790 --> 00:05:30,800
+That's just an image that I cut and pasted.
+
+108
+00:05:30,800 --> 00:05:33,380
+At any rate, here's the exercise.
+
+109
+00:05:33,380 --> 00:05:34,910
+Go ahead and work on it.
+
+110
+00:05:34,910 --> 00:05:36,830
+Write the expression.
+

@@ -1,0 +1,940 @@
+0
+00:00:00,000 --> 00:00:04,660
+
+
+1
+00:00:04,660 --> 00:00:07,160
+GREGOR KICZALES: Here's another helper function rule.
+
+2
+00:00:07,160 --> 00:00:10,330
+It says that when we shift knowledge domain,
+
+3
+00:00:10,330 --> 00:00:13,000
+we should use a helper function.
+
+4
+00:00:13,000 --> 00:00:16,040
+That sounds kind of weird, but really all it's saying
+
+5
+00:00:16,040 --> 00:00:19,720
+is, that if we're in the middle designing a function about one thing,
+
+6
+00:00:19,720 --> 00:00:22,840
+maybe this function is about apples, and then we
+
+7
+00:00:22,840 --> 00:00:27,330
+need to do a very different kind of thing, maybe oranges,
+
+8
+00:00:27,330 --> 00:00:31,350
+then right there is where we should put a helper function call.
+
+9
+00:00:31,350 --> 00:00:33,540
+Maybe the apples and oranges doesn't explain it,
+
+10
+00:00:33,540 --> 00:00:36,290
+but I think if you look at the example in this video,
+
+11
+00:00:36,290 --> 00:00:39,540
+you'll be able to understand when to use this rule.
+
+12
+00:00:39,540 --> 00:00:43,250
+Now, I'm working on finishing the insert function.
+
+13
+00:00:43,250 --> 00:00:46,500
+We've already got the wish list entry, so the next thing to do
+
+14
+00:00:46,500 --> 00:00:47,936
+is work on the examples.
+
+15
+00:00:47,936 --> 00:00:50,810
+And at this point in this program, what I'm going to realize is, gee,
+
+16
+00:00:50,810 --> 00:00:54,320
+I've got a lot of examples involving images of different sizes.
+
+17
+00:00:54,320 --> 00:00:56,580
+And they get kind of cumbersome to write,
+
+18
+00:00:56,580 --> 00:00:59,359
+so I'm going to do something that I might have done earlier.
+
+19
+00:00:59,359 --> 00:01:01,900
+It's fine that I didn't do it earlier, and I don't absolutely
+
+20
+00:01:01,900 --> 00:01:03,420
+have to do it now.
+
+21
+00:01:03,420 --> 00:01:06,320
+I'm just doing it, so that you can see it happen.
+
+22
+00:01:06,320 --> 00:01:09,270
+What I'm going to do is I'm going to take these examples that I've
+
+23
+00:01:09,270 --> 00:01:12,770
+been using, and I'm going to take the images that I've been using
+
+24
+00:01:12,770 --> 00:01:15,670
+and I'm going to turn them into name constants.
+
+25
+00:01:15,670 --> 00:01:18,490
+So for example, this shows up in a lot of my examples.
+
+26
+00:01:18,490 --> 00:01:21,410
+
+
+27
+00:01:21,410 --> 00:01:24,610
+I just go up here to constants, and I'll make a special section
+
+28
+00:01:24,610 --> 00:01:28,080
+of them called for testing.
+
+29
+00:01:28,080 --> 00:01:32,570
+And we'll say, define I1 is this thing.
+
+30
+00:01:32,570 --> 00:01:42,460
+And then what I'll do is I'll say, let's find every occurrence of this thing,
+
+31
+00:01:42,460 --> 00:01:44,820
+and we'll replace it with I1.
+
+32
+00:01:44,820 --> 00:01:48,040
+Well we'll not going to replace that one, because that would be circular,
+
+33
+00:01:48,040 --> 00:01:52,660
+but we will replace this one, and this one, and this one, and this one,
+
+34
+00:01:52,660 --> 00:01:55,019
+and this one, and this one, and this one.
+
+35
+00:01:55,019 --> 00:01:56,060
+There were a lot of them.
+
+36
+00:01:56,060 --> 00:02:00,800
+
+
+37
+00:02:00,800 --> 00:02:03,110
+Not that one.
+
+38
+00:02:03,110 --> 00:02:07,730
+And then, we'll do it again for the other ones.
+
+39
+00:02:07,730 --> 00:02:32,830
+20, 30 solid red, and then 30, 40 solid green.
+
+40
+00:02:32,830 --> 00:02:51,220
+
+
+41
+00:02:51,220 --> 00:02:56,100
+And one important thing here is I ran it,
+
+42
+00:02:56,100 --> 00:02:58,820
+and unfortunately the program wasn't working
+
+43
+00:02:58,820 --> 00:03:01,910
+when I ran it, because we knew that, we were in the middle of working.
+
+44
+00:03:01,910 --> 00:03:04,740
+And so, I'm not certain that I didn't make any mistakes,
+
+45
+00:03:04,740 --> 00:03:07,320
+but I did it so systematically, using find replace,
+
+46
+00:03:07,320 --> 00:03:09,331
+that I probably didn't make any mistakes.
+
+47
+00:03:09,331 --> 00:03:11,206
+Whenever you do something like this, you want
+
+48
+00:03:11,206 --> 00:03:14,890
+to at very least, rerun it to make sure your program is still well formed.
+
+49
+00:03:14,890 --> 00:03:18,240
+
+
+50
+00:03:18,240 --> 00:03:21,040
+And what I probably would also do is take the trouble
+
+51
+00:03:21,040 --> 00:03:24,900
+to redo the line breaking.
+
+52
+00:03:24,900 --> 00:03:28,610
+
+
+53
+00:03:28,610 --> 00:03:30,370
+And in some programming environments, you
+
+54
+00:03:30,370 --> 00:03:34,780
+would get some more automatic support for this kind of thing.
+
+55
+00:03:34,780 --> 00:03:38,190
+Basically, you're taking a recurring constant expression
+
+56
+00:03:38,190 --> 00:03:40,590
+and replacing it by a named constant.
+
+57
+00:03:40,590 --> 00:03:44,485
+That's a refactoring that some tools will give you automatic support for.
+
+58
+00:03:44,485 --> 00:03:48,010
+
+
+59
+00:03:48,010 --> 00:03:50,710
+And that kind of support has been in programming environments
+
+60
+00:03:50,710 --> 00:03:52,430
+for years, and years, and years.
+
+61
+00:03:52,430 --> 00:03:56,390
+Larry Masinter put that in the Interlisp-D programming environment
+
+62
+00:03:56,390 --> 00:03:59,900
+in the '80s, at least that long ago.
+
+63
+00:03:59,900 --> 00:04:05,900
+All right, now we're back to insert.
+
+64
+00:04:05,900 --> 00:04:07,100
+So let's do some examples.
+
+65
+00:04:07,100 --> 00:04:10,480
+
+
+66
+00:04:10,480 --> 00:04:12,040
+So we're going to insert some image.
+
+67
+00:04:12,040 --> 00:04:15,630
+Well now we've got names for images, so we'll insert I1 into,
+
+68
+00:04:15,630 --> 00:04:18,519
+we need the base case example first.
+
+69
+00:04:18,519 --> 00:04:21,610
+So if you insert an image into an empty list,
+
+70
+00:04:21,610 --> 00:04:24,840
+there's only one place for it to go, which is at the beginning of the list.
+
+71
+00:04:24,840 --> 00:04:26,060
+That's the result there.
+
+72
+00:04:26,060 --> 00:04:31,100
+
+
+73
+00:04:31,100 --> 00:04:38,280
+Now let's see, another example is to insert I1
+
+74
+00:04:38,280 --> 00:04:44,640
+into a list that already has I2 and I3 in it.
+
+75
+00:04:44,640 --> 00:04:47,279
+
+
+76
+00:04:47,279 --> 00:04:49,320
+And in that case, it goes right at the beginning.
+
+77
+00:04:49,320 --> 00:04:55,580
+
+
+78
+00:04:55,580 --> 00:04:58,330
+And now, that I've got these nice named constants,
+
+79
+00:04:58,330 --> 00:05:01,380
+I can really do all three cases.
+
+80
+00:05:01,380 --> 00:05:18,310
+Let's also insert I2, which goes in the middle, and we'll produce that result.
+
+81
+00:05:18,310 --> 00:05:31,140
+And let's also insert I3, which produces that result.
+
+82
+00:05:31,140 --> 00:05:33,050
+So now we've kind of got the full space.
+
+83
+00:05:33,050 --> 00:05:35,620
+It either goes at the beginning of an empty list,
+
+84
+00:05:35,620 --> 00:05:37,860
+or goes at the beginning of a non-empty, list,
+
+85
+00:05:37,860 --> 00:05:40,270
+or it's somewhere in the middle of a non-empty list,
+
+86
+00:05:40,270 --> 00:05:43,082
+or at the end of a non-empty list.
+
+87
+00:05:43,082 --> 00:05:44,040
+That looks pretty good.
+
+88
+00:05:44,040 --> 00:05:46,930
+Now we've got some examples.
+
+89
+00:05:46,930 --> 00:05:49,210
+Let's run them to make sure they're well formed.
+
+90
+00:05:49,210 --> 00:05:52,700
+Oops, one of my examples isn't well formed.
+
+91
+00:05:52,700 --> 00:05:56,680
+Since I copied and pasted, it's going to happen a bunch of times.
+
+92
+00:05:56,680 --> 00:05:57,525
+There, that empty.
+
+93
+00:05:57,525 --> 00:06:00,130
+
+
+94
+00:06:00,130 --> 00:06:03,830
+That's OK, we'll fix it quickly.
+
+95
+00:06:03,830 --> 00:06:06,517
+Let's try it again.
+
+96
+00:06:06,517 --> 00:06:08,600
+OK, now they're well formed, but of course they're
+
+97
+00:06:08,600 --> 00:06:11,207
+failing, because of the stub.
+
+98
+00:06:11,207 --> 00:06:12,290
+Let's go get the template.
+
+99
+00:06:12,290 --> 00:06:20,300
+
+
+100
+00:06:20,300 --> 00:06:25,966
+And we'll copy the template down here, we'll comment out the stub.
+
+101
+00:06:25,966 --> 00:06:29,440
+
+
+102
+00:06:29,440 --> 00:06:30,070
+Oh dear.
+
+103
+00:06:30,070 --> 00:06:32,930
+
+
+104
+00:06:32,930 --> 00:06:36,940
+When we were designing this, we named the parameter LST,
+
+105
+00:06:36,940 --> 00:06:39,340
+and we tend to name them LOI.
+
+106
+00:06:39,340 --> 00:06:40,670
+There's two ways to fix this.
+
+107
+00:06:40,670 --> 00:06:44,410
+One is to go ahead and name it LST throughout this function.
+
+108
+00:06:44,410 --> 00:06:46,410
+The other way is to be more consistent with what
+
+109
+00:06:46,410 --> 00:06:48,100
+we were doing in other functions.
+
+110
+00:06:48,100 --> 00:06:50,847
+Both work, but I think what I'll do here is just to take
+
+111
+00:06:50,847 --> 00:06:52,430
+the approach of being more consistent.
+
+112
+00:06:52,430 --> 00:06:55,831
+I'll change that to LOI, and that to LOI,
+
+113
+00:06:55,831 --> 00:06:58,330
+and I'll do it too in the stub, even though the stuff that's
+
+114
+00:06:58,330 --> 00:06:59,850
+been commented out now.
+
+115
+00:06:59,850 --> 00:07:02,450
+I just like being consistent.
+
+116
+00:07:02,450 --> 00:07:08,190
+So now, LOI has the right name, but I do need to rename the function
+
+117
+00:07:08,190 --> 00:07:11,440
+itself, and rename the natural recursion.
+
+118
+00:07:11,440 --> 00:07:14,600
+And this is a function that takes two arguments,
+
+119
+00:07:14,600 --> 00:07:16,890
+whereas the template, of course, only takes one,
+
+120
+00:07:16,890 --> 00:07:20,230
+so we have to add the second argument image.
+
+121
+00:07:20,230 --> 00:07:22,990
+
+
+122
+00:07:22,990 --> 00:07:27,240
+And remember, if you go to the design recipes page,
+
+123
+00:07:27,240 --> 00:07:31,920
+and you go to the data driven templates page,
+
+124
+00:07:31,920 --> 00:07:33,850
+there's a rule that when designing functions
+
+125
+00:07:33,850 --> 00:07:36,980
+that consume additional atomic parameters, the name of that parameter
+
+126
+00:07:36,980 --> 00:07:40,610
+gets added after every dot, dot, dot in the template.
+
+127
+00:07:40,610 --> 00:07:43,380
+So we got to do that here.
+
+128
+00:07:43,380 --> 00:07:50,380
+So let's see, IMG's going to go there, and it's going to go there.
+
+129
+00:07:50,380 --> 00:07:55,760
+And something has to happen here, because insert once two arguments,
+
+130
+00:07:55,760 --> 00:07:58,650
+so I'll just put dot, dot, dot IMG.
+
+131
+00:07:58,650 --> 00:08:01,515
+You could put that, sometimes I would just put that,
+
+132
+00:08:01,515 --> 00:08:05,220
+but I'll put dot, dot, dot IMG in this case.
+
+133
+00:08:05,220 --> 00:08:09,140
+They're both equivalent, both are a note to myself saying, hey, remember, insert
+
+134
+00:08:09,140 --> 00:08:10,910
+needs two arguments.
+
+135
+00:08:10,910 --> 00:08:12,830
+So now, let's get going.
+
+136
+00:08:12,830 --> 00:08:17,715
+In the base case, we're inserting image into an empty list.
+
+137
+00:08:17,715 --> 00:08:22,270
+And that corresponds to this first example.
+
+138
+00:08:22,270 --> 00:08:31,360
+And so we just put this image on the front of an empty list, like that.
+
+139
+00:08:31,360 --> 00:08:35,330
+The next three examples are telling me that sometimes the inserted image goes
+
+140
+00:08:35,330 --> 00:08:39,720
+right at the front of a list, and sometimes it doesn't.
+
+141
+00:08:39,720 --> 00:08:44,570
+In this first case, I1, the image that we're trying to insert,
+
+142
+00:08:44,570 --> 00:08:47,630
+is not larger than I2.
+
+143
+00:08:47,630 --> 00:08:51,050
+And so that means I1 has to go before I2.
+
+144
+00:08:51,050 --> 00:08:54,570
+That's what it means for the items to be in increasing order of size.
+
+145
+00:08:54,570 --> 00:08:59,290
+Because I2 is bigger than I1, I2 has to be after I1.
+
+146
+00:08:59,290 --> 00:09:03,600
+But in this blue case, we're trying to insert I2,
+
+147
+00:09:03,600 --> 00:09:07,200
+and the first item in the list is I1.
+
+148
+00:09:07,200 --> 00:09:14,690
+And I2 is bigger than I1, so that means I2 has to go after I1 somewhere.
+
+149
+00:09:14,690 --> 00:09:19,470
+Again, that's what it means for them to be sorted in increasing order of size.
+
+150
+00:09:19,470 --> 00:09:22,630
+And the same is true for this blue case.
+
+151
+00:09:22,630 --> 00:09:29,400
+I3 is larger than I2, so I3's got to go somewhere after I2 in the list.
+
+152
+00:09:29,400 --> 00:09:32,382
+
+
+153
+00:09:32,382 --> 00:09:35,090
+So what these examples are telling me is that, at the very least,
+
+154
+00:09:35,090 --> 00:09:37,200
+there's got to be an if here.
+
+155
+00:09:37,200 --> 00:09:40,420
+Because there's a case where I1, won the inserted item,
+
+156
+00:09:40,420 --> 00:09:43,510
+goes at the beginning of the list, and there's
+
+157
+00:09:43,510 --> 00:09:48,820
+cases, the I2 and I3 cases, where the inserted item doesn't
+
+158
+00:09:48,820 --> 00:09:50,460
+go at the beginning of a list.
+
+159
+00:09:50,460 --> 00:09:53,700
+So there's got to be an if.
+
+160
+00:09:53,700 --> 00:09:57,120
+And if there's an if, there has to be a question, so what's the question?
+
+161
+00:09:57,120 --> 00:10:02,430
+Well, the question has to do with comparing the sizes of the image
+
+162
+00:10:02,430 --> 00:10:07,890
+to be inserted with the first item of the list.
+
+163
+00:10:07,890 --> 00:10:13,070
+So we need to do something here, with these two things
+
+164
+00:10:13,070 --> 00:10:18,540
+to know is image bigger than the first thing in the list.
+
+165
+00:10:18,540 --> 00:10:22,840
+And you might put a note to yourselves here, is bigger.
+
+166
+00:10:22,840 --> 00:10:26,370
+
+
+167
+00:10:26,370 --> 00:10:29,520
+Now the question is, how are we going to do that?
+
+168
+00:10:29,520 --> 00:10:32,410
+Well, we need to determine if the area is different,
+
+169
+00:10:32,410 --> 00:10:35,530
+so we're going to have to get the width and height of the image,
+
+170
+00:10:35,530 --> 00:10:38,010
+and the width and height of the first thing in the list,
+
+171
+00:10:38,010 --> 00:10:41,270
+and we kind of have to determine their relative sizes.
+
+172
+00:10:41,270 --> 00:10:45,500
+But that's kind of complicated, and not only is it kind of complicated,
+
+173
+00:10:45,500 --> 00:10:48,130
+but it's about a different kind of issue.
+
+174
+00:10:48,130 --> 00:10:52,350
+This function is really about inserting into a sorted list,
+
+175
+00:10:52,350 --> 00:10:57,300
+whereas this little piece of code here is about comparing sizes.
+
+176
+00:10:57,300 --> 00:11:00,450
+And sorting a list is one kind of knowledge,
+
+177
+00:11:00,450 --> 00:11:04,350
+and comparing sizes of images is a different kind of knowledge.
+
+178
+00:11:04,350 --> 00:11:08,140
+So what we've got here is a knowledge domain shift.
+
+179
+00:11:08,140 --> 00:11:11,500
+We're shifting from knowledge about sorting lists to knowledge
+
+180
+00:11:11,500 --> 00:11:14,490
+about comparing the size of images.
+
+181
+00:11:14,490 --> 00:11:19,810
+And there's a helper rule that says, when the knowledge domain shifts,
+
+182
+00:11:19,810 --> 00:11:21,930
+you use a new helper.
+
+183
+00:11:21,930 --> 00:11:27,090
+So I'm going to wish that there was some other function called larger
+
+184
+00:11:27,090 --> 00:11:31,160
+that compares the size of these two images.
+
+185
+00:11:31,160 --> 00:11:39,920
+And produces true, if the first image is larger than the remaining images.
+
+186
+00:11:39,920 --> 00:11:45,160
+And if image is larger than the first thing in the list, then what happens?
+
+187
+00:11:45,160 --> 00:11:47,110
+Well that means image is going to go somewhere
+
+188
+00:11:47,110 --> 00:11:50,210
+after the first thing in the list.
+
+189
+00:11:50,210 --> 00:11:54,960
+So what we're going to want to do is say something like, cons.
+
+190
+00:11:54,960 --> 00:12:02,790
+The first thing in the list, I2, is bigger than I1.
+
+191
+00:12:02,790 --> 00:12:08,170
+So I1, the first thing in the list, is going to come first,
+
+192
+00:12:08,170 --> 00:12:10,715
+and then we'll have the natural recursion.
+
+193
+00:12:10,715 --> 00:12:14,190
+
+
+194
+00:12:14,190 --> 00:12:17,650
+And the natural recursion will just take images as its first argument.
+
+195
+00:12:17,650 --> 00:12:23,990
+And what this says is it says, put image somewhere in the rest of the list,
+
+196
+00:12:23,990 --> 00:12:26,870
+and put the current first of the list in front of that.
+
+197
+00:12:26,870 --> 00:12:34,110
+Otherwise, if image isn't larger than the first thing in the list,
+
+198
+00:12:34,110 --> 00:12:35,810
+then this is where it goes.
+
+199
+00:12:35,810 --> 00:12:40,475
+So we're just going to put image right here at the front list.
+
+200
+00:12:40,475 --> 00:12:43,970
+
+
+201
+00:12:43,970 --> 00:12:45,260
+There it is.
+
+202
+00:12:45,260 --> 00:12:48,385
+Now we've wish for this function larger, so let's make the wish list entry.
+
+203
+00:12:48,385 --> 00:12:51,000
+
+
+204
+00:12:51,000 --> 00:12:55,310
+It consumes an image and another image, and it produces a Boolean.
+
+205
+00:12:55,310 --> 00:12:58,290
+Produce true if image.
+
+206
+00:12:58,290 --> 00:13:07,410
+one is larger than image two by area.
+
+207
+00:13:07,410 --> 00:13:08,505
+It's a wish list entry.
+
+208
+00:13:08,505 --> 00:13:19,120
+
+
+209
+00:13:19,120 --> 00:13:22,240
+There's the stub.
+
+210
+00:13:22,240 --> 00:13:28,020
+Let's get rid of hide replace now, and run and see if we're well formed.
+
+211
+00:13:28,020 --> 00:13:31,360
+We are well formed when a bunch of tests are failing.
+
+212
+00:13:31,360 --> 00:13:34,020
+So what's happened here in this function is,
+
+213
+00:13:34,020 --> 00:13:37,870
+we made some name constants, in order to make our tests look better.
+
+214
+00:13:37,870 --> 00:13:42,820
+We just methodically generated all possible variants for the tests,
+
+215
+00:13:42,820 --> 00:13:46,370
+copied the template as usual, added a parameter.
+
+216
+00:13:46,370 --> 00:13:49,500
+And then, it was all pretty clear what we're going to do.
+
+217
+00:13:49,500 --> 00:13:52,420
+We need to know the relationship in size between image
+
+218
+00:13:52,420 --> 00:13:55,390
+and the first thing in the list.
+
+219
+00:13:55,390 --> 00:13:58,310
+But that involved a knowledge domain shift.
+
+220
+00:13:58,310 --> 00:14:01,370
+We were switching from the domain of sorting lists
+
+221
+00:14:01,370 --> 00:14:05,190
+to the domain of comparing the size of images.
+
+222
+00:14:05,190 --> 00:14:07,470
+Those are two different kinds of knowledge,
+
+223
+00:14:07,470 --> 00:14:10,860
+and so there's a rule that says that's a good place to put a helper function.
+
+224
+00:14:10,860 --> 00:14:14,580
+So we wished for larger, and that's where we are right now.
+
+225
+00:14:14,580 --> 00:14:17,410
+
+
+226
+00:14:17,410 --> 00:14:21,050
+Turning again to this overview diagram, where we're at
+
+227
+00:14:21,050 --> 00:14:25,030
+is that arrange images is done, but it's waiting for sort images to be done.
+
+228
+00:14:25,030 --> 00:14:28,570
+But sort images is done, except it's waiting for insert to be done,
+
+229
+00:14:28,570 --> 00:14:32,130
+and insert is waiting for larger to be done.
+
+230
+00:14:32,130 --> 00:14:36,300
+So arrange images, sort images, and insert are fully coded.
+
+231
+00:14:36,300 --> 00:14:39,390
+But until larger is done, we can't really sure
+
+232
+00:14:39,390 --> 00:14:41,520
+that those other functions are done.
+
+233
+00:14:41,520 --> 00:14:44,740
+And larger is what we're going to do in the next video.
+
+234
+00:14:44,740 --> 00:14:46,560
+
+

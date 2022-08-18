@@ -1,0 +1,210 @@
+
+GREGOR KICZALES: Here's my solution for the list of image data definition.
+It's an ordinary, self-referential data definition
+of the kind we saw previously.
+There's two cases-- the base case and the self-reference case.
+And I've got an example of the empty list,
+as well as an example of a list that has a couple images in it.
+There's the template.
+This week you're allowed to not start including template rules used.
+That means you don't have to write the template rules used.
+So I'm not going to write the template rules used.
+But as you read it, I think you can go through the template rules used
+in your mind fairly quickly.
+It's a one of with two cases.
+So there's a two case con.
+First case is atomic distinct empty.
+We have the usual empty LOI dot dot dot.
+And then there's a cons of a primitive type image-- so we just have first LOI.
+There's no call to a natural helper-- and the natural recursion.
+So there we go.
+There's that data definition.
+
+Now, let's get on to designing the functions.
+We'll make another part of file called functions.
+
+And we're supposed to design a function called arrange images that
+consumes an arbitrary number of images.
+So that means it consumes list of image.
+And it produces an image in which they're all laid out left to right.
+And that's going to produce a single image
+where all the images are laid out left to right at increasing order of size.
+So what does it have to do?
+It has to lay out the images the left to right in increasing order of size.
+OK, so a good stub for this function is just define, arrange, images, LOI.
+And the good stub is blank.
+By this point, we've seen that these functions that produce images often
+use blank both in their stub and in their base case.
+SO I'm going to go ahead and make a constant for it--
+square, 0, solid, white.
+Now I've got a constant I can use here in this stub.
+
+I want everything.
+My stub is well formed.
+Let's do some check expectancy.
+Check expect arrange images empty-- well,
+if I ask you to arrange an empty list of images then
+that's just going to prove blank.
+
+And let's see, we want to do one for a non-empty list.
+It should be at least two long.
+Let's see, we need to arrange images.
+And what I'm going to do is I'm going to use the same list that I defined up
+above.
+But I'm not going to refer to it as a constant.
+And I'll tell you why I'm going to do that,
+which is it's going to make it easier for me to understand my check expect
+as an example if I actually include the full calls to rectangle
+here, because I really understand what I'm seeing.
+So now let's see, if I need to rearrange those images left
+to right in increasing order of size, well, the area of this image is 200,
+and the area of this image is 600, so they already
+are in increasing order of size.
+So I think this is going to be beside of this rectangle, then
+this rectangle in also blank.
+
+Now, you might ask, why are you putting the blank there?
+If the blank is blank, in other words it's nothing that you see,
+then it doesn't really make sense to put it there, because it's blank.
+Well, that's true, but the reason I'm putting
+the blank there is remember check expects
+are examples before they're tests.
+And by putting the blank there, I'm kind of reminding myself, what gets built up
+is the blank from the empty and then the other two images.
+That's why I'm putting the blank there.
+It's to make it clear myself not just what
+the actual, final image is, but in some sense why it's the image that it is.
+We'll run it.
+They fail, but their well formed.
+That's great.
+Now, I'm going to get the template.
+
+I'm going to put the template in.
+I'll rename it.
+
+I'll rename the natural recursion.
+I'll comment out the stub.
+And now, I'm going to think for a moment.
+And what I'm going to do is I'm going to go back and reread the purpose.
+And the purpose says, layout images left to right in increasing order of size.
+
+Now, What does that mean?
+Well, if I think about it for a minute, what
+it means is sort images in increasing order of size and then lay them out
+left to right.
+Really what I have to do to make this problem work is first
+I have to take the entire list of images,
+and I have to sort that entire list.
+And then I have to lay those out left to right with beside.
+I can't really go through the images one at a time and sort each image
+and lay each image out.
+The sorting has to be done to the whole list
+and then the layout has to be done to the whole list.
+This is what's called a function composition problem.
+And if we go to design recipes page, there's
+a special entry for function composition.
+And it says that you use function composition
+when a function must perform two or more distinct and complete operations
+on the consume data.
+For example, and it has this example-- that's convenient--
+a function that must sort and lay out a list of images.
+I won't read through the page now.
+You should do that afterwards very carefully.
+But what happens in function composition is that we discard the entire template.
+
+And we replace it with a function composition, such as this one.
+And it's called a function composition because what
+it says it says first sort the entire list-- first call
+sort images to sort the entire list.
+Then take the result of that and call out images on it
+to lay out the entire list.
+So the functions happen one after another, each
+on the output of the previous function.
+So this is a two function composition.
+You could also have problems that had three or four or five functions.
+They tend to be weighted more towards the smaller number.
+This is a two function composition.
+Now, of course, I've wish for some functions that don't exist yet.
+So I better do wish list entries.
+Let's see, layout images consumes list of image and produces image.
+Place images beside each other in order of list-- it's a wish list entry,
+so we'll do that.
+
+And it's got to produce some image.
+So that's the wish list entry for layout images.
+Let's look at sort of images.
+Well, sort images consumes a list of image.
+
+And it produces a list of image.
+
+Sort images in increasing order of size.
+
+It's a wish list entry.
+
+Now this is a function that produces a list.
+
+So we could put just empty as the stub here.
+What I'm going to do instead of putting empty is I'm going to put LOI.
+Because I know that when the stub is called, LOI will be list of image.
+And so if I produce LOI, I know I'll be producing list of image.
+And you'll see a little bit later that this slightly different stub,
+this slightly more clever stub, actually helps us
+in seeing how the program is coming together.
+So I'm putting that as my stub.
+Now that I've set up these wish lists and I
+know this is a function composition function,
+there's one more thing I have to do which is I have to go back
+and think about these tests one more time.
+And here's why.
+If the function is a function composition function,
+then the test for it have to make sure that it's
+composing the functions properly.
+They don't have to exhaustively test the individual functions.
+The tests for layout images will test layout images.
+And the test for sort images will test sort images.
+The test for arrange images have to make sure
+that arrange images is calling layout images and stored images properly.
+One thing this means is that when you go to function composition,
+you don't need to test the base case.
+
+But another thing it means is that because this function is supposed
+to both sort and arrange, this test isn't good enough
+because a version of this function that just did the rendering would work,
+because these are already in the right order.
+So I need a second test.
+I need at least one more test in which I make sure.
+I'll just swap these two rectangles around.
+
+And I want to swap them down here.
+Because the point is that what arrange images needs to do
+is call sort images to rearrange these in the right order
+and then present them.
+So now I feel like I really tested that arrange images is
+doing both jobs, both the sorting and laying out.
+At this point, you're basically done with arrange images.
+If you ran it, the test would run but fail.
+The reason they would run is because we have the wish list entries.
+But they would fail because the wish list
+entries aren't doing the proper thing for either of these functions.
+So to recap this video, remember the first part of the week
+is about more rules for helper functions, more rules
+for went to split one function into multiple other functions.
+In this video, what we saw is the function composition rule,
+which says that we should use a function composition when a single function must
+perform two or more complete operations on the entire consume data.
+So in this case, for example, we have to sort the list of images
+and then lay out the list of images.
+That's a function composition problem.
+So what I'm going to do with this picture here
+is I'm going to keep updating it through the next several videos
+to show how we've broken the original problem of doing arrange images down
+into multiple functions and which rule we used at each point.
+When we start to get into bigger programs, lots of programmers
+keep an actual pad of paper by their desks
+to kind of keep track of where they are in something.
+The wish list entries are good for that.
+But some notes and pieces of paper like this are good for it too.
+There's also a professional programming environments like Eclipse
+that can help you in some ways draw pictures like this
+to keep track of where you are as well.
+That's something you can learn about in another course.

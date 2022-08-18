@@ -1,0 +1,234 @@
+
+GREGOR KICZALES: Here's another helper function rule.
+It says that when we shift knowledge domain,
+we should use a helper function.
+That sounds kind of weird, but really all it's saying
+is, that if we're in the middle designing a function about one thing,
+maybe this function is about apples, and then we
+need to do a very different kind of thing, maybe oranges,
+then right there is where we should put a helper function call.
+Maybe the apples and oranges doesn't explain it,
+but I think if you look at the example in this video,
+you'll be able to understand when to use this rule.
+Now, I'm working on finishing the insert function.
+We've already got the wish list entry, so the next thing to do
+is work on the examples.
+And at this point in this program, what I'm going to realize is, gee,
+I've got a lot of examples involving images of different sizes.
+And they get kind of cumbersome to write,
+so I'm going to do something that I might have done earlier.
+It's fine that I didn't do it earlier, and I don't absolutely
+have to do it now.
+I'm just doing it, so that you can see it happen.
+What I'm going to do is I'm going to take these examples that I've
+been using, and I'm going to take the images that I've been using
+and I'm going to turn them into name constants.
+So for example, this shows up in a lot of my examples.
+
+I just go up here to constants, and I'll make a special section
+of them called for testing.
+And we'll say, define I1 is this thing.
+And then what I'll do is I'll say, let's find every occurrence of this thing,
+and we'll replace it with I1.
+Well we'll not going to replace that one, because that would be circular,
+but we will replace this one, and this one, and this one, and this one,
+and this one, and this one, and this one.
+There were a lot of them.
+
+Not that one.
+And then, we'll do it again for the other ones.
+20, 30 solid red, and then 30, 40 solid green.
+
+And one important thing here is I ran it,
+and unfortunately the program wasn't working
+when I ran it, because we knew that, we were in the middle of working.
+And so, I'm not certain that I didn't make any mistakes,
+but I did it so systematically, using find replace,
+that I probably didn't make any mistakes.
+Whenever you do something like this, you want
+to at very least, rerun it to make sure your program is still well formed.
+
+And what I probably would also do is take the trouble
+to redo the line breaking.
+
+And in some programming environments, you
+would get some more automatic support for this kind of thing.
+Basically, you're taking a recurring constant expression
+and replacing it by a named constant.
+That's a refactoring that some tools will give you automatic support for.
+
+And that kind of support has been in programming environments
+for years, and years, and years.
+Larry Masinter put that in the Interlisp-D programming environment
+in the '80s, at least that long ago.
+All right, now we're back to insert.
+So let's do some examples.
+
+So we're going to insert some image.
+Well now we've got names for images, so we'll insert I1 into,
+we need the base case example first.
+So if you insert an image into an empty list,
+there's only one place for it to go, which is at the beginning of the list.
+That's the result there.
+
+Now let's see, another example is to insert I1
+into a list that already has I2 and I3 in it.
+
+And in that case, it goes right at the beginning.
+
+And now, that I've got these nice named constants,
+I can really do all three cases.
+Let's also insert I2, which goes in the middle, and we'll produce that result.
+And let's also insert I3, which produces that result.
+So now we've kind of got the full space.
+It either goes at the beginning of an empty list,
+or goes at the beginning of a non-empty, list,
+or it's somewhere in the middle of a non-empty list,
+or at the end of a non-empty list.
+That looks pretty good.
+Now we've got some examples.
+Let's run them to make sure they're well formed.
+Oops, one of my examples isn't well formed.
+Since I copied and pasted, it's going to happen a bunch of times.
+There, that empty.
+
+That's OK, we'll fix it quickly.
+Let's try it again.
+OK, now they're well formed, but of course they're
+failing, because of the stub.
+Let's go get the template.
+
+And we'll copy the template down here, we'll comment out the stub.
+
+Oh dear.
+
+When we were designing this, we named the parameter LST,
+and we tend to name them LOI.
+There's two ways to fix this.
+One is to go ahead and name it LST throughout this function.
+The other way is to be more consistent with what
+we were doing in other functions.
+Both work, but I think what I'll do here is just to take
+the approach of being more consistent.
+I'll change that to LOI, and that to LOI,
+and I'll do it too in the stub, even though the stuff that's
+been commented out now.
+I just like being consistent.
+So now, LOI has the right name, but I do need to rename the function
+itself, and rename the natural recursion.
+And this is a function that takes two arguments,
+whereas the template, of course, only takes one,
+so we have to add the second argument image.
+
+And remember, if you go to the design recipes page,
+and you go to the data driven templates page,
+there's a rule that when designing functions
+that consume additional atomic parameters, the name of that parameter
+gets added after every dot, dot, dot in the template.
+So we got to do that here.
+So let's see, IMG's going to go there, and it's going to go there.
+And something has to happen here, because insert once two arguments,
+so I'll just put dot, dot, dot IMG.
+You could put that, sometimes I would just put that,
+but I'll put dot, dot, dot IMG in this case.
+They're both equivalent, both are a note to myself saying, hey, remember, insert
+needs two arguments.
+So now, let's get going.
+In the base case, we're inserting image into an empty list.
+And that corresponds to this first example.
+And so we just put this image on the front of an empty list, like that.
+The next three examples are telling me that sometimes the inserted image goes
+right at the front of a list, and sometimes it doesn't.
+In this first case, I1, the image that we're trying to insert,
+is not larger than I2.
+And so that means I1 has to go before I2.
+That's what it means for the items to be in increasing order of size.
+Because I2 is bigger than I1, I2 has to be after I1.
+But in this blue case, we're trying to insert I2,
+and the first item in the list is I1.
+And I2 is bigger than I1, so that means I2 has to go after I1 somewhere.
+Again, that's what it means for them to be sorted in increasing order of size.
+And the same is true for this blue case.
+I3 is larger than I2, so I3's got to go somewhere after I2 in the list.
+
+So what these examples are telling me is that, at the very least,
+there's got to be an if here.
+Because there's a case where I1, won the inserted item,
+goes at the beginning of the list, and there's
+cases, the I2 and I3 cases, where the inserted item doesn't
+go at the beginning of a list.
+So there's got to be an if.
+And if there's an if, there has to be a question, so what's the question?
+Well, the question has to do with comparing the sizes of the image
+to be inserted with the first item of the list.
+So we need to do something here, with these two things
+to know is image bigger than the first thing in the list.
+And you might put a note to yourselves here, is bigger.
+
+Now the question is, how are we going to do that?
+Well, we need to determine if the area is different,
+so we're going to have to get the width and height of the image,
+and the width and height of the first thing in the list,
+and we kind of have to determine their relative sizes.
+But that's kind of complicated, and not only is it kind of complicated,
+but it's about a different kind of issue.
+This function is really about inserting into a sorted list,
+whereas this little piece of code here is about comparing sizes.
+And sorting a list is one kind of knowledge,
+and comparing sizes of images is a different kind of knowledge.
+So what we've got here is a knowledge domain shift.
+We're shifting from knowledge about sorting lists to knowledge
+about comparing the size of images.
+And there's a helper rule that says, when the knowledge domain shifts,
+you use a new helper.
+So I'm going to wish that there was some other function called larger
+that compares the size of these two images.
+And produces true, if the first image is larger than the remaining images.
+And if image is larger than the first thing in the list, then what happens?
+Well that means image is going to go somewhere
+after the first thing in the list.
+So what we're going to want to do is say something like, cons.
+The first thing in the list, I2, is bigger than I1.
+So I1, the first thing in the list, is going to come first,
+and then we'll have the natural recursion.
+
+And the natural recursion will just take images as its first argument.
+And what this says is it says, put image somewhere in the rest of the list,
+and put the current first of the list in front of that.
+Otherwise, if image isn't larger than the first thing in the list,
+then this is where it goes.
+So we're just going to put image right here at the front list.
+
+There it is.
+Now we've wish for this function larger, so let's make the wish list entry.
+
+It consumes an image and another image, and it produces a Boolean.
+Produce true if image.
+one is larger than image two by area.
+It's a wish list entry.
+
+There's the stub.
+Let's get rid of hide replace now, and run and see if we're well formed.
+We are well formed when a bunch of tests are failing.
+So what's happened here in this function is,
+we made some name constants, in order to make our tests look better.
+We just methodically generated all possible variants for the tests,
+copied the template as usual, added a parameter.
+And then, it was all pretty clear what we're going to do.
+We need to know the relationship in size between image
+and the first thing in the list.
+But that involved a knowledge domain shift.
+We were switching from the domain of sorting lists
+to the domain of comparing the size of images.
+Those are two different kinds of knowledge,
+and so there's a rule that says that's a good place to put a helper function.
+So we wished for larger, and that's where we are right now.
+
+Turning again to this overview diagram, where we're at
+is that arrange images is done, but it's waiting for sort images to be done.
+But sort images is done, except it's waiting for insert to be done,
+and insert is waiting for larger to be done.
+So arrange images, sort images, and insert are fully coded.
+But until larger is done, we can't really sure
+that those other functions are done.
+And larger is what we're going to do in the next video.

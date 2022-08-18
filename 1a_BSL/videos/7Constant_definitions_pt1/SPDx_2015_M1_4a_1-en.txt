@@ -1,0 +1,100 @@
+
+GREGOR KICZALES: We've been learning about different kinds of values.
+Numbers, strings, and images, and how to write expressions
+that operate on those values.
+In this video we're going to look at something quite different.
+We're going to look at how to write constant definitions to give names
+to values so that we can use those values
+in different parts of the program.
+Constant definitions are more than just a convenience.
+We're going to see later in the course that they
+help us make programs that are easy for other people
+to read and easy for other people to change,
+and that those two properties-- readability and changeabiliy--
+are two of the most important properties a program can have.
+But for now we're just going to focus on the mechanism of constant definitions
+so that you can learn how to write a constant definition to give names
+to a value that you use in other parts of the program.
+So let's imagine that we're working on a program in which there's
+a simple interactive game running in a window.
+One thing we might want to do is give names
+to the width and height of the window.
+And the way we do that is we write open paren, define, and then
+some name-- which we often put the names of constants in upper case like this--
+and we might say that the window is 400 pixels wide.
+And maybe the window is 600 high.
+And that's two named constants.
+If we run this program just like this we don't get any values out
+because defining a constant doesn't produce a value.
+But now what I can do is I can write an expression like this
+and what happens is when DrRacket evaluates this, when it comes
+to evaluating the name of a defined constant,
+it's just going to use the constant's value there.
+So this will become 400.
+So the evaluation steps here would be times WIDTH will become 400.
+That's the first evaluation step.
+In the next evaluation step, HEIGHT will evaluate to 600.
+At this point, all the arguments to times are values.
+So now we'd have 240,000.
+So the way to form a constant definition is
+to have an open parenthesis, the word define, a space and then a name.
+And names typically include letters of the alphabet in upper and lowercase.
+They can also include numerical digits.
+And in the beginning student language, they
+can include lots of other characters like exclamation mark and question
+mark and equals and things like that.
+Some languages are more restrictive about that,
+but the beginning student language is fairly generous about that.
+You can't use parentheses or quotes of any kind, though.
+The rules for evaluating a constant definition
+are when Racket encounters the constant definition, it evaluates the expression
+and uses the resulting value as the value of the name constant
+going forward.
+When evaluation encounters a name constant,
+the name constant simply evaluates to the value
+that the define associated with it.
+Let's look at another example.
+Let me get rid of all this now.
+Suppose in this same program, in my game program,
+what we have is the image of a cat going back and forth across the screen.
+Well, I might want to give a name to that image
+so that I can use it in lots of places.
+So there's the cat.
+And what I'm going to do here is go to the second edition
+of the How to Design Programs book which we
+use as the basis for the material in this course.
+And they happen to have a little cat here that we're going to use.
+So I'm just going to go copy this image.
+
+And I'll come back over here and I'll just paste it right in here.
+And what's happening in Racket is, remember, that images are values
+and all values are expressions.
+So I can stick that image right there in the program as an expression.
+Most languages won't let you do this, but it's quite convenient
+to be able to do it in BSL.
+So we're going to take advantage of that.
+So now I've got a cat and I could write some expressions.
+So here rotate is a primitive and this says,
+rotate the cat by minus 10 degrees.
+Here's another expression that would rotate the cat by 10 degrees.
+If we run this now, we see the first expression
+produces the cat rotated this way.
+The second expression produces the cat rotated that way.
+And we might even want to give names to these.
+Because remember, I said that we can have an expression
+here after the constant name.
+So now I've given names to those two rotated cats.
+Oops.
+I can't use those names.
+I got to use different names.
+You can only define a given constant name one time.
+That's why it's called a constant name.
+It can't change.
+So I'll call those the RCAT and the LCAT.
+
+And there they are.
+So here see that what Racket is letting us do is say, define
+and a name and then an expression.
+That expression gets evaluated, and for evermore that value
+will be associated with the constant name.
+So we can use it in other places in the program.

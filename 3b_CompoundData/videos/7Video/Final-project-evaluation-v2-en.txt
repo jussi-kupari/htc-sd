@@ -1,0 +1,189 @@
+
+ERIKA THOMPSON: In this week's evaluation tutorial video,
+we're going to walk through an evaluation of the sample project
+we suggested, so that's the flower animation.
+And the first two criteria we're going to look at are
+is the program safe and is it commit ready.
+So let's get started.
+So this is the flower animation program.
+So now we can look through this to make sure
+that it fills the requirements for safe.
+So we have two requires up here-- image and universe.
+Those are ones we want.
+We can press Command F or Control F to check
+if there's any other requires hiding that we don't want.
+And there's not, so that's good.
+So this gets an acceptable for is the program safe.
+Now we can look through the file to check that it is commit ready.
+So we're looking for any comments or notes
+that are left behind that shouldn't be there
+or any code that is commented out that shouldn't be.
+So if we scroll through we've got types, comments, interps, signatures
+and purpose that are commented out, which we want.
+And there doesn't seem to be anything commented out that shouldn't be,
+so that's good.
+We can give this a good for commit ready.
+So the next criteria we want to look at is are all HTT elements complete
+and do you have high internal quality.
+So this is structured a little differently than the past design quiz.
+Instead of grading the completeness and internal quality separately,
+we're going to look at the three different recipes and grade
+completeness and internal quality together for each one.
+So for HTW specifically, we want to look to see that the file includes
+constants, data definitions, and functions, that the Constant section is
+complete.
+We want to check that the main function operates on the correct type
+and that that type is compound.
+And we want to make sure that all of the necessary big bang options are present
+and each one has a handler present in the file.
+So first, let's look at the Constant section.
+We have width and height defined.
+That's good.
+Then here's the MTS.
+We can see here that they've used the correct width and height for their MTS,
+but they've hard coded those in rather than using the constants.
+So really, we should use width and height here so we have
+what's called a single point of control.
+So this would be better.
+Then we have this flower defined, so that looks good.
+So other than that small error, here the Constant section looks good.
+We can see that the data definition is present and that it's a compound type,
+so we'll evaluate the actual completeness of that data definition
+in the next criteria.
+Next, we'll look at the main function.
+It's going from flower to flower, which is good.
+It gives us a note about what to start the animation with.
+We see here that we have three big bang options--
+On Tick, To Draw, and On Mouse, and that each one has a handler.
+We have these notes about the signature of each handler.
+Those are all correct.
+And we'll check to make sure each one of those handlers is present.
+So we see here we have Top.
+There is Render.
+And down here, we have Handle Mouse.
+So we had one small problem in the constants.
+Other than that, everything is good, so we give this a good for completeness
+and internal quality of HTDW.
+So the next criteria we want to look at is the HTTD elements of the file,
+and we want to look at completeness and internal quality again.
+So this is similar to the last design quiz.
+The only new thing we need to look at is the structure definition,
+which is specific to compound.
+Other than that, we want to check the type comment, interpretation, examples,
+the template, and then the template rules used.
+So we have define struck flower, and it has three fields, X, Y, and Size.
+So that looks well formed.
+We have a Types comment.
+Flower is make flower integer integer natural.
+That's great.
+And we have the interpretation, which says a flower with x position, y
+position, and a side length.
+That's pretty good.
+We could be a little bit more specific by saying
+what the units are for the side length.
+So we could add in pixels here.
+Then we have two examples of flowers.
+And here's the template.
+We have Fun for Flower F, which is the correct name for a template.
+And then we have all three selectors.
+There's a bit of a problem here, though.
+If you look closely, they've forgotten to add the parameters
+to each one of those.
+So that's not actually correct.
+We need to add an F in for all of those.
+But now that's good and complete.
+And for the template rules used, it says compound, four fields.
+That seems to be a typo.
+There's three fields.
+So we'll just change that.
+So we have one really big problem here in the template,
+and then these two little ones here-- making the interp more specific
+and this typo in the template roles used.
+These two are pretty small problems, so we would maybe
+give this a good or fair for the data definition completeness
+and internal quality.
+So the next criteria we need to look at is the HTDF elements of our program.
+So it says to choose either the [INAUDIBLE], [INAUDIBLE],
+or On Mouse Handler and examine that.
+And we want to look for all the parts of each TDF.
+So that's the signature, purpose, step, examples, tests, template,
+and the function body.
+We're going to look at the render function for this program.
+So if we take a look, we have a signature, flower to flower.
+That's actually incorrect.
+If we look back at our main function, it says
+that render goes from flower to image.
+So that's a good hint there that we have the wrong signature.
+So change this to image, and we'll keep going.
+It says renders the flower onto the screen.
+That's pretty good.
+We could be a bit more specific and say on the MTS
+at the correct x and y-coordinates.
+And then we could even add vendors, the flower of the given size.
+So that's a much more specific purpose.
+It really tells us how we're going to render
+our flower based on the compound data.
+So we can look at some check expects.
+We have one example here of size 20.
+That looks good.
+We have one of size 0.
+And then we have another one here of size 40.
+Seems pretty much the same as this one, so I'm not sure
+if it's really necessary, but those look good.
+Now we can look at the stub, which is well formed.
+There's a note about taking the template from flower, which is correct.
+And then we can examine our function here.
+This should really be on the next line.
+Not a big deal, though.
+So let's look at the function body.
+First, it checks if the flower size is 0, in which case
+it produces an empty image, which seems reasonable.
+Otherwise, we're scaling the flower by the size over 100
+and then rotating by that size again.
+So that looks OK and seems to work.
+But by using this Rotate function, we've actually created another case
+that we need to test.
+The Rotate function can only actually accept numbers that are less than 360.
+So if we add a test here that, say, has size of 370,
+then in theory, this should be 370 and that should be 370.
+And if we try and run that, we're actually going to get an error.
+It says expects an angle in degrees as first argument, but given 370.
+So we really need to do something else to handle this case.
+So one thing that we could do is just add remainder here,
+which gives us the remainder when divided by a number.
+And we can divide by 360.
+So 370 degrees will really become 10 degrees up here.
+And if we run this now, all nine tests passed.
+So that's a bit of a problem, because we didn't really
+have enough tests to notice that we were missing that case.
+But the problem with the tests and the function body
+are kind of the same problem.
+So we'll take one mark off there and another
+for the incorrect signature, which will give us
+a fair for HTDF completeness and internal quality.
+So the final criteria we have to look at is does the design
+satisfy the problem requirements.
+So it needs to be a world program.
+It needs to operate on compound data, and it needs
+to be within the scope of the course.
+So we were really clear that we want them to be simple.
+So this is definitely a world program.
+The world state is flower, which is clearly compound data.
+And there was nothing that was outside the scope of the course
+or overly complicated.
+So the last thing we'll do before we finish is we'll copy this here,
+and we'll actually run our animation.
+
+So there's a flower growing and spinning.
+And when we click, we get a new one.
+That's pretty cool, and it seems to work well.
+So this design does indeed satisfy the problem requirements,
+and we will give it a good.
+So this was a very good solution to the flower program.
+It had a few inconsistencies here and there.
+But really, overall, it was very well done.
+So if this was your program, I'd be very proud of it.
+So now you're ready to apply this rubric to your own final project.
+If you have any questions or want some extra feedback on your project,
+you can post it in the discussion forums, and we as well as your peers
+will be there to help you.

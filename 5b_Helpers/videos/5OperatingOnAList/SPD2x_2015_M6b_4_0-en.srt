@@ -1,0 +1,756 @@
+0
+00:00:00,000 --> 00:00:04,049
+
+
+1
+00:00:04,049 --> 00:00:05,840
+GREGOR KICZALES: In this video, we're going
+
+2
+00:00:05,840 --> 00:00:08,290
+to look at a new helper function rule.
+
+3
+00:00:08,290 --> 00:00:11,560
+It's called the operating on a list rule.
+
+4
+00:00:11,560 --> 00:00:16,180
+And as you'll see, what it says is that if you're coding a function
+
+5
+00:00:16,180 --> 00:00:19,650
+and you reach a point where you need to operate on a list--
+
+6
+00:00:19,650 --> 00:00:22,860
+not just the first element of the list, but the whole list, or at least
+
+7
+00:00:22,860 --> 00:00:28,074
+potentially the whole list-- then you need a helper function to do that.
+
+8
+00:00:28,074 --> 00:00:29,615
+Now I'm going to work on sort images.
+
+9
+00:00:29,615 --> 00:00:32,250
+
+
+10
+00:00:32,250 --> 00:00:34,360
+Let's see, function operating on a list.
+
+11
+00:00:34,360 --> 00:00:36,630
+We should do the base case first.
+
+12
+00:00:36,630 --> 00:00:42,510
+So, if we're going to sort images of an empty list--
+
+13
+00:00:42,510 --> 00:00:44,960
+well, if it's already empty, there's not a lot to sort.
+
+14
+00:00:44,960 --> 00:00:47,380
+It comes back empty.
+
+15
+00:00:47,380 --> 00:00:49,875
+Now we need an example that's at least two long.
+
+16
+00:00:49,875 --> 00:00:53,080
+And I've got some good examples up here in arrange images.
+
+17
+00:00:53,080 --> 00:00:55,040
+So let me just grab this one.
+
+18
+00:00:55,040 --> 00:00:58,710
+
+
+19
+00:00:58,710 --> 00:01:00,610
+Go back down here to sort images.
+
+20
+00:01:00,610 --> 00:01:09,556
+So let's see, check expect, sort of images of this.
+
+21
+00:01:09,556 --> 00:01:13,910
+Get rid of that extra space there.
+
+22
+00:01:13,910 --> 00:01:19,450
+Now if I'm asked to sort a list that's already sorted, I better not unsort it.
+
+23
+00:01:19,450 --> 00:01:22,800
+This list is already sorted, so there's no use retyping it.
+
+24
+00:01:22,800 --> 00:01:26,870
+That's just an opportunity to make a mistake.
+
+25
+00:01:26,870 --> 00:01:28,701
+And command I fixes the indentation.
+
+26
+00:01:28,701 --> 00:01:29,450
+What doe that say?
+
+27
+00:01:29,450 --> 00:01:34,430
+That says, if you get a list that's already in increasing order of size,
+
+28
+00:01:34,430 --> 00:01:36,090
+then leave it in that order.
+
+29
+00:01:36,090 --> 00:01:39,620
+And there's this ambiguity floating around about what size means.
+
+30
+00:01:39,620 --> 00:01:42,810
+And I'm going to clarify that size means area.
+
+31
+00:01:42,810 --> 00:01:45,950
+OK, so that's an example where they come in already in order.
+
+32
+00:01:45,950 --> 00:01:48,520
+Let's make an example where they come in out of order.
+
+33
+00:01:48,520 --> 00:01:52,330
+And we could just do that by swapping these two rectangles again.
+
+34
+00:01:52,330 --> 00:01:55,460
+
+
+35
+00:01:55,460 --> 00:01:58,660
+So now they come in with the big one first and the little second.
+
+36
+00:01:58,660 --> 00:02:01,790
+And we need to confirm that what we produce the list
+
+37
+00:02:01,790 --> 00:02:04,210
+they're in the other order.
+
+38
+00:02:04,210 --> 00:02:06,740
+So that's pretty good for some examples.
+
+39
+00:02:06,740 --> 00:02:09,284
+Save the file here.
+
+40
+00:02:09,284 --> 00:02:10,534
+Now let's go get the template.
+
+41
+00:02:10,534 --> 00:02:19,620
+
+
+42
+00:02:19,620 --> 00:02:21,163
+We'll comment out the stub.
+
+43
+00:02:21,163 --> 00:02:29,112
+
+
+44
+00:02:29,112 --> 00:02:30,195
+We'll rename the template.
+
+45
+00:02:30,195 --> 00:02:33,020
+
+
+46
+00:02:33,020 --> 00:02:36,582
+Rename the national recursion.
+
+47
+00:02:36,582 --> 00:02:39,040
+We'll start with the base case, that's usually the easiest.
+
+48
+00:02:39,040 --> 00:02:42,420
+And this test tells me that the base case result should be empty.
+
+49
+00:02:42,420 --> 00:02:44,930
+So that is easy.
+
+50
+00:02:44,930 --> 00:02:47,850
+Now let's think about the recursion case.
+
+51
+00:02:47,850 --> 00:02:51,380
+
+
+52
+00:02:51,380 --> 00:02:55,510
+Sometimes the first element of the list goes
+
+53
+00:02:55,510 --> 00:02:58,920
+right at the beginning of the rest of the list, in the result.
+
+54
+00:02:58,920 --> 00:03:00,340
+That's this case here.
+
+55
+00:03:00,340 --> 00:03:03,060
+The first element of the consumed list goes
+
+56
+00:03:03,060 --> 00:03:11,020
+at the beginning of the rest in the result. Sort of stays where it is.
+
+57
+00:03:11,020 --> 00:03:17,725
+But sometimes the first thing in the list doesn't go at the beginning.
+
+58
+00:03:17,725 --> 00:03:21,950
+And I guess if these lists were long, the first thing in the list
+
+59
+00:03:21,950 --> 00:03:26,266
+could go somewhere-- Let's make another example here.
+
+60
+00:03:26,266 --> 00:03:35,620
+Let's make an example where the first thing in the list is 30 40.
+
+61
+00:03:35,620 --> 00:03:38,710
+The second thing in the list is 10 20.
+
+62
+00:03:38,710 --> 00:03:44,410
+And the third thing in the list is 20 30.
+
+63
+00:03:44,410 --> 00:03:51,050
+
+
+64
+00:03:51,050 --> 00:03:55,330
+That's got to come back in the 10 20, 20 30.
+
+65
+00:03:55,330 --> 00:03:58,890
+And we'll make these red so we don't get confused.
+
+66
+00:03:58,890 --> 00:04:02,130
+And we'll make that one green.
+
+67
+00:04:02,130 --> 00:04:19,690
+That's going to come back in the order 10 20, 20 30, and then that one.
+
+68
+00:04:19,690 --> 00:04:23,905
+So this thing, which starts out first, ends up third.
+
+69
+00:04:23,905 --> 00:04:26,560
+
+
+70
+00:04:26,560 --> 00:04:29,370
+So this somehow has to go in the right place in the rest,
+
+71
+00:04:29,370 --> 00:04:30,930
+but notice we don't have the rest.
+
+72
+00:04:30,930 --> 00:04:34,216
+What we have is the result of a natural recursion.
+
+73
+00:04:34,216 --> 00:04:38,650
+Now there's a really important point here for a function like sort.
+
+74
+00:04:38,650 --> 00:04:41,846
+Remember we're supposed to trust the natural recursion.
+
+75
+00:04:41,846 --> 00:04:43,720
+And what trusting the natural recursion means
+
+76
+00:04:43,720 --> 00:04:48,260
+is it means trusting that it's going to do its job.
+
+77
+00:04:48,260 --> 00:04:56,790
+So that means that whatever comes back from the natural recursion,
+
+78
+00:04:56,790 --> 00:04:57,910
+will be what?
+
+79
+00:04:57,910 --> 00:05:02,980
+Well, it'll be a list of image because the signature says list of image.
+
+80
+00:05:02,980 --> 00:05:05,340
+But what else will it be?
+
+81
+00:05:05,340 --> 00:05:06,785
+Well, it will also be sorted.
+
+82
+00:05:06,785 --> 00:05:09,500
+
+
+83
+00:05:09,500 --> 00:05:12,125
+The result of the natural recursion will be sorted.
+
+84
+00:05:12,125 --> 00:05:15,190
+
+
+85
+00:05:15,190 --> 00:05:18,590
+And so that means I'll have one image in my hand,
+
+86
+00:05:18,590 --> 00:05:24,210
+and I'll have a sorted list in my hand, and what I need to do at that point
+
+87
+00:05:24,210 --> 00:05:31,860
+is manage to stick the one image in the proper place in the sorted list.
+
+88
+00:05:31,860 --> 00:05:34,150
+And what these examples are telling me is sometimes
+
+89
+00:05:34,150 --> 00:05:35,983
+it'll go right at the beginning of the list,
+
+90
+00:05:35,983 --> 00:05:39,780
+but sometimes it will go farther down in the list.
+
+91
+00:05:39,780 --> 00:05:43,600
+And, in fact, because it's a list, the list could be arbitrarily long.
+
+92
+00:05:43,600 --> 00:05:46,020
+And this first value that I need to stick
+
+93
+00:05:46,020 --> 00:05:50,820
+into the result of natural recursion could be going very far down the list.
+
+94
+00:05:50,820 --> 00:05:51,880
+We just don't know.
+
+95
+00:05:51,880 --> 00:05:54,520
+That's what arbitrary size means.
+
+96
+00:05:54,520 --> 00:05:56,670
+So there's a helper function rule that says
+
+97
+00:05:56,670 --> 00:06:00,270
+if you need to operate on arbitrary size data,
+
+98
+00:06:00,270 --> 00:06:02,450
+if you're at a place where you all at once you have
+
+99
+00:06:02,450 --> 00:06:05,060
+to do an operation or arbitrary sized data,
+
+100
+00:06:05,060 --> 00:06:07,820
+you have to use a function to do it.
+
+101
+00:06:07,820 --> 00:06:11,390
+In fact, you have to use a recursive function to do it.
+
+102
+00:06:11,390 --> 00:06:13,710
+Because you don't know how far into the data
+
+103
+00:06:13,710 --> 00:06:17,260
+you have to go as part of the operation.
+
+104
+00:06:17,260 --> 00:06:19,840
+So that helper rule basically says, right here
+
+105
+00:06:19,840 --> 00:06:22,515
+we need to call a new function.
+
+106
+00:06:22,515 --> 00:06:23,015
+Insert.
+
+107
+00:06:23,015 --> 00:06:25,560
+
+
+108
+00:06:25,560 --> 00:06:28,690
+And we're going to wish for it.
+
+109
+00:06:28,690 --> 00:06:30,370
+Let's wish for it right away.
+
+110
+00:06:30,370 --> 00:06:35,330
+It's going to consume an image because first of LOI is an image.
+
+111
+00:06:35,330 --> 00:06:40,790
+And it's going to consume a list of image
+
+112
+00:06:40,790 --> 00:06:45,120
+because the result of the natural recursion of sort images
+
+113
+00:06:45,120 --> 00:06:48,050
+is a list of image.
+
+114
+00:06:48,050 --> 00:06:51,430
+So it's going to consume an image and a list of image.
+
+115
+00:06:51,430 --> 00:06:54,510
+And it's going to produce-- well, it has to produce whatever
+
+116
+00:06:54,510 --> 00:06:56,010
+sort images is supposed to produce.
+
+117
+00:06:56,010 --> 00:06:59,780
+So it has to produce a list of image.
+
+118
+00:06:59,780 --> 00:07:02,610
+And what does it do?
+
+119
+00:07:02,610 --> 00:07:15,250
+Produce new list, comma, with image in proper place in list
+
+120
+00:07:15,250 --> 00:07:17,040
+in increasing order of size.
+
+121
+00:07:17,040 --> 00:07:20,455
+
+
+122
+00:07:20,455 --> 00:07:21,580
+That's a little cumbersome.
+
+123
+00:07:21,580 --> 00:07:23,110
+Let's see if I can say that better.
+
+124
+00:07:23,110 --> 00:07:28,840
+Let's just say insert image in proper place in list
+
+125
+00:07:28,840 --> 00:07:31,090
+in increasing order of size.
+
+126
+00:07:31,090 --> 00:07:35,330
+And just to be clear about what I mean by image in list,
+
+127
+00:07:35,330 --> 00:07:37,490
+I'll give names to the parameters right away.
+
+128
+00:07:37,490 --> 00:07:40,600
+
+
+129
+00:07:40,600 --> 00:07:43,925
+This is the stub, and the stub has to produce some list of image,
+
+130
+00:07:43,925 --> 00:07:44,985
+so it'll produce that.
+
+131
+00:07:44,985 --> 00:07:50,970
+
+
+132
+00:07:50,970 --> 00:07:55,910
+So insert image in proper place in list in increasing order of size.
+
+133
+00:07:55,910 --> 00:07:58,880
+But there's one thing we've left out here.
+
+134
+00:07:58,880 --> 00:08:00,850
+Which is, remember the special thing we knew
+
+135
+00:08:00,850 --> 00:08:03,337
+about the result of the natural recursion?
+
+136
+00:08:03,337 --> 00:08:05,045
+Which was that it was going to be sorted?
+
+137
+00:08:05,045 --> 00:08:07,590
+
+
+138
+00:08:07,590 --> 00:08:10,070
+So, what we're going to do here is we're going to say,
+
+139
+00:08:10,070 --> 00:08:14,305
+assume LST is already sorted.
+
+140
+00:08:14,305 --> 00:08:18,200
+
+
+141
+00:08:18,200 --> 00:08:23,500
+Because we need to communicate that fact from sort images to whoever designed
+
+142
+00:08:23,500 --> 00:08:25,192
+insert.
+
+143
+00:08:25,192 --> 00:08:27,650
+Because if the person who designs insert doesn't know that,
+
+144
+00:08:27,650 --> 00:08:28,540
+then what are they going to do?
+
+145
+00:08:28,540 --> 00:08:29,990
+They're going to have to resort again.
+
+146
+00:08:29,990 --> 00:08:31,830
+They're never going to get anywhere because they're going
+
+147
+00:08:31,830 --> 00:08:33,890
+to come back to this same helper rule.
+
+148
+00:08:33,890 --> 00:08:38,620
+But now we know that the list is sorted.
+
+149
+00:08:38,620 --> 00:08:42,090
+So insert has a smaller job to do than sort images.
+
+150
+00:08:42,090 --> 00:08:47,950
+All it has to do is put its first argument, ING, in the right place
+
+151
+00:08:47,950 --> 00:08:50,589
+in its already sorted second argument, LST.
+
+152
+00:08:50,589 --> 00:08:52,630
+Let me go over this one more time because there's
+
+153
+00:08:52,630 --> 00:08:55,380
+two things that happen here.
+
+154
+00:08:55,380 --> 00:08:57,720
+First, we set up some examples, quite ordinary,
+
+155
+00:08:57,720 --> 00:09:01,980
+and we added another example part way through, also quite ordinary.
+
+156
+00:09:01,980 --> 00:09:05,340
+The two main things that happened here are, one,
+
+157
+00:09:05,340 --> 00:09:09,830
+we realized that the natural recursion was going to produce a sorted list,
+
+158
+00:09:09,830 --> 00:09:11,850
+and that was going to be an important fact.
+
+159
+00:09:11,850 --> 00:09:14,800
+It meant some of the work had really already been done.
+
+160
+00:09:14,800 --> 00:09:18,980
+And we just made a note about that fact right here, to ourselves,
+
+161
+00:09:18,980 --> 00:09:21,030
+so we wouldn't forget it.
+
+162
+00:09:21,030 --> 00:09:23,740
+Then we realized that what dot dot dot needed to do
+
+163
+00:09:23,740 --> 00:09:29,190
+was to put the first image in the right place in the sorted list.
+
+164
+00:09:29,190 --> 00:09:32,270
+Then we invoked the operate on arbitrary size data
+
+165
+00:09:32,270 --> 00:09:36,240
+rule which says you must use a helper function to do that.
+
+166
+00:09:36,240 --> 00:09:39,600
+And so we invented the name of a helper function, insert.
+
+167
+00:09:39,600 --> 00:09:43,540
+And we made a wish list entry for that helper function.
+
+168
+00:09:43,540 --> 00:09:44,580
+And there we go.
+
+169
+00:09:44,580 --> 00:09:47,136
+And now we could run at this point.
+
+170
+00:09:47,136 --> 00:09:50,190
+And we have a lot of failing tests.
+
+171
+00:09:50,190 --> 00:09:55,760
+We have a lot of failing tests because sort exists.
+
+172
+00:09:55,760 --> 00:09:57,380
+Sort is done.
+
+173
+00:09:57,380 --> 00:10:01,270
+But it's wishing for a function insert, and insert isn't done.
+
+174
+00:10:01,270 --> 00:10:05,310
+We've got a stub for insert.
+
+175
+00:10:05,310 --> 00:10:08,260
+But right now, at least, sort images looks done,
+
+176
+00:10:08,260 --> 00:10:10,760
+unless there's going to be some problem that crops up.
+
+177
+00:10:10,760 --> 00:10:16,580
+It's tests are well formed, and it's wishing for a function insert.
+
+178
+00:10:16,580 --> 00:10:20,996
+Turning back to our overview diagram, we started with arrange images
+
+179
+00:10:20,996 --> 00:10:23,870
+which we split into two functions because of the function composition
+
+180
+00:10:23,870 --> 00:10:25,230
+rule.
+
+181
+00:10:25,230 --> 00:10:28,720
+Then we went and finished layout images.
+
+182
+00:10:28,720 --> 00:10:33,830
+Sort images is done, but while we were doing it, the operate on arbitrary
+
+183
+00:10:33,830 --> 00:10:38,240
+size data rule caused us to wish for another function, insert.
+
+184
+00:10:38,240 --> 00:10:40,890
+So now arrange images and sort images are both
+
+185
+00:10:40,890 --> 00:10:45,170
+probably done, as long as it turns out that insert works properly,
+
+186
+00:10:45,170 --> 00:10:50,180
+and it turns out there were no mistakes in arrange images and sort images.
+
+187
+00:10:50,180 --> 00:10:53,050
+So next we got to focus on insert.
+
+188
+00:10:53,050 --> 00:10:54,035
+
+

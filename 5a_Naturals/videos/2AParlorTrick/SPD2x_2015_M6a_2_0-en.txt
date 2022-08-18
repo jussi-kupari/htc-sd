@@ -1,0 +1,292 @@
+
+GREGOR KICZALES: This video is called a parlor trick
+and it's intended to mess with your mind a little bit.
+What I want to do is show you the power of representing information as data
+and get you to explore some of the data representation choices
+we maybe take for granted.
+It's going to be a little weird.
+You may need to watch it a few times to really enjoy it.
+So the problem set up is, I don't know, maybe a little crazy.
+You've just gotten a new tablet and it runs a prototype version
+of Racquet, which is great.
+You can make your tablet do anything you want.
+But there's one problem, which is this prototype version of Racquet doesn't
+include numbers as primitive data.
+There just are no numbers in it at all.
+Fortunately, it does have cons and first and rest and strings.
+And you know what the self referential data definition is for numbers
+and you know that it's based on the idea that add one is kind of like cons
+and sub one is kind of like rest.
+So you actually know how to solve this problem
+and define your very own numbers from scratch.
+Here we go.
+We'll make a new type called NATURAL.
+I'm making it all uppercase to distinguish it
+from the old time called natural.
+And we'll just say, like the old type, that it's
+going to be a well formed, self referential data definition.
+And it's going to look like this.
+We're going to say that it could be either empty
+or it could be cons, an exclamation mark, a string with an exclamation
+mark on a NATURAL.
+
+So you've got a well formed, self referential data definition there.
+Empty is clearly the base case and cons "!"
+NATURAL is the self reference case.
+So that's the type con.
+But in this case, what's actually trickier
+than the type comment is the interpretation.
+What does that mean?
+Well, it just means this.
+It's a natural number.
+
+And the number exclamation marks in the list is the number.
+Let's do some examples.
+
+So natural zero is empty and natural one is cons one exclamation mark
+onto natural zero.
+This is one and this is zero.
+And two is just cons another exclamation mark onto N1.
+That's two.
+Let's just run this for just a second and take a quick look if we
+go down here in the interaction window.
+N0 is empty.
+N1 is a list with one exclamation mark in it
+and N2 is a list with two exclamation marks in it.
+So they're cumbersome to look at.
+They'd be even more cumbersome to type.
+But those are new natural numbers.
+They would be so cumbersome to write out, in fact, that what I'm going to do
+is I'm going to use the magic of video editing
+to very quickly get a whole bunch more of them.
+Now we've got natural numbers zero through nine
+that are relatively easy to type.
+It's still a little weird looking at that cons.
+What's really going on here is that these are the primitives that
+operate on the new kind of natural.
+One is the predicate zero.
+It's something zero.
+And something is zero if, what?
+Well, if it's empty.
+
+Because that's what the type comment says.
+The type comment says-- the type comment plus the interpretation
+says that the way we represent zero is with empty.
+So that's one primitive.
+Another primitive is at one.
+And the way we're going to add one to a natural
+is, well, we just do this cons thing.
+
+And another primitive is sub one.
+And the way we're going to get the next smallest natural number is with rest.
+Even though these are primitives, let me just write the signatures for them
+off to the side so we'll have them.
+We've never defined primitives like this before.
+Let's see-- zero question mark actually consumes anything.
+
+And it produces a Boolean to tell us whether what it consumed
+was the representation of zero.
+Add one consumers one of these newfangled
+naturals and produces one of these newfangled naturals.
+And sub one consumes one of these new kinds of naturals,
+but it has to be bigger than zero.
+That's a restriction that's kind of like the restriction and rest has, right?
+Rest won't take empty.
+Rest needs a cons.
+Rest need to list that's at least one long.
+So if you give sub one a natural that's at least one or bigger,
+you'll get back another natural.
+And if you want, we can pretty this up a little bit.
+
+So there's our permanence.
+
+Now let's do the template.
+We'll do it like this-- fn-for-NATURAL n.
+Let's see-- it's a one of.
+I won't write out the template rules used.
+I'll just save them as I go.
+That's where we're going to be doing starting next week.
+So I'll do it in this last video of this week.
+Com-- it's a one of.
+There's two cases.
+The first case is atomic distinct.
+Now, remember-- that empty really means zero.
+And the reason I wrote these primitive so
+that we wouldn't go crazy when we saw ourself calling
+empty on something that looked like it was supposed to be a natural.
+So I'm going to say zero here.
+If the natural is zero, that's atomic distinct.
+Otherwise, dot dot dot.
+And we'll put in n because we know it's useful.
+And we'll say fn-for-NATURAL sub one of n.
+
+And of course, now that I have these primitives,
+this template looks just like the template for ordinary natural numbers.
+Because I've got my own special version of zero
+and my own special version of sub 1.
+So remember, we're doing kind of a weird thing here.
+We're recreating the numbers.
+We're recreating the numerals, in some sense, OK?
+We're recreating the representation of the natural numbers.
+So there's the template.
+Now let's do some functions.
+Well, we've got zero, add one, and sub one.
+One thing we don't have is plain old add.
+We don't have a way of adding together two naturals.
+Let's do that.
+Well, it's a function that consumes two natural and it produces a natural.
+
+And its purpose is to produce a plus b, assuming that's the name of the two
+are naturals.
+
+I'll give the stub here.
+We'll call it add.
+
+So let's do some examples.
+Now, this function is clearly going to be recursive on one of the numbers.
+That's what the template is for.
+I'm going to make it be recursive on the second number.
+It turns out that works out a little bit better later.
+It would have worked perfectly fine to make it recursive on the first number.
+But it'll just simplify things later if I do it this way.
+So that means my first test should be with a base
+case for the second argument.
+So I'll say N2 and N0.
+Zero is the base case.
+If I add two and zero, I should get two.
+
+And just to make sure the first argument is treated all right,
+I'll also do something like this.
+That should be three.
+Because if I add two and zero, I get two.
+If I add zero and three, I get three.
+And now let's make one that actually does some more work.
+We'll add N3 and N4.
+This satisfies my at least two long rule because four is bigger than two.
+And we'll get N7.
+Sure is good that I made those constants so that I don't have
+to take these natural out all the time.
+Doing this with a bunch of conses would be a pain.
+
+OK, let's take the template.
+
+We'll bring it down here.
+We'll rename it.
+We'll rename the recursion.
+We'll comment out the stub.
+And we need two parameters.
+So I'm going to rename this parameter to B and I'll add a parameter A.
+And in the recursion, I'll add the parameter A also.
+So let's see.
+If I'm adding two numbers, A and B, and B is zero, this is the base case.
+What's the result?
+Well, I know from arithmetic and I also know from this example
+that the result should be A, if you add A to zero,
+you get A no matter what A is.
+What do I do in this case here?
+Well, I don't know if you remember the way you were originally
+taught to add in kindergarten, but the basic idea
+was you would get maybe two piles of sticks.
+And you would add them together by moving
+one stick at a time from one pile to the other pile until you only had one pile.
+And if you counted while you did that, you got the right number.
+
+Well, that's what we can do here.
+Here, we're taking one away from B. So if at the same time,
+we just add one to A and produced that as our result, then that will work.
+Because B is going to get smaller and smaller and smaller.
+Each time B gets smaller by one, A will get bigger by one.
+Eventually, B will be zero and A will be the sum.
+So this is addition of two numbers together one at a time.
+Let's try it.
+It works.
+I'll give you a little exercise to do now.
+If this is blowing your mind a little bit too much,
+then you don't have to do it.
+But you might have fun doing it.
+
+Finish this.
+And again, the suggestion I'll make to you
+is when you get to the template stage, set up
+the template on the second argument.
+And go ahead and work through this and then restart the video.
+Or if you don't work through it yourself, restart the video right away.
+So here's my version of subtract.
+I get two check expects.
+Base case one is first.
+Remember, I'm templating on B-- so zero for the second argument.
+If you subtract two from two, you get two.
+If you subtract two from six, you get four.
+And subtract is a little different than add.
+Let me just change how I formatted add here.
+I'll break down on two lines.
+The way add works is you add to A while you subtract from B. The way
+subtract works is you keep taking one away from both A and B
+until B gets to zero.
+That's add and subtract.
+Let's just look at them.
+The test pass-- that's good.
+Watch this-- add N2 and N3.
+So that's adding two to three.
+That's five-- one, two three, four, five exclamation marks.
+Subtract seven, add two to N3.
+
+Two plus three is Five.
+Seven minus five is two.
+There's two.
+We're doing all this arithmetic without using any natural numbers that
+were given to us by Doctor Racquet.
+We're using our own natural numbers.
+It's a little bit wacky.
+But let me just quickly show you how far you can
+go if you want to keep pushing on this.
+Here, I've got the famous factorial function.
+Right, factorial of zero is one and factorial of everything else
+is the number times fact of one less than the number.
+If you don't know factorial, remember-- I promise there'd be no math.
+I promised there'd be no math.
+So you can just ignore this little bit.
+That's factorial written for these new natural numbers.
+Zero is uppercase.
+It's our special primitive.
+Sub one is uppercase.
+Fact is upper-cased.
+Ah, but I'm calling times.
+We don't actually have times.
+So you could do times.
+You could wish for times and then do it.
+Let me just show you that this works.
+Fact of zero is one.
+Fact of three is six.
+Fact of four is 24.
+If you count them, there would be 24.
+Fact of eight-- hm-- what's-- takes a long time to print.
+Long, long time to print-- very long time to print out
+this long list of exclamation marks.
+
+So what's the moral of the story here?
+The most important thing is to know when we design programs,
+we come up with data definitions that represent information.
+And we can take any data to represent any information we want.
+Now, of course, the underlying hardware makes some primitive data faster
+than other primitive data.
+We still haven't finished printing out this representation of fact of eight.
+This is a terrible representation of natural numbers.
+You would never want to use this.
+I just wanted you to see that you can take the bottom
+to be anything you want.
+You can come up with your own numbers.
+You can come up with your own strings.
+You can come up with your own lists.
+You can create any data you want.
+So as I said at the beginning, that's a little wacky.
+Most of the time-- nearly all the time-- you're
+just going to work with whatever representation of numbers
+the programming language gives you.
+Still, it's kind of fun to explore that.
+And remember, the rest of the material this week is not wacky.
+The rest of the material this week is essential.
+Representing arbitrary size information, well formed self
+referential type comments, operating on lists and the reference rule--
+all of that's essential material.
+So be sure to practice it a lot and we'll see you again next week.

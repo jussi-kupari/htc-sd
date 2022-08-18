@@ -1,0 +1,380 @@
+0
+00:00:00,000 --> 00:00:04,231
+
+
+1
+00:00:04,231 --> 00:00:06,230
+GREGOR KICZALES: I hope you're already beginning
+
+2
+00:00:06,230 --> 00:00:11,110
+to see some of the power of working with a systematic design process.
+
+3
+00:00:11,110 --> 00:00:14,920
+One piece of that is that you always know what to do next.
+
+4
+00:00:14,920 --> 00:00:17,790
+There's always the next step of the recipe.
+
+5
+00:00:17,790 --> 00:00:20,940
+And that step of the recipe tells you what kind of thing you need to write
+
+6
+00:00:20,940 --> 00:00:24,890
+and where you should be looking to figure out how to write it.
+
+7
+00:00:24,890 --> 00:00:27,220
+So when it's time to write the examples, you
+
+8
+00:00:27,220 --> 00:00:30,350
+know that you can look at the signature and the purpose
+
+9
+00:00:30,350 --> 00:00:33,790
+to help you figure out what the examples need to be.
+
+10
+00:00:33,790 --> 00:00:38,160
+You've also seen the benefit of producing uniformly structured code.
+
+11
+00:00:38,160 --> 00:00:41,460
+Code that's easy for other programmers to read and code that
+
+12
+00:00:41,460 --> 00:00:44,540
+has an appropriate number of tests.
+
+13
+00:00:44,540 --> 00:00:47,600
+But in this next part, you're going to see the power of systematic design
+
+14
+00:00:47,600 --> 00:00:50,260
+really start to step up.
+
+15
+00:00:50,260 --> 00:00:53,040
+What's going to happen is that because the design method
+
+16
+00:00:53,040 --> 00:00:56,960
+itself, in other words, the meta design in some sense.
+
+17
+00:00:56,960 --> 00:00:59,830
+Because the design method itself is structured
+
+18
+00:00:59,830 --> 00:01:04,870
+so that the how to design functions recipe is orthogonal,
+
+19
+00:01:04,870 --> 00:01:09,010
+which is a $10 word for means mostly independent.
+
+20
+00:01:09,010 --> 00:01:13,120
+Because the functions recipe and the data recipe are orthogonal,
+
+21
+00:01:13,120 --> 00:01:17,340
+it means that as we learn more forms of data,
+
+22
+00:01:17,340 --> 00:01:21,260
+the functions recipe is going to continue to work unchanged or mostly
+
+23
+00:01:21,260 --> 00:01:23,790
+unchanged with those forms of data.
+
+24
+00:01:23,790 --> 00:01:26,060
+So now we're going to begin to cover the ground a lot
+
+25
+00:01:26,060 --> 00:01:32,000
+more quickly because of this property of the way the recipes are designed.
+
+26
+00:01:32,000 --> 00:01:35,320
+In week one and particularly at the end of week one,
+
+27
+00:01:35,320 --> 00:01:38,110
+we learned about primitive data, including
+
+28
+00:01:38,110 --> 00:01:41,810
+types like string, number, and image.
+
+29
+00:01:41,810 --> 00:01:44,580
+And we learned the how to design function recipe
+
+30
+00:01:44,580 --> 00:01:47,680
+and we used it to design functions like double,
+
+31
+00:01:47,680 --> 00:01:51,880
+which consumed a number, and yell, which consumed a string, and area, which
+
+32
+00:01:51,880 --> 00:01:53,750
+consumed a number.
+
+33
+00:01:53,750 --> 00:01:56,450
+And image area, which consumed an image.
+
+34
+00:01:56,450 --> 00:01:58,700
+Now, what started to happen this week is we've started
+
+35
+00:01:58,700 --> 00:02:01,470
+to learn about other forms of data.
+
+36
+00:02:01,470 --> 00:02:04,150
+And in particular, we've learned about non primitive data.
+
+37
+00:02:04,150 --> 00:02:08,190
+Data where there's a type that we design with the how to design data definitions
+
+38
+00:02:08,190 --> 00:02:09,150
+recipe.
+
+39
+00:02:09,150 --> 00:02:11,530
+And what we did in the last two videos was
+
+40
+00:02:11,530 --> 00:02:16,720
+we learned about atomic non primitive data and we designed the type CityName.
+
+41
+00:02:16,720 --> 00:02:21,480
+And then we designed the best function that consumed the CityName.
+
+42
+00:02:21,480 --> 00:02:25,910
+And earlier in the week, you actually saw a preview of a form of data
+
+43
+00:02:25,910 --> 00:02:29,470
+called enumerations, which we haven't explicitly covered yet.
+
+44
+00:02:29,470 --> 00:02:30,970
+We'll do that shortly.
+
+45
+00:02:30,970 --> 00:02:35,010
+But you saw another type called TrafficLightColor and a function
+
+46
+00:02:35,010 --> 00:02:37,330
+next-color.
+
+47
+00:02:37,330 --> 00:02:39,490
+Now, what's going to happen the rest of this week
+
+48
+00:02:39,490 --> 00:02:43,040
+is we're going to learn about some other forms of data,
+
+49
+00:02:43,040 --> 00:02:48,140
+including intervals, enumerations, itemizations, and a special form
+
+50
+00:02:48,140 --> 00:02:50,400
+called distinct.
+
+51
+00:02:50,400 --> 00:02:54,050
+And we'll see examples of those types.
+
+52
+00:02:54,050 --> 00:02:58,030
+And you'll be able to design functions that operate on them.
+
+53
+00:02:58,030 --> 00:03:03,590
+As I said before, the HtDF recipe is largely orthogonal to the form of data.
+
+54
+00:03:03,590 --> 00:03:07,972
+So HtDF works the same way with different forms of data.
+
+55
+00:03:07,972 --> 00:03:09,680
+And what that means in this week is we're
+
+56
+00:03:09,680 --> 00:03:13,890
+going to focus most of the lecture time on designing
+
+57
+00:03:13,890 --> 00:03:16,680
+different kinds of data definitions.
+
+58
+00:03:16,680 --> 00:03:20,200
+And we're going to have to spend much less time on designing
+
+59
+00:03:20,200 --> 00:03:24,490
+functions that consume that data.
+
+60
+00:03:24,490 --> 00:03:27,720
+In some sense, what's happening is we did this little piece of the y-axis,
+
+61
+00:03:27,720 --> 00:03:32,040
+how to design functions, and now we're working out the x-axis.
+
+62
+00:03:32,040 --> 00:03:36,410
+And all of this space in the middle, the cross product of the two axes,
+
+63
+00:03:36,410 --> 00:03:39,310
+comes very cheaply.
+
+64
+00:03:39,310 --> 00:03:43,800
+We won't have to spend much lecture time talking about these kinds of functions.
+
+65
+00:03:43,800 --> 00:03:47,630
+Instead, we spend most of the lecture time talking about forms of data
+
+66
+00:03:47,630 --> 00:03:51,000
+and designing these kinds of functions comes almost for free.
+
+67
+00:03:51,000 --> 00:03:53,220
+And what's great is the power of having a design
+
+68
+00:03:53,220 --> 00:03:57,910
+method in which the individual recipes are orthogonal to the form of data
+
+69
+00:03:57,910 --> 00:04:00,040
+is only going to grow from there.
+
+70
+00:04:00,040 --> 00:04:03,550
+Next week, we're mostly going to focus on two things.
+
+71
+00:04:03,550 --> 00:04:07,500
+One new form of data, compound data.
+
+72
+00:04:07,500 --> 00:04:12,790
+And also a recipe that helps us design interactive programs like games
+
+73
+00:04:12,790 --> 00:04:15,460
+and animations and things like that.
+
+74
+00:04:15,460 --> 00:04:19,290
+And again, because of this orthogonality, most of the lecture time
+
+75
+00:04:19,290 --> 00:04:24,820
+will be on compound data and on the how to design worlds recipe.
+
+76
+00:04:24,820 --> 00:04:27,670
+And we'll do some examples in the cross product,
+
+77
+00:04:27,670 --> 00:04:32,050
+some examples in the green box, but we won't have to do all of them
+
+78
+00:04:32,050 --> 00:04:32,990
+in lecture.
+
+79
+00:04:32,990 --> 00:04:37,920
+Because once you know how to design worlds and once you know compound data,
+
+80
+00:04:37,920 --> 00:04:43,160
+you can do anything in the blue, red, or green boxes.
+
+81
+00:04:43,160 --> 00:04:47,340
+Beyond that, when we do lists and trees, lists and trees
+
+82
+00:04:47,340 --> 00:04:50,400
+are complicated structures, but because of this orthogonality,
+
+83
+00:04:50,400 --> 00:04:53,470
+again, they're going to be much easier to learn in this course
+
+84
+00:04:53,470 --> 00:04:55,880
+than they are in some other courses.
+
+85
+00:04:55,880 --> 00:05:00,620
+Orthogonality is always great in design when you can get it.
+
+86
+00:05:00,620 --> 00:05:05,150
+Here, you've got orthogonality in the design of the actual design method.
+
+87
+00:05:05,150 --> 00:05:07,900
+And it's giving us some wonderful properties here.
+
+88
+00:05:07,900 --> 00:05:13,330
+We can learn HtDF and HtDW and we can learn forms of data
+
+89
+00:05:13,330 --> 00:05:16,460
+and we get the cross product for free.
+
+90
+00:05:16,460 --> 00:05:20,410
+That's going to be a big benefit in terms of using this method.
+
+91
+00:05:20,410 --> 00:05:23,070
+And later on in the course, we'll see some other examples
+
+92
+00:05:23,070 --> 00:05:26,480
+of where we work orthogonality into our own designs
+
+93
+00:05:26,480 --> 00:05:29,230
+and get some similar benefits.
+
+94
+00:05:29,230 --> 00:05:30,536
+
+

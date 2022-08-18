@@ -1,0 +1,130 @@
+
+GREGOR KICZALES: So far, you've seen how to write
+expressions that operate on numbers.
+And you've learned the primitive call rule for evaluating those expressions.
+But numbers aren't the only primitive kind of data in Racket.
+In this video, we're going to learn about strings,
+which are used to represent words and names,
+and images, which let us start to build up pictures.
+We won't have to learn any new evaluation rules, though,
+because calls to string and image primitives
+work just like calls to number primitives.
+So even though this video is a little bit long,
+I think you'll find it moves along quite quickly.
+First, we'll look at string primitives.
+Then we'll look at some image primitives.
+There's one tricky part having to do with the way we number
+the characters in a string.
+But I plan to spend a couple minutes on that,
+just to be sure to show you how it works.
+
+In the beginning student language, strings look like this.
+There's a double quote and then some characters,
+like apple, and then another double quote.
+And Racket highlights the string between the quotes with green for us
+to help us see it.
+So that's a string.
+Here's another string, Ada, someone's name, and strings are values.
+So if we run the program with these two strings in it, the value of the strings
+is the strings themselves.
+So apple produces apple and Ada produces Ada.
+
+Now what are some things we can do with strings?
+Well, one things we could do with strings is put them together.
+So let's say we have two strings, Ada, which is someone's first name,
+and Lovelace, which is someone's last name, we can put them together
+like that.
+And if we run that, string append is an operation, kind of like plus,
+but for strings.
+It glues the two strings together like that.
+And probably, if it's somebody's name, we
+might want to put another space in there.
+And one way to do that would be to just add a third argument to string
+append that adds the extra space in there.
+And there we go.
+And there we get Ada Lovelace-- who you might want to look up.
+She's very famous for computer scientists.
+In the 1840s, the 1840s, she wrote the first computer program ever written.
+It was written for a machine which, at the time, only existed on paper.
+The machine itself didn't run until quite recently,
+but she wrote the program in the 1840s.
+So that's one thing we can do with strings.
+We've got strings.
+We can put strings together like that.
+Let me just point out one little wrinkle about strings.
+This is a string.
+That is a string that happens to have the characters 1, 2, and 3 in it.
+And this is a number, 123.
+And they're not the same.
+So, in particular, you could take the number and add 1 to it.
+If we run that program, get 124 as the result of that expression.
+But you can't take the string and add 1 to it.
+If you try to do that, you'll get this error message.
+Plus expects a number as its second argument.
+You gave it a string.
+And Racket nicely highlights, for us, where the error is.
+And you'll probably make this mistake.
+Everybody makes it at first when they're learning the difference between strings
+and numbers.
+And you just look at that, and you say, oh, I meant this to be a number.
+And you just get rid of those string quotes.
+And now this program does run.
+And both of those are working.
+We get 124 twice.
+OK, let me show you two more primitives on strings very quickly.
+What I'll do is I'll delete that stuff.
+And I'll comment this stuff out.
+The one operation we can do on strings is to take string length, for example,
+of apple.
+And string-length is a primitive which tells us how long a string is.
+And that string is, let's see, a-p-p-l-e, five characters,
+sure enough.
+
+So that's one thing we could do with strings.
+There's another operation we have called substring.
+And substring is going to let us take out parts of the string.
+So if, for example, we have a string like caribou,
+substring lets us take out parts of the string.
+Let me just give you an example here.
+If I say caribou 2 and 4, that's going to mean take out
+all the characters from 2 to 4.
+Give us just those characters.
+
+Now, that's ri.
+And the question is, why is that ri?
+Well, there's a funny little trick here that computer scientists
+have played on the world, which is to use something
+called the zero-based indexing.
+And in order to understand zero-based indexing, the way I always do it is I
+make myself a string that looks like this.
+I make a little string that's 012345678--
+that's probably long enough for now.
+
+And what zero-based indexing means is it means that, for substring,
+if we operate in this string here, 012345678-- and we go from 2 to 4,
+it means start at character number 2 in zero-based indexing and go right up
+to, but not including, character number 4 in zero-based indexing.
+So again, if you take this, what I'll do is I'll take this string here,
+and I'll line it up perfectly with caribou.
+And now you can see why we get ri-- because r starts at 2.
+And we end right before 4.
+So that's the trick of zero-based indexing.
+And a lot of people make mistakes about this.
+They get what are called off by one errors
+because they confuse the zero-based indexing.
+Again, don't worry about it if that happens.
+One of the great things about computer programming
+is these machines are not fragile.
+If you make a mistake, you get an error message,
+not quite the right thing happens, you just fix it.
+I'm not saying we shouldn't worry about errors in our programs.
+The design method we're going to learn is
+going to help us prevent and find such errors.
+All I'm saying is, if you get an error while you are working,
+don't worry about it.
+Look at the error message and fix the problem.
+So just so you see one other example of substring,
+let's say if I say substring of caribou, and I
+want just the first three characters, I would say 0, and I'll stop at 3.
+
+And that gives me the car.

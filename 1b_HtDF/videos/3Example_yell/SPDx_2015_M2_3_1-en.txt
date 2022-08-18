@@ -1,0 +1,52 @@
+
+GREGOR KICZALES: In this video I'm going to work
+through a relatively straightforward How to Design Functions problem.
+So this video would be a really good chance
+for you to practice what you saw in the HtDF full speed and slow motion videos.
+Just get the starter file and start working the problem
+yourself and every now and then run the video
+to kind of catch up to where you are in the problem
+so that you can see that you're doing it kind of the way
+that I'm doing it in the video myself.
+OK, this first function is going to be simple, a lot like double.
+We need to design a function called yell that consumes strings like hello
+and produces strings like hello bang where the exclamation
+mark has been added to the end.
+So, let's see, the signature of this function is it consumes String
+and it produces String.
+What it's supposed to do is produce string
+with bang added to end of supplied string.
+
+And that's a little cumbersome, purpose statements
+are often cumbersome the first time you write it, let's
+see if we can do better than that.
+What if we just say add bang to the end of s,
+where s is the name of the parameter in the stub.
+So that's simple, add bang to the end of s.
+
+OK, let's write a check-expect.
+Check-expect yell with hello that better produce hello bang like that.
+And check-expect yell with bye had better produce bye bang like that.
+Now, we run the tests, run the check-expects.
+And both are failing.
+But the key thing is both are running, so that
+tells me that they're well-formed.
+So I'll just ignore the fact they're failing for now,
+I really just wanted to know if they were running.
+And now what we'll do is we'll comment out this stub
+and we'll label it as being the stub.
+Let's see, the template for this function is define yell of s,
+body of the template is . . .
+s.
+And what I'm going to do is select the template, make a copy of it,
+paste the copy here, comment out the template
+and label it as being the template.
+Later in the course, you won't have to leave the template
+behind but for now we find that it's helpful.
+There's the template, and now I need to edit it.
+Oh yeah, what this function does is it produces a new string
+by adding bang to the end of s.
+So that's just going to be string and s and bang like that.
+Now we'll run it again, and both tests pass.
+So there you go, that's design of the yell function following the HtDF
+recipe.

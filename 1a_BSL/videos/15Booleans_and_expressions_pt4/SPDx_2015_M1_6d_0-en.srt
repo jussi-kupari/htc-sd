@@ -1,0 +1,124 @@
+0
+00:00:00,000 --> 00:00:00,810
+
+
+1
+00:00:00,810 --> 00:00:03,900
+GREGOR KICZALES: What I want to do now is back up just a little bit.
+
+2
+00:00:03,900 --> 00:00:07,910
+Let's go back to when we just had image-1 and image-2.
+
+3
+00:00:07,910 --> 00:00:12,450
+And we know that if we want to find out whether image-1 has a height greater
+
+4
+00:00:12,450 --> 00:00:14,525
+than image-2, we can say this.
+
+5
+00:00:14,525 --> 00:00:21,200
+
+
+6
+00:00:21,200 --> 00:00:24,900
+So that's comparing the height of I1 and the height of I2.
+
+7
+00:00:24,900 --> 00:00:32,049
+And if we run that, we'll get true, because 20 is bigger than 10.
+
+8
+00:00:32,049 --> 00:00:42,070
+We could also, if we wanted to, compare the width of I1
+
+9
+00:00:42,070 --> 00:00:50,700
+and the width of I2 to see-- in some sense this first thing is saying
+
+10
+00:00:50,700 --> 00:00:57,730
+is I1 taller than I2, and the second one is saying is I1 skinnier than I2.
+
+11
+00:00:57,730 --> 00:01:00,090
+And that's true.
+
+12
+00:01:00,090 --> 00:01:04,780
+Now what if we wanted to know whether I1 was both taller and skinnier than I2,
+
+13
+00:01:04,780 --> 00:01:07,600
+if it was both things together?
+
+14
+00:01:07,600 --> 00:01:09,350
+Well, here's a new primitive called and.
+
+15
+00:01:09,350 --> 00:01:12,020
+
+
+16
+00:01:12,020 --> 00:01:15,190
+and is a special kind of expression, like if.
+
+17
+00:01:15,190 --> 00:01:19,870
+And the way and works is you can wrap (and around any number
+
+18
+00:01:19,870 --> 00:01:25,690
+of other expressions that themselves are going to produce a Boolean value.
+
+19
+00:01:25,690 --> 00:01:29,320
+And what and does is it evaluates the first one, and if that produces true,
+
+20
+00:01:29,320 --> 00:01:32,070
+it keeps going.
+
+21
+00:01:32,070 --> 00:01:35,440
+And if by the time it gets to the end, all of the expressions
+
+22
+00:01:35,440 --> 00:01:40,435
+have produced true, then the whole and produces true.
+
+23
+00:01:40,435 --> 00:01:44,910
+If on the other hand and gets to an expression that produces false,
+
+24
+00:01:44,910 --> 00:01:48,140
+then it stops right away and produces false.
+
+25
+00:01:48,140 --> 00:01:50,180
+So and does what's called short circuiting.
+
+26
+00:01:50,180 --> 00:01:55,150
+It doesn't keep evaluating if it comes to an expression that produces False.
+
+27
+00:01:55,150 --> 00:01:59,990
+It only keeps going as long as the expressions are producing true.
+
+28
+00:01:59,990 --> 00:02:04,050
+There's also a primitive or expression, and there's
+
+29
+00:02:04,050 --> 00:02:06,710
+a primitive function called not.
+
+30
+00:02:06,710 --> 00:02:15,442
+
+

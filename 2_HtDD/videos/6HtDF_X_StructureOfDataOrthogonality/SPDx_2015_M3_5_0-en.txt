@@ -1,0 +1,94 @@
+
+GREGOR KICZALES: I hope you're already beginning
+to see some of the power of working with a systematic design process.
+One piece of that is that you always know what to do next.
+There's always the next step of the recipe.
+And that step of the recipe tells you what kind of thing you need to write
+and where you should be looking to figure out how to write it.
+So when it's time to write the examples, you
+know that you can look at the signature and the purpose
+to help you figure out what the examples need to be.
+You've also seen the benefit of producing uniformly structured code.
+Code that's easy for other programmers to read and code that
+has an appropriate number of tests.
+But in this next part, you're going to see the power of systematic design
+really start to step up.
+What's going to happen is that because the design method
+itself, in other words, the meta design in some sense.
+Because the design method itself is structured
+so that the how to design functions recipe is orthogonal,
+which is a $10 word for means mostly independent.
+Because the functions recipe and the data recipe are orthogonal,
+it means that as we learn more forms of data,
+the functions recipe is going to continue to work unchanged or mostly
+unchanged with those forms of data.
+So now we're going to begin to cover the ground a lot
+more quickly because of this property of the way the recipes are designed.
+In week one and particularly at the end of week one,
+we learned about primitive data, including
+types like string, number, and image.
+And we learned the how to design function recipe
+and we used it to design functions like double,
+which consumed a number, and yell, which consumed a string, and area, which
+consumed a number.
+And image area, which consumed an image.
+Now, what started to happen this week is we've started
+to learn about other forms of data.
+And in particular, we've learned about non primitive data.
+Data where there's a type that we design with the how to design data definitions
+recipe.
+And what we did in the last two videos was
+we learned about atomic non primitive data and we designed the type CityName.
+And then we designed the best function that consumed the CityName.
+And earlier in the week, you actually saw a preview of a form of data
+called enumerations, which we haven't explicitly covered yet.
+We'll do that shortly.
+But you saw another type called TrafficLightColor and a function
+next-color.
+Now, what's going to happen the rest of this week
+is we're going to learn about some other forms of data,
+including intervals, enumerations, itemizations, and a special form
+called distinct.
+And we'll see examples of those types.
+And you'll be able to design functions that operate on them.
+As I said before, the HtDF recipe is largely orthogonal to the form of data.
+So HtDF works the same way with different forms of data.
+And what that means in this week is we're
+going to focus most of the lecture time on designing
+different kinds of data definitions.
+And we're going to have to spend much less time on designing
+functions that consume that data.
+In some sense, what's happening is we did this little piece of the y-axis,
+how to design functions, and now we're working out the x-axis.
+And all of this space in the middle, the cross product of the two axes,
+comes very cheaply.
+We won't have to spend much lecture time talking about these kinds of functions.
+Instead, we spend most of the lecture time talking about forms of data
+and designing these kinds of functions comes almost for free.
+And what's great is the power of having a design
+method in which the individual recipes are orthogonal to the form of data
+is only going to grow from there.
+Next week, we're mostly going to focus on two things.
+One new form of data, compound data.
+And also a recipe that helps us design interactive programs like games
+and animations and things like that.
+And again, because of this orthogonality, most of the lecture time
+will be on compound data and on the how to design worlds recipe.
+And we'll do some examples in the cross product,
+some examples in the green box, but we won't have to do all of them
+in lecture.
+Because once you know how to design worlds and once you know compound data,
+you can do anything in the blue, red, or green boxes.
+Beyond that, when we do lists and trees, lists and trees
+are complicated structures, but because of this orthogonality,
+again, they're going to be much easier to learn in this course
+than they are in some other courses.
+Orthogonality is always great in design when you can get it.
+Here, you've got orthogonality in the design of the actual design method.
+And it's giving us some wonderful properties here.
+We can learn HtDF and HtDW and we can learn forms of data
+and we get the cross product for free.
+That's going to be a big benefit in terms of using this method.
+And later on in the course, we'll see some other examples
+of where we work orthogonality into our own designs
+and get some similar benefits.

@@ -1,0 +1,141 @@
+
+GREGOR KICZALES: In the last video, we looked
+at how to represent information about an arbitrary
+number of accounts using a list, where each account has a number and account
+name.
+At the end of that video, I asked you write a function that would look up
+an account number in such a list and produce either the account name,
+if it could find it, or produce false, if it couldn't.
+So I hope you've done that, and I hope that gave you
+some better understanding of what that representation of accounts
+would be like.
+Now, let me ask you a question.
+Suppose we had a list like that, of accounts.
+And suppose the list is long, really long.
+And I don't mean 365 along.
+Maybe I mean 365,000 long, or I'll just call it n, for now.
+The question I want to ask you is, how long does it
+take to find an account in that list?
+Well, let's see, if I get lucky, and I'm looking for account number one,
+then I only have to look at the first account in the list to find it.
+So that was pretty lucky.
+If I get a little less lucky, and I'm looking for account number four,
+then I only have to look at the first two accounts in the list to find it.
+If I get less lucky and I'm looking at, say, account number 14,
+I've got to look at five accounts.
+If I really get unlucky, and I'm looking at account 365,
+I have to look at all n accounts in the list before I get to 365,
+because I have to check each of the ones that come before it,
+to see that, oh no, they're not account 365.
+So on average, if I have average luck, I'm
+going to have to look at n over 2 of the accounts,
+because sometimes I'll be lucky, and I'll be looking for the first one.
+And sometimes I'll be unlucky, and I'll be looking for the last one.
+And everything else in the middle will happen.
+And so on average, I'm going to look at n over 2 of the accounts.
+So that's not so good.
+If I have 365,000 accounts, then any time I look up an account number,
+I'm going to have to look at half of 365,000.
+That's not really good enough.
+It seems like we ought to be able to do better.
+Well, one idea would be to sort the list by account number,
+so that account number one comes first, then three, and four, and seven.
+And so it's just in increasing order of account number.
+That would take some work to get it sorted,
+but it seems like that might be a good idea.
+The problem is that doesn't help me.
+It doesn't help at all, not at all.
+And here's why.
+The way lists work, remember that with lists, we just have first and rest.
+So the only way we can traverse the list is in order, from beginning to end.
+So whether the list is sorted or not, on average, we're
+going to have to look at half the accounts in order to find the one
+we want.
+So sorting is not going to help.
+Or actually, what I should say is, sorting alone isn't going to help.
+Here's another idea.
+Let's imagine that we start with a sorted list.
+And then, we'll take the middle of the list, in this case, that's 10y.
+We'll take the middle of the list, and we'll split the list around the middle,
+so that we leave the middle up top, like this.
+On the left-hand side, we're going to put
+everything that came before the middle.
+And on the right-hand side, we're going to put
+everything that came after the middle.
+And so the important thing, here, is that in this left-hand list,
+this one down below on the left, all those
+have an account number less than the middle, less than 10.
+In the right-hand lower list, all of those
+have an account number bigger than 10.
+So that's kind of neat.
+We can do it again.
+For each of those lists, we can take the middle.
+So in the left-hand case, it's 3 I-L-K, and in the right-hand case,
+it's 42 I-L-Y. And we'll do the same thing.
+
+And we could keep doing that, until we get to the point
+where there's no lists left, where at each level,
+all we have is a single account number and name.
+And now, I'm going to draw these lines in.
+And this is a thing called a binary search tree.
+And the important thing about a binary search tree
+is that every single what's sometimes called
+a node, all the accounts in the left subtree of that node
+have a number less than the root, and all the accounts in the right subtree
+have a number greater than the root.
+So everything in this part, over here, has an account number less than 10.
+Similarly everything in this part, here, below and to the right of 3 I-L-K,
+has an account number greater than three.
+And this rule, here, is called an invariant,
+and it holds true over the entire tree.
+That's what it means for it to be an invariant.
+It's true over the entire tree.
+
+Now, if I construct a tree like this-- we don't quite yet
+know how we're going to represent it.
+This is all information.
+But imagining that this is information, let's
+think abstractly about how long it would take to find something in such a tree.
+Well, let's see.
+Suppose I'm looking-- suppose it's going to be the worst possible case.
+I'm going to look for 14, for example.
+Well, I look at 10.
+And 10 isn't 14, so I'm not there.
+But 14 is greater than 10, so I'm going to completely ignore
+the left-hand part of the tree.
+And now, I'm going to go down to the right branch of the tree.
+Let's see.
+42 isn't 14, so I'm not there.
+But 14 is less than 42.
+So at this point, I'm going to ignore the entire right-hand branch
+of the tree.
+And I'll go down the left-hand branch.
+Let's see.
+27 isn't 14, so I'm not there.
+But 14 is less than 27, so I'll ignore the right-hand branch of the tree.
+There happens not to be one, so ignoring it doesn't do much, but I'll ignore it.
+And I go down the left branch.
+Let's see.
+14 is 14.
+I'm there.
+I produce LLP.
+And if I ever get to a branch which has nothing in it--
+suppose I've been looking for 28, for example.
+If I've been looking for 28, then when I got here, to 27,
+I would have tried to go to go down the right-hand branch.
+And there's nothing there, and so I would produce false.
+So how long does it take to find something in that tree?
+Well, notice that at each step of the process, when
+we didn't find what we were looking for, we eliminated about half the tree.
+So each time, the tree gets smaller by half, as compared to the list.
+Each time, the list got smaller by one, but here, each time, the tree
+gets smaller by half.
+And so what that means is that in this world,
+on average, we're going to have to look at log n of the size of the tree,
+because the tree keeps getting smaller by half each time.
+And so we're going to find our answer a lot faster in something like this,
+if, of course, we can find a way to represent it as data.
+Right now, we're talking about an abstract piece of information.
+And we've done an abstract analysis of how long it
+would take to find something in it.
+We'll try to implement it in the next video.

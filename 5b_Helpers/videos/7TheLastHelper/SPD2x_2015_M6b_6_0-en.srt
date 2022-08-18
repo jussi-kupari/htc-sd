@@ -1,0 +1,472 @@
+0
+00:00:00,000 --> 00:00:04,600
+
+
+1
+00:00:04,600 --> 00:00:07,980
+GREGOR KICZALES: In this video, I'm going to finish the larger predicate.
+
+2
+00:00:07,980 --> 00:00:11,090
+And the function itself is mostly straightforward,
+
+3
+00:00:11,090 --> 00:00:14,280
+but there's two interesting things that come up here.
+
+4
+00:00:14,280 --> 00:00:18,610
+One is an interesting point about writing tests for functions that
+
+5
+00:00:18,610 --> 00:00:22,330
+consume two of the same type of data.
+
+6
+00:00:22,330 --> 00:00:25,460
+And the other is the pretty fun point where
+
+7
+00:00:25,460 --> 00:00:28,780
+you've built up a whole chain of helpers,
+
+8
+00:00:28,780 --> 00:00:32,280
+going from an initial function to a helper to a helper to a helper--
+
+9
+00:00:32,280 --> 00:00:37,130
+and you finally finish that last helper and bang, bang, bang.
+
+10
+00:00:37,130 --> 00:00:40,530
+If you're lucky, the whole thing works.
+
+11
+00:00:40,530 --> 00:00:43,340
+OK, now I need to finish the larger predicate.
+
+12
+00:00:43,340 --> 00:00:46,520
+And the examples are what I need to do next.
+
+13
+00:00:46,520 --> 00:00:48,910
+And I'm not going to use the name constants
+
+14
+00:00:48,910 --> 00:00:51,820
+I defined for the last function and I'll show you why.
+
+15
+00:00:51,820 --> 00:00:53,540
+Let me just get started.
+
+16
+00:00:53,540 --> 00:00:59,830
+Check-expect, larger-- it's really easy in a function like this.
+
+17
+00:00:59,830 --> 00:01:02,960
+Here's a function that consumes two images
+
+18
+00:01:02,960 --> 00:01:06,600
+and it's going to have to get the width and height of both images.
+
+19
+00:01:06,600 --> 00:01:09,390
+And it's really easy in a function like this to make a mistake,
+
+20
+00:01:09,390 --> 00:01:12,630
+where, for example, you use the same image twice.
+
+21
+00:01:12,630 --> 00:01:17,670
+Or you use the width twice instead of the width and the height.
+
+22
+00:01:17,670 --> 00:01:22,380
+So what I'm going to do is I'm going to use numbers for my images
+
+23
+00:01:22,380 --> 00:01:25,970
+that are very sensitive to making any one of those mistakes.
+
+24
+00:01:25,970 --> 00:01:34,220
+So watch this-- I'll say, three by four, solid and red.
+
+25
+00:01:34,220 --> 00:01:38,292
+Whoops, I mean rectangle.
+
+26
+00:01:38,292 --> 00:01:40,000
+I was thinking so hard about the numbers,
+
+27
+00:01:40,000 --> 00:01:41,860
+I forgot to make the rectangle.
+
+28
+00:01:41,860 --> 00:01:44,550
+Rectangle-- three, four, solid, red.
+
+29
+00:01:44,550 --> 00:01:52,660
+And rectangle to six solid red.
+
+30
+00:01:52,660 --> 00:01:55,260
+Now the area of both of those is the same-- it's 12.
+
+31
+00:01:55,260 --> 00:01:57,980
+So that should be false.
+
+32
+00:01:57,980 --> 00:02:01,960
+Now we can make the other four cases, where we'll
+
+33
+00:02:01,960 --> 00:02:05,010
+vary each of the numbers a little bit.
+
+34
+00:02:05,010 --> 00:02:08,620
+So now, let's make this be five.
+
+35
+00:02:08,620 --> 00:02:10,775
+Now the first rectangle is bigger.
+
+36
+00:02:10,775 --> 00:02:13,480
+
+
+37
+00:02:13,480 --> 00:02:17,730
+We'll make this be five.
+
+38
+00:02:17,730 --> 00:02:19,400
+First rectangle is also bigger.
+
+39
+00:02:19,400 --> 00:02:21,940
+
+
+40
+00:02:21,940 --> 00:02:30,380
+We'll make this be five-- second rectangle is definitely bigger.
+
+41
+00:02:30,380 --> 00:02:35,940
+In other words, the first rectangle is definitely not bigger.
+
+42
+00:02:35,940 --> 00:02:40,940
+And for this last one, we'll make six be seven.
+
+43
+00:02:40,940 --> 00:02:44,924
+The first rectangle is definitely not bigger.
+
+44
+00:02:44,924 --> 00:02:45,840
+So those are examples.
+
+45
+00:02:45,840 --> 00:02:47,530
+Run to make sure it's well-formed.
+
+46
+00:02:47,530 --> 00:02:50,830
+It is-- lots of tests are failing.
+
+47
+00:02:50,830 --> 00:02:56,540
+Now let's see-- this is a function operating on two primitive atomic data.
+
+48
+00:02:56,540 --> 00:02:58,630
+So we have to make the template for ourselves.
+
+49
+00:02:58,630 --> 00:03:06,170
+The template is defined-- larger, question mark, img1, img2.
+
+50
+00:03:06,170 --> 00:03:11,320
+And if it was just img2, that would be the template,
+
+51
+00:03:11,320 --> 00:03:14,715
+but we have an additional atomic parameter, so we add img1.
+
+52
+00:03:14,715 --> 00:03:17,410
+
+
+53
+00:03:17,410 --> 00:03:18,392
+There we go.
+
+54
+00:03:18,392 --> 00:03:19,600
+And now what do I need to do?
+
+55
+00:03:19,600 --> 00:03:23,090
+Do I need to get the area of one of them?
+
+56
+00:03:23,090 --> 00:03:35,945
+So that's the width times the height.
+
+57
+00:03:35,945 --> 00:03:40,880
+And I'll copy here, because I was very careful about that.
+
+58
+00:03:40,880 --> 00:03:45,070
+So now I've got the top line is the area of image one,
+
+59
+00:03:45,070 --> 00:03:49,670
+the bottom line is the area of image two,
+
+60
+00:03:49,670 --> 00:03:55,721
+and one is bigger than two, if that's a greater/than.
+
+61
+00:03:55,721 --> 00:04:00,920
+Command-I to fix the indentation-- one.
+
+62
+00:04:00,920 --> 00:04:03,050
+Wow, all at once.
+
+63
+00:04:03,050 --> 00:04:07,340
+Only one test is failing-- let's go see which test this is.
+
+64
+00:04:07,340 --> 00:04:10,340
+
+
+65
+00:04:10,340 --> 00:04:18,490
+If I insert I3 into cons I2 or I3-- this is just wrong.
+
+66
+00:04:18,490 --> 00:04:20,550
+I made this test wrong.
+
+67
+00:04:20,550 --> 00:04:24,130
+This was supposed to be the test where I was inserting I3
+
+68
+00:04:24,130 --> 00:04:29,900
+into a list that already had I1 and I2.
+
+69
+00:04:29,900 --> 00:04:31,280
+That was just a broken test.
+
+70
+00:04:31,280 --> 00:04:34,180
+If I insert i3 in that list, it should go
+
+71
+00:04:34,180 --> 00:04:38,080
+at the end-- cons I1, cons I2, cons I3.
+
+72
+00:04:38,080 --> 00:04:41,940
+Empty is the result. Now let's run it.
+
+73
+00:04:41,940 --> 00:04:44,300
+All 17 tests pass.
+
+74
+00:04:44,300 --> 00:04:48,680
+So here, you're seeing a thing that happens all the time when
+
+75
+00:04:48,680 --> 00:04:51,790
+you start designing more complicated functions
+
+76
+00:04:51,790 --> 00:04:54,830
+and you have to have more and more helpers.
+
+77
+00:04:54,830 --> 00:04:58,180
+Is you get to the end and it all comes together.
+
+78
+00:04:58,180 --> 00:05:00,780
+And if you're lucky, every single test passes.
+
+79
+00:05:00,780 --> 00:05:05,550
+In that one final moment, every single test now passes.
+
+80
+00:05:05,550 --> 00:05:07,800
+You're not usually that lucky.
+
+81
+00:05:07,800 --> 00:05:10,230
+You're almost never that lucky.
+
+82
+00:05:10,230 --> 00:05:15,140
+Usually what happens is you get that final piece done and a bunch of tests
+
+83
+00:05:15,140 --> 00:05:15,940
+start working.
+
+84
+00:05:15,940 --> 00:05:18,480
+But sometimes what happens is, there's some tests
+
+85
+00:05:18,480 --> 00:05:23,580
+that are broken-- like in this case, where there was a broken test.
+
+86
+00:05:23,580 --> 00:05:25,850
+Other times what happens isn't that tests are broken,
+
+87
+00:05:25,850 --> 00:05:30,430
+but that some function along the way actually isn't correct.
+
+88
+00:05:30,430 --> 00:05:33,820
+And then things will only partially work or not work at all.
+
+89
+00:05:33,820 --> 00:05:36,940
+This was a pretty good case-- we finished the last function
+
+90
+00:05:36,940 --> 00:05:42,950
+in the chain of helpers and we had only one broken test that we had to go fix.
+
+91
+00:05:42,950 --> 00:05:46,430
+But whether it all works in one fell swoop or not
+
+92
+00:05:46,430 --> 00:05:49,660
+isn't so much the real issue, as much as that they're
+
+93
+00:05:49,660 --> 00:05:51,750
+going back to this picture.
+
+94
+00:05:51,750 --> 00:05:54,980
+What happens is, all at once, all our boxes
+
+95
+00:05:54,980 --> 00:06:00,080
+get checked off, because we finish the helper larger,
+
+96
+00:06:00,080 --> 00:06:06,290
+which basically finishes insert, which basically finishes sort, which
+
+97
+00:06:06,290 --> 00:06:08,010
+basically finishes arrange images.
+
+98
+00:06:08,010 --> 00:06:11,410
+Bang, bang, bang-- we check off the whole chain
+
+99
+00:06:11,410 --> 00:06:14,650
+of functions that were waiting on this last helper to be done.
+
+100
+00:06:14,650 --> 00:06:18,940
+So from these lectures, for the first part of this week-- two main lessons.
+
+101
+00:06:18,940 --> 00:06:23,050
+One is some more helper rules-- the rule about function composition,
+
+102
+00:06:23,050 --> 00:06:25,790
+the rule about operating on arbitrary size data,
+
+103
+00:06:25,790 --> 00:06:28,555
+the rule about a change in knowledge domain.
+
+104
+00:06:28,555 --> 00:06:31,800
+
+
+105
+00:06:31,800 --> 00:06:35,560
+The other is this more macro notion that, very often,
+
+106
+00:06:35,560 --> 00:06:37,990
+when we design more complicated functions,
+
+107
+00:06:37,990 --> 00:06:41,370
+we end up having to design a bunch of helper functions
+
+108
+00:06:41,370 --> 00:06:45,950
+as we use different helper rules to split the work of the main function
+
+109
+00:06:45,950 --> 00:06:46,450
+out.
+
+110
+00:06:46,450 --> 00:06:51,890
+These rules have an effect similar to the effect that the reference rule has.
+
+111
+00:06:51,890 --> 00:06:55,080
+But in this example, we've seen some additional rules.
+
+112
+00:06:55,080 --> 00:06:58,310
+Whenever you're designing functions-- the rest of this course
+
+113
+00:06:58,310 --> 00:07:02,460
+and in the rest of your life-- keep these helper rules in mind.
+
+114
+00:07:02,460 --> 00:07:06,780
+They're good guidelines for where to put in a helper function.
+
+115
+00:07:06,780 --> 00:07:11,030
+Some programmers will adopt their own style for using rules in other places,
+
+116
+00:07:11,030 --> 00:07:15,100
+but these are good general principles for where to put helper functions.
+
+117
+00:07:15,100 --> 00:07:17,904
+
+

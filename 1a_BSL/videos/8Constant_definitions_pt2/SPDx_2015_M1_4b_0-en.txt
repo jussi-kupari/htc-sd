@@ -1,0 +1,8 @@
+
+Gregor Kiczales: So now you've seen how we can define constants
+in the Beginning Student Language.
+As I said at the beginning of this video,
+we're going to see more and more how important this is.
+Really, this notion of defining name constants
+is going to have a big effect on making our programs
+comprehensible to other programmers and easy to change in the future.

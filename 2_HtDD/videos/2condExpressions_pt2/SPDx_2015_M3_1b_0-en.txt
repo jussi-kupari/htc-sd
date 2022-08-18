@@ -1,0 +1,85 @@
+
+GREGOR KICZALES: To look at the rules for evaluating cond, what I want to do
+is work with a slightly simpler example.
+So what I'm going to do is make a new tab.
+And here's my simpler example.
+And I'll do the usual thing about putting the evaluation
+rules for cond off to the right here.
+And now let's get going.
+We start evaluating and we see open paren cond,
+so this is a cond expression, and we have to use the rules for cond.
+There are question answer pairs.
+So there's no error.
+And let's see.
+The first question right here is not a value.
+It's an expression.
+So we need to evaluate it.
+Well, let's see.
+Evaluating it, it's open paren greater-than.
+It's a call to a primitive.
+So we would use the call to a primitive rule.
+Both operands are already values, so we can apply the primitive directly.
+So this greater-than 1 2 is going to produce false.
+So what we're going to do is replace the entire cond
+with a cond in which the first question is false.
+Now we start evaluating again.
+Open paren cond, it's a cond.
+Let's see.
+The first question is false.
+So that takes us to the if the first question is false rule.
+And what that rule wants to do is drop the first question answer pair.
+So what we get now is a new cond in which this first question answer
+pair is going to be deleted entirely.
+I'm going to do command-e now to get myself more room here.
+OK.
+Let's see.
+Open paren cond.
+There are question answer pairs.
+The first question is not a value, it's an expression.
+So I need to evaluate the first question and replace the question
+with its value.
+Well, we know how to do that now.
+That just gives me false again.
+Open paren cond, there are question answer pairs.
+The first question is false.
+So again, it's the drop the first question rule.
+
+We basically drop the first question.
+
+Open paren cond.
+There are questions.
+The first question is not a value, is an expression.
+I evaluate it.
+We're getting there, we're getting very close now.
+
+That is now true.
+Open paren cond, the first question is true.
+Now I replace the entire cond with the first answer expression.
+OK, let's see.
+What do I have now?
+Oh I have a value, I'm done evaluating.
+The key intuition is that the way the evaluation of cond works is it
+evaluates the first question.
+If it's false, it drops that question answer pair and starts over.
+If the first question is true, then it replaces the entire cond
+with the first answer.
+You can see here an interesting pattern, right?
+Which is the rule for cond, the rule for function
+call, the rule for if, they all work in the same way.
+They in some sense try to do their thing and then get out of the way.
+Right here in this last step with cond, once we got to the answer,
+the cond was gone.
+And that's the same thing that happened with function call.
+Once the body of the function is replaced in,
+the function call itself is gone.
+These style evaluation rules work that way.
+The idea is to take care of the more sophisticated construct
+and then get it out of the program.
+OK.
+Here's another example for you to do stepping.
+It's a little bit more complicated.
+I apologize for all these stepping examples,
+but we know they really help people in terms of mastering how language works.
+And that really starts to help as the programs get more complicated.
+So here's another example of that as an exercise.
+But it'll be interactive so that you can work through it as you go.

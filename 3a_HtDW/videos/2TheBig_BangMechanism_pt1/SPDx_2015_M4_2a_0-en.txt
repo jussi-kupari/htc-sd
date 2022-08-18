@@ -1,0 +1,64 @@
+
+GREGOR KICZALES: This week is going to have the same basic structure
+of previous weeks.
+First, we're going to learn a mechanism that supports interactive programs.
+That mechanism's called big-bang.
+And no surprise, there's kind of a bad pun involved in the name of big bang.
+We'll talk about that later.
+So first we're going to learn that mechanism.
+And then later in the week, we'll start learning how to design with it.
+To explain the big-bang mechanism, what I'm going to do
+is I'm going to start by looking at a couple example
+interactive programs and just kind of reason from first principles
+about what has to be going on inside those programs,
+the inherent structure of those programs.
+Then I'll explain how big bang works and how it supports that structure.
+So imagine that we have two fairly boring interactive programs.
+So the one on the left is just counting down, 8, 7, 6, 5, 4, and so on.
+And the one on the right just has a cat walking very slowly across the screen.
+And I'm going to say these programs are interactive because if I
+press the Space key, they both reset back to the beginning
+and start running again.
+So that's the sense in which they're interactive.
+These two programs have classical interactive behavior.
+Some underlying state is changing, the number in the countdown
+or the position of the cat.
+There's a changing image on the screen.
+And pressing the key does something or perhaps
+clicking the mouse might do something.
+So there's two simple interactive programs.
+Now let's think about what's going on behind the scenes starting
+with the countdown program.
+There's the current number in the countdown, which
+is the middle column of this table.
+It starts at 10, and then it goes to 9, and so on.
+And there's the currently displayed image,
+which is the image of the number 10, the image of the number 9, and so on.
+And what's happening is that once a second, n gets decreased by 1,
+and the image gets updated to be the image corresponding to the current n.
+So there's kind of this behavior of the clock ticking, tick, tick, tick.
+And each time, n and the image are both updated.
+Now, if we look at the cat program, the same kind of thing just
+inherently has to be going on inside of it.
+In this case, the changing state is the cat's x position.
+It starts at 0, and then it goes to 3, and then it goes to 6.
+The idea is that the cat's moving three units per tick.
+And in this case, the image is an image of a cat at that position
+rather than an image of the numeral.
+And in this case, the ticks are also counting up, 0, 1, 2, 3, 4, but they're
+counting much faster in this case.
+Let's just say for now they're ticking 28 times per second,
+whereas in the countdown program we wanted it to tick one time per second.
+Now, continuing with this exercise of thinking
+about what just has to inherently be inside this program,
+let's think in terms of information and data for a second.
+We've got these numbers, 0, 3, 6, that are
+representing the x position of the cat.
+So when we do something like that, what we use is a data definition.
+We use a data definition to tell us how we're
+going to represent domain information using data.
+So here's a data definition for that.
+We're going to say that cat is a number, and we're
+going to interpret that number to be the x-coordinate of a cat.
+And the rest of this data definition is fairly straightforward now.
+It's simple atomic data.

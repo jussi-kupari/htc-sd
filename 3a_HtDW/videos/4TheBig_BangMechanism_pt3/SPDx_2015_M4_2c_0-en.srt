@@ -1,0 +1,84 @@
+0
+00:00:00,000 --> 00:00:00,090
+
+
+1
+00:00:00,090 --> 00:00:02,423
+GREGOR KICZALES: Going back to the table again and still
+
+2
+00:00:02,423 --> 00:00:06,970
+thinking about just what inherently has to be inside this program,
+
+3
+00:00:06,970 --> 00:00:12,670
+we see that at each clock tick, we need to produce an image based
+
+4
+00:00:12,670 --> 00:00:18,620
+on the cat's current x-coordinate that shows the actual cat farther
+
+5
+00:00:18,620 --> 00:00:21,810
+and farther across the image of some background scene.
+
+6
+00:00:21,810 --> 00:00:25,690
+In this case, the background scene is white.
+
+7
+00:00:25,690 --> 00:00:28,462
+So here's a function that does that.
+
+8
+00:00:28,462 --> 00:00:31,754
+The function consumes a cat and produces an image.
+
+9
+00:00:31,754 --> 00:00:34,352
+
+
+10
+00:00:34,352 --> 00:00:36,060
+And we're using a primitive here that you
+
+11
+00:00:36,060 --> 00:00:38,390
+haven't seen before called place-image.
+
+12
+00:00:38,390 --> 00:00:41,480
+But the way place-image works is it takes an image,
+
+13
+00:00:41,480 --> 00:00:46,570
+and then it takes an x-coordinate, a y-coordinate, and a second image,
+
+14
+00:00:46,570 --> 00:00:49,565
+and it places the first image at the given x,
+
+15
+00:00:49,565 --> 00:00:52,180
+y-coordinate on the second image.
+
+16
+00:00:52,180 --> 00:00:53,990
+So what this function's doing here is it's
+
+17
+00:00:53,990 --> 00:00:56,170
+placing the image of the cat, which happens
+
+18
+00:00:56,170 --> 00:01:03,290
+to be the value of a constant called CAT-IMG at the appropriate x-coordinate
+
+19
+00:01:03,290 --> 00:01:09,136
+in the middle of the background image, which happens to be called MTS.
+
+20
+00:01:09,136 --> 00:01:09,636
+
+

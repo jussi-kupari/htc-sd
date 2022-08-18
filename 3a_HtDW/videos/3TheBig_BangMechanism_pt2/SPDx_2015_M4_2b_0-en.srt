@@ -1,0 +1,52 @@
+0
+00:00:00,000 --> 00:00:00,720
+
+
+1
+00:00:00,720 --> 00:00:02,790
+GREGOR KICZALES: Looking back at our table,
+
+2
+00:00:02,790 --> 00:00:05,140
+we see that at each clock tick what happens
+
+3
+00:00:05,140 --> 00:00:10,520
+is that the representation of the cat's x-coordinate increases by its speed
+
+4
+00:00:10,520 --> 00:00:11,040
+each time.
+
+5
+00:00:11,040 --> 00:00:14,200
+So it goes from 0 to 3 to 6 to 9.
+
+6
+00:00:14,200 --> 00:00:16,690
+So here's a function that does that for us.
+
+7
+00:00:16,690 --> 00:00:18,130
+It signature is cat to cat.
+
+8
+00:00:18,130 --> 00:00:22,440
+So it takes a cat and produces a cat, and it increases that position
+
+9
+00:00:22,440 --> 00:00:24,700
+by the cat's speed.
+
+10
+00:00:24,700 --> 00:00:26,660
+And there's some check expects.
+
+11
+00:00:26,660 --> 00:00:29,680
+And if we look at the body of the function, we can see what we expect.
+
+12
+00:00:29,680 --> 00:00:36,150
+It takes the current x-coordinate of the cat and increases it by speed.
+

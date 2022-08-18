@@ -1,0 +1,113 @@
+
+GREGOR KICZALES: So there's the data definition and two functions.
+One function, next-cat, can take us from one cat to the next cat.
+In other words, it can advance the cat's x position by three
+each time, 0, 3, 6, and so on.
+The other function can take us from a cat to an image of the cat,
+in other words, the image of the cat at the appropriate position
+on the background called MTS.
+Now we need to understand how those two functions need
+to dance together in order for the cat to move across the screen the way
+we want it to.
+Suppose the cat starts at 0.
+We need to call render-cat to get the appropriate image and display that.
+Then we need to call next-cat with 0 to get 3.
+Then we need to call render-cat with 3 to get the image
+and display it, then next-cat with 3 to get 6.
+Then render-cat we call with 6 to get the next image and display that.
+Then we call next-cat with 6 to get 9, then render-cat with 9 to get the image
+and display it, next-cat with 9 to get 12, render-cat with 12,
+next-cat with 12, 15, and so on and so on and so on.
+And all we need to do is do that 28 times
+a second, which I can't talk that fast.
+To do that, to wire render-cat and next-cat together that way,
+DrRacket gives us a special expression called a big-bang expression.
+And here's an example of how we would use big-bang to make the cat walk.
+The first argument to big-bang is an expression
+that evaluates to what the big-bang calls the initial world
+state, the initial state of this whole interactive world.
+In this case, the state of the interactive world
+is represented by the cat type, and so we're
+going to give it an expression that produces a cat.
+So 0 is the initial position of the cat.
+After its first argument, big-bang takes a number of options.
+And it takes so many that the way it does it is to take them by name.
+That way you can give it only the options you want to give it each time.
+The way to read this first option is it says,
+each time the clock ticks, call the next-cat function,
+pass it as an argument the current state of the world,
+and it will give you back the next state of the world.
+Because in this particular big-bang expression the state of the world
+is represented by Cat, I've put a comment
+here saying that the type of the first argument to big-bang, in this case,
+is Cat.
+And another comment here that says that the signature of the next-cat function
+is that it consumes Cat and produces Cat.
+The second option to big-bang, in this case, is called to-draw.
+And you should read this use of to-draw as saying
+that what big-bang's going to do is on each clock tick,
+it's going to call render-cat, passing render-cat as its first argument
+the current world state, in other words, a Cat.
+And render-cat will produce an image, and big-bang will display that image.
+And I've made a note here off to the side that the signature of render-cat
+is that it consumes Cat and produces Image.
+So what big-bang is doing for us is it's taking
+all the little pieces of our world, the initial world state, the tick function,
+the draw function, and it's combining all those pieces together
+to get a world.
+Do you see the joke behind the name now?
+It squeezes the pieces together, big-bang, it produces a world.
+Whether you like that joke about the name or not, that is the name.
+I didn't come up with it.
+One other point to make about big-bang is
+that it's what computer scientists like to call polymorphic.
+It can work for any type of world state.
+So big-bang doesn't just work with cats.
+It can work, for example, if you have an interactive world
+program that has to do with fireworks, then the world state could be firework.
+Or if you have an interactive program that has to do with lots of fireworks,
+then the world state could be list of firework.
+The world state can be anything you want to be.
+So actually here, where we've noted cat and cat to cat and cat to image,
+as far as big-bang's concerned it can be anything.
+So really it could be X, X to X, and X to image.
+All big-bang wants is for you to give it an initial world state.
+And then for on-tick, you've got to give it
+a function that consumes a world state of that type
+and produces a world state of that type.
+And then for to-draw, you have to give it
+a function that consumes the world state of that type, whatever
+it is, and produces image.
+The key thing is, in any one use of big-bang,
+all the X's have to be the same type.
+They all have to be consistent.
+That's what matters to big-bang.
+So there's big-bang.
+It's without a doubt the most complicated single primitive
+we're going to use this term.
+It's a user interface framework.
+And user interface frameworks, in other words,
+tools that integrate a bunch of functionality
+together to get an entire user interface, user interface frameworks
+are always somewhat complicated.
+This one is simpler than most.
+Don't worry about it.
+We're going to spend the whole week on it.
+You'll get a lot more chances at it.
+But the basic thing to understand is this picture
+up here in the upper right, that's what big-bang is doing.
+It's starting with an initial world state,
+and then it's coordinating, calling functions like render-cat and next-cat,
+to produce the combined behavior of the interactive program
+that we want to have.
+We'll also see, starting in the next video, that there's more options.
+So for example, big-bang has an option called on-key.
+And you could imagine that the way that works is on-key wants a function,
+then it will call when a key is pressed on the keyboard.
+And that function should process the key properly and produce the next world
+state.
+What we'll also see in the next video is we're
+going to introduce a design recipe for designing interactive programs using
+big-bang.
+And that design recipe is going to help make it a lot easier
+to write programs that use big-bang.

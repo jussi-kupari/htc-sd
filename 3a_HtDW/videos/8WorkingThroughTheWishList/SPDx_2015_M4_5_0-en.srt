@@ -1,0 +1,804 @@
+0
+00:00:00,000 --> 00:00:04,920
+
+
+1
+00:00:04,920 --> 00:00:08,520
+GREGOR KICZALES: Now I'm going to finish the first version of the Cat program.
+
+2
+00:00:08,520 --> 00:00:11,011
+That's going to involve designing two functions.
+
+3
+00:00:11,011 --> 00:00:13,010
+So in that way, it's going to be quite familiar.
+
+4
+00:00:13,010 --> 00:00:16,700
+We'll go through the HtDF recipe twice.
+
+5
+00:00:16,700 --> 00:00:20,100
+But we're going to be designing those functions in the context of a partially
+
+6
+00:00:20,100 --> 00:00:22,990
+complete larger program.
+
+7
+00:00:22,990 --> 00:00:26,450
+That's something that gets to be more and more important as we go forward.
+
+8
+00:00:26,450 --> 00:00:30,540
+As the programs get bigger, we often have lots of incomplete functions
+
+9
+00:00:30,540 --> 00:00:33,490
+that we need to finish before we're done.
+
+10
+00:00:33,490 --> 00:00:35,780
+And the most important thing in this video
+
+11
+00:00:35,780 --> 00:00:39,320
+is going to be how to use the Wishlist mechanism to keep track
+
+12
+00:00:39,320 --> 00:00:41,530
+of that work that remains to be done.
+
+13
+00:00:41,530 --> 00:00:44,300
+We have a constants part of the file, which we know corresponds
+
+14
+00:00:44,300 --> 00:00:46,940
+to the constants part of the analysis.
+
+15
+00:00:46,940 --> 00:00:51,530
+We have a data definitions part of the file that includes a world state
+
+16
+00:00:51,530 --> 00:00:55,580
+type, Cat, which we know corresponds to the changing information
+
+17
+00:00:55,580 --> 00:00:57,419
+part of the analysis.
+
+18
+00:00:57,419 --> 00:00:59,210
+We have a main function that calls big-bang
+
+19
+00:00:59,210 --> 00:01:01,860
+with two options, on-tick and to-draw.
+
+20
+00:01:01,860 --> 00:01:05,349
+Now, if we've forgotten exactly what we have to do,
+
+21
+00:01:05,349 --> 00:01:09,400
+I'll just search for three exclamation marks.
+
+22
+00:01:09,400 --> 00:01:14,030
+And very quickly, I see exactly what I have to do.
+
+23
+00:01:14,030 --> 00:01:22,270
+And if this program was larger, I could go here and say, show program contour.
+
+24
+00:01:22,270 --> 00:01:25,320
+And I'd see off to the right a picture of the whole program.
+
+25
+00:01:25,320 --> 00:01:28,680
+And you can barely see it there, but the places
+
+26
+00:01:28,680 --> 00:01:31,570
+where the search has found three exclamation marks are highlighted.
+
+27
+00:01:31,570 --> 00:01:34,320
+So if I had a very big program, I could go over here and quickly
+
+28
+00:01:34,320 --> 00:01:37,300
+jump to those places like that.
+
+29
+00:01:37,300 --> 00:01:41,044
+I'll hide that for now because we don't have that big a program.
+
+30
+00:01:41,044 --> 00:01:42,210
+So now what do I have to do?
+
+31
+00:01:42,210 --> 00:01:46,450
+Well, this tells me, hey, you're partway through an HtDF problem.
+
+32
+00:01:46,450 --> 00:01:47,750
+Here's the problem.
+
+33
+00:01:47,750 --> 00:01:51,290
+You've got a function that consumes a Cat and produces a Cat.
+
+34
+00:01:51,290 --> 00:01:56,170
+This is an HtDF problem consuming Cat.
+
+35
+00:01:56,170 --> 00:01:59,350
+It consumes Cat, produces Cat, produces the next cat
+
+36
+00:01:59,350 --> 00:02:01,860
+by advancing it one pixel to the right.
+
+37
+00:02:01,860 --> 00:02:04,520
+If I'm a little bit unsure about what a Cat is,
+
+38
+00:02:04,520 --> 00:02:06,700
+I can scroll up here to the data definitions
+
+39
+00:02:06,700 --> 00:02:11,510
+and see, oh, a cat is number, and here are some good examples.
+
+40
+00:02:11,510 --> 00:02:17,140
+And it's interpreted as the exposition of the cat in screen coordinates.
+
+41
+00:02:17,140 --> 00:02:19,000
+OK well, signature purpose, stub.
+
+42
+00:02:19,000 --> 00:02:22,070
+The next step is examples.
+
+43
+00:02:22,070 --> 00:02:24,610
+Let's see what's a good first example.
+
+44
+00:02:24,610 --> 00:02:30,795
+We'll say check expect advance-cat of, I don't know, three.
+
+45
+00:02:30,795 --> 00:02:34,130
+
+
+46
+00:02:34,130 --> 00:02:37,950
+And we advance it by one pixel to the right.
+
+47
+00:02:37,950 --> 00:02:41,260
+So that should produce four.
+
+48
+00:02:41,260 --> 00:02:42,220
+And let's see.
+
+49
+00:02:42,220 --> 00:02:48,420
+This function behaves consistently independent of the number we get it.
+
+50
+00:02:48,420 --> 00:02:50,870
+So I really should only need one test.
+
+51
+00:02:50,870 --> 00:02:54,740
+I'll run the test to make sure that they're well-formed.
+
+52
+00:02:54,740 --> 00:02:59,420
+The test is running but failing, so it's well-formed.
+
+53
+00:02:59,420 --> 00:03:00,520
+This was the stub.
+
+54
+00:03:00,520 --> 00:03:02,600
+I'll comment it out.
+
+55
+00:03:02,600 --> 00:03:07,220
+I'll say, use template from Cat.
+
+56
+00:03:07,220 --> 00:03:08,975
+I'll go up here and get the template.
+
+57
+00:03:08,975 --> 00:03:12,050
+
+
+58
+00:03:12,050 --> 00:03:13,095
+I'll copy it.
+
+59
+00:03:13,095 --> 00:03:16,820
+
+
+60
+00:03:16,820 --> 00:03:20,680
+I'll just label this as being the stub.
+
+61
+00:03:20,680 --> 00:03:26,210
+I rename this to advance-cat, and let's see.
+
+62
+00:03:26,210 --> 00:03:28,130
+I've got to fill in the dots.
+
+63
+00:03:28,130 --> 00:03:30,630
+I advance it one pixel to the right.
+
+64
+00:03:30,630 --> 00:03:38,530
+Oh, this is just plus c 1.
+
+65
+00:03:38,530 --> 00:03:41,142
+Or if you want, there happens to be a function called add1.
+
+66
+00:03:41,142 --> 00:03:42,100
+We could just use that.
+
+67
+00:03:42,100 --> 00:03:44,400
+But I'll just say plus c 1.
+
+68
+00:03:44,400 --> 00:03:46,610
+Now I'll run again.
+
+69
+00:03:46,610 --> 00:03:49,690
+My test passed.
+
+70
+00:03:49,690 --> 00:03:53,080
+So let's see, I've done that piece of the wishlist.
+
+71
+00:03:53,080 --> 00:03:55,800
+I go back again looking for three exclamation marks.
+
+72
+00:03:55,800 --> 00:03:57,400
+Here's another function.
+
+73
+00:03:57,400 --> 00:04:01,730
+It consumes Cat and produces Image.
+
+74
+00:04:01,730 --> 00:04:07,640
+And it's supposed to render the cat image at an appropriate place on MTS.
+
+75
+00:04:07,640 --> 00:04:11,230
+And now I say to myself, well, what's the cat image?
+
+76
+00:04:11,230 --> 00:04:14,760
+I'll look up in the constants.
+
+77
+00:04:14,760 --> 00:04:16,510
+Oh yeah, there's a thing called CAT_IMAGE.
+
+78
+00:04:16,510 --> 00:04:19,260
+
+
+79
+00:04:19,260 --> 00:04:22,840
+And I'll say to myself, well, what's the appropriate place?
+
+80
+00:04:22,840 --> 00:04:26,920
+I'll go look at the cat data definition.
+
+81
+00:04:26,920 --> 00:04:30,160
+Cat is number, so cat itself is a number.
+
+82
+00:04:30,160 --> 00:04:33,580
+And I interpret that as the x position.
+
+83
+00:04:33,580 --> 00:04:35,800
+So I've got the x position.
+
+84
+00:04:35,800 --> 00:04:39,670
+And I remember now that the y position doesn't change,
+
+85
+00:04:39,670 --> 00:04:41,710
+so I'll look in the constants for it too.
+
+86
+00:04:41,710 --> 00:04:45,992
+There it is, CTR-Y. So now I've got a pretty good idea
+
+87
+00:04:45,992 --> 00:04:47,325
+about how this is going to work.
+
+88
+00:04:47,325 --> 00:04:50,030
+
+
+89
+00:04:50,030 --> 00:04:53,080
+Signature purpose stub, the next thing is examples.
+
+90
+00:04:53,080 --> 00:04:57,775
+So check expect, render of some cat.
+
+91
+00:04:57,775 --> 00:05:00,470
+Let's say 4.
+
+92
+00:05:00,470 --> 00:05:02,690
+What's that supposed to produce?
+
+93
+00:05:02,690 --> 00:05:04,930
+So render 4 does what?
+
+94
+00:05:04,930 --> 00:05:08,130
+Well, there is this primitive called place-image.
+
+95
+00:05:08,130 --> 00:05:11,390
+And what we need to do is we need to take the image of the cat, which
+
+96
+00:05:11,390 --> 00:05:14,410
+is cat image.
+
+97
+00:05:14,410 --> 00:05:21,790
+We need to put it at a certain xy location, which is 4 and CTR-Y.
+
+98
+00:05:21,790 --> 00:05:24,560
+And the background that we're going to put it on is MTS.
+
+99
+00:05:24,560 --> 00:05:28,450
+
+
+100
+00:05:28,450 --> 00:05:32,100
+Now, I wrote that quickly because I remember exactly how place-image works.
+
+101
+00:05:32,100 --> 00:05:36,580
+If it takes you longer to write the expected result for a render function,
+
+102
+00:05:36,580 --> 00:05:37,830
+don't worry about that at all.
+
+103
+00:05:37,830 --> 00:05:40,840
+You're figuring out how the image functions
+
+104
+00:05:40,840 --> 00:05:44,610
+work, what you're going to use in order to produce the image you want.
+
+105
+00:05:44,610 --> 00:05:48,400
+Time spent here on this example translates
+
+106
+00:05:48,400 --> 00:05:53,580
+into time saved when you do the actual function.
+
+107
+00:05:53,580 --> 00:05:54,720
+So let me run this.
+
+108
+00:05:54,720 --> 00:05:57,340
+
+
+109
+00:05:57,340 --> 00:05:59,884
+And we have a failing test, which is what we'd expect.
+
+110
+00:05:59,884 --> 00:06:02,175
+One thing that's nice to do with these render functions
+
+111
+00:06:02,175 --> 00:06:04,780
+is actually look at the failing tests.
+
+112
+00:06:04,780 --> 00:06:05,280
+Let's see.
+
+113
+00:06:05,280 --> 00:06:07,700
+We're getting an empty scene, because the stub always
+
+114
+00:06:07,700 --> 00:06:09,020
+produces the empty scene.
+
+115
+00:06:09,020 --> 00:06:11,300
+But what's useful to do-- let me just make
+
+116
+00:06:11,300 --> 00:06:19,060
+this bigger-- is to look at the expected result and see if our test makes sense.
+
+117
+00:06:19,060 --> 00:06:20,200
+That seems about right.
+
+118
+00:06:20,200 --> 00:06:24,500
+We've got a cat there that's nose is a little bit off the edge.
+
+119
+00:06:24,500 --> 00:06:28,570
+Remember, place-image places the center of cat image--
+
+120
+00:06:28,570 --> 00:06:33,890
+in other words, the center of this cat-- at the specified position.
+
+121
+00:06:33,890 --> 00:06:36,240
+So it's putting the center of the cat at 4
+
+122
+00:06:36,240 --> 00:06:39,350
+and CTR-Y. The CTR-Y part is definitely right.
+
+123
+00:06:39,350 --> 00:06:42,080
+And as I said, because the nose is a little bit off
+
+124
+00:06:42,080 --> 00:06:45,380
+and I can see the beginning of that eye, I think it is about 4.
+
+125
+00:06:45,380 --> 00:06:46,864
+So that seems about right.
+
+126
+00:06:46,864 --> 00:06:47,905
+We'll know for sure soon.
+
+127
+00:06:47,905 --> 00:06:51,020
+
+
+128
+00:06:51,020 --> 00:06:51,640
+OK, let's see.
+
+129
+00:06:51,640 --> 00:06:52,380
+Let's finish up.
+
+130
+00:06:52,380 --> 00:06:54,410
+This is the stub.
+
+131
+00:06:54,410 --> 00:07:01,540
+We're going to use the template from cat.
+
+132
+00:07:01,540 --> 00:07:03,165
+Let's go get that template.
+
+133
+00:07:03,165 --> 00:07:12,240
+
+
+134
+00:07:12,240 --> 00:07:16,430
+We'll rename this to render.
+
+135
+00:07:16,430 --> 00:07:17,120
+And let's see.
+
+136
+00:07:17,120 --> 00:07:21,090
+We need to render the cat image in an appropriate place on MTS.
+
+137
+00:07:21,090 --> 00:07:24,590
+Cat is itself the x-coordinate.
+
+138
+00:07:24,590 --> 00:07:29,080
+So looking at the signature, the purpose, and the example,
+
+139
+00:07:29,080 --> 00:07:36,460
+what I can see is that this is place-image cat image.
+
+140
+00:07:36,460 --> 00:07:38,970
+
+
+141
+00:07:38,970 --> 00:07:44,830
+c is itself, the x-coordinate, CTR-Y and MTS.
+
+142
+00:07:44,830 --> 00:07:48,820
+
+
+143
+00:07:48,820 --> 00:07:49,820
+I'll run that.
+
+144
+00:07:49,820 --> 00:07:51,770
+Both my tests are passing.
+
+145
+00:07:51,770 --> 00:07:56,610
+And now what I'd like to do is actually run the World program.
+
+146
+00:07:56,610 --> 00:08:01,040
+So going back to main, I can call main.
+
+147
+00:08:01,040 --> 00:08:04,760
+And the initial world state is whatever cat I give it,
+
+148
+00:08:04,760 --> 00:08:07,040
+whatever x-coordinate I give it.
+
+149
+00:08:07,040 --> 00:08:11,850
+So it probably makes sense to maybe call it with 0 to start.
+
+150
+00:08:11,850 --> 00:08:15,150
+So I run the program, and then I get this interaction window down here.
+
+151
+00:08:15,150 --> 00:08:23,780
+And I go main of 0, and there's my cat walking across the screen.
+
+152
+00:08:23,780 --> 00:08:27,560
+And now that I have a clear sense in my mind of what's a good default way
+
+153
+00:08:27,560 --> 00:08:32,770
+to start this program, what I'm going to do is go back to the main function
+
+154
+00:08:32,770 --> 00:08:39,400
+and say, start the world with main of 0, just as a way of telling
+
+155
+00:08:39,400 --> 00:08:41,669
+people what's a good way to start it.
+
+156
+00:08:41,669 --> 00:08:45,030
+I actually could have put in that start the world with main 0 at the beginning,
+
+157
+00:08:45,030 --> 00:08:48,270
+because as soon as we knew what the cat data definition was,
+
+158
+00:08:48,270 --> 00:08:51,220
+we knew that 0 would be a good default value.
+
+159
+00:08:51,220 --> 00:08:53,970
+I just waited to the end here.
+
+160
+00:08:53,970 --> 00:08:54,630
+So there we go.
+
+161
+00:08:54,630 --> 00:08:57,030
+We've got a complete, running world program.
+
+162
+00:08:57,030 --> 00:09:00,130
+One of things I hope you saw here is that by working systematically,
+
+163
+00:09:00,130 --> 00:09:03,880
+at any moment in time, our work was very focused.
+
+164
+00:09:03,880 --> 00:09:08,470
+Even though we did a lot, at every moment in time,
+
+165
+00:09:08,470 --> 00:09:11,360
+we were only doing one thing.
+
+166
+00:09:11,360 --> 00:09:15,020
+That's what working systematically did for us.
+
+167
+00:09:15,020 --> 00:09:17,670
+So when we were working on the domain analysis,
+
+168
+00:09:17,670 --> 00:09:19,670
+even then there were parts of it.
+
+169
+00:09:19,670 --> 00:09:23,840
+We worked on the constant information, then we did the changing information.
+
+170
+00:09:23,840 --> 00:09:28,700
+Then we did the big bang options, and that gave us the domain analysis.
+
+171
+00:09:28,700 --> 00:09:32,450
+As we started building the program, first we did the constants,
+
+172
+00:09:32,450 --> 00:09:36,260
+then we did the data definition for changing information.
+
+173
+00:09:36,260 --> 00:09:39,620
+Then we set up the main function and the wishlist
+
+174
+00:09:39,620 --> 00:09:43,410
+for our big bang option handlers.
+
+175
+00:09:43,410 --> 00:09:48,160
+And then we worked that wishlist one function at a time.
+
+176
+00:09:48,160 --> 00:09:50,210
+This is really important as programs get big.
+
+177
+00:09:50,210 --> 00:09:52,280
+And remember, programs get big.
+
+178
+00:09:52,280 --> 00:09:55,230
+Cars have millions of lines of code in them.
+
+179
+00:09:55,230 --> 00:09:58,090
+The big benefit of having a systematic process
+
+180
+00:09:58,090 --> 00:10:00,940
+is it lets you work on one thing at a time
+
+181
+00:10:00,940 --> 00:10:03,330
+and know that it's all going to work out.
+
+182
+00:10:03,330 --> 00:10:08,450
+Because in this case, when we were done and we said main of 0, bang.
+
+183
+00:10:08,450 --> 00:10:11,070
+We got a running world program.
+
+184
+00:10:11,070 --> 00:10:14,900
+And also let me repeat a point I made earlier about templates.
+
+185
+00:10:14,900 --> 00:10:20,390
+Because we have a process, some parts of the work we do
+
+186
+00:10:20,390 --> 00:10:23,900
+don't really necessarily end up as specific sub-parts
+
+187
+00:10:23,900 --> 00:10:25,350
+of the final program.
+
+188
+00:10:25,350 --> 00:10:29,230
+So the domain analysis itself isn't in the program.
+
+189
+00:10:29,230 --> 00:10:31,980
+It's something we wrote on a piece of paper.
+
+190
+00:10:31,980 --> 00:10:35,390
+But it was part of the process that got us there.
+
+191
+00:10:35,390 --> 00:10:36,710
+That's just like the template.
+
+192
+00:10:36,710 --> 00:10:40,970
+The template kind of disappears into the final function definition,
+
+193
+00:10:40,970 --> 00:10:42,950
+but the template is part of the process.
+
+194
+00:10:42,950 --> 00:10:44,530
+It gets us there.
+
+195
+00:10:44,530 --> 00:10:47,920
+People who design design methods, so that's
+
+196
+00:10:47,920 --> 00:10:51,490
+a kind of meta-design, that's one of the things they work on
+
+197
+00:10:51,490 --> 00:10:54,240
+is, how can there be elements of the design that
+
+198
+00:10:54,240 --> 00:10:58,710
+get you there even though they disappear in the final artifact?
+
+199
+00:10:58,710 --> 00:11:01,480
+We'll talk more about that as we go along.
+
+200
+00:11:01,480 --> 00:11:02,720
+
+

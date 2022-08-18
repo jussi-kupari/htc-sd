@@ -1,0 +1,160 @@
+0
+00:00:00,000 --> 00:00:04,470
+
+
+1
+00:00:04,470 --> 00:00:06,710
+GREGOR KICZALES: We've covered quite a lot so far.
+
+2
+00:00:06,710 --> 00:00:09,360
+You've learned about different forms of primitive data
+
+3
+00:00:09,360 --> 00:00:12,030
+like numbers and strings and images.
+
+4
+00:00:12,030 --> 00:00:15,100
+You've learned about expressions like if and cond,
+
+5
+00:00:15,100 --> 00:00:21,210
+how to define functions and constants, the rules for evaluating BSL code.
+
+6
+00:00:21,210 --> 00:00:23,640
+We've also learned how to design functions recipe,
+
+7
+00:00:23,640 --> 00:00:29,230
+and how to design data recipe, and how to use the data-driven template rules.
+
+8
+00:00:29,230 --> 00:00:31,820
+Really quite a lot.
+
+9
+00:00:31,820 --> 00:00:35,580
+But you've had to be a certain kind of patient
+
+10
+00:00:35,580 --> 00:00:39,040
+because the programs we've written so far have been kind of boring.
+
+11
+00:00:39,040 --> 00:00:43,370
+A function that consumes a seat number and tells you whether it's on the aisle
+
+12
+00:00:43,370 --> 00:00:46,880
+might be useful as part of a big system, but the function itself
+
+13
+00:00:46,880 --> 00:00:49,370
+isn't very exciting.
+
+14
+00:00:49,370 --> 00:00:51,080
+That's going to change this week.
+
+15
+00:00:51,080 --> 00:00:54,920
+This week we're going to start to get into interactive programs.
+
+16
+00:00:54,920 --> 00:00:58,070
+So I mean things like animations, and games,
+
+17
+00:00:58,070 --> 00:01:01,680
+and the kind of desktop applications that you might use every day.
+
+18
+00:01:01,680 --> 00:01:05,550
+Now, I want to stress something about the way our programs are going to look.
+
+19
+00:01:05,550 --> 00:01:09,110
+Here, for example, is a fireworks program we might design.
+
+20
+00:01:09,110 --> 00:01:12,530
+And what I'm doing is I'm shooting off a bunch of fireworks,
+
+21
+00:01:12,530 --> 00:01:18,590
+and they rise into the sky and explode beautifully like that.
+
+22
+00:01:18,590 --> 00:01:21,990
+Now, the graphic quality there isn't fantastic.
+
+23
+00:01:21,990 --> 00:01:26,660
+It's not Harry Potter Deathly Hallows fantastic.
+
+24
+00:01:26,660 --> 00:01:31,030
+That's the way our programs are going to look this week because graphic quality
+
+25
+00:01:31,030 --> 00:01:34,010
+is something that requires a great deal of math sophistication
+
+26
+00:01:34,010 --> 00:01:37,060
+and a great deal of programming power.
+
+27
+00:01:37,060 --> 00:01:39,880
+So we're going to have simple graphics.
+
+28
+00:01:39,880 --> 00:01:42,810
+But the basic structure of our programs, the basic structure
+
+29
+00:01:42,810 --> 00:01:46,440
+of our animations and games and desktop applications,
+
+30
+00:01:46,440 --> 00:01:48,740
+is really going to be like the same structure
+
+31
+00:01:48,740 --> 00:01:51,440
+of the more sophisticated versions.
+
+32
+00:01:51,440 --> 00:01:55,230
+So by the end of this week, you'll be able to design interactive programs,
+
+33
+00:01:55,230 --> 00:01:57,970
+and I think you'll also have a better understanding of how
+
+34
+00:01:57,970 --> 00:02:01,880
+some of the programs that you use every day work.
+
+35
+00:02:01,880 --> 00:02:05,970
+In fact, project 1, which you'll start at the end of this week,
+
+36
+00:02:05,970 --> 00:02:10,150
+is to complete the design of a simple one-line text editor,
+
+37
+00:02:10,150 --> 00:02:12,640
+kind of like the text editor you use on your phone
+
+38
+00:02:12,640 --> 00:02:15,150
+when you want to send a text message.
+
+39
+00:02:15,150 --> 00:02:16,045
+
+

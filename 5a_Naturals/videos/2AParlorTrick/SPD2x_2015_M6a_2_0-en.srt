@@ -1,0 +1,1168 @@
+0
+00:00:00,000 --> 00:00:04,494
+
+
+1
+00:00:04,494 --> 00:00:06,660
+GREGOR KICZALES: This video is called a parlor trick
+
+2
+00:00:06,660 --> 00:00:09,760
+and it's intended to mess with your mind a little bit.
+
+3
+00:00:09,760 --> 00:00:16,250
+What I want to do is show you the power of representing information as data
+
+4
+00:00:16,250 --> 00:00:20,890
+and get you to explore some of the data representation choices
+
+5
+00:00:20,890 --> 00:00:23,657
+we maybe take for granted.
+
+6
+00:00:23,657 --> 00:00:24,990
+It's going to be a little weird.
+
+7
+00:00:24,990 --> 00:00:28,520
+You may need to watch it a few times to really enjoy it.
+
+8
+00:00:28,520 --> 00:00:31,770
+So the problem set up is, I don't know, maybe a little crazy.
+
+9
+00:00:31,770 --> 00:00:34,610
+You've just gotten a new tablet and it runs a prototype version
+
+10
+00:00:34,610 --> 00:00:36,420
+of Racquet, which is great.
+
+11
+00:00:36,420 --> 00:00:39,040
+You can make your tablet do anything you want.
+
+12
+00:00:39,040 --> 00:00:42,700
+But there's one problem, which is this prototype version of Racquet doesn't
+
+13
+00:00:42,700 --> 00:00:45,580
+include numbers as primitive data.
+
+14
+00:00:45,580 --> 00:00:48,950
+There just are no numbers in it at all.
+
+15
+00:00:48,950 --> 00:00:55,100
+Fortunately, it does have cons and first and rest and strings.
+
+16
+00:00:55,100 --> 00:01:00,290
+And you know what the self referential data definition is for numbers
+
+17
+00:01:00,290 --> 00:01:04,680
+and you know that it's based on the idea that add one is kind of like cons
+
+18
+00:01:04,680 --> 00:01:07,860
+and sub one is kind of like rest.
+
+19
+00:01:07,860 --> 00:01:09,800
+So you actually know how to solve this problem
+
+20
+00:01:09,800 --> 00:01:14,090
+and define your very own numbers from scratch.
+
+21
+00:01:14,090 --> 00:01:15,900
+Here we go.
+
+22
+00:01:15,900 --> 00:01:17,500
+We'll make a new type called NATURAL.
+
+23
+00:01:17,500 --> 00:01:19,810
+I'm making it all uppercase to distinguish it
+
+24
+00:01:19,810 --> 00:01:22,520
+from the old time called natural.
+
+25
+00:01:22,520 --> 00:01:26,020
+And we'll just say, like the old type, that it's
+
+26
+00:01:26,020 --> 00:01:29,650
+going to be a well formed, self referential data definition.
+
+27
+00:01:29,650 --> 00:01:31,040
+And it's going to look like this.
+
+28
+00:01:31,040 --> 00:01:36,100
+We're going to say that it could be either empty
+
+29
+00:01:36,100 --> 00:01:42,270
+or it could be cons, an exclamation mark, a string with an exclamation
+
+30
+00:01:42,270 --> 00:01:43,020
+mark on a NATURAL.
+
+31
+00:01:43,020 --> 00:01:45,840
+
+
+32
+00:01:45,840 --> 00:01:49,980
+So you've got a well formed, self referential data definition there.
+
+33
+00:01:49,980 --> 00:01:53,810
+Empty is clearly the base case and cons "!"
+
+34
+00:01:53,810 --> 00:01:57,490
+NATURAL is the self reference case.
+
+35
+00:01:57,490 --> 00:01:59,540
+So that's the type con.
+
+36
+00:01:59,540 --> 00:02:01,290
+But in this case, what's actually trickier
+
+37
+00:02:01,290 --> 00:02:03,960
+than the type comment is the interpretation.
+
+38
+00:02:03,960 --> 00:02:06,050
+What does that mean?
+
+39
+00:02:06,050 --> 00:02:08,720
+Well, it just means this.
+
+40
+00:02:08,720 --> 00:02:09,644
+It's a natural number.
+
+41
+00:02:09,644 --> 00:02:13,710
+
+
+42
+00:02:13,710 --> 00:02:20,672
+And the number exclamation marks in the list is the number.
+
+43
+00:02:20,672 --> 00:02:21,630
+Let's do some examples.
+
+44
+00:02:21,630 --> 00:02:24,890
+
+
+45
+00:02:24,890 --> 00:02:35,930
+So natural zero is empty and natural one is cons one exclamation mark
+
+46
+00:02:35,930 --> 00:02:38,660
+onto natural zero.
+
+47
+00:02:38,660 --> 00:02:43,852
+This is one and this is zero.
+
+48
+00:02:43,852 --> 00:02:52,670
+And two is just cons another exclamation mark onto N1.
+
+49
+00:02:52,670 --> 00:02:54,472
+That's two.
+
+50
+00:02:54,472 --> 00:02:57,180
+Let's just run this for just a second and take a quick look if we
+
+51
+00:02:57,180 --> 00:02:59,390
+go down here in the interaction window.
+
+52
+00:02:59,390 --> 00:03:01,030
+N0 is empty.
+
+53
+00:03:01,030 --> 00:03:04,540
+N1 is a list with one exclamation mark in it
+
+54
+00:03:04,540 --> 00:03:08,560
+and N2 is a list with two exclamation marks in it.
+
+55
+00:03:08,560 --> 00:03:10,290
+So they're cumbersome to look at.
+
+56
+00:03:10,290 --> 00:03:12,700
+They'd be even more cumbersome to type.
+
+57
+00:03:12,700 --> 00:03:16,870
+But those are new natural numbers.
+
+58
+00:03:16,870 --> 00:03:20,950
+They would be so cumbersome to write out, in fact, that what I'm going to do
+
+59
+00:03:20,950 --> 00:03:25,760
+is I'm going to use the magic of video editing
+
+60
+00:03:25,760 --> 00:03:28,960
+to very quickly get a whole bunch more of them.
+
+61
+00:03:28,960 --> 00:03:32,270
+Now we've got natural numbers zero through nine
+
+62
+00:03:32,270 --> 00:03:34,480
+that are relatively easy to type.
+
+63
+00:03:34,480 --> 00:03:37,630
+It's still a little weird looking at that cons.
+
+64
+00:03:37,630 --> 00:03:42,600
+What's really going on here is that these are the primitives that
+
+65
+00:03:42,600 --> 00:03:45,980
+operate on the new kind of natural.
+
+66
+00:03:45,980 --> 00:03:49,970
+One is the predicate zero.
+
+67
+00:03:49,970 --> 00:03:52,070
+It's something zero.
+
+68
+00:03:52,070 --> 00:03:53,927
+And something is zero if, what?
+
+69
+00:03:53,927 --> 00:03:54,760
+Well, if it's empty.
+
+70
+00:03:54,760 --> 00:03:57,620
+
+
+71
+00:03:57,620 --> 00:03:59,530
+Because that's what the type comment says.
+
+72
+00:03:59,530 --> 00:04:02,490
+The type comment says-- the type comment plus the interpretation
+
+73
+00:04:02,490 --> 00:04:07,420
+says that the way we represent zero is with empty.
+
+74
+00:04:07,420 --> 00:04:08,510
+So that's one primitive.
+
+75
+00:04:08,510 --> 00:04:12,660
+Another primitive is at one.
+
+76
+00:04:12,660 --> 00:04:15,650
+And the way we're going to add one to a natural
+
+77
+00:04:15,650 --> 00:04:18,066
+is, well, we just do this cons thing.
+
+78
+00:04:18,066 --> 00:04:21,880
+
+
+79
+00:04:21,880 --> 00:04:27,330
+And another primitive is sub one.
+
+80
+00:04:27,330 --> 00:04:34,075
+And the way we're going to get the next smallest natural number is with rest.
+
+81
+00:04:34,075 --> 00:04:37,200
+Even though these are primitives, let me just write the signatures for them
+
+82
+00:04:37,200 --> 00:04:38,840
+off to the side so we'll have them.
+
+83
+00:04:38,840 --> 00:04:41,990
+We've never defined primitives like this before.
+
+84
+00:04:41,990 --> 00:04:44,490
+Let's see-- zero question mark actually consumes anything.
+
+85
+00:04:44,490 --> 00:04:47,910
+
+
+86
+00:04:47,910 --> 00:04:54,140
+And it produces a Boolean to tell us whether what it consumed
+
+87
+00:04:54,140 --> 00:04:56,830
+was the representation of zero.
+
+88
+00:04:56,830 --> 00:04:59,870
+Add one consumers one of these newfangled
+
+89
+00:04:59,870 --> 00:05:04,910
+naturals and produces one of these newfangled naturals.
+
+90
+00:05:04,910 --> 00:05:10,220
+And sub one consumes one of these new kinds of naturals,
+
+91
+00:05:10,220 --> 00:05:14,160
+but it has to be bigger than zero.
+
+92
+00:05:14,160 --> 00:05:17,660
+That's a restriction that's kind of like the restriction and rest has, right?
+
+93
+00:05:17,660 --> 00:05:19,590
+Rest won't take empty.
+
+94
+00:05:19,590 --> 00:05:21,070
+Rest needs a cons.
+
+95
+00:05:21,070 --> 00:05:25,070
+Rest need to list that's at least one long.
+
+96
+00:05:25,070 --> 00:05:29,590
+So if you give sub one a natural that's at least one or bigger,
+
+97
+00:05:29,590 --> 00:05:32,134
+you'll get back another natural.
+
+98
+00:05:32,134 --> 00:05:34,300
+And if you want, we can pretty this up a little bit.
+
+99
+00:05:34,300 --> 00:05:38,482
+
+
+100
+00:05:38,482 --> 00:05:39,565
+So there's our permanence.
+
+101
+00:05:39,565 --> 00:05:42,880
+
+
+102
+00:05:42,880 --> 00:05:46,140
+Now let's do the template.
+
+103
+00:05:46,140 --> 00:05:52,290
+We'll do it like this-- fn-for-NATURAL n.
+
+104
+00:05:52,290 --> 00:05:53,740
+Let's see-- it's a one of.
+
+105
+00:05:53,740 --> 00:05:55,830
+I won't write out the template rules used.
+
+106
+00:05:55,830 --> 00:05:57,777
+I'll just save them as I go.
+
+107
+00:05:57,777 --> 00:06:00,110
+That's where we're going to be doing starting next week.
+
+108
+00:06:00,110 --> 00:06:04,340
+So I'll do it in this last video of this week.
+
+109
+00:06:04,340 --> 00:06:05,510
+Com-- it's a one of.
+
+110
+00:06:05,510 --> 00:06:07,700
+There's two cases.
+
+111
+00:06:07,700 --> 00:06:10,510
+The first case is atomic distinct.
+
+112
+00:06:10,510 --> 00:06:14,222
+Now, remember-- that empty really means zero.
+
+113
+00:06:14,222 --> 00:06:15,930
+And the reason I wrote these primitive so
+
+114
+00:06:15,930 --> 00:06:19,360
+that we wouldn't go crazy when we saw ourself calling
+
+115
+00:06:19,360 --> 00:06:22,660
+empty on something that looked like it was supposed to be a natural.
+
+116
+00:06:22,660 --> 00:06:27,142
+So I'm going to say zero here.
+
+117
+00:06:27,142 --> 00:06:32,710
+If the natural is zero, that's atomic distinct.
+
+118
+00:06:32,710 --> 00:06:38,240
+Otherwise, dot dot dot.
+
+119
+00:06:38,240 --> 00:06:42,530
+And we'll put in n because we know it's useful.
+
+120
+00:06:42,530 --> 00:06:49,405
+And we'll say fn-for-NATURAL sub one of n.
+
+121
+00:06:49,405 --> 00:06:54,180
+
+
+122
+00:06:54,180 --> 00:06:56,990
+And of course, now that I have these primitives,
+
+123
+00:06:56,990 --> 00:07:03,140
+this template looks just like the template for ordinary natural numbers.
+
+124
+00:07:03,140 --> 00:07:06,170
+Because I've got my own special version of zero
+
+125
+00:07:06,170 --> 00:07:08,850
+and my own special version of sub 1.
+
+126
+00:07:08,850 --> 00:07:11,040
+So remember, we're doing kind of a weird thing here.
+
+127
+00:07:11,040 --> 00:07:13,470
+We're recreating the numbers.
+
+128
+00:07:13,470 --> 00:07:17,170
+We're recreating the numerals, in some sense, OK?
+
+129
+00:07:17,170 --> 00:07:20,820
+We're recreating the representation of the natural numbers.
+
+130
+00:07:20,820 --> 00:07:22,010
+So there's the template.
+
+131
+00:07:22,010 --> 00:07:24,840
+Now let's do some functions.
+
+132
+00:07:24,840 --> 00:07:26,740
+Well, we've got zero, add one, and sub one.
+
+133
+00:07:26,740 --> 00:07:30,220
+One thing we don't have is plain old add.
+
+134
+00:07:30,220 --> 00:07:33,680
+We don't have a way of adding together two naturals.
+
+135
+00:07:33,680 --> 00:07:35,290
+Let's do that.
+
+136
+00:07:35,290 --> 00:07:41,685
+Well, it's a function that consumes two natural and it produces a natural.
+
+137
+00:07:41,685 --> 00:07:44,600
+
+
+138
+00:07:44,600 --> 00:07:48,414
+And its purpose is to produce a plus b, assuming that's the name of the two
+
+139
+00:07:48,414 --> 00:07:48,955
+are naturals.
+
+140
+00:07:48,955 --> 00:07:52,741
+
+
+141
+00:07:52,741 --> 00:07:55,390
+I'll give the stub here.
+
+142
+00:07:55,390 --> 00:07:56,300
+We'll call it add.
+
+143
+00:07:56,300 --> 00:08:03,260
+
+
+144
+00:08:03,260 --> 00:08:06,190
+So let's do some examples.
+
+145
+00:08:06,190 --> 00:08:10,530
+Now, this function is clearly going to be recursive on one of the numbers.
+
+146
+00:08:10,530 --> 00:08:12,590
+That's what the template is for.
+
+147
+00:08:12,590 --> 00:08:15,180
+I'm going to make it be recursive on the second number.
+
+148
+00:08:15,180 --> 00:08:18,112
+It turns out that works out a little bit better later.
+
+149
+00:08:18,112 --> 00:08:21,320
+It would have worked perfectly fine to make it recursive on the first number.
+
+150
+00:08:21,320 --> 00:08:25,100
+But it'll just simplify things later if I do it this way.
+
+151
+00:08:25,100 --> 00:08:30,330
+So that means my first test should be with a base
+
+152
+00:08:30,330 --> 00:08:32,630
+case for the second argument.
+
+153
+00:08:32,630 --> 00:08:36,390
+So I'll say N2 and N0.
+
+154
+00:08:36,390 --> 00:08:38,220
+Zero is the base case.
+
+155
+00:08:38,220 --> 00:08:40,640
+If I add two and zero, I should get two.
+
+156
+00:08:40,640 --> 00:08:43,780
+
+
+157
+00:08:43,780 --> 00:08:46,610
+And just to make sure the first argument is treated all right,
+
+158
+00:08:46,610 --> 00:08:50,960
+I'll also do something like this.
+
+159
+00:08:50,960 --> 00:08:51,840
+That should be three.
+
+160
+00:08:51,840 --> 00:08:55,550
+Because if I add two and zero, I get two.
+
+161
+00:08:55,550 --> 00:08:57,860
+If I add zero and three, I get three.
+
+162
+00:08:57,860 --> 00:09:02,540
+And now let's make one that actually does some more work.
+
+163
+00:09:02,540 --> 00:09:05,100
+We'll add N3 and N4.
+
+164
+00:09:05,100 --> 00:09:09,800
+This satisfies my at least two long rule because four is bigger than two.
+
+165
+00:09:09,800 --> 00:09:11,559
+And we'll get N7.
+
+166
+00:09:11,559 --> 00:09:14,100
+Sure is good that I made those constants so that I don't have
+
+167
+00:09:14,100 --> 00:09:16,300
+to take these natural out all the time.
+
+168
+00:09:16,300 --> 00:09:18,450
+Doing this with a bunch of conses would be a pain.
+
+169
+00:09:18,450 --> 00:09:21,080
+
+
+170
+00:09:21,080 --> 00:09:22,470
+OK, let's take the template.
+
+171
+00:09:22,470 --> 00:09:26,310
+
+
+172
+00:09:26,310 --> 00:09:29,270
+We'll bring it down here.
+
+173
+00:09:29,270 --> 00:09:32,750
+We'll rename it.
+
+174
+00:09:32,750 --> 00:09:36,030
+We'll rename the recursion.
+
+175
+00:09:36,030 --> 00:09:38,730
+We'll comment out the stub.
+
+176
+00:09:38,730 --> 00:09:40,250
+And we need two parameters.
+
+177
+00:09:40,250 --> 00:09:49,820
+So I'm going to rename this parameter to B and I'll add a parameter A.
+
+178
+00:09:49,820 --> 00:09:53,560
+And in the recursion, I'll add the parameter A also.
+
+179
+00:09:53,560 --> 00:09:54,560
+So let's see.
+
+180
+00:09:54,560 --> 00:09:58,930
+If I'm adding two numbers, A and B, and B is zero, this is the base case.
+
+181
+00:09:58,930 --> 00:10:00,610
+What's the result?
+
+182
+00:10:00,610 --> 00:10:04,480
+Well, I know from arithmetic and I also know from this example
+
+183
+00:10:04,480 --> 00:10:07,980
+that the result should be A, if you add A to zero,
+
+184
+00:10:07,980 --> 00:10:10,140
+you get A no matter what A is.
+
+185
+00:10:10,140 --> 00:10:12,010
+What do I do in this case here?
+
+186
+00:10:12,010 --> 00:10:14,860
+Well, I don't know if you remember the way you were originally
+
+187
+00:10:14,860 --> 00:10:18,350
+taught to add in kindergarten, but the basic idea
+
+188
+00:10:18,350 --> 00:10:22,080
+was you would get maybe two piles of sticks.
+
+189
+00:10:22,080 --> 00:10:24,480
+And you would add them together by moving
+
+190
+00:10:24,480 --> 00:10:30,740
+one stick at a time from one pile to the other pile until you only had one pile.
+
+191
+00:10:30,740 --> 00:10:33,950
+And if you counted while you did that, you got the right number.
+
+192
+00:10:33,950 --> 00:10:36,580
+
+
+193
+00:10:36,580 --> 00:10:38,500
+Well, that's what we can do here.
+
+194
+00:10:38,500 --> 00:10:44,080
+Here, we're taking one away from B. So if at the same time,
+
+195
+00:10:44,080 --> 00:10:57,440
+we just add one to A and produced that as our result, then that will work.
+
+196
+00:10:57,440 --> 00:11:00,770
+Because B is going to get smaller and smaller and smaller.
+
+197
+00:11:00,770 --> 00:11:06,070
+Each time B gets smaller by one, A will get bigger by one.
+
+198
+00:11:06,070 --> 00:11:10,790
+Eventually, B will be zero and A will be the sum.
+
+199
+00:11:10,790 --> 00:11:14,970
+So this is addition of two numbers together one at a time.
+
+200
+00:11:14,970 --> 00:11:16,960
+Let's try it.
+
+201
+00:11:16,960 --> 00:11:18,510
+It works.
+
+202
+00:11:18,510 --> 00:11:21,620
+I'll give you a little exercise to do now.
+
+203
+00:11:21,620 --> 00:11:24,652
+If this is blowing your mind a little bit too much,
+
+204
+00:11:24,652 --> 00:11:25,860
+then you don't have to do it.
+
+205
+00:11:25,860 --> 00:11:27,193
+But you might have fun doing it.
+
+206
+00:11:27,193 --> 00:11:31,215
+
+
+207
+00:11:31,215 --> 00:11:33,100
+Finish this.
+
+208
+00:11:33,100 --> 00:11:35,210
+And again, the suggestion I'll make to you
+
+209
+00:11:35,210 --> 00:11:37,890
+is when you get to the template stage, set up
+
+210
+00:11:37,890 --> 00:11:41,080
+the template on the second argument.
+
+211
+00:11:41,080 --> 00:11:44,780
+And go ahead and work through this and then restart the video.
+
+212
+00:11:44,780 --> 00:11:50,390
+Or if you don't work through it yourself, restart the video right away.
+
+213
+00:11:50,390 --> 00:11:53,730
+So here's my version of subtract.
+
+214
+00:11:53,730 --> 00:11:55,950
+I get two check expects.
+
+215
+00:11:55,950 --> 00:11:57,160
+Base case one is first.
+
+216
+00:11:57,160 --> 00:12:01,770
+Remember, I'm templating on B-- so zero for the second argument.
+
+217
+00:12:01,770 --> 00:12:04,440
+If you subtract two from two, you get two.
+
+218
+00:12:04,440 --> 00:12:08,370
+If you subtract two from six, you get four.
+
+219
+00:12:08,370 --> 00:12:11,760
+And subtract is a little different than add.
+
+220
+00:12:11,760 --> 00:12:13,775
+Let me just change how I formatted add here.
+
+221
+00:12:13,775 --> 00:12:16,030
+I'll break down on two lines.
+
+222
+00:12:16,030 --> 00:12:22,730
+The way add works is you add to A while you subtract from B. The way
+
+223
+00:12:22,730 --> 00:12:28,240
+subtract works is you keep taking one away from both A and B
+
+224
+00:12:28,240 --> 00:12:30,060
+until B gets to zero.
+
+225
+00:12:30,060 --> 00:12:32,061
+That's add and subtract.
+
+226
+00:12:32,061 --> 00:12:33,060
+Let's just look at them.
+
+227
+00:12:33,060 --> 00:12:34,670
+The test pass-- that's good.
+
+228
+00:12:34,670 --> 00:12:39,440
+Watch this-- add N2 and N3.
+
+229
+00:12:39,440 --> 00:12:42,620
+So that's adding two to three.
+
+230
+00:12:42,620 --> 00:12:47,530
+That's five-- one, two three, four, five exclamation marks.
+
+231
+00:12:47,530 --> 00:12:53,970
+Subtract seven, add two to N3.
+
+232
+00:12:53,970 --> 00:12:57,070
+
+
+233
+00:12:57,070 --> 00:12:58,780
+Two plus three is Five.
+
+234
+00:12:58,780 --> 00:13:00,060
+Seven minus five is two.
+
+235
+00:13:00,060 --> 00:13:01,870
+There's two.
+
+236
+00:13:01,870 --> 00:13:06,360
+We're doing all this arithmetic without using any natural numbers that
+
+237
+00:13:06,360 --> 00:13:07,940
+were given to us by Doctor Racquet.
+
+238
+00:13:07,940 --> 00:13:10,350
+We're using our own natural numbers.
+
+239
+00:13:10,350 --> 00:13:11,970
+It's a little bit wacky.
+
+240
+00:13:11,970 --> 00:13:14,400
+But let me just quickly show you how far you can
+
+241
+00:13:14,400 --> 00:13:17,690
+go if you want to keep pushing on this.
+
+242
+00:13:17,690 --> 00:13:20,730
+Here, I've got the famous factorial function.
+
+243
+00:13:20,730 --> 00:13:24,860
+Right, factorial of zero is one and factorial of everything else
+
+244
+00:13:24,860 --> 00:13:30,390
+is the number times fact of one less than the number.
+
+245
+00:13:30,390 --> 00:13:33,690
+If you don't know factorial, remember-- I promise there'd be no math.
+
+246
+00:13:33,690 --> 00:13:35,740
+I promised there'd be no math.
+
+247
+00:13:35,740 --> 00:13:37,850
+So you can just ignore this little bit.
+
+248
+00:13:37,850 --> 00:13:41,290
+That's factorial written for these new natural numbers.
+
+249
+00:13:41,290 --> 00:13:43,030
+Zero is uppercase.
+
+250
+00:13:43,030 --> 00:13:44,180
+It's our special primitive.
+
+251
+00:13:44,180 --> 00:13:45,380
+Sub one is uppercase.
+
+252
+00:13:45,380 --> 00:13:47,090
+Fact is upper-cased.
+
+253
+00:13:47,090 --> 00:13:49,780
+Ah, but I'm calling times.
+
+254
+00:13:49,780 --> 00:13:51,400
+We don't actually have times.
+
+255
+00:13:51,400 --> 00:13:52,430
+So you could do times.
+
+256
+00:13:52,430 --> 00:13:54,510
+You could wish for times and then do it.
+
+257
+00:13:54,510 --> 00:13:57,180
+Let me just show you that this works.
+
+258
+00:13:57,180 --> 00:14:01,310
+Fact of zero is one.
+
+259
+00:14:01,310 --> 00:14:08,890
+Fact of three is six.
+
+260
+00:14:08,890 --> 00:14:13,600
+Fact of four is 24.
+
+261
+00:14:13,600 --> 00:14:16,970
+If you count them, there would be 24.
+
+262
+00:14:16,970 --> 00:14:28,090
+Fact of eight-- hm-- what's-- takes a long time to print.
+
+263
+00:14:28,090 --> 00:14:33,040
+Long, long time to print-- very long time to print out
+
+264
+00:14:33,040 --> 00:14:35,270
+this long list of exclamation marks.
+
+265
+00:14:35,270 --> 00:14:37,940
+
+
+266
+00:14:37,940 --> 00:14:40,350
+So what's the moral of the story here?
+
+267
+00:14:40,350 --> 00:14:44,530
+The most important thing is to know when we design programs,
+
+268
+00:14:44,530 --> 00:14:49,040
+we come up with data definitions that represent information.
+
+269
+00:14:49,040 --> 00:14:54,560
+And we can take any data to represent any information we want.
+
+270
+00:14:54,560 --> 00:15:00,510
+Now, of course, the underlying hardware makes some primitive data faster
+
+271
+00:15:00,510 --> 00:15:02,270
+than other primitive data.
+
+272
+00:15:02,270 --> 00:15:08,960
+We still haven't finished printing out this representation of fact of eight.
+
+273
+00:15:08,960 --> 00:15:11,810
+This is a terrible representation of natural numbers.
+
+274
+00:15:11,810 --> 00:15:15,100
+You would never want to use this.
+
+275
+00:15:15,100 --> 00:15:18,460
+I just wanted you to see that you can take the bottom
+
+276
+00:15:18,460 --> 00:15:20,070
+to be anything you want.
+
+277
+00:15:20,070 --> 00:15:22,027
+You can come up with your own numbers.
+
+278
+00:15:22,027 --> 00:15:23,610
+You can come up with your own strings.
+
+279
+00:15:23,610 --> 00:15:25,270
+You can come up with your own lists.
+
+280
+00:15:25,270 --> 00:15:29,280
+You can create any data you want.
+
+281
+00:15:29,280 --> 00:15:33,230
+So as I said at the beginning, that's a little wacky.
+
+282
+00:15:33,230 --> 00:15:36,600
+Most of the time-- nearly all the time-- you're
+
+283
+00:15:36,600 --> 00:15:39,610
+just going to work with whatever representation of numbers
+
+284
+00:15:39,610 --> 00:15:42,090
+the programming language gives you.
+
+285
+00:15:42,090 --> 00:15:44,760
+Still, it's kind of fun to explore that.
+
+286
+00:15:44,760 --> 00:15:47,890
+And remember, the rest of the material this week is not wacky.
+
+287
+00:15:47,890 --> 00:15:51,070
+The rest of the material this week is essential.
+
+288
+00:15:51,070 --> 00:15:54,940
+Representing arbitrary size information, well formed self
+
+289
+00:15:54,940 --> 00:16:00,000
+referential type comments, operating on lists and the reference rule--
+
+290
+00:16:00,000 --> 00:16:02,170
+all of that's essential material.
+
+291
+00:16:02,170 --> 00:16:07,010
+So be sure to practice it a lot and we'll see you again next week.
+

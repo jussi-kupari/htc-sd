@@ -1,0 +1,200 @@
+0
+00:00:00,000 --> 00:00:04,640
+
+
+1
+00:00:04,640 --> 00:00:06,600
+GREGOR KICZALES: In the next few videos, we're
+
+2
+00:00:06,600 --> 00:00:10,450
+going to look at a more complex form of data than we've seen before.
+
+3
+00:00:10,450 --> 00:00:13,370
+This data involves something called reference,
+
+4
+00:00:13,370 --> 00:00:17,790
+and it comes up when the information we're trying to represent naturally
+
+5
+00:00:17,790 --> 00:00:21,226
+has different related parts.
+
+6
+00:00:21,226 --> 00:00:24,100
+Now that only happens in problems that are more complex than the ones
+
+7
+00:00:24,100 --> 00:00:28,130
+we've seen so far, so in order to motivate this,
+
+8
+00:00:28,130 --> 00:00:31,530
+I have to be working on a more complex problem and a problem that
+
+9
+00:00:31,530 --> 00:00:34,890
+will take several videos to solve.
+
+10
+00:00:34,890 --> 00:00:38,550
+Now of course when I do that, there'll be parts of this problem-- a number
+
+11
+00:00:38,550 --> 00:00:41,440
+of parts of this problem-- that are quite familiar,
+
+12
+00:00:41,440 --> 00:00:45,180
+that only take things that we've seen before.
+
+13
+00:00:45,180 --> 00:00:50,120
+So as always, when that's the situation, that's a good place to stop the video
+
+14
+00:00:50,120 --> 00:00:51,880
+and work ahead.
+
+15
+00:00:51,880 --> 00:00:54,610
+In fact, to really encourage that this time,
+
+16
+00:00:54,610 --> 00:01:00,050
+there'll be pauses in the video-- breaks in the video-- where I jump ahead.
+
+17
+00:01:00,050 --> 00:01:02,050
+I won't actually work through some of the stuff
+
+18
+00:01:02,050 --> 00:01:04,340
+that you've seen now many times before.
+
+19
+00:01:04,340 --> 00:01:07,360
+That's a place for you to do that yourself and then see
+
+20
+00:01:07,360 --> 00:01:10,890
+where you are when the video restarts.
+
+21
+00:01:10,890 --> 00:01:13,592
+OK, the problem is in Tuition Graph Starter.
+
+22
+00:01:13,592 --> 00:01:15,300
+What's going on here is that we're trying
+
+23
+00:01:15,300 --> 00:01:18,880
+to design a program that can produce bar charts
+
+24
+00:01:18,880 --> 00:01:20,599
+of different kinds of information.
+
+25
+00:01:20,599 --> 00:01:22,390
+The way I've got the problem set up is it's
+
+26
+00:01:22,390 --> 00:01:25,730
+supposed to produce a bar chart of tuition information
+
+27
+00:01:25,730 --> 00:01:28,890
+for an arbitrary number of schools.
+
+28
+00:01:28,890 --> 00:01:32,140
+We're saying that Eva has to decide where to go to university,
+
+29
+00:01:32,140 --> 00:01:34,590
+and she wants to make a plot of the different tuition
+
+30
+00:01:34,590 --> 00:01:36,880
+costs for universities.
+
+31
+00:01:36,880 --> 00:01:38,520
+So it's a three part problem.
+
+32
+00:01:38,520 --> 00:01:40,920
+First, we have to design a data definition
+
+33
+00:01:40,920 --> 00:01:45,390
+to represent the information about the tuition of the different universities.
+
+34
+00:01:45,390 --> 00:01:49,920
+Then we have to design a function that's going to consume a list like that
+
+35
+00:01:49,920 --> 00:01:52,367
+and produce a bar chart like this one here.
+
+36
+00:01:52,367 --> 00:01:54,200
+Finally, we have to design a function that's
+
+37
+00:01:54,200 --> 00:01:56,770
+going to consume a list of tuition information
+
+38
+00:01:56,770 --> 00:01:58,870
+at the different universities and produce
+
+39
+00:01:58,870 --> 00:02:01,410
+the school that has the lowest tuition.
+
+40
+00:02:01,410 --> 00:02:05,140
+What I'm going to do now is that even though this isn't a world program,
+
+41
+00:02:05,140 --> 00:02:07,260
+I can see that there's some constants here
+
+42
+00:02:07,260 --> 00:02:10,750
+related to the drawing-- things like the color of the bars
+
+43
+00:02:10,750 --> 00:02:12,972
+and the size of the font.
+
+44
+00:02:12,972 --> 00:02:15,180
+And so I'm going to do a little bit constant analysis
+
+45
+00:02:15,180 --> 00:02:17,490
+and define some constants now.
+
+46
+00:02:17,490 --> 00:02:20,070
+So why don't you stop the video, and you do that too?
+
+47
+00:02:20,070 --> 00:02:22,580
+And when you're done, restart the video, and you can compare
+
+48
+00:02:22,580 --> 00:02:24,925
+what you've done to what I've done.
+
+49
+00:02:24,925 --> 00:02:25,425
+
+

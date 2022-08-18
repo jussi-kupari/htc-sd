@@ -1,0 +1,400 @@
+0
+00:00:00,000 --> 00:00:05,515
+
+
+1
+00:00:05,515 --> 00:00:08,390
+GREGOR KICZALES: We've been learning about different kinds of values.
+
+2
+00:00:08,390 --> 00:00:11,640
+Numbers, strings, and images, and how to write expressions
+
+3
+00:00:11,640 --> 00:00:14,410
+that operate on those values.
+
+4
+00:00:14,410 --> 00:00:17,270
+In this video we're going to look at something quite different.
+
+5
+00:00:17,270 --> 00:00:21,230
+We're going to look at how to write constant definitions to give names
+
+6
+00:00:21,230 --> 00:00:23,910
+to values so that we can use those values
+
+7
+00:00:23,910 --> 00:00:26,900
+in different parts of the program.
+
+8
+00:00:26,900 --> 00:00:29,930
+Constant definitions are more than just a convenience.
+
+9
+00:00:29,930 --> 00:00:32,210
+We're going to see later in the course that they
+
+10
+00:00:32,210 --> 00:00:34,790
+help us make programs that are easy for other people
+
+11
+00:00:34,790 --> 00:00:38,460
+to read and easy for other people to change,
+
+12
+00:00:38,460 --> 00:00:42,000
+and that those two properties-- readability and changeabiliy--
+
+13
+00:00:42,000 --> 00:00:46,250
+are two of the most important properties a program can have.
+
+14
+00:00:46,250 --> 00:00:50,030
+But for now we're just going to focus on the mechanism of constant definitions
+
+15
+00:00:50,030 --> 00:00:53,640
+so that you can learn how to write a constant definition to give names
+
+16
+00:00:53,640 --> 00:00:57,410
+to a value that you use in other parts of the program.
+
+17
+00:00:57,410 --> 00:01:00,900
+So let's imagine that we're working on a program in which there's
+
+18
+00:01:00,900 --> 00:01:03,910
+a simple interactive game running in a window.
+
+19
+00:01:03,910 --> 00:01:06,780
+One thing we might want to do is give names
+
+20
+00:01:06,780 --> 00:01:09,610
+to the width and height of the window.
+
+21
+00:01:09,610 --> 00:01:14,140
+And the way we do that is we write open paren, define, and then
+
+22
+00:01:14,140 --> 00:01:20,070
+some name-- which we often put the names of constants in upper case like this--
+
+23
+00:01:20,070 --> 00:01:24,180
+and we might say that the window is 400 pixels wide.
+
+24
+00:01:24,180 --> 00:01:31,010
+And maybe the window is 600 high.
+
+25
+00:01:31,010 --> 00:01:34,080
+And that's two named constants.
+
+26
+00:01:34,080 --> 00:01:37,310
+If we run this program just like this we don't get any values out
+
+27
+00:01:37,310 --> 00:01:41,280
+because defining a constant doesn't produce a value.
+
+28
+00:01:41,280 --> 00:01:49,760
+But now what I can do is I can write an expression like this
+
+29
+00:01:49,760 --> 00:01:54,070
+and what happens is when DrRacket evaluates this, when it comes
+
+30
+00:01:54,070 --> 00:01:57,680
+to evaluating the name of a defined constant,
+
+31
+00:01:57,680 --> 00:02:00,040
+it's just going to use the constant's value there.
+
+32
+00:02:00,040 --> 00:02:01,740
+So this will become 400.
+
+33
+00:02:01,740 --> 00:02:09,889
+So the evaluation steps here would be times WIDTH will become 400.
+
+34
+00:02:09,889 --> 00:02:11,720
+That's the first evaluation step.
+
+35
+00:02:11,720 --> 00:02:20,100
+In the next evaluation step, HEIGHT will evaluate to 600.
+
+36
+00:02:20,100 --> 00:02:23,360
+At this point, all the arguments to times are values.
+
+37
+00:02:23,360 --> 00:02:29,780
+So now we'd have 240,000.
+
+38
+00:02:29,780 --> 00:02:32,210
+So the way to form a constant definition is
+
+39
+00:02:32,210 --> 00:02:37,740
+to have an open parenthesis, the word define, a space and then a name.
+
+40
+00:02:37,740 --> 00:02:42,070
+And names typically include letters of the alphabet in upper and lowercase.
+
+41
+00:02:42,070 --> 00:02:45,110
+They can also include numerical digits.
+
+42
+00:02:45,110 --> 00:02:47,180
+And in the beginning student language, they
+
+43
+00:02:47,180 --> 00:02:50,680
+can include lots of other characters like exclamation mark and question
+
+44
+00:02:50,680 --> 00:02:53,120
+mark and equals and things like that.
+
+45
+00:02:53,120 --> 00:02:55,480
+Some languages are more restrictive about that,
+
+46
+00:02:55,480 --> 00:02:59,060
+but the beginning student language is fairly generous about that.
+
+47
+00:02:59,060 --> 00:03:02,450
+You can't use parentheses or quotes of any kind, though.
+
+48
+00:03:02,450 --> 00:03:04,720
+The rules for evaluating a constant definition
+
+49
+00:03:04,720 --> 00:03:11,030
+are when Racket encounters the constant definition, it evaluates the expression
+
+50
+00:03:11,030 --> 00:03:14,910
+and uses the resulting value as the value of the name constant
+
+51
+00:03:14,910 --> 00:03:17,760
+going forward.
+
+52
+00:03:17,760 --> 00:03:22,260
+When evaluation encounters a name constant,
+
+53
+00:03:22,260 --> 00:03:26,170
+the name constant simply evaluates to the value
+
+54
+00:03:26,170 --> 00:03:30,310
+that the define associated with it.
+
+55
+00:03:30,310 --> 00:03:32,340
+Let's look at another example.
+
+56
+00:03:32,340 --> 00:03:35,320
+Let me get rid of all this now.
+
+57
+00:03:35,320 --> 00:03:39,390
+Suppose in this same program, in my game program,
+
+58
+00:03:39,390 --> 00:03:43,440
+what we have is the image of a cat going back and forth across the screen.
+
+59
+00:03:43,440 --> 00:03:45,776
+Well, I might want to give a name to that image
+
+60
+00:03:45,776 --> 00:03:47,400
+so that I can use it in lots of places.
+
+61
+00:03:47,400 --> 00:03:49,490
+So there's the cat.
+
+62
+00:03:49,490 --> 00:03:53,330
+And what I'm going to do here is go to the second edition
+
+63
+00:03:53,330 --> 00:03:56,840
+of the How to Design Programs book which we
+
+64
+00:03:56,840 --> 00:03:59,040
+use as the basis for the material in this course.
+
+65
+00:03:59,040 --> 00:04:01,860
+And they happen to have a little cat here that we're going to use.
+
+66
+00:04:01,860 --> 00:04:03,675
+So I'm just going to go copy this image.
+
+67
+00:04:03,675 --> 00:04:07,130
+
+
+68
+00:04:07,130 --> 00:04:10,770
+And I'll come back over here and I'll just paste it right in here.
+
+69
+00:04:10,770 --> 00:04:15,630
+And what's happening in Racket is, remember, that images are values
+
+70
+00:04:15,630 --> 00:04:18,089
+and all values are expressions.
+
+71
+00:04:18,089 --> 00:04:22,270
+So I can stick that image right there in the program as an expression.
+
+72
+00:04:22,270 --> 00:04:25,110
+Most languages won't let you do this, but it's quite convenient
+
+73
+00:04:25,110 --> 00:04:27,410
+to be able to do it in BSL.
+
+74
+00:04:27,410 --> 00:04:29,460
+So we're going to take advantage of that.
+
+75
+00:04:29,460 --> 00:04:34,200
+So now I've got a cat and I could write some expressions.
+
+76
+00:04:34,200 --> 00:04:37,560
+So here rotate is a primitive and this says,
+
+77
+00:04:37,560 --> 00:04:41,410
+rotate the cat by minus 10 degrees.
+
+78
+00:04:41,410 --> 00:04:46,400
+Here's another expression that would rotate the cat by 10 degrees.
+
+79
+00:04:46,400 --> 00:04:50,755
+If we run this now, we see the first expression
+
+80
+00:04:50,755 --> 00:04:52,470
+produces the cat rotated this way.
+
+81
+00:04:52,470 --> 00:04:57,004
+The second expression produces the cat rotated that way.
+
+82
+00:04:57,004 --> 00:04:58,920
+And we might even want to give names to these.
+
+83
+00:04:58,920 --> 00:05:01,840
+Because remember, I said that we can have an expression
+
+84
+00:05:01,840 --> 00:05:04,210
+here after the constant name.
+
+85
+00:05:04,210 --> 00:05:09,230
+So now I've given names to those two rotated cats.
+
+86
+00:05:09,230 --> 00:05:10,410
+Oops.
+
+87
+00:05:10,410 --> 00:05:11,740
+I can't use those names.
+
+88
+00:05:11,740 --> 00:05:13,330
+I got to use different names.
+
+89
+00:05:13,330 --> 00:05:15,460
+You can only define a given constant name one time.
+
+90
+00:05:15,460 --> 00:05:17,085
+That's why it's called a constant name.
+
+91
+00:05:17,085 --> 00:05:18,140
+It can't change.
+
+92
+00:05:18,140 --> 00:05:20,620
+So I'll call those the RCAT and the LCAT.
+
+93
+00:05:20,620 --> 00:05:24,670
+
+
+94
+00:05:24,670 --> 00:05:25,850
+And there they are.
+
+95
+00:05:25,850 --> 00:05:30,100
+So here see that what Racket is letting us do is say, define
+
+96
+00:05:30,100 --> 00:05:32,210
+and a name and then an expression.
+
+97
+00:05:32,210 --> 00:05:37,490
+That expression gets evaluated, and for evermore that value
+
+98
+00:05:37,490 --> 00:05:40,860
+will be associated with the constant name.
+
+99
+00:05:40,860 --> 00:05:44,000
+So we can use it in other places in the program.
+

@@ -1,0 +1,524 @@
+0
+00:00:00,000 --> 00:00:04,131
+
+
+1
+00:00:04,131 --> 00:00:06,310
+GREGOR KICZALES: In this video, I'm going
+
+2
+00:00:06,310 --> 00:00:09,730
+to step back from the details of the functions operating on lists
+
+3
+00:00:09,730 --> 00:00:13,370
+that we've been designing and give you a more abstract way of looking
+
+4
+00:00:13,370 --> 00:00:15,640
+at those functions.
+
+5
+00:00:15,640 --> 00:00:18,240
+Now, what do I mean when I say abstract?
+
+6
+00:00:18,240 --> 00:00:21,950
+Well, I mean a view of those functions that's less detailed
+
+7
+00:00:21,950 --> 00:00:24,390
+but still captures the essential structure
+
+8
+00:00:24,390 --> 00:00:27,700
+and still tells us something important about what they do.
+
+9
+00:00:27,700 --> 00:00:30,460
+In this video, I'm not making any changes or additions
+
+10
+00:00:30,460 --> 00:00:32,540
+to the design recipes.
+
+11
+00:00:32,540 --> 00:00:37,070
+You're still going to design functions that operate on lists the same way.
+
+12
+00:00:37,070 --> 00:00:41,130
+What this video does do is give you a new perspective on why
+
+13
+00:00:41,130 --> 00:00:46,190
+does functions work and how their templates sets them up to work.
+
+14
+00:00:46,190 --> 00:00:49,630
+And so what I want you to do is take this material now and maybe
+
+15
+00:00:49,630 --> 00:00:53,110
+watch it again once or twice in the next couple weeks.
+
+16
+00:00:53,110 --> 00:00:56,040
+And I think it'll really help you designing functions
+
+17
+00:00:56,040 --> 00:00:59,020
+that operate on all kinds of arbitrary size data,
+
+18
+00:00:59,020 --> 00:01:04,810
+to understand how those functions work and what their templates do for them.
+
+19
+00:01:04,810 --> 00:01:08,900
+So far this week, we've seen two list types-- list of string and list
+
+20
+00:01:08,900 --> 00:01:10,130
+of number.
+
+21
+00:01:10,130 --> 00:01:14,200
+Both of them have welf-formed self reference because of the self reference
+
+22
+00:01:14,200 --> 00:01:15,710
+in the type comments.
+
+23
+00:01:15,710 --> 00:01:20,780
+Both of them also have a natural recursion in the template functions.
+
+24
+00:01:20,780 --> 00:01:24,730
+In fact, these two types are very similar to each other.
+
+25
+00:01:24,730 --> 00:01:30,590
+They really only differ in the name of the type of value included,
+
+26
+00:01:30,590 --> 00:01:35,260
+strings in one case, number in the other case.
+
+27
+00:01:35,260 --> 00:01:39,220
+So for what I want to talk about now, we can just look at one of them.
+
+28
+00:01:39,220 --> 00:01:42,450
+We'll just look at list of number.
+
+29
+00:01:42,450 --> 00:01:44,560
+Again, we see that it has a self reference
+
+30
+00:01:44,560 --> 00:01:50,060
+in the type comment, which leads to a natural recursion in the template.
+
+31
+00:01:50,060 --> 00:01:52,220
+What I want to do now is look for a minute
+
+32
+00:01:52,220 --> 00:01:55,160
+and how the three functions we've designed so far
+
+33
+00:01:55,160 --> 00:01:59,460
+each fill the different holes in the template.
+
+34
+00:01:59,460 --> 00:02:01,980
+Here's what I mean by that.
+
+35
+00:02:01,980 --> 00:02:06,950
+If we look at some on the left and the [INAUDIBLE] for list of number template
+
+36
+00:02:06,950 --> 00:02:10,479
+on the right, then we look at what are called,
+
+37
+00:02:10,479 --> 00:02:12,342
+for now, the red hole in the template.
+
+38
+00:02:12,342 --> 00:02:14,300
+I'm going to give it a better name in a minute.
+
+39
+00:02:14,300 --> 00:02:17,780
+But for now, we'll just call it the red space in the template.
+
+40
+00:02:17,780 --> 00:02:21,900
+In the sum function, the red space gets filled with zero.
+
+41
+00:02:21,900 --> 00:02:24,140
+The green space gets filled with plus.
+
+42
+00:02:24,140 --> 00:02:25,840
+Nothing changes in the blue space.
+
+43
+00:02:25,840 --> 00:02:29,180
+We just leave it the way it was.
+
+44
+00:02:29,180 --> 00:02:32,280
+Count starts off quite similar to some.
+
+45
+00:02:32,280 --> 00:02:36,420
+It fills the red space with zero, the green space with plus,
+
+46
+00:02:36,420 --> 00:02:39,210
+but it changes what happens in the blue space.
+
+47
+00:02:39,210 --> 00:02:44,805
+Whereas in sum, we add the first of lon into the natural recursion.
+
+48
+00:02:44,805 --> 00:02:49,080
+In count, we just add one into the natural recursion.
+
+49
+00:02:49,080 --> 00:02:51,520
+Now, let's look at contains UBC.
+
+50
+00:02:51,520 --> 00:02:55,300
+In contains UBC, the red space is false.
+
+51
+00:02:55,300 --> 00:02:59,020
+And look what I've done here with the blue and the green.
+
+52
+00:02:59,020 --> 00:03:02,650
+For the blue, I've said that what happens in this function
+
+53
+00:03:02,650 --> 00:03:08,100
+is that it wraps string equals question mark to UBC around first of los,
+
+54
+00:03:08,100 --> 00:03:10,270
+and I'm calling that the blue.
+
+55
+00:03:10,270 --> 00:03:13,890
+And I've got green stuff both before and after the blue.
+
+56
+00:03:13,890 --> 00:03:17,710
+It's that if expression with its true answer and its false answer.
+
+57
+00:03:17,710 --> 00:03:19,560
+Why am I doing that?
+
+58
+00:03:19,560 --> 00:03:21,130
+Well, here's why.
+
+59
+00:03:21,130 --> 00:03:23,020
+Let me now talk about the name that I want
+
+60
+00:03:23,020 --> 00:03:26,580
+to give to each of these three spots in the template.
+
+61
+00:03:26,580 --> 00:03:29,080
+I'm going to call the red spot base because, really,
+
+62
+00:03:29,080 --> 00:03:32,430
+what's sitting in the red spot is the base case
+
+63
+00:03:32,430 --> 00:03:37,680
+result of this function-- what the function produces in the base case.
+
+64
+00:03:37,680 --> 00:03:40,340
+For some, the base case result is zero.
+
+65
+00:03:40,340 --> 00:03:42,900
+For count, the base case result is zero.
+
+66
+00:03:42,900 --> 00:03:46,420
+And for contains UBC, the base case result is false.
+
+67
+00:03:46,420 --> 00:03:48,970
+That's fairly straightforward.
+
+68
+00:03:48,970 --> 00:03:51,960
+The blue, I'm going to call the contribution of the first,
+
+69
+00:03:51,960 --> 00:03:58,010
+or the contribution of the first to the overall result. So in the case of some,
+
+70
+00:03:58,010 --> 00:04:02,680
+each first element of the list, or each element of the list when it's its turn
+
+71
+00:04:02,680 --> 00:04:06,870
+to be first, contributes itself to the overall result.
+
+72
+00:04:06,870 --> 00:04:10,025
+Because sum is sitting there, adding together all the numbers in the list.
+
+73
+00:04:10,025 --> 00:04:12,549
+
+
+74
+00:04:12,549 --> 00:04:14,090
+Now, how does that contribution work?
+
+75
+00:04:14,090 --> 00:04:16,899
+Well, that's what combination means.
+
+76
+00:04:16,899 --> 00:04:23,370
+Combination refers to the way in which the final function combines
+
+77
+00:04:23,370 --> 00:04:28,900
+the contribution of the first with the result of the natural recursion.
+
+78
+00:04:28,900 --> 00:04:31,680
+So in the case of some, the combination is
+
+79
+00:04:31,680 --> 00:04:35,430
+to add the contribution of the first, which is itself,
+
+80
+00:04:35,430 --> 00:04:38,770
+to the result of the natural recursion.
+
+81
+00:04:38,770 --> 00:04:40,150
+Let's look at count for a second.
+
+82
+00:04:40,150 --> 00:04:44,190
+We already saw that the base case result of count is zero.
+
+83
+00:04:44,190 --> 00:04:46,610
+What's the contribution of first in the case of count?
+
+84
+00:04:46,610 --> 00:04:49,020
+Well, it's one.
+
+85
+00:04:49,020 --> 00:04:51,870
+When we count the number of elements in the list,
+
+86
+00:04:51,870 --> 00:04:53,750
+we don't care what each element is.
+
+87
+00:04:53,750 --> 00:04:55,700
+We just care that it exists.
+
+88
+00:04:55,700 --> 00:04:58,680
+So each element contributes one to the overall result.
+
+89
+00:04:58,680 --> 00:05:01,270
+And the combination is still plus.
+
+90
+00:05:01,270 --> 00:05:04,350
+Now that we understand better what the blue and green are,
+
+91
+00:05:04,350 --> 00:05:08,300
+the contribution of the first and the way in which that contribution is
+
+92
+00:05:08,300 --> 00:05:11,460
+combined with the natural recursion, now you
+
+93
+00:05:11,460 --> 00:05:17,090
+could see why I colored things the way I did in contains UBC.
+
+94
+00:05:17,090 --> 00:05:20,000
+The contribution of the first is just to say is this element,
+
+95
+00:05:20,000 --> 00:05:24,410
+is the first element of the list equal to UBC?
+
+96
+00:05:24,410 --> 00:05:30,850
+And the combination is to say, well, if the contribution of the first
+
+97
+00:05:30,850 --> 00:05:33,570
+is true, then produce true.
+
+98
+00:05:33,570 --> 00:05:35,960
+If the contribution of the first is false,
+
+99
+00:05:35,960 --> 00:05:40,130
+then produce the natural recursion.
+
+100
+00:05:40,130 --> 00:05:41,800
+Now, why am I talking about this now?
+
+101
+00:05:41,800 --> 00:05:45,010
+After all, you've just designed three list functions.
+
+102
+00:05:45,010 --> 00:05:47,974
+This may seem a bit too hard for right now.
+
+103
+00:05:47,974 --> 00:05:51,140
+The reason I'm doing this now is to give you a bit of a preview of something
+
+104
+00:05:51,140 --> 00:05:52,750
+we're going to do in a couple weeks.
+
+105
+00:05:52,750 --> 00:05:55,958
+In a couple weeks, you're going to see that because we've been working really
+
+106
+00:05:55,958 --> 00:06:01,310
+systematically with well-formed type comments, which produced templates
+
+107
+00:06:01,310 --> 00:06:04,470
+in a well-defined way.
+
+108
+00:06:04,470 --> 00:06:07,540
+So that a lot of our functions that operate on lists
+
+109
+00:06:07,540 --> 00:06:11,610
+and other arbitrary size data have a common form,
+
+110
+00:06:11,610 --> 00:06:14,950
+it's going to be possible for us to write functions like some, and count,
+
+111
+00:06:14,950 --> 00:06:19,500
+and contains UBC, really, in just one line of code.
+
+112
+00:06:19,500 --> 00:06:22,010
+You will write them by basically talking about how
+
+113
+00:06:22,010 --> 00:06:25,780
+to fill the spaces in this table.
+
+114
+00:06:25,780 --> 00:06:27,600
+Now, we're not ready to do that now.
+
+115
+00:06:27,600 --> 00:06:30,030
+And I'm not trying to say that you need to do that now.
+
+116
+00:06:30,030 --> 00:06:33,230
+You don't need to be able to design one of these functions
+
+117
+00:06:33,230 --> 00:06:36,522
+just by filling in the table.
+
+118
+00:06:36,522 --> 00:06:38,230
+The reason I'm showing you this now is so
+
+119
+00:06:38,230 --> 00:06:41,990
+that when you design these functions the way we've talked about this week,
+
+120
+00:06:41,990 --> 00:06:46,480
+you follow the whole recipe, and you write out the template in detail,
+
+121
+00:06:46,480 --> 00:06:50,010
+and then you fill it in based on the examples.
+
+122
+00:06:50,010 --> 00:06:52,860
+Maybe when you're done designing the functions,
+
+123
+00:06:52,860 --> 00:06:56,920
+think for a minute about how that function's row in this table
+
+124
+00:06:56,920 --> 00:06:57,920
+would look.
+
+125
+00:06:57,920 --> 00:07:02,650
+And I think that'll help you as we go on form a more general view of what
+
+126
+00:07:02,650 --> 00:07:04,120
+these functions are.
+
+127
+00:07:04,120 --> 00:07:07,670
+So then in a couple weeks when we get to what's called function abstraction,
+
+128
+00:07:07,670 --> 00:07:10,860
+you'll really be ready to see how it simplifies
+
+129
+00:07:10,860 --> 00:07:13,178
+the writing of these functions.
+
+130
+00:07:13,178 --> 00:07:13,678
+
+

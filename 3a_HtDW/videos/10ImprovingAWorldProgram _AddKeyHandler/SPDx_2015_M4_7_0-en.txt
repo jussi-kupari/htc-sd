@@ -1,0 +1,224 @@
+
+GREGOR KICZALES: Now I'm going to make another change to the cat program.
+We're going to change it so that when we press the Space key,
+the cat resets back to the edge of the box.
+So this will be more practice with using to how to design worlds recipe and more
+practice with using a well structured design to work
+through making a change to that design.
+Another technical point we'll see in this recipe
+is how to use the on-key option to big-bang
+and how to template a function that operates
+on what's called a large enumeration.
+And that'll be something that'll be useful for on-key options,
+as well as on-mouse options that you'll see later.
+What we're starting with here is the cat program from the last video.
+And what we got from the end of that video
+is we changed the cat program so the cat walks across the screen more
+quickly, which is nice.
+
+What I want to do now is go back to one of the original goals in the problem
+statement, which is for this program to have the functionality that if I press
+the Space bar, the cat jumps back to the beginning of the screen
+and starts walking.
+So you're kind of picking the kitten up, putting the kitten back
+at the left edge of the screen.
+Now this is going to end up being a fairly simple change.
+But we've got this domain analysis.
+And it's a good idea to keep the domain analysis in sync with the program.
+So the first thing I'm going to do is grab the domain analysis
+and make the required change there.
+In this case, there's no constants that change.
+And there's no changing information the changes.
+All that changes is we're going to add one more big bang option,
+which is the on-key option.
+And that allows us to give special behavior to our world program
+when a key on the keyboard is pressed.
+So I'm going to add on-key here.
+And I'm going to jump over to the code.
+Nothing changed in the constants, so nothing changes here.
+Nothing changed in the changing world information, so nothing changes here.
+But we are going to use one more big-bang option.
+And what I'm going to do is I'm going to go to the HTDW page,
+go to the How To Design Worlds page.
+And I'm going to scroll down to get the template for world programs.
+And I'm just going to look at the template for the on-key option.
+Here it is here.
+And I'll just copy this from here right over into my main function here,
+paste it there.
+Now I've got some parentheses problems here.
+Let me see-- I'll get rid of both of those.
+
+And WS in this program is called Cat.
+And that's a WS.
+And I'll decide right now that I'm going to call this function handle-key.
+
+So now that I've added that there, I wished for this handle-key function.
+So what I'm going to do is I'm going to grab the signature of it
+and go make a wish list entry.
+Here it is.
+Let's see, it's Cat KeyEvent to Cat, reset cat to left edge
+when space key is pressed.
+And I'll make a stub-- handle-key.
+And this function takes two arguments.
+I'm going to talk about that a bit more in a minute.
+But it takes two arguments.
+One is the actual world state, the Cat.
+And the other is the KeyEvent.
+And that's going to describe which key was pressed.
+This is just the stub.
+I'll produce zero.
+
+And I'll put bang, bang, bang to remind myself
+I still need to do this function.
+I updated the analysis to say that big-bang needed the on-key option.
+I updated main so that that big-bang specifies on-key and tells
+big-bang to call a handler called handle-key.
+And I'd made the wish list entry for the handler.
+So I've got the signature, purpose, and stub.
+Now I need to work on the examples.
+And what I'm going to do is I'm going to explain about KeyEvent while I
+work on the examples.
+This function consumes two arguments.
+And the first argument is a Cat.
+It's a representation of the cats x-coordinate.
+So a reasonable value for cat might be 10.
+The second argument is a KeyEvent.
+Now what KeyEvent is is it's a primitive type in a Racket.
+And it's what's called a large enumeration.
+There's one distinct value in key event for each of the many different keys
+you can press on the keyboard.
+So there's a distinct value for the Space key,
+and a distinct value for A key, and a distinct value for the 1 key,
+and distinct value for the Left Arrow key.
+There's a lot of them.
+That's why it's called a large enumeration.
+Now, in order to make this simple, what Racket does
+is it uses simple strings to be those distinct values.
+So the distinct value that represents that the Space key was pressed
+is a string with a space in it.
+So that's the way Big Bang would call handle key
+if the current state of the world is 10 and the Space key is pressed.
+Now we understand key event.
+Now we're back to the standard HtDF generation of examples.
+Well, what is handle-key supposed to do if the current world state is 10?
+If the cat is at x-coordinate 10 and the Space key is pressed?
+Well, it's supposed to reset the cat to the left edge,
+so that should produce 0.
+Let's do another example now.
+What happens if we have handle key 10 and the A key is pressed?
+Because remember, we've told the user that they're
+supposed to set the cat back to the beginning by pressing Space.
+But they might accidentally press something else.
+Well, what happens in that case is nothing supposed to happen.
+The cat is supposed to stay where it is.
+So that'll be 10.
+Now let's see, what other tests might we need?
+Well, you might also want to say, well, what
+happens if the cat happens to already be at 0 and the Space key is pressed?
+
+I'll line this up this way.
+I'll indulge my inner Virgo.
+Well, if it's already at 0 and Space key is pressed, it should stay at 0.
+You might even want to do that for this example, which is to say, I start at 0.
+I press A. In that case, I should still be at 0.
+
+Now, you might say, wait a minute, there is a whole bunch of possible keys.
+It's a very large enumeration.
+Do I need to test every single case?
+This is an example of white box testing.
+What we're going to do is we're going to say to ourselves,
+you know, we don't need to test every single case,
+because we kind of know how this functions going to work.
+Except you don't yet know how this functions going to work.
+So now I have to start talking about how we template functions
+that operate on large enumerations.
+So let's jump ahead to the template step.
+And then you'll see why it's OK to use this small number of test cases.
+One way to get the template for a handle-key function
+would be to go to the How To Design Worlds page.
+And then at the bottom of the page it includes
+templates for handle-key and handle-mouse, which are quite similar.
+handle-key consumes a KeyEvent.
+And handle-mouse consumes a MouseEvent, which is a large enumeration describing
+all the possible mouse events.
+I'll copy it from here.
+And then I'll explain how it works when we get back over to Racket.
+
+So let's see, I got to comment out the stub.
+It already happens to have the same name I'm using.
+That's a stroke of luck.
+But WS is, in this program, world state is a Cat.
+So let me just for consistency rename WS to Cat.
+And now it turns out that this template happens
+to be right for this particular case.
+But let's talk about why.
+Because it's an enumeration and a large enumeration,
+if you followed the normal data template rule,
+you'd end up with a very large cond.
+There be one case in this cond for every possible key event.
+So this first case says, if the key is equal to Space--
+key equals is a special function the checks the quality of key events--
+if the key is a space, do this.
+And then you have one if the key is an A, do this.
+And if the key is a B, do this.
+And da, da, da, da, you'd have a lot of them.
+But when we template a large enumeration, what
+we're allowed to do is say, look, there's
+going to be a small number of special cases.
+And then all the other keys are going to be handled similarly.
+Or sometimes what happens if, for example, you're
+building a world program that does a text editor,
+there's whole groups of keys that are handled similarly.
+All the keys that insert text are handled similarly,
+whereas the Arrow keys are handled similarly.
+And so you might have larger groups than groups of one key and all the rest.
+But the basic idea here this is how we template a large enumeration.
+We identify the special cases.
+And then we have an else for everything else.
+So let's see now, completing the code against the examples and the purpose,
+if the key is equal to Space, then these two examples and the purpose
+tell me that I'm supposed to produce 0.
+
+And if the key is anything else than these two examples and the purpose
+tell me that the cat shouldn't change.
+I should just produce whatever the cat currently is.
+Let's test that.
+And now you see why when I wrote the tests I was allowed to do it this way.
+I'm allowed to just test the special case
+Space and one example of the other cases,
+because I know that I'm going to end up having this special constructor
+in which there are only two cases.
+Again, this is what's called a white box testing, where when I write the test,
+I allow myself to know something about the structure of the function.
+White box testing is something you'll talk more about in software engineering
+courses if you take those.
+But this is an example of why we would do it.
+It lets us test what a function is really
+doing without having to create anywhere near as elaborate a set of tests.
+So let's how my tests pass.
+Let me actually try running the program, main of 0.
+And I'll try to type very loudly here.
+
+You hear whenever I press the Space key, the cat
+is resetting back to the beginning.
+
+So just a quick summary.
+We kind of replayed the whole How To Design World's recipe.
+We, in the analysis, identified a new option to big-bang.
+There were no changes to constants.
+There were no changes to the data definitions.
+We added one new option to big-bang.
+That made us wish for a new handler.
+We did the signature, purpose, and stub for the new handler.
+Then we went ahead and did the examples in the template.
+There was a special rule for templating this function,
+because it's a large enumeration.
+Most of what we did here is something we've done before.
+We followed the various pieces of the recipe.
+Really the large enumeration rule is the only new thing we did here.
+What I suggest you do now is try adding another piece of functionality
+to this program, which is to make it whenever I click the mouse,
+the cat goes to the current exposition of the mouse.
+That'll be an exercise very much like the one we just did.
+Except instead of adding a key handler, you'll be adding a mouse handler.
+Have some fun with that.

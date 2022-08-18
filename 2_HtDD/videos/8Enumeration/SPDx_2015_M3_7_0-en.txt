@@ -1,0 +1,160 @@
+
+GREGOR KICZALES: Here's another how to design data problem.
+In this case, it's going to be for an enumeration.
+So the data definition that we produce will
+be similar to the TrafficLightColor example from earlier in the week.
+This is the problem in letter-grade-starter.rkt.
+And again, I know that this is a data design problem,
+so I've got the how to design data recipe here.
+And I've got the how to design data web page open in my browser here.
+We're designing a system to keep track of student grades.
+And we need to design a data definition to represent the letter
+grade in a course, which is one of A, B, or C.
+Now, the key thing about the information in this problem
+is that there's three distinct values.
+In other words, every letter grade is going
+to be either the distinct value A or the distinct value B
+or the distinct value C. It isn't like something where
+we might be keeping track of the numerical score
+in a course, which is a whole bunch of numbers.
+Here, there's really a modest number of distinct values A, B, or C.
+And when the problem domain information is
+like that, when it consists of a fixed number of distinct values,
+then there's a special kind of data definition
+to use for that called an enumeration.
+And the way an enumeration works is that we're
+going to use one of in the type comment this way.
+Now, this is exactly like the traffic light data
+definition from earlier this week.
+So here we go.
+I'm going to say letter grade is one of.
+And now what I'm going to do is I'm going
+to talk about the data used to represent each of the distinct cases.
+And I'll use strings in this case.
+I'll say that these are the three distinct data
+values, which are going to represent the three distinct information values.
+And when you do an enumeration, the interpretation
+tends to be relatively straightforward.
+In this case, you'll just say the letter grade in a course.
+But if you think back to that example we saw at the beginning of the week,
+if for example you had decided to use the three data values,
+maybe numbers like 0, 1, and 2, well then your interpretation
+would be more substantive.
+Then your interpretation would have to say something
+like zero means A, 1 means B, 2 means C. So part
+of why the interpretation is simple in this case
+is because we're using strings to represent the three cases.
+And the strings so clearly say what the cases are.
+The other thing that happens in enumerations
+is that examples are silly.
+If we tried to write examples for this, what would we write?
+We'd write some like define letter grade 1 is A. Means A. Define letter grade 2
+is B. Means B. Define letter grade 3 is C means C. it's silly, right?
+It's ridiculous.
+Because it's an enumeration, there's only three values.
+We know what the examples are before we get to the example stage.
+So we don't even bother to write them.
+What we write here is we say examples are redundant for enumerations.
+And once we get a couple weeks farther in the course,
+you don't even have to write that.
+We want to write it for now just as a way of remembering
+that the example step existed.
+Now we're going to do the template.
+So define fn-for-letter-grade lg is going to be some body here.
+Template rules used.
+And here we go.
+I'll go back over to the how to design data web page.
+Here we were.
+And I'll scroll up to find the link to the data driven templates recipe.
+
+And here we go.
+So I need to look in this column for the first word after is.
+Now remember, the first word after is is one of.
+So it's not any of these.
+There's a special rule for one of.
+And one ofs are always enumerations, like this case is,
+or an itemization, which is the example we'll do after this.
+And now this says that the body is a cond with one
+clause per subclass of the one of.
+What does that mean?
+What's a subclass of the one of?
+Well, what's going on here in this one of
+is there's three cases or three subclasses.
+This says every letter grade in the world
+is either in this class, in this class, or in this class.
+Every letter grade in the world is either an A, a B, or a C.
+So here we go.
+It says that we're going to make a cond with one
+clause per subclass of the one of.
+So let me just do that.
+I'm going to say cond.
+And there's going to be three of these.
+Because there's three there, so there will be three here.
+
+And down here in my template rules, I'm going
+to put that we use the one of rule and that there are three cases.
+Now what happens?
+Well, now I've gotten past the one of.
+And the next thing I see is an A. The next thing I see, in fact,
+is the string A.
+So which template rule is that?
+Because what this says is that for each question and answer expression,
+I'm going to form it by following the rule in the question or answer
+column of this table for the corresponding case.
+So I'm going to this a.
+And I need to find its row in this table.
+And a is an atomic, distinct value.
+Now you understand what the distinct value rule that we were just
+skipping over before was.
+There's a single value, the string a.
+So it's this case.
+And now you also understand what the cond question column of this table
+was for.
+It says that in the question column, we're
+going to put the appropriate predicate, which is a string equal in this case.
+So we'll go back over here.
+And we'll say string=?
+letter grade to A.
+That's the question.
+And in the cond answer, we're going to put just dot dot dot.
+
+Now, you might ask, why aren't we putting dot dot dot letter grade?
+Well, two answers.
+One answer is the table told us to put just dot dot dot.
+It didn't tell us to put dot, dot, dot in the name of the parameter.
+It told us to just put dot, dot, dot.
+But the question is, why does the table say that?
+Well, the table says that because in this case, we know what lg is.
+Lg is the string A. It'll always be the string A if we get to this cond answer.
+So we're not putting it there to make that more clear.
+And so the template that we used here was atomic distinct value A.
+Now we go onto the next row.
+Well, the next row is the string B. So we could go back to the table.
+Let's see.
+The string B is an atomic distinct value.
+So the cond question will be an appropriate predicate.
+And the cond answer will be open paren dot dot dot closed round bracket.
+So let's see the cond question.
+It's string=?
+letter grade to B. And the cond answer is dot dot dot.
+And this is atomic distinct value B. And at this point,
+you can see how this is working.
+And you can short circuit the process of doing C a bit if you want.
+We'll just copy the case for B. We'll get rid
+of this last question answer pair.
+We'll make that be C. And we can do that down here in the template rules
+as well.
+
+Now we'll run it.
+There's no errors.
+So it's all well formed.
+We'll comment that out.
+So this is an enumeration because the domain information here
+has two or more distinct values.
+A, B, and C. And an enumeration data definition
+uses a one of with the data values that are
+going to be used to represent the information.
+And now we've seen two new template rules.
+The one of rule and the distinct value rule.
+So there we go.
+That's our data definition for LetterGrade.

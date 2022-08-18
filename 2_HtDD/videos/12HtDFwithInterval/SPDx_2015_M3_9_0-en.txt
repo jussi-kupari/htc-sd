@@ -1,0 +1,85 @@
+
+GREGOR KICZALES: The next three videos are
+examples of designing a function that consumes non-primitive data, data
+that's defined by your own data definition.
+Now, they're HtDF problems, so mostly you know how to do them.
+Remember, I said the HtDF recipe is largely orthogonal to the form of data.
+But it isn't completely orthogonal to the form of data.
+One real dependence between function design and form of data
+has to do with the number of tests that's appropriate for that function.
+So in these videos, I'm going to pay particular attention
+to the number of tests that we're going to use, based on the form of data.
+I'm in aisle-starter.rkt.
+And the problem we're asked is to use the SeatNum data definition,
+and design a function to produce is true if the given seat
+number is on the aisle.
+So the first thing I would do is go look at the seat num data definition,
+and it reminds me that the SeatNum is a natural number from 1 to 32 inclusive,
+and that it's seat numbers in a row, and 1 and 32 are the aisle seats.
+So now I can get started on my function.
+I'll quickly do the signature purpose and stub.
+Let's see, it's going to consume a SeatNum.
+And we're supposed to produce true when the sea number is on the aisle,
+so that means it's going to produce a Boolean.
+And it'll produce false when the seat number isn't on the aisle.
+And let's see, produce true if the given seat number is on the aisle.
+
+And let's see the function.
+This is a predicate, so we'll name it using the naming convention
+for predicates like this, aisle?
+we'll have seat number is-- and we'll just produce false for the stub.
+So let me run that, to make sure the stub is well formed.
+And it is.
+OK, now let's get to the examples.
+Now here's the first place where the data definition is really
+going to have something to say.
+If we go back to the How to Design Data page,
+and we go to the section on intervals and we go to the section on Guidance
+on Examples and Test, it tells us that when
+writing tests for functions operating on intervals,
+we should be sure to test closed boundaries as well as midpoints,
+and always be sure to include enough tests to check
+all other points of variance.
+So let's go back to the code.
+I've got an interval with two closed endpoints.
+So I know that what I'm going to need are three tests.
+One for the first closed end point, which is 1.
+
+One for the middle, which is-- middle doesn't
+have to be the exact middle, something like the middle.
+We'll call it 16.
+And one for the closed upper end point, which is 32.
+And now what are these going to be?
+Well, I'm supposed to produce true if the given seat number is on the aisle.
+Let's see, this one is on the aisle.
+This one is not.
+And this one is.
+Notice how much information the data definition
+gave me about generating the tests.
+Data definitions are always going to be helpful this way.
+They're not always going to make it quite this straightforward,
+but data definitions, the structure of the data
+definition, the structure of the data, tells us a lot about the tests we need.
+So let me run that.
+Good.
+They're all running.
+Now, for the template what I'm going to do
+is I'm first going to comment out the stub.
+I'm going to say use template from SeatNum, and I'll just leave that note.
+I'll copy the template down, and I'll use it like that.
+I have to rename it to be aisle?
+because that's the name of this function.
+And let's see.
+I'm consuming a seat number, which is a natural from 1 to 32,
+and I need to produce true if it's an aisle seat.
+That means I need to produce true if seat num is 1, also seat num is 32.
+And I just need to or those two together.
+Let's try that.
+All three tests pass.
+So there you.
+That's designing a function that consumes an interval.
+And the big piece of help we got from knowing that's an interval
+is well, of course we got the template, but we also
+got the structure of the tests.
+In this case, it's an interval with two closed ends.
+So we have a test for each of the ends, and a test for somewhere in the middle.

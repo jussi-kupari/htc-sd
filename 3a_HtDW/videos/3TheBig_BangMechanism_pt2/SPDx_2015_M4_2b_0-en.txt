@@ -1,0 +1,13 @@
+
+GREGOR KICZALES: Looking back at our table,
+we see that at each clock tick what happens
+is that the representation of the cat's x-coordinate increases by its speed
+each time.
+So it goes from 0 to 3 to 6 to 9.
+So here's a function that does that for us.
+It signature is cat to cat.
+So it takes a cat and produces a cat, and it increases that position
+by the cat's speed.
+And there's some check expects.
+And if we look at the body of the function, we can see what we expect.
+It takes the current x-coordinate of the cat and increases it by speed.

@@ -1,0 +1,90 @@
+
+GREGOR KICZALES: So that's an example of an if expression.
+What we need to do now is look at the detailed rules
+for evaluating if expressions.
+What I'm going to do is first go ahead and put the evaluation rules
+for if here on the right, and then I'm going
+to change the example expression a little bit,
+just to make it a little bit richer, so we'll
+understand the rules a bit better.
+I'll say that if the width is less than the height will produce the width,
+the true answer will be the width, and the false answer will be the height.
+Now let's try to step through that bit by bit.
+And I'll also use the ctrl-E or cmd-E command,
+to just make Racket hide the interaction area
+so I've got a bit more room to work.
+So let's see.
+I've got an if expression.
+And the rule for evaluating if expressions, the first thing I
+have to do is evaluate the question expression.
+So there's the question expression.
+The question expression is a call to the primitive less-than,
+so the first thing I have to do is reduce all of its operands to values.
+Let's see.
+The first operand isn't a value, it's an expression.
+In particular, it's a call to the primitive image-width.
+And first thing I have to do is reduce all of its operands to values.
+See, this first operand isn't a value, it's the name of a constant,
+so I have to produce a value for it.
+So the first evaluation step simply is going
+to reduce that expression, the constant name, to the corresponding value.
+In this case, what that does is that I2 becomes the actual image, the image
+value.
+
+OK, so now, let's see.
+If expression.
+Reduce the question.
+Reduce the operands to this less-than.
+Here's the first operand.
+That's image width of that.
+A-ha.
+What happens here is that this whole thing--
+I'm just copying it and pasting it-- this whole thing
+becomes-- we just end up reducing this expression here this time.
+So that's going to become 20, the width of rectangle 2.
+The next step-- well, at this point, I think
+you could see how this is going to work.
+Now, we're basically reducing this operation to the less-than.
+In the next step, the I2 becomes an image.
+And then in the step after that, that whole thing becomes 10.
+And I'll just put it on one line like this
+so we get a bit more room to work with.
+So remember, what we did here is we had to evaluate this expression.
+If wants to evaluate its question expression first.
+This was a call to a primitive in which both operands were calls to primitive.
+So there's a fair amount of valuation work
+we have to do here before we've evaluated the question expression.
+And we still aren't even done.
+We still now have a call to a primitive.
+Both operands are values.
+So now we can actually call less than with the two values.
+
+Now, less than 20, 10 --well, 20 is not less than 10,
+so that's clearly going to be false.
+And now, finally, we've evaluated the question expression.
+We've evaluated the question expression, and now we
+go to the remaining rules of the if.
+Next rule says that if the question expression produces true-- well,
+it hasn't.
+Here, the question expression has produced false.
+So the next rule says if the question expression produces false, then what
+we're going to do is replace the entire if expression with the false answer.
+So there's the false answer.
+The entire expression gets replaced with the false answer.
+Now we have a call to a primitive.
+The first operand is not a value, so we need to evaluate it.
+
+So that has to get evaluated.
+
+Now all the operands to image height are values,
+so we can actually call image height.
+And we get 10.
+The whole thing evaluates to 10.
+And again, if we use that trick I showed you
+in the last video of running this now, we'll
+see a whole bunch of 10s, which tells us that we did all of our evaluation steps
+properly.
+So the key thing is, the rule for if is, first you evaluate question,
+and then, depending on the result of the question,
+you replace the entire if with either the true answer or the false answer,
+and then you just keep evaluating.

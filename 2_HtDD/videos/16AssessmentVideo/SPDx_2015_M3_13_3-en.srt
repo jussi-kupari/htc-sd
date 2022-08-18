@@ -1,0 +1,836 @@
+0
+00:00:00,000 --> 00:00:08,560
+GREGOR KICZALES: Here's the rubric for this week.
+
+1
+00:00:08,560 --> 00:00:11,890
+We'll start with criteria 1 and 2 from the rubric.
+
+2
+00:00:11,890 --> 00:00:17,410
+What I did was I copied a solution out of edX
+
+3
+00:00:17,410 --> 00:00:20,690
+and pasted it into DrRacket and typed Command-I on the Macintosh
+
+4
+00:00:20,690 --> 00:00:21,860
+to fix the indentation.
+
+5
+00:00:21,860 --> 00:00:24,640
+That would be Control-I on a Windows machine.
+
+6
+00:00:24,640 --> 00:00:26,760
+Now, I'll just go through.
+
+7
+00:00:26,760 --> 00:00:29,835
+The first question is, "Is the program safe?"
+
+8
+00:00:29,835 --> 00:00:31,880
+It needs to be set to Beginning Student.
+
+9
+00:00:31,880 --> 00:00:35,070
+Now, you can't really assess that because when you copied it out of edX,
+
+10
+00:00:35,070 --> 00:00:37,900
+you don't know what the file was set, but you yourself
+
+11
+00:00:37,900 --> 00:00:41,250
+should know that the file has to be in Beginning Student.
+
+12
+00:00:41,250 --> 00:00:43,432
+"Does it have any requires?"
+
+13
+00:00:43,432 --> 00:00:46,640
+For checking that, in order to really check it properly, what I'm going to do
+
+14
+00:00:46,640 --> 00:00:49,610
+is, I'm going to search to see if there's
+
+15
+00:00:49,610 --> 00:00:51,850
+a require anywhere in the program.
+
+16
+00:00:51,850 --> 00:00:54,410
+You can type Command-F, you could type Control-F on Windows,
+
+17
+00:00:54,410 --> 00:00:57,770
+and look for certain require, and I don't find any.
+
+18
+00:00:57,770 --> 00:01:02,000
+So this program meets the safety criteria, and it is acceptable.
+
+19
+00:01:02,000 --> 00:01:08,939
+Now, let's abort this search and go on to whether it is commit ready.
+
+20
+00:01:08,939 --> 00:01:09,730
+Is it commit ready?
+
+21
+00:01:09,730 --> 00:01:11,640
+The file needs to be neat and tidy.
+
+22
+00:01:11,640 --> 00:01:14,730
+Let's see, that looks pretty neat and tidy to me.
+
+23
+00:01:14,730 --> 00:01:19,020
+I don't see stuff that's not supposed to be here.
+
+24
+00:01:19,020 --> 00:01:21,550
+I don't see a bunch of commented-out code.
+
+25
+00:01:21,550 --> 00:01:23,800
+I don't see notes to your friends.
+
+26
+00:01:23,800 --> 00:01:27,290
+It all looks pretty good this way.
+
+27
+00:01:27,290 --> 00:01:30,230
+I'm happy with that.
+
+28
+00:01:30,230 --> 00:01:34,237
+The thing about the indentation should conform to course conventions. , ,
+
+29
+00:01:34,237 --> 00:01:36,820
+Again, if you've copied it out a bracket, you can't test that,
+
+30
+00:01:36,820 --> 00:01:39,360
+but you could test your original file, and it should.
+
+31
+00:01:39,360 --> 00:01:43,210
+Basically, typing Command-I at this point shouldn't move anything.
+
+32
+00:01:43,210 --> 00:01:45,820
+So that gets us to a good for commit ready.
+
+33
+00:01:45,820 --> 00:01:47,800
+This program is off to a great start.
+
+34
+00:01:47,800 --> 00:01:51,320
+I'm now going to go into parts 3 and 4 of the rubric having
+
+35
+00:01:51,320 --> 00:01:55,960
+to do with whether the designs are complete and high quality.
+
+36
+00:01:55,960 --> 00:02:01,480
+In order to do that, what I'm going to do is focus here on just problem 4.
+
+37
+00:02:01,480 --> 00:02:04,567
+That's called spot grading where you just look at part of it.
+
+38
+00:02:04,567 --> 00:02:07,150
+And that's all you're going to have to do for your assessment.
+
+39
+00:02:07,150 --> 00:02:11,330
+You probably want to do the assessment for your whole design,
+
+40
+00:02:11,330 --> 00:02:14,940
+just for your own edification, but for the self-assessment part that you type
+
+41
+00:02:14,940 --> 00:02:18,010
+into the system, just do problem 4.
+
+42
+00:02:18,010 --> 00:02:20,260
+First, we need to do completeness and well-formedness.
+
+43
+00:02:20,260 --> 00:02:23,140
+
+
+44
+00:02:23,140 --> 00:02:27,360
+A data definition has all of these parts.
+
+45
+00:02:27,360 --> 00:02:29,240
+There's the type comment.
+
+46
+00:02:29,240 --> 00:02:30,920
+There is the interpretation.
+
+47
+00:02:30,920 --> 00:02:33,870
+There's examples.
+
+48
+00:02:33,870 --> 00:02:37,480
+They all are there, and they look well-formed.
+
+49
+00:02:37,480 --> 00:02:39,050
+Here's the template.
+
+50
+00:02:39,050 --> 00:02:41,940
+There's the template rules used.
+
+51
+00:02:41,940 --> 00:02:45,110
+But if you notice carefully here something, watch this.
+
+52
+00:02:45,110 --> 00:02:51,350
+What if I uncomment the template and now run the file.
+
+53
+00:02:51,350 --> 00:02:56,330
+Now I'm going to get an error that this n is not
+
+54
+00:02:56,330 --> 00:02:59,920
+defined because that n should be an h.
+
+55
+00:02:59,920 --> 00:03:01,930
+This template is not well-formed.
+
+56
+00:03:01,930 --> 00:03:03,200
+It never ran.
+
+57
+00:03:03,200 --> 00:03:07,052
+Somebody typed # ; in front of it before they ever run it.
+
+58
+00:03:07,052 --> 00:03:09,260
+You gotta run it first to make sure it's well-formed.
+
+59
+00:03:09,260 --> 00:03:12,240
+Let's try it now.
+
+60
+00:03:12,240 --> 00:03:14,570
+That's better.
+
+61
+00:03:14,570 --> 00:03:15,534
+We'll comment it out.
+
+62
+00:03:15,534 --> 00:03:18,210
+
+
+63
+00:03:18,210 --> 00:03:21,750
+The whole data definition is complete and well-formed
+
+64
+00:03:21,750 --> 00:03:26,200
+except for the template, which has a small problem with it.
+
+65
+00:03:26,200 --> 00:03:29,170
+When we look at the function design, signature
+
+66
+00:03:29,170 --> 00:03:34,840
+looks good, well-formed purpose, examples, there's the stub,
+
+67
+00:03:34,840 --> 00:03:39,040
+there's the template, and there is increased health.
+
+68
+00:03:39,040 --> 00:03:48,100
+You know this template could actually just be took template from health.
+
+69
+00:03:48,100 --> 00:03:49,800
+We'd rather do it that way.
+
+70
+00:03:49,800 --> 00:03:51,080
+You know, we won't ding that.
+
+71
+00:03:51,080 --> 00:03:53,330
+Let's just say there's one problem in the completeness
+
+72
+00:03:53,330 --> 00:03:57,000
+and well-formedness of the design, which is just the template.
+
+73
+00:03:57,000 --> 00:04:02,370
+So we will give this a fair for completeness.
+
+74
+00:04:02,370 --> 00:04:05,330
+Now let's go on to correctness.
+
+75
+00:04:05,330 --> 00:04:11,000
+Again, we need to check the correctness of all the different parts of the two
+
+76
+00:04:11,000 --> 00:04:12,600
+designs.
+
+77
+00:04:12,600 --> 00:04:16,750
+So working through here in terms of the type comment,
+
+78
+00:04:16,750 --> 00:04:18,899
+correctness of a type comment is "Does it
+
+79
+00:04:18,899 --> 00:04:20,910
+capture the information it's supposed to?"
+
+80
+00:04:20,910 --> 00:04:23,770
+If we go look at the problem statement, it says the only thing
+
+81
+00:04:23,770 --> 00:04:26,310
+that matters about their health is either they're dead,
+
+82
+00:04:26,310 --> 00:04:30,610
+or if they're alive, they have zero or more extra lives.
+
+83
+00:04:30,610 --> 00:04:32,780
+So this is clearly a one-of.
+
+84
+00:04:32,780 --> 00:04:35,040
+It's a one-of of a distinct.
+
+85
+00:04:35,040 --> 00:04:41,750
+They're dead or an interval of integers or natural numbers.
+
+86
+00:04:41,750 --> 00:04:44,110
+So let's see, does the type comment do that?
+
+87
+00:04:44,110 --> 00:04:45,170
+Yes, it's a one-of.
+
+88
+00:04:45,170 --> 00:04:50,760
+There is the distinct dead, and natural is good for the interval,
+
+89
+00:04:50,760 --> 00:04:51,770
+so that's great.
+
+90
+00:04:51,770 --> 00:04:52,714
+That's correct.
+
+91
+00:04:52,714 --> 00:04:54,630
+There are other options that could be correct.
+
+92
+00:04:54,630 --> 00:04:58,879
+You could use false for the dead or you could use not alive for the dead.
+
+93
+00:04:58,879 --> 00:05:01,670
+There's various different ways that you could do this, all of which
+
+94
+00:05:01,670 --> 00:05:05,491
+would be fine as long as you're capturing that information.
+
+95
+00:05:05,491 --> 00:05:07,080
+The interpretation is good.
+
+96
+00:05:07,080 --> 00:05:08,290
+It tells me what that means.
+
+97
+00:05:08,290 --> 00:05:12,370
+It tells me what the number means, and in any itemization,
+
+98
+00:05:12,370 --> 00:05:16,010
+you want examples of all the cases, and we've got that here.
+
+99
+00:05:16,010 --> 00:05:19,460
+So that's good and correct.
+
+100
+00:05:19,460 --> 00:05:24,060
+There's the template, and the template rules used.
+
+101
+00:05:24,060 --> 00:05:28,200
+Now is there's another little problem with this template, which
+
+102
+00:05:28,200 --> 00:05:31,630
+is that the order of the subclasses here is not
+
+103
+00:05:31,630 --> 00:05:34,460
+the same order as in the template, and we really
+
+104
+00:05:34,460 --> 00:05:38,410
+would like those to be in the same order.
+
+105
+00:05:38,410 --> 00:05:40,520
+Consistency is the hobgoblin of little minds.
+
+106
+00:05:40,520 --> 00:05:44,010
+Maybe I have a little mind, but I like to have them be in the same order.
+
+107
+00:05:44,010 --> 00:05:50,800
+I'm going to switch this to string to make that be the first case.
+
+108
+00:05:50,800 --> 00:05:53,215
+I'll switch these two here in the rules used.
+
+109
+00:05:53,215 --> 00:05:55,890
+
+
+110
+00:05:55,890 --> 00:05:58,466
+I'll change those curlies to square brackets.
+
+111
+00:05:58,466 --> 00:06:02,370
+
+
+112
+00:06:02,370 --> 00:06:04,420
+You might call all of those details, but there's
+
+113
+00:06:04,420 --> 00:06:07,290
+one of these that isn't a detail.
+
+114
+00:06:07,290 --> 00:06:10,970
+In the case of the distinct, then the question answer
+
+115
+00:06:10,970 --> 00:06:16,910
+is just the three parens inside the three dots inside of parens.
+
+116
+00:06:16,910 --> 00:06:23,070
+But in the case of the non-distinct, the question answer has to be that.
+
+117
+00:06:23,070 --> 00:06:27,220
+That is a real problem with the way the template is built up.
+
+118
+00:06:27,220 --> 00:06:28,391
+It's the only real problem.
+
+119
+00:06:28,391 --> 00:06:30,390
+The other ones were kind of small, but we really
+
+120
+00:06:30,390 --> 00:06:33,690
+do want them to be in the same order, please.
+
+121
+00:06:33,690 --> 00:06:35,060
+So there we go.
+
+122
+00:06:35,060 --> 00:06:38,900
+We've got a data definition which is mostly correct,
+
+123
+00:06:38,900 --> 00:06:41,510
+but there's some problems with the template.
+
+124
+00:06:41,510 --> 00:06:44,166
+Let's look at the function design.
+
+125
+00:06:44,166 --> 00:06:45,790
+It consumes health and produces health.
+
+126
+00:06:45,790 --> 00:06:47,790
+That's what it's supposed to do, so that's good.
+
+127
+00:06:47,790 --> 00:06:50,870
+And increases the number of lives for the player with one,
+
+128
+00:06:50,870 --> 00:06:53,459
+except when the player is already dead.
+
+129
+00:06:53,459 --> 00:06:54,750
+I think I know what that means.
+
+130
+00:06:54,750 --> 00:06:58,677
+That means if the player is alive, then it increases the number of lives.
+
+131
+00:06:58,677 --> 00:06:59,760
+I could leave it that way.
+
+132
+00:06:59,760 --> 00:07:02,420
+I could maybe improve it a little bit by just saying
+
+133
+00:07:02,420 --> 00:07:13,090
+increases the number of lives if the player this is alive.
+
+134
+00:07:13,090 --> 00:07:15,740
+That's a little bit cleaner, but the other was fine.
+
+135
+00:07:15,740 --> 00:07:23,390
+I might put these tests in this order again so they match the type comment,
+
+136
+00:07:23,390 --> 00:07:24,680
+but that truly is a detail.
+
+137
+00:07:24,680 --> 00:07:27,800
+
+
+138
+00:07:27,800 --> 00:07:28,784
+There's the stub.
+
+139
+00:07:28,784 --> 00:07:29,700
+There is the template.
+
+140
+00:07:29,700 --> 00:07:30,570
+There's this.
+
+141
+00:07:30,570 --> 00:07:34,460
+Now I really want this to match the template that I improved.
+
+142
+00:07:34,460 --> 00:07:36,685
+Let's take the template up here and redo it.
+
+143
+00:07:36,685 --> 00:07:41,070
+
+
+144
+00:07:41,070 --> 00:07:46,952
+We'll rename the function, and in the case where it's a string,
+
+145
+00:07:46,952 --> 00:07:48,160
+it doesn't change the string.
+
+146
+00:07:48,160 --> 00:07:57,080
+It produces dead every time, and otherwise it adds one to the health.
+
+147
+00:07:57,080 --> 00:08:00,767
+That's the same as this but flipped around in the new order.
+
+148
+00:08:00,767 --> 00:08:02,100
+We'll run it to check the tests.
+
+149
+00:08:02,100 --> 00:08:05,240
+
+
+150
+00:08:05,240 --> 00:08:07,510
+There was a problem with the template up here.
+
+151
+00:08:07,510 --> 00:08:10,990
+Once we fix that, this down here had to change.
+
+152
+00:08:10,990 --> 00:08:12,035
+We don't ding twice.
+
+153
+00:08:12,035 --> 00:08:15,047
+
+
+154
+00:08:15,047 --> 00:08:17,380
+We'll do a deduction because the template had a problem.
+
+155
+00:08:17,380 --> 00:08:19,680
+We won't do a deduction here.
+
+156
+00:08:19,680 --> 00:08:21,330
+We improve the grammar of this.
+
+157
+00:08:21,330 --> 00:08:22,690
+That's not going to count.
+
+158
+00:08:22,690 --> 00:08:28,560
+So this one problem here will give the quality here a good.
+
+159
+00:08:28,560 --> 00:08:32,580
+Now, the final element of the rubric is "Does the design
+
+160
+00:08:32,580 --> 00:08:36,740
+satisfy the problem requirements?"
+
+161
+00:08:36,740 --> 00:08:40,000
+In some sense, we've already made this clear to ourselves.
+
+162
+00:08:40,000 --> 00:08:44,530
+The data design does capture what it's supposed to capture.
+
+163
+00:08:44,530 --> 00:08:46,920
+The health has the properties it needs to have.
+
+164
+00:08:46,920 --> 00:08:49,620
+Because the interpretation and the type comment match up,
+
+165
+00:08:49,620 --> 00:08:52,390
+the date design has done the thing that it's supposed to do.
+
+166
+00:08:52,390 --> 00:08:54,590
+The function design is supposed to allow us
+
+167
+00:08:54,590 --> 00:08:57,240
+to increase the lives of a character, but it should only
+
+168
+00:08:57,240 --> 00:09:00,960
+do it if the character is not dead.
+
+169
+00:09:00,960 --> 00:09:03,270
+That is what this function does, increases the number
+
+170
+00:09:03,270 --> 00:09:04,920
+of lives that the player is alive.
+
+171
+00:09:04,920 --> 00:09:07,210
+That's the same thing as saying they're not dead.
+
+172
+00:09:07,210 --> 00:09:10,810
+The check expects clearly check that, so this design clearly
+
+173
+00:09:10,810 --> 00:09:14,040
+satisfies the problem requirements in both the data definition
+
+174
+00:09:14,040 --> 00:09:15,690
+and the function.
+
+175
+00:09:15,690 --> 00:09:18,935
+So this gets a good for satisfying problem requirements.
+
+176
+00:09:18,935 --> 00:09:21,310
+Now very quickly, let me just show you one other solution
+
+177
+00:09:21,310 --> 00:09:25,410
+so you'll see some variation that could also be a valid solution.
+
+178
+00:09:25,410 --> 00:09:28,640
+Here is another data definition for health.
+
+179
+00:09:28,640 --> 00:09:29,620
+This one uses false.
+
+180
+00:09:29,620 --> 00:09:32,849
+I already said that was a reasonable thing to do.
+
+181
+00:09:32,849 --> 00:09:34,640
+I really want to look at the function here.
+
+182
+00:09:34,640 --> 00:09:36,764
+Look, this function is going to take two arguments.
+
+183
+00:09:36,764 --> 00:09:40,240
+It takes a health and the number of lives to add.
+
+184
+00:09:40,240 --> 00:09:46,010
+So it adds not just one additional lives but any number of additional lives.
+
+185
+00:09:46,010 --> 00:09:48,460
+We didn't explicitly say that you needed to do this,
+
+186
+00:09:48,460 --> 00:09:52,470
+but we also didn't explicitly say that it only adds one.
+
+187
+00:09:52,470 --> 00:09:55,470
+So this is a completely reasonable design for this function.
+
+188
+00:09:55,470 --> 00:09:58,710
+The signature is correct for this alternative design.
+
+189
+00:09:58,710 --> 00:10:01,500
+The purpose is correct for this alternative design.
+
+190
+00:10:01,500 --> 00:10:05,690
+There are tests that test adding different number of lives.
+
+191
+00:10:05,690 --> 00:10:07,230
+The tests are good.
+
+192
+00:10:07,230 --> 00:10:08,970
+There's the stub.
+
+193
+00:10:08,970 --> 00:10:12,200
+There should be a note here about the template, but other than that,
+
+194
+00:10:12,200 --> 00:10:17,870
+this is a very high quality and correct solution to this slightly different
+
+195
+00:10:17,870 --> 00:10:19,180
+problem statement.
+
+196
+00:10:19,180 --> 00:10:21,660
+Totally good if you did this too, except you really
+
+197
+00:10:21,660 --> 00:10:24,440
+should have had a template comment here.
+
+198
+00:10:24,440 --> 00:10:28,020
+So that's it for this week's self-assessment video.
+
+199
+00:10:28,020 --> 00:10:31,950
+You've seen how we apply the rubric to both a data
+
+200
+00:10:31,950 --> 00:10:34,270
+design and a function design.
+
+201
+00:10:34,270 --> 00:10:36,110
+You should do this now with your design.
+
+202
+00:10:36,110 --> 00:10:38,110
+Remember, your design doesn't have to be exactly
+
+203
+00:10:38,110 --> 00:10:40,340
+like what we showed in the video.
+
+204
+00:10:40,340 --> 00:10:44,060
+You're applying the rubric in assessing whether the design is good.
+
+205
+00:10:44,060 --> 00:10:47,280
+You could have a different design than ours and still be good.
+
+206
+00:10:47,280 --> 00:10:48,210
+So there you go.
+
+207
+00:10:48,210 --> 00:10:51,090
+Do the self-assessment of your work, and hopefully that
+
+208
+00:10:51,090 --> 00:10:55,610
+will help you improve your ability to use the recipes to design.
+

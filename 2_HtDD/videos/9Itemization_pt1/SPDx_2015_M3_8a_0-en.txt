@@ -1,0 +1,79 @@
+
+GREGOR KICZALES: In this how to design data problem,
+the type comment is going to end up with a one of, but not all of the subclasses
+are going to be single distinct values.
+So this is what's going to be called an itemization,
+and it'll be the most complex form of data that we see this week.
+This is the problem in Countdown Starter.
+So what we're supposed to do here is design a data definition
+to represent the current state of a New Year's Eve countdown.
+So this is something like the countdown ball in Times Square.
+And we're asked to design a data definition for that.
+As always, when we designed a definition the first thing
+is to clearly identify the information in the problem domain
+that we're trying to represent.
+And in this case, the problem statement makes that very clear to us.
+In particular, it makes it clear that the information
+falls into one of three categories.
+The countdown hasn't started, it's from 10 to 1 seconds before midnight,
+or it's complete.
+The previous problem we saw, the letter grade problem,
+also had three categories.
+But here the categories are different.
+This first one is kind of distinct.
+The countdown hasn't started, that's a clear, distinct state.
+But in this second category, there's not a single distinct value there.
+There's 10, 9, 8, all the way to 1.
+So there's a number of different values there.
+And then in the third category, again there's a distinct state there,
+the countdown is complete.
+So this isn't going to be an enumeration.
+This is going to be what's called an itemization, because there
+are two or more subclasses, at least one of which
+is not a single, distinct value.
+This center one is not a single, distinct value.
+So that's going to be an itemization.
+And again, after this video is over, I encourage
+you go to the Design Recipes page, go to the How to Design Data page.
+This table would remind you that itemization
+is what you need to use in a case like this,
+and you can go ahead and read about the itemizations.
+Do that carefully after this video is over, or work through the problem now.
+So let's see.
+We start with the Type Comment, as always.
+So we'll say that Countdown is one of-- and there's three subclasses.
+
+And now we have to decide for each subclass how we'll represent that,
+what data will represent that.
+Well, lets see.
+If the countdown hasn't yet started, that's kind of a distinct state.
+So we could use any piece of atomic, distinct data to represent that.
+Let's just use False.
+We'll only use the Boolean value False, to represent
+that the countdown hasn't yet started.
+Now in the second subclass, let's just say
+that that'll be a natural number, from 1 to 10 inclusive.
+And in the third case, we also need a distinct value there.
+And we'll just use the string in this case, complete.
+So now we've got three distinct subclasses
+that correspond to the three distinct kinds of information that
+need to be represented.
+And we'll do an interpretation here.
+And I'll use multiple lines for this interpretation.
+I'll say false means countdown has not yet started.
+Natural 1 to 10 means countdown is running, and how many seconds left.
+
+And Complete means countdown is over.
+And if you want to you, you can indulge your inner Virgo
+and make these line up nicely.
+And if you don't want to, you don't have to.
+There's the Type Comment and the Interpretation.
+Now we need some examples.
+So we might say, define Countdown 1 is-- now, I'll put a false here.
+It's an atomic distinct, so in some sense
+you might find that that example is not particularly illustrative.
+But maybe I'll have Countdown 2 is 10, and I could put a comma in here
+if I want, just started running.
+Define Countdown 3, almost over.
+And define Countdown 4, complete.
+And that one's clear.

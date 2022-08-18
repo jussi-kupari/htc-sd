@@ -1,0 +1,416 @@
+0
+00:00:00,000 --> 00:00:00,450
+
+
+1
+00:00:00,450 --> 00:00:03,533
+GREGOR KICZALES: We previously saw how to construct a template for a mixed
+
+2
+00:00:03,533 --> 00:00:04,730
+data itemization.
+
+3
+00:00:04,730 --> 00:00:08,880
+And we saw that because there can be different data
+
+4
+00:00:08,880 --> 00:00:12,410
+types in the itemization, we end up having to put a guard.
+
+5
+00:00:12,410 --> 00:00:15,990
+For example, in the second case of the cond.
+
+6
+00:00:15,990 --> 00:00:17,900
+We have the number?
+
+7
+00:00:17,900 --> 00:00:21,560
+guard to make sure that we don't accidentally
+
+8
+00:00:21,560 --> 00:00:27,840
+hand the string complete to this less than or equal to right here.
+
+9
+00:00:27,840 --> 00:00:28,720
+The number?
+
+10
+00:00:28,720 --> 00:00:33,296
+is making sure that this number isn't going to be the string complete.
+
+11
+00:00:33,296 --> 00:00:35,170
+And we saw that in the last case, we can just
+
+12
+00:00:35,170 --> 00:00:37,120
+put else, because it's the last case.
+
+13
+00:00:37,120 --> 00:00:40,580
+You can always put else for the last case of an itemization.
+
+14
+00:00:40,580 --> 00:00:43,990
+But it turns out that you can simplify this template a little bit more.
+
+15
+00:00:43,990 --> 00:00:46,190
+And here's why.
+
+16
+00:00:46,190 --> 00:00:52,540
+Notice that there's only one case here of natural numbers.
+
+17
+00:00:52,540 --> 00:00:55,770
+The middle case is natural numbers between 1 and 10.
+
+18
+00:00:55,770 --> 00:01:01,090
+So because it's between 1 and 10 that we put the two less than
+
+19
+00:01:01,090 --> 00:01:02,540
+or equal to calls.
+
+20
+00:01:02,540 --> 00:01:05,170
+That gets us to between 1 and 10.
+
+21
+00:01:05,170 --> 00:01:09,105
+And it's because we want to be sure not to hand the string complete to that
+
+22
+00:01:09,105 --> 00:01:10,640
+that we put the number?
+
+23
+00:01:10,640 --> 00:01:12,225
+guard.
+
+24
+00:01:12,225 --> 00:01:16,630
+But because there's only one that subcategory of numbers,
+
+25
+00:01:16,630 --> 00:01:19,780
+it actually turns out that all we need is the number?
+
+26
+00:01:19,780 --> 00:01:20,910
+guard.
+
+27
+00:01:20,910 --> 00:01:25,700
+We can get rid of the and and these two calls to less than or equal to
+
+28
+00:01:25,700 --> 00:01:33,400
+and just simplify this second question in the template to number
+
+29
+00:01:33,400 --> 00:01:35,212
+question mark.
+
+30
+00:01:35,212 --> 00:01:36,170
+Because think about it.
+
+31
+00:01:36,170 --> 00:01:41,310
+What this says is it says, well, if it's false, then that's the first case.
+
+32
+00:01:41,310 --> 00:01:44,370
+And if it's a number, then that's the second case,
+
+33
+00:01:44,370 --> 00:01:47,960
+because there's only one subcategory that is numbers.
+
+34
+00:01:47,960 --> 00:01:51,060
+So I don't need to bother to ask whether it's between 1 and 10.
+
+35
+00:01:51,060 --> 00:01:53,680
+It's the only subcategory of numbers.
+
+36
+00:01:53,680 --> 00:01:57,560
+And then there's only one case left for else.
+
+37
+00:01:57,560 --> 00:02:00,330
+Here's one more example of the kinds of simplification
+
+38
+00:02:00,330 --> 00:02:05,050
+we can do for the templates in mixed data itemization.
+
+39
+00:02:05,050 --> 00:02:07,600
+I've got a data definition here which is supposed
+
+40
+00:02:07,600 --> 00:02:11,650
+to represent the condition of a traffic light which is either disabled
+
+41
+00:02:11,650 --> 00:02:13,912
+or it's red, yellow, green.
+
+42
+00:02:13,912 --> 00:02:17,210
+And so in this data definition, we've used a mixed data itemization.
+
+43
+00:02:17,210 --> 00:02:19,050
+False means disabled.
+
+44
+00:02:19,050 --> 00:02:25,750
+And the strings red, yellow, green mean the color of light.
+
+45
+00:02:25,750 --> 00:02:30,110
+So this is an itemization that includes an enumeration in some sense, which
+
+46
+00:02:30,110 --> 00:02:30,860
+is fine.
+
+47
+00:02:30,860 --> 00:02:34,370
+That fits the definition of an itemization.
+
+48
+00:02:34,370 --> 00:02:37,230
+Let's construct the template.
+
+49
+00:02:37,230 --> 00:02:38,230
+So let's see.
+
+50
+00:02:38,230 --> 00:02:45,650
+It's going to start out as one of four cases.
+
+51
+00:02:45,650 --> 00:02:49,260
+And so that's a four case cond.
+
+52
+00:02:49,260 --> 00:02:56,040
+The first case is atomic distinct false.
+
+53
+00:02:56,040 --> 00:03:00,090
+So the question is now false?
+
+54
+00:03:00,090 --> 00:03:04,610
+tl and dot, dot, dot.
+
+55
+00:03:04,610 --> 00:03:09,075
+And the next three cases are all atomic distinctions and now they're strings.
+
+56
+00:03:09,075 --> 00:03:11,890
+
+
+57
+00:03:11,890 --> 00:03:16,350
+And I'll just fill them all in quickly.
+
+58
+00:03:16,350 --> 00:03:19,470
+Now, because this is mixed data itemization,
+
+59
+00:03:19,470 --> 00:03:22,820
+then the rule is that we should guard these string equals.
+
+60
+00:03:22,820 --> 00:03:26,510
+We have to say something like and string?
+
+61
+00:03:26,510 --> 00:03:30,960
+mark tl string=?
+
+62
+00:03:30,960 --> 00:03:35,320
+tl to red.
+
+63
+00:03:35,320 --> 00:03:39,280
+That would be the question and dot, dot, dot would be the answer.
+
+64
+00:03:39,280 --> 00:03:40,970
+And we would do that three times.
+
+65
+00:03:40,970 --> 00:03:44,199
+
+
+66
+00:03:44,199 --> 00:03:44,990
+So now that's good.
+
+67
+00:03:44,990 --> 00:03:47,310
+We've guarded these string equals.
+
+68
+00:03:47,310 --> 00:03:50,610
+But we can do this think simpler here.
+
+69
+00:03:50,610 --> 00:03:55,010
+Once we get to this red, there are no more data types left,
+
+70
+00:03:55,010 --> 00:03:56,930
+other than string.
+
+71
+00:03:56,930 --> 00:04:00,750
+Everything from here on out is going to be some form of string.
+
+72
+00:04:00,750 --> 00:04:03,290
+And so there's an additional rule.
+
+73
+00:04:03,290 --> 00:04:08,770
+Which is if all the remaining cases are the same data type,
+
+74
+00:04:08,770 --> 00:04:10,830
+then you don't need the guards.
+
+75
+00:04:10,830 --> 00:04:14,280
+That guard, that guard, and that guard, none of those have to be there.
+
+76
+00:04:14,280 --> 00:04:19,640
+So we can take them back out like this.
+
+77
+00:04:19,640 --> 00:04:21,730
+We'll take them out.
+
+78
+00:04:21,730 --> 00:04:27,420
+And we end up with this simpler template.
+
+79
+00:04:27,420 --> 00:04:28,590
+Now let's be clear.
+
+80
+00:04:28,590 --> 00:04:33,980
+These simplifications of the template, they're not essential.
+
+81
+00:04:33,980 --> 00:04:37,160
+The template we had 30 seconds ago was perfectly good.
+
+82
+00:04:37,160 --> 00:04:37,660
+It worked.
+
+83
+00:04:37,660 --> 00:04:40,310
+It would never have any problems.
+
+84
+00:04:40,310 --> 00:04:42,500
+But this one is a little bit simpler.
+
+85
+00:04:42,500 --> 00:04:47,960
+So there's two rules for simplifying mixed data itemization templates.
+
+86
+00:04:47,960 --> 00:04:52,170
+The first rule is that if a given subclass is
+
+87
+00:04:52,170 --> 00:04:56,210
+the last subclass of its type, which is what happened here,
+
+88
+00:04:56,210 --> 00:05:00,680
+this natural 110 is the last subclass that's a natural,
+
+89
+00:05:00,680 --> 00:05:03,730
+we don't need the 110 part of the test.
+
+90
+00:05:03,730 --> 00:05:05,330
+We can just have the guard.
+
+91
+00:05:05,330 --> 00:05:08,921
+So we reduce that question to number?.
+
+92
+00:05:08,921 --> 00:05:15,190
+The second rule is that if all the remaining cases are of a given type,
+
+93
+00:05:15,190 --> 00:05:18,130
+then we can eliminate all the guards.
+
+94
+00:05:18,130 --> 00:05:22,320
+So this just became the string=?, the string=?, the string=?,
+
+95
+00:05:22,320 --> 00:05:24,050
+we didn't have the and string?
+
+96
+00:05:24,050 --> 00:05:25,860
+question mark.
+
+97
+00:05:25,860 --> 00:05:28,770
+Again, what's essential in mixed data itemizations
+
+98
+00:05:28,770 --> 00:05:31,670
+is that you put the guards in to start with.
+
+99
+00:05:31,670 --> 00:05:34,930
+Without the guards, the template isn't going to work properly.
+
+100
+00:05:34,930 --> 00:05:38,700
+These two rules for further simplification of the templates
+
+101
+00:05:38,700 --> 00:05:41,380
+are good, but they're not absolutely essential.
+
+102
+00:05:41,380 --> 00:05:44,910
+They'll get you code, which is also correct, a little bit simpler.
+
+103
+00:05:44,910 --> 00:05:48,860
+But the main thing you want is the code that's correct in the first place.
+

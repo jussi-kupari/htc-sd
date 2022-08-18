@@ -1,0 +1,504 @@
+0
+00:00:00,000 --> 00:00:04,854
+
+
+1
+00:00:04,854 --> 00:00:06,770
+GREGOR KICZALES: In the last video, we learned
+
+2
+00:00:06,770 --> 00:00:09,324
+how to write expressions that operate on numbers.
+
+3
+00:00:09,324 --> 00:00:11,490
+That video should have given you a pretty good sense
+
+4
+00:00:11,490 --> 00:00:14,230
+of how to write those expressions.
+
+5
+00:00:14,230 --> 00:00:17,930
+In this video, we're going to look in more detail at the rules Racket
+
+6
+00:00:17,930 --> 00:00:21,480
+uses to evaluate those expressions.
+
+7
+00:00:21,480 --> 00:00:24,570
+Now, you may find it a little pedantic to talk about the precise rules
+
+8
+00:00:24,570 --> 00:00:28,600
+for evaluating an expression like plus 1 2.
+
+9
+00:00:28,600 --> 00:00:32,549
+And if all programs were that short, you'd be right.
+
+10
+00:00:32,549 --> 00:00:34,510
+But here's something to consider.
+
+11
+00:00:34,510 --> 00:00:38,535
+The Chevy Volt has 10 million lines of source code in it,
+
+12
+00:00:38,535 --> 00:00:41,300
+10 million lines of source code in a car.
+
+13
+00:00:41,300 --> 00:00:44,130
+So programs get quite big.
+
+14
+00:00:44,130 --> 00:00:46,920
+If that was a program written in the beginning student language,
+
+15
+00:00:46,920 --> 00:00:50,830
+it would have many more than 10 million expressions in it.
+
+16
+00:00:50,830 --> 00:00:54,180
+And it turns out that in order to be able to understand big programs,
+
+17
+00:00:54,180 --> 00:00:57,370
+we really need to understand the detailed rules by which expressions
+
+18
+00:00:57,370 --> 00:00:58,970
+get evaluated.
+
+19
+00:00:58,970 --> 00:01:01,820
+We don't always need to think in terms of those rules,
+
+20
+00:01:01,820 --> 00:01:05,200
+but we do need to have them to fall back on.
+
+21
+00:01:05,200 --> 00:01:08,710
+So that's what we're going to look at in this video.
+
+22
+00:01:08,710 --> 00:01:10,920
+Here's the expression that I'd like to work with.
+
+23
+00:01:10,920 --> 00:01:15,620
+And if I just run this, I'll get the value 14.
+
+24
+00:01:15,620 --> 00:01:19,160
+What I want to do, though, is look at the detailed step-by-step process
+
+25
+00:01:19,160 --> 00:01:23,625
+that Racket uses when it evaluates this expression that results in 14.
+
+26
+00:01:23,625 --> 00:01:26,390
+
+
+27
+00:01:26,390 --> 00:01:30,670
+Before I do that, I want to introduce an additional bit of terminology here.
+
+28
+00:01:30,670 --> 00:01:36,990
+We're going to say that an expression, like this one, because it starts
+
+29
+00:01:36,990 --> 00:01:40,830
+with an open parenthesis and then the name of a primitive operation,
+
+30
+00:01:40,830 --> 00:01:44,210
+is called a primitive call, or a call to a primitive.
+
+31
+00:01:44,210 --> 00:01:52,040
+And in a primitive call, we're going to say that this is the operator.
+
+32
+00:01:52,040 --> 00:01:54,280
+And in a primitive call, we're going to say
+
+33
+00:01:54,280 --> 00:01:58,420
+that all of these expressions that follow the operator-- in this case,
+
+34
+00:01:58,420 --> 00:02:03,300
+there's three of them-- are the operands.
+
+35
+00:02:03,300 --> 00:02:05,470
+And of course, we could do the same thing
+
+36
+00:02:05,470 --> 00:02:09,979
+because there's another primitive call sitting right here.
+
+37
+00:02:09,979 --> 00:02:13,860
+And inside that primitive call, that's the operator
+
+38
+00:02:13,860 --> 00:02:16,320
+and those are the operands.
+
+39
+00:02:16,320 --> 00:02:20,260
+And I could do the same thing over here.
+
+40
+00:02:20,260 --> 00:02:22,380
+So that's a bit of terminology.
+
+41
+00:02:22,380 --> 00:02:26,210
+Now let's look at the step-by-step process that takes that expression
+
+42
+00:02:26,210 --> 00:02:29,627
+and ends up producing the value 14.
+
+43
+00:02:29,627 --> 00:02:31,460
+Well, the first thing that happens is Racket
+
+44
+00:02:31,460 --> 00:02:33,760
+is asked to evaluate this entire expression.
+
+45
+00:02:33,760 --> 00:02:36,460
+And it sees that it's a primitive call because it
+
+46
+00:02:36,460 --> 00:02:40,630
+starts with an open parenthesis and a primitive operator.
+
+47
+00:02:40,630 --> 00:02:46,870
+So the rule for evaluating a primitive call is that first all of the operands
+
+48
+00:02:46,870 --> 00:02:49,370
+need to be reduced to values.
+
+49
+00:02:49,370 --> 00:02:52,730
+Well, this operand, the first one, already is a value.
+
+50
+00:02:52,730 --> 00:02:55,010
+So no evaluation work's going to be required there.
+
+51
+00:02:55,010 --> 00:02:56,970
+It already is a value.
+
+52
+00:02:56,970 --> 00:02:59,600
+But this operand is an expression.
+
+53
+00:02:59,600 --> 00:03:01,350
+It's not a value.
+
+54
+00:03:01,350 --> 00:03:04,270
+So some work is going to be required there.
+
+55
+00:03:04,270 --> 00:03:05,250
+Let's look at that.
+
+56
+00:03:05,250 --> 00:03:07,570
+Well, this whole thing is a primitive call
+
+57
+00:03:07,570 --> 00:03:12,940
+because it starts with a parenthesis and a primitive operator.
+
+58
+00:03:12,940 --> 00:03:14,560
+So let's look at its operands.
+
+59
+00:03:14,560 --> 00:03:17,760
+Well, that first operand is already a value.
+
+60
+00:03:17,760 --> 00:03:19,920
+So no work required there.
+
+61
+00:03:19,920 --> 00:03:24,360
+And that second operand is already a value, so no work required there.
+
+62
+00:03:24,360 --> 00:03:29,990
+So at this point, the two operands in this primitive call
+
+63
+00:03:29,990 --> 00:03:32,360
+have been reduced to values.
+
+64
+00:03:32,360 --> 00:03:35,210
+And so this multiplication can happen.
+
+65
+00:03:35,210 --> 00:03:40,710
+And this whole thing is just going to become 12.
+
+66
+00:03:40,710 --> 00:03:43,390
+So let's say that in the first step of the evaluation,
+
+67
+00:03:43,390 --> 00:03:47,120
+this whole expression becomes this.
+
+68
+00:03:47,120 --> 00:03:50,060
+Now, I've left some extra space in here that you wouldn't normally
+
+69
+00:03:50,060 --> 00:03:52,420
+leave here just to make things continue to line up.
+
+70
+00:03:52,420 --> 00:03:55,630
+But here we see that in the first evaluation step,
+
+71
+00:03:55,630 --> 00:03:59,980
+that operand gets reduced to the value 12.
+
+72
+00:03:59,980 --> 00:04:03,790
+Well, now we reduced the first two operands to plus to values.
+
+73
+00:04:03,790 --> 00:04:05,850
+We need to work on this third one.
+
+74
+00:04:05,850 --> 00:04:06,870
+It's an expression now.
+
+75
+00:04:06,870 --> 00:04:07,730
+It's not a value.
+
+76
+00:04:07,730 --> 00:04:09,530
+So we need to work on it.
+
+77
+00:04:09,530 --> 00:04:14,870
+Let's see, open paren, the name of a primitive operation.
+
+78
+00:04:14,870 --> 00:04:18,920
+This first operand here is not a value.
+
+79
+00:04:18,920 --> 00:04:20,750
+So we need to reduce it.
+
+80
+00:04:20,750 --> 00:04:21,500
+Let's see.
+
+81
+00:04:21,500 --> 00:04:24,320
+Open paren, the name a primitive operation.
+
+82
+00:04:24,320 --> 00:04:26,120
+This operand is a value.
+
+83
+00:04:26,120 --> 00:04:27,870
+This operand is a value.
+
+84
+00:04:27,870 --> 00:04:34,160
+So at this point, this thing here, we can do the plus to get three.
+
+85
+00:04:34,160 --> 00:04:38,130
+So the next step of the evaluation is this.
+
+86
+00:04:38,130 --> 00:04:41,410
+So that plus 1 2 has now become 3.
+
+87
+00:04:41,410 --> 00:04:44,250
+So again, we were working on these operands to minus.
+
+88
+00:04:44,250 --> 00:04:46,100
+This one's a value now.
+
+89
+00:04:46,100 --> 00:04:48,490
+This one already is a value.
+
+90
+00:04:48,490 --> 00:04:54,390
+So this minus can happen to get zero.
+
+91
+00:04:54,390 --> 00:04:58,670
+At this point, all the operands for that plus
+
+92
+00:04:58,670 --> 00:05:03,290
+have been reduced to values so that plus itself can happen.
+
+93
+00:05:03,290 --> 00:05:05,760
+And the whole thing, of course, becomes 14.
+
+94
+00:05:05,760 --> 00:05:09,050
+
+
+95
+00:05:09,050 --> 00:05:11,690
+We'll learn more about the detailed step-by-step evaluation
+
+96
+00:05:11,690 --> 00:05:15,020
+rules in a couple more videos.
+
+97
+00:05:15,020 --> 00:05:17,680
+But for now, the intuition to take away from this
+
+98
+00:05:17,680 --> 00:05:21,770
+is that evaluation of an expression in general proceeds from left
+
+99
+00:05:21,770 --> 00:05:25,620
+to right and from inside to outside.
+
+100
+00:05:25,620 --> 00:05:28,750
+So as we evaluate the outer plus, this times three four
+
+101
+00:05:28,750 --> 00:05:32,030
+happens first because we go left to right.
+
+102
+00:05:32,030 --> 00:05:36,120
+But then when we try to do this whole expression, this plus 1 2
+
+103
+00:05:36,120 --> 00:05:39,430
+has to happen first because of the inside to outside behavior.
+
+104
+00:05:39,430 --> 00:05:43,930
+Because all of the operands to that minus have to become values
+
+105
+00:05:43,930 --> 00:05:45,240
+before the minus can proceed.
+
+106
+00:05:45,240 --> 00:05:48,220
+
+
+107
+00:05:48,220 --> 00:05:50,890
+That left to right inside to outside intuition
+
+108
+00:05:50,890 --> 00:05:53,700
+is an important way to understand the evaluation of expressions
+
+109
+00:05:53,700 --> 00:05:57,190
+in the beginning student language.
+
+110
+00:05:57,190 --> 00:06:01,600
+Now you've seen the first evaluation rule, the primitive call rule.
+
+111
+00:06:01,600 --> 00:06:04,430
+And you've seen how repeated application of that rule
+
+112
+00:06:04,430 --> 00:06:08,280
+can evaluate numerical expressions of arbitrary complexity.
+
+113
+00:06:08,280 --> 00:06:11,510
+You've also seen how repeated application of that rule
+
+114
+00:06:11,510 --> 00:06:17,280
+leads to a left to right inside to outside evaluation order.
+
+115
+00:06:17,280 --> 00:06:19,780
+One of the great things about our beginning student language
+
+116
+00:06:19,780 --> 00:06:23,790
+is that it actually turns out not to have very many evaluation rules.
+
+117
+00:06:23,790 --> 00:06:27,110
+We're going to learn three more in the first week of the course,
+
+118
+00:06:27,110 --> 00:06:31,050
+and then just three more the entire rest of the course.
+
+119
+00:06:31,050 --> 00:06:35,540
+And that's going to let us write programs of arbitrary complexity.
+
+120
+00:06:35,540 --> 00:06:38,710
+That's one of the reasons why we're using the BSL language.
+
+121
+00:06:38,710 --> 00:06:42,530
+It lets us spend not very much time explaining the language
+
+122
+00:06:42,530 --> 00:06:46,770
+so we can focus more of our time on how to design programs.
+
+123
+00:06:46,770 --> 00:06:50,590
+And that, the ability to design programs in any language,
+
+124
+00:06:50,590 --> 00:06:53,675
+is really the most important thing to learn.
+
+125
+00:06:53,675 --> 00:06:54,174
+
+

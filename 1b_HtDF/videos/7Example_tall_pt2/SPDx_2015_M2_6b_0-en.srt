@@ -1,0 +1,456 @@
+0
+00:00:00,000 --> 00:00:02,740
+GREGOR KICZALES: For now I'm just going to kind of assume
+
+1
+00:00:02,740 --> 00:00:04,870
+that it only needs this one test.
+
+2
+00:00:04,870 --> 00:00:08,732
+That won't turn out to be right, but we'll see what happens.
+
+3
+00:00:08,732 --> 00:00:14,380
+Let me run the tests, and there's one test, and it runs and fails.
+
+4
+00:00:14,380 --> 00:00:16,070
+So it's well formed.
+
+5
+00:00:16,070 --> 00:00:19,630
+So we can keep going.
+
+6
+00:00:19,630 --> 00:00:20,330
+Let's see.
+
+7
+00:00:20,330 --> 00:00:21,560
+This is the stub.
+
+8
+00:00:21,560 --> 00:00:24,690
+We'll comment it out.
+
+9
+00:00:24,690 --> 00:00:25,960
+We'll write the template.
+
+10
+00:00:25,960 --> 00:00:30,491
+The template is tall, question mark img, . . .
+
+11
+00:00:30,491 --> 00:00:30,990
+img.
+
+12
+00:00:30,990 --> 00:00:33,500
+
+
+13
+00:00:33,500 --> 00:00:41,470
+We'll make a copy of that and we'll comment out.
+
+14
+00:00:41,470 --> 00:00:44,740
+The original template, we'll label it as the template.
+
+15
+00:00:44,740 --> 00:00:47,960
+
+
+16
+00:00:47,960 --> 00:00:48,620
+Let's see.
+
+17
+00:00:48,620 --> 00:00:50,920
+These functions have two cases, right?
+
+18
+00:00:50,920 --> 00:00:54,730
+Sometimes it's tall and sometimes it's not tall.
+
+19
+00:00:54,730 --> 00:01:01,230
+So when you have two cases, you can use an if, because that'd be the case where
+
+20
+00:01:01,230 --> 00:01:04,250
+it is tall, and the case where it isn't.
+
+21
+00:01:04,250 --> 00:01:06,912
+And what I'd like to do whatever I add an if to my template,
+
+22
+00:01:06,912 --> 00:01:10,460
+is I put in the if.
+
+23
+00:01:10,460 --> 00:01:16,440
+And then I make myself three copies of the rest
+
+24
+00:01:16,440 --> 00:01:20,380
+of the template as a way of saying OK, now I've got the if in there,
+
+25
+00:01:20,380 --> 00:01:23,060
+and I need to decide what happens here.
+
+26
+00:01:23,060 --> 00:01:25,060
+Now let's see: tall?
+
+27
+00:01:25,060 --> 00:01:29,600
+involves comparing the width to the height.
+
+28
+00:01:29,600 --> 00:01:31,720
+So let's see.
+
+29
+00:01:31,720 --> 00:01:40,830
+If the image height of the image is greater than the image
+
+30
+00:01:40,830 --> 00:01:45,480
+width of the image-- well, let's see.
+
+31
+00:01:45,480 --> 00:01:53,280
+If that's true, then the image is tall and so I should produce true.
+
+32
+00:01:53,280 --> 00:01:57,826
+And otherwise I should produce false.
+
+33
+00:01:57,826 --> 00:02:01,772
+
+
+34
+00:02:01,772 --> 00:02:02,980
+Well, let's try running that.
+
+35
+00:02:02,980 --> 00:02:05,950
+
+
+36
+00:02:05,950 --> 00:02:07,200
+OK, the test passed.
+
+37
+00:02:07,200 --> 00:02:10,539
+
+
+38
+00:02:10,539 --> 00:02:14,400
+The test passed, but are we done?
+
+39
+00:02:14,400 --> 00:02:16,960
+
+
+40
+00:02:16,960 --> 00:02:20,110
+Have we really tested this function?
+
+41
+00:02:20,110 --> 00:02:23,730
+Well, one clue that we haven't DrRacket is giving us right here
+
+42
+00:02:23,730 --> 00:02:26,810
+in the way it's colored this false.
+
+43
+00:02:26,810 --> 00:02:29,290
+Depending on how you have your DrRacket configured,
+
+44
+00:02:29,290 --> 00:02:33,320
+it might actually just highlight this false with black.
+
+45
+00:02:33,320 --> 00:02:36,030
+But in both cases, what it's saying is, it's saying hey,
+
+46
+00:02:36,030 --> 00:02:38,075
+this expression here was never evaluated.
+
+47
+00:02:38,075 --> 00:02:41,170
+
+
+48
+00:02:41,170 --> 00:02:43,592
+There's this concept called code coverage for a test,
+
+49
+00:02:43,592 --> 00:02:48,880
+or test coverage, which says given all my tests, how much of the code
+
+50
+00:02:48,880 --> 00:02:51,760
+is actually being evaluated?
+
+51
+00:02:51,760 --> 00:02:55,320
+And if the answer is not all of the code,
+
+52
+00:02:55,320 --> 00:02:57,740
+then you don't have enough tests, because what
+
+53
+00:02:57,740 --> 00:03:01,640
+if the piece of code that isn't evaluated is wrong?
+
+54
+00:03:01,640 --> 00:03:04,450
+You haven't tested that piece of code.
+
+55
+00:03:04,450 --> 00:03:08,270
+So, whenever you run your tests, if you see
+
+56
+00:03:08,270 --> 00:03:11,650
+code that's highlighted that says that it didn't get evaluated,
+
+57
+00:03:11,650 --> 00:03:14,920
+then you know for sure you need more tests.
+
+58
+00:03:14,920 --> 00:03:19,020
+And what's happening for us in this case is we tested the case where it is tall,
+
+59
+00:03:19,020 --> 00:03:22,400
+but we didn't test the case where isn't tall.
+
+60
+00:03:22,400 --> 00:03:25,360
+In this case, we can do that fairly straightforwardly by copying
+
+61
+00:03:25,360 --> 00:03:30,430
+the first test and just swapping these two around.
+
+62
+00:03:30,430 --> 00:03:35,830
+And saying, well in that case, it's false.
+
+63
+00:03:35,830 --> 00:03:38,000
+Now let's run it.
+
+64
+00:03:38,000 --> 00:03:41,920
+Both tests pass, but are we really done?
+
+65
+00:03:41,920 --> 00:03:44,760
+Let me make this a little bit-- give us a bit more room here.
+
+66
+00:03:44,760 --> 00:03:46,750
+Are we really done?
+
+67
+00:03:46,750 --> 00:03:50,760
+At this point, what you might think of is, hey, wait a minute.
+
+68
+00:03:50,760 --> 00:03:52,990
+There's one more case.
+
+69
+00:03:52,990 --> 00:03:59,090
+What if it's the image width and the height are the same?
+
+70
+00:03:59,090 --> 00:04:01,860
+What should happen then?
+
+71
+00:04:01,860 --> 00:04:05,030
+And this is a thing that happens in function and program design
+
+72
+00:04:05,030 --> 00:04:06,380
+all the time.
+
+73
+00:04:06,380 --> 00:04:08,750
+You realize partway through the design process
+
+74
+00:04:08,750 --> 00:04:12,590
+that there's a boundary condition, or sometimes we call it a corner case,
+
+75
+00:04:12,590 --> 00:04:15,310
+that you hadn't quite thought of.
+
+76
+00:04:15,310 --> 00:04:18,430
+It's perfectly fine for that to happen, but when it happens,
+
+77
+00:04:18,430 --> 00:04:21,959
+when you say to yourself, "Wait a minute, what if the width and height
+
+78
+00:04:21,959 --> 00:04:23,300
+are the same?"
+
+79
+00:04:23,300 --> 00:04:26,030
+You need to immediately do a couple things.
+
+80
+00:04:26,030 --> 00:04:30,260
+First, write an example for it.
+
+81
+00:04:30,260 --> 00:04:32,544
+Then decide what the behavior is.
+
+82
+00:04:32,544 --> 00:04:35,460
+And I'm going to decide in this case that if your width and height are
+
+83
+00:04:35,460 --> 00:04:39,290
+the same, you're not tall.
+
+84
+00:04:39,290 --> 00:04:44,820
+So write the example, write the expected result, fix the purpose.
+
+85
+00:04:44,820 --> 00:04:48,760
+
+
+86
+00:04:48,760 --> 00:04:56,700
+Height is greater than width, so that it's unambiguous in the purpose.
+
+87
+00:04:56,700 --> 00:05:00,150
+And if what you decided required you to change the function,
+
+88
+00:05:00,150 --> 00:05:01,190
+change the function.
+
+89
+00:05:01,190 --> 00:05:04,710
+In this case, it didn't, but if I had decided this the other way,
+
+90
+00:05:04,710 --> 00:05:07,230
+I would have to change that to a greater than or equal.
+
+91
+00:05:07,230 --> 00:05:09,970
+And now I'll run the tests again.
+
+92
+00:05:09,970 --> 00:05:12,507
+Now all three tests are passing.
+
+93
+00:05:12,507 --> 00:05:14,090
+So that's the design of that function.
+
+94
+00:05:14,090 --> 00:05:16,980
+That works when I run it, and the tests pass.
+
+95
+00:05:16,980 --> 00:05:21,530
+All my code is evaluated, so I've got good test coverage.
+
+96
+00:05:21,530 --> 00:05:23,420
+So I'm pretty good here.
+
+97
+00:05:23,420 --> 00:05:25,710
+At this point, I just want to make one minor detail
+
+98
+00:05:25,710 --> 00:05:31,110
+point, which is whenever you have an expression of the form if something,
+
+99
+00:05:31,110 --> 00:05:39,600
+true, false, you can always replace that by just this simpler thing.
+
+100
+00:05:39,600 --> 00:05:42,280
+
+
+101
+00:05:42,280 --> 00:05:52,370
+Let me comment this one out bracket, comment, out, with semicolons.
+
+102
+00:05:52,370 --> 00:05:53,500
+Why are these two the same?
+
+103
+00:05:53,500 --> 00:05:54,000
+Well, look.
+
+104
+00:05:54,000 --> 00:05:59,770
+This one says if this expression evaluates to true, then produce true.
+
+105
+00:05:59,770 --> 00:06:03,280
+Otherwise, if this expression evaluates to false, then produce false.
+
+106
+00:06:03,280 --> 00:06:06,420
+So that's really just the same as the expression itself.
+
+107
+00:06:06,420 --> 00:06:10,340
+Either this expression evaluates to true or it evaluates to false.
+
+108
+00:06:10,340 --> 00:06:14,760
+So whenever you have if, something, true, false,
+
+109
+00:06:14,760 --> 00:06:18,817
+you could just replace it with the question itself.
+
+110
+00:06:18,817 --> 00:06:21,400
+And in a normal program, once you've done something like that,
+
+111
+00:06:21,400 --> 00:06:23,450
+you would clean this up.
+
+112
+00:06:23,450 --> 00:06:27,500
+You'd delete that out from there, and in a couple weeks,
+
+113
+00:06:27,500 --> 00:06:30,700
+you also won't leave the stub and template behind.
+

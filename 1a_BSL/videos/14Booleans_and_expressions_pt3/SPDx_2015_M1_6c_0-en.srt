@@ -1,0 +1,364 @@
+0
+00:00:00,000 --> 00:00:00,940
+
+
+1
+00:00:00,940 --> 00:00:03,560
+GREGOR KICZALES: So that's an example of an if expression.
+
+2
+00:00:03,560 --> 00:00:06,720
+What we need to do now is look at the detailed rules
+
+3
+00:00:06,720 --> 00:00:08,689
+for evaluating if expressions.
+
+4
+00:00:08,689 --> 00:00:11,480
+What I'm going to do is first go ahead and put the evaluation rules
+
+5
+00:00:11,480 --> 00:00:14,370
+for if here on the right, and then I'm going
+
+6
+00:00:14,370 --> 00:00:16,295
+to change the example expression a little bit,
+
+7
+00:00:16,295 --> 00:00:18,170
+just to make it a little bit richer, so we'll
+
+8
+00:00:18,170 --> 00:00:19,990
+understand the rules a bit better.
+
+9
+00:00:19,990 --> 00:00:26,110
+I'll say that if the width is less than the height will produce the width,
+
+10
+00:00:26,110 --> 00:00:32,290
+the true answer will be the width, and the false answer will be the height.
+
+11
+00:00:32,290 --> 00:00:34,800
+Now let's try to step through that bit by bit.
+
+12
+00:00:34,800 --> 00:00:37,820
+And I'll also use the ctrl-E or cmd-E command,
+
+13
+00:00:37,820 --> 00:00:39,750
+to just make Racket hide the interaction area
+
+14
+00:00:39,750 --> 00:00:42,299
+so I've got a bit more room to work.
+
+15
+00:00:42,299 --> 00:00:42,840
+So let's see.
+
+16
+00:00:42,840 --> 00:00:44,672
+I've got an if expression.
+
+17
+00:00:44,672 --> 00:00:47,213
+And the rule for evaluating if expressions, the first thing I
+
+18
+00:00:47,213 --> 00:00:50,292
+have to do is evaluate the question expression.
+
+19
+00:00:50,292 --> 00:00:51,750
+So there's the question expression.
+
+20
+00:00:51,750 --> 00:00:56,160
+The question expression is a call to the primitive less-than,
+
+21
+00:00:56,160 --> 00:01:01,511
+so the first thing I have to do is reduce all of its operands to values.
+
+22
+00:01:01,511 --> 00:01:02,010
+Let's see.
+
+23
+00:01:02,010 --> 00:01:04,720
+The first operand isn't a value, it's an expression.
+
+24
+00:01:04,720 --> 00:01:08,370
+In particular, it's a call to the primitive image-width.
+
+25
+00:01:08,370 --> 00:01:12,610
+And first thing I have to do is reduce all of its operands to values.
+
+26
+00:01:12,610 --> 00:01:16,410
+See, this first operand isn't a value, it's the name of a constant,
+
+27
+00:01:16,410 --> 00:01:18,300
+so I have to produce a value for it.
+
+28
+00:01:18,300 --> 00:01:26,140
+So the first evaluation step simply is going
+
+29
+00:01:26,140 --> 00:01:34,780
+to reduce that expression, the constant name, to the corresponding value.
+
+30
+00:01:34,780 --> 00:01:40,210
+In this case, what that does is that I2 becomes the actual image, the image
+
+31
+00:01:40,210 --> 00:01:40,710
+value.
+
+32
+00:01:40,710 --> 00:01:43,420
+
+
+33
+00:01:43,420 --> 00:01:46,490
+OK, so now, let's see.
+
+34
+00:01:46,490 --> 00:01:48,400
+If expression.
+
+35
+00:01:48,400 --> 00:01:51,270
+Reduce the question.
+
+36
+00:01:51,270 --> 00:01:54,110
+Reduce the operands to this less-than.
+
+37
+00:01:54,110 --> 00:01:56,430
+Here's the first operand.
+
+38
+00:01:56,430 --> 00:01:58,636
+That's image width of that.
+
+39
+00:01:58,636 --> 00:01:59,550
+A-ha.
+
+40
+00:01:59,550 --> 00:02:02,710
+What happens here is that this whole thing--
+
+41
+00:02:02,710 --> 00:02:05,840
+I'm just copying it and pasting it-- this whole thing
+
+42
+00:02:05,840 --> 00:02:10,740
+becomes-- we just end up reducing this expression here this time.
+
+43
+00:02:10,740 --> 00:02:16,367
+So that's going to become 20, the width of rectangle 2.
+
+44
+00:02:16,367 --> 00:02:18,200
+The next step-- well, at this point, I think
+
+45
+00:02:18,200 --> 00:02:19,866
+you could see how this is going to work.
+
+46
+00:02:19,866 --> 00:02:23,930
+Now, we're basically reducing this operation to the less-than.
+
+47
+00:02:23,930 --> 00:02:28,690
+In the next step, the I2 becomes an image.
+
+48
+00:02:28,690 --> 00:02:40,620
+And then in the step after that, that whole thing becomes 10.
+
+49
+00:02:40,620 --> 00:02:42,850
+And I'll just put it on one line like this
+
+50
+00:02:42,850 --> 00:02:45,620
+so we get a bit more room to work with.
+
+51
+00:02:45,620 --> 00:02:49,530
+So remember, what we did here is we had to evaluate this expression.
+
+52
+00:02:49,530 --> 00:02:52,920
+If wants to evaluate its question expression first.
+
+53
+00:02:52,920 --> 00:02:56,750
+This was a call to a primitive in which both operands were calls to primitive.
+
+54
+00:02:56,750 --> 00:02:58,640
+So there's a fair amount of valuation work
+
+55
+00:02:58,640 --> 00:03:01,455
+we have to do here before we've evaluated the question expression.
+
+56
+00:03:01,455 --> 00:03:03,410
+And we still aren't even done.
+
+57
+00:03:03,410 --> 00:03:06,570
+We still now have a call to a primitive.
+
+58
+00:03:06,570 --> 00:03:08,800
+Both operands are values.
+
+59
+00:03:08,800 --> 00:03:12,665
+So now we can actually call less than with the two values.
+
+60
+00:03:12,665 --> 00:03:19,380
+
+
+61
+00:03:19,380 --> 00:03:23,830
+Now, less than 20, 10 --well, 20 is not less than 10,
+
+62
+00:03:23,830 --> 00:03:27,720
+so that's clearly going to be false.
+
+63
+00:03:27,720 --> 00:03:31,000
+And now, finally, we've evaluated the question expression.
+
+64
+00:03:31,000 --> 00:03:34,390
+We've evaluated the question expression, and now we
+
+65
+00:03:34,390 --> 00:03:36,670
+go to the remaining rules of the if.
+
+66
+00:03:36,670 --> 00:03:41,120
+Next rule says that if the question expression produces true-- well,
+
+67
+00:03:41,120 --> 00:03:41,690
+it hasn't.
+
+68
+00:03:41,690 --> 00:03:45,150
+Here, the question expression has produced false.
+
+69
+00:03:45,150 --> 00:03:49,150
+So the next rule says if the question expression produces false, then what
+
+70
+00:03:49,150 --> 00:03:57,030
+we're going to do is replace the entire if expression with the false answer.
+
+71
+00:03:57,030 --> 00:03:59,360
+So there's the false answer.
+
+72
+00:03:59,360 --> 00:04:04,030
+The entire expression gets replaced with the false answer.
+
+73
+00:04:04,030 --> 00:04:06,350
+Now we have a call to a primitive.
+
+74
+00:04:06,350 --> 00:04:08,930
+The first operand is not a value, so we need to evaluate it.
+
+75
+00:04:08,930 --> 00:04:12,830
+
+
+76
+00:04:12,830 --> 00:04:14,250
+So that has to get evaluated.
+
+77
+00:04:14,250 --> 00:04:17,730
+
+
+78
+00:04:17,730 --> 00:04:20,300
+Now all the operands to image height are values,
+
+79
+00:04:20,300 --> 00:04:22,910
+so we can actually call image height.
+
+80
+00:04:22,910 --> 00:04:25,615
+And we get 10.
+
+81
+00:04:25,615 --> 00:04:27,587
+The whole thing evaluates to 10.
+
+82
+00:04:27,587 --> 00:04:29,420
+And again, if we use that trick I showed you
+
+83
+00:04:29,420 --> 00:04:32,690
+in the last video of running this now, we'll
+
+84
+00:04:32,690 --> 00:04:36,710
+see a whole bunch of 10s, which tells us that we did all of our evaluation steps
+
+85
+00:04:36,710 --> 00:04:38,610
+properly.
+
+86
+00:04:38,610 --> 00:04:42,910
+So the key thing is, the rule for if is, first you evaluate question,
+
+87
+00:04:42,910 --> 00:04:45,670
+and then, depending on the result of the question,
+
+88
+00:04:45,670 --> 00:04:50,680
+you replace the entire if with either the true answer or the false answer,
+
+89
+00:04:50,680 --> 00:04:52,950
+and then you just keep evaluating.
+
+90
+00:04:52,950 --> 00:04:53,872
+
+

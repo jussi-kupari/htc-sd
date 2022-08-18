@@ -1,0 +1,68 @@
+0
+00:00:00,000 --> 00:00:00,652
+
+
+1
+00:00:00,652 --> 00:00:03,610
+GREGOR KICZALES: So now you've seen the How to Design Functions Recipe,
+
+2
+00:00:03,610 --> 00:00:06,700
+and you've seen me work through four examples of it,
+
+3
+00:00:06,700 --> 00:00:10,490
+where each example showed some more wrinkles to the process.
+
+4
+00:00:10,490 --> 00:00:13,320
+What you should do now is go work through all the practice
+
+5
+00:00:13,320 --> 00:00:18,240
+problems for this week, and then do the homework problems and the quiz.
+
+6
+00:00:18,240 --> 00:00:20,140
+Let me stress something about this material.
+
+7
+00:00:20,140 --> 00:00:23,280
+I just can't make this point strongly enough.
+
+8
+00:00:23,280 --> 00:00:26,870
+This is the kind of material that you learn by doing.
+
+9
+00:00:26,870 --> 00:00:30,090
+I really want to encourage you, don't look at the problem
+
+10
+00:00:30,090 --> 00:00:32,159
+and then look at the solution.
+
+11
+00:00:32,159 --> 00:00:37,190
+If you do that, you're going to say to yourself, oh, I know how to do this.
+
+12
+00:00:37,190 --> 00:00:40,100
+You need to actually take the blank starter file
+
+13
+00:00:40,100 --> 00:00:43,420
+and work through the problem yourself from beginning to end.
+
+14
+00:00:43,420 --> 00:00:47,010
+That's the only way to learn this kind of material.
+
+15
+00:00:47,010 --> 00:00:49,860
+At any rate, have fun with the practice problems and the homework,
+
+16
+00:00:49,860 --> 00:00:52,200
+and I'll see you next week.
+

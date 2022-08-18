@@ -1,0 +1,108 @@
+0
+00:00:00,000 --> 00:00:04,539
+
+
+1
+00:00:04,539 --> 00:00:07,580
+GREGOR KICZALES: In this video we're going to start a big function design
+
+2
+00:00:07,580 --> 00:00:11,020
+problem that's going to last through several videos,
+
+3
+00:00:11,020 --> 00:00:14,890
+and it will lead us eventually to designing five functions.
+
+4
+00:00:14,890 --> 00:00:17,180
+That's not at all unusual.
+
+5
+00:00:17,180 --> 00:00:21,980
+In some function design problems you design many more functions than that.
+
+6
+00:00:21,980 --> 00:00:26,580
+Imagine, for example, designing a function that consumes a location,
+
+7
+00:00:26,580 --> 00:00:30,824
+and drives a car from its current position to that location.
+
+8
+00:00:30,824 --> 00:00:32,740
+I think you can easily imagine that that would
+
+9
+00:00:32,740 --> 00:00:36,560
+involve many, many, many functions.
+
+10
+00:00:36,560 --> 00:00:39,590
+The one we're going to do now, though, starts with one function
+
+11
+00:00:39,590 --> 00:00:42,050
+and will end up designing five.
+
+12
+00:00:42,050 --> 00:00:45,540
+The basic problem is we have a bunch of pictures or images
+
+13
+00:00:45,540 --> 00:00:49,550
+that we want to be able to store and present in different ways.
+
+14
+00:00:49,550 --> 00:00:52,940
+This problem will do a simple version of the presentation,
+
+15
+00:00:52,940 --> 00:00:56,660
+and later on will set the stage for more elaborate version.
+
+16
+00:00:56,660 --> 00:00:58,480
+So there's two parts to this problem.
+
+17
+00:00:58,480 --> 00:01:01,100
+First we have to design a data definition to represent
+
+18
+00:01:01,100 --> 00:01:03,240
+an arbitrary number of images.
+
+19
+00:01:03,240 --> 00:01:07,040
+And then we'll design a function to arrange those images in a nice way.
+
+20
+00:01:07,040 --> 00:01:10,850
+The video will pause here while you go ahead and do part a:
+
+21
+00:01:10,850 --> 00:01:15,800
+design a data definition to represent an arbitrary number of images.
+
+22
+00:01:15,800 --> 00:01:19,180
+I strongly recommend that you take the time to do this yourself right now,
+
+23
+00:01:19,180 --> 00:01:21,440
+rather than just restart the video.
+
+24
+00:01:21,440 --> 00:01:23,450
+But of course nobody's watching, so you can just
+
+25
+00:01:23,450 --> 00:01:26,300
+restart the video if you want to.
+
+26
+00:01:26,300 --> 00:01:28,374
+
+

@@ -1,0 +1,456 @@
+0
+00:00:00,000 --> 00:00:00,980
+
+
+1
+00:00:00,980 --> 00:00:03,730
+GREGOR KICZALES: So there's the data definition and two functions.
+
+2
+00:00:03,730 --> 00:00:07,850
+One function, next-cat, can take us from one cat to the next cat.
+
+3
+00:00:07,850 --> 00:00:12,190
+In other words, it can advance the cat's x position by three
+
+4
+00:00:12,190 --> 00:00:16,440
+each time, 0, 3, 6, and so on.
+
+5
+00:00:16,440 --> 00:00:19,920
+The other function can take us from a cat to an image of the cat,
+
+6
+00:00:19,920 --> 00:00:23,230
+in other words, the image of the cat at the appropriate position
+
+7
+00:00:23,230 --> 00:00:26,210
+on the background called MTS.
+
+8
+00:00:26,210 --> 00:00:28,560
+Now we need to understand how those two functions need
+
+9
+00:00:28,560 --> 00:00:32,950
+to dance together in order for the cat to move across the screen the way
+
+10
+00:00:32,950 --> 00:00:34,590
+we want it to.
+
+11
+00:00:34,590 --> 00:00:36,920
+Suppose the cat starts at 0.
+
+12
+00:00:36,920 --> 00:00:41,790
+We need to call render-cat to get the appropriate image and display that.
+
+13
+00:00:41,790 --> 00:00:47,080
+Then we need to call next-cat with 0 to get 3.
+
+14
+00:00:47,080 --> 00:00:49,560
+Then we need to call render-cat with 3 to get the image
+
+15
+00:00:49,560 --> 00:00:54,170
+and display it, then next-cat with 3 to get 6.
+
+16
+00:00:54,170 --> 00:01:01,180
+Then render-cat we call with 6 to get the next image and display that.
+
+17
+00:01:01,180 --> 00:01:05,480
+Then we call next-cat with 6 to get 9, then render-cat with 9 to get the image
+
+18
+00:01:05,480 --> 00:01:08,920
+and display it, next-cat with 9 to get 12, render-cat with 12,
+
+19
+00:01:08,920 --> 00:01:11,320
+next-cat with 12, 15, and so on and so on and so on.
+
+20
+00:01:11,320 --> 00:01:13,520
+And all we need to do is do that 28 times
+
+21
+00:01:13,520 --> 00:01:16,830
+a second, which I can't talk that fast.
+
+22
+00:01:16,830 --> 00:01:22,070
+To do that, to wire render-cat and next-cat together that way,
+
+23
+00:01:22,070 --> 00:01:27,630
+DrRacket gives us a special expression called a big-bang expression.
+
+24
+00:01:27,630 --> 00:01:32,480
+And here's an example of how we would use big-bang to make the cat walk.
+
+25
+00:01:32,480 --> 00:01:35,370
+The first argument to big-bang is an expression
+
+26
+00:01:35,370 --> 00:01:38,340
+that evaluates to what the big-bang calls the initial world
+
+27
+00:01:38,340 --> 00:01:43,420
+state, the initial state of this whole interactive world.
+
+28
+00:01:43,420 --> 00:01:45,570
+In this case, the state of the interactive world
+
+29
+00:01:45,570 --> 00:01:48,470
+is represented by the cat type, and so we're
+
+30
+00:01:48,470 --> 00:01:51,530
+going to give it an expression that produces a cat.
+
+31
+00:01:51,530 --> 00:01:54,480
+So 0 is the initial position of the cat.
+
+32
+00:01:54,480 --> 00:01:58,170
+After its first argument, big-bang takes a number of options.
+
+33
+00:01:58,170 --> 00:02:02,310
+And it takes so many that the way it does it is to take them by name.
+
+34
+00:02:02,310 --> 00:02:06,310
+That way you can give it only the options you want to give it each time.
+
+35
+00:02:06,310 --> 00:02:08,289
+The way to read this first option is it says,
+
+36
+00:02:08,289 --> 00:02:12,750
+each time the clock ticks, call the next-cat function,
+
+37
+00:02:12,750 --> 00:02:15,640
+pass it as an argument the current state of the world,
+
+38
+00:02:15,640 --> 00:02:20,160
+and it will give you back the next state of the world.
+
+39
+00:02:20,160 --> 00:02:23,550
+Because in this particular big-bang expression the state of the world
+
+40
+00:02:23,550 --> 00:02:27,320
+is represented by Cat, I've put a comment
+
+41
+00:02:27,320 --> 00:02:31,230
+here saying that the type of the first argument to big-bang, in this case,
+
+42
+00:02:31,230 --> 00:02:32,570
+is Cat.
+
+43
+00:02:32,570 --> 00:02:37,330
+And another comment here that says that the signature of the next-cat function
+
+44
+00:02:37,330 --> 00:02:40,600
+is that it consumes Cat and produces Cat.
+
+45
+00:02:40,600 --> 00:02:44,970
+The second option to big-bang, in this case, is called to-draw.
+
+46
+00:02:44,970 --> 00:02:47,580
+And you should read this use of to-draw as saying
+
+47
+00:02:47,580 --> 00:02:51,730
+that what big-bang's going to do is on each clock tick,
+
+48
+00:02:51,730 --> 00:02:56,590
+it's going to call render-cat, passing render-cat as its first argument
+
+49
+00:02:56,590 --> 00:02:59,780
+the current world state, in other words, a Cat.
+
+50
+00:02:59,780 --> 00:03:04,797
+And render-cat will produce an image, and big-bang will display that image.
+
+51
+00:03:04,797 --> 00:03:07,880
+And I've made a note here off to the side that the signature of render-cat
+
+52
+00:03:07,880 --> 00:03:11,090
+is that it consumes Cat and produces Image.
+
+53
+00:03:11,090 --> 00:03:13,980
+So what big-bang is doing for us is it's taking
+
+54
+00:03:13,980 --> 00:03:20,130
+all the little pieces of our world, the initial world state, the tick function,
+
+55
+00:03:20,130 --> 00:03:24,610
+the draw function, and it's combining all those pieces together
+
+56
+00:03:24,610 --> 00:03:26,700
+to get a world.
+
+57
+00:03:26,700 --> 00:03:29,520
+Do you see the joke behind the name now?
+
+58
+00:03:29,520 --> 00:03:37,249
+It squeezes the pieces together, big-bang, it produces a world.
+
+59
+00:03:37,249 --> 00:03:40,040
+Whether you like that joke about the name or not, that is the name.
+
+60
+00:03:40,040 --> 00:03:42,950
+I didn't come up with it.
+
+61
+00:03:42,950 --> 00:03:45,390
+One other point to make about big-bang is
+
+62
+00:03:45,390 --> 00:03:48,430
+that it's what computer scientists like to call polymorphic.
+
+63
+00:03:48,430 --> 00:03:51,180
+It can work for any type of world state.
+
+64
+00:03:51,180 --> 00:03:53,340
+So big-bang doesn't just work with cats.
+
+65
+00:03:53,340 --> 00:03:57,250
+It can work, for example, if you have an interactive world
+
+66
+00:03:57,250 --> 00:04:01,940
+program that has to do with fireworks, then the world state could be firework.
+
+67
+00:04:01,940 --> 00:04:05,940
+Or if you have an interactive program that has to do with lots of fireworks,
+
+68
+00:04:05,940 --> 00:04:08,480
+then the world state could be list of firework.
+
+69
+00:04:08,480 --> 00:04:10,620
+The world state can be anything you want to be.
+
+70
+00:04:10,620 --> 00:04:18,120
+So actually here, where we've noted cat and cat to cat and cat to image,
+
+71
+00:04:18,120 --> 00:04:20,800
+as far as big-bang's concerned it can be anything.
+
+72
+00:04:20,800 --> 00:04:25,600
+So really it could be X, X to X, and X to image.
+
+73
+00:04:25,600 --> 00:04:30,769
+All big-bang wants is for you to give it an initial world state.
+
+74
+00:04:30,769 --> 00:04:32,560
+And then for on-tick, you've got to give it
+
+75
+00:04:32,560 --> 00:04:34,860
+a function that consumes a world state of that type
+
+76
+00:04:34,860 --> 00:04:38,020
+and produces a world state of that type.
+
+77
+00:04:38,020 --> 00:04:40,200
+And then for to-draw, you have to give it
+
+78
+00:04:40,200 --> 00:04:43,610
+a function that consumes the world state of that type, whatever
+
+79
+00:04:43,610 --> 00:04:47,800
+it is, and produces image.
+
+80
+00:04:47,800 --> 00:04:51,730
+The key thing is, in any one use of big-bang,
+
+81
+00:04:51,730 --> 00:04:53,870
+all the X's have to be the same type.
+
+82
+00:04:53,870 --> 00:04:55,690
+They all have to be consistent.
+
+83
+00:04:55,690 --> 00:04:58,800
+That's what matters to big-bang.
+
+84
+00:04:58,800 --> 00:05:00,360
+So there's big-bang.
+
+85
+00:05:00,360 --> 00:05:03,110
+It's without a doubt the most complicated single primitive
+
+86
+00:05:03,110 --> 00:05:05,500
+we're going to use this term.
+
+87
+00:05:05,500 --> 00:05:08,110
+It's a user interface framework.
+
+88
+00:05:08,110 --> 00:05:10,460
+And user interface frameworks, in other words,
+
+89
+00:05:10,460 --> 00:05:12,860
+tools that integrate a bunch of functionality
+
+90
+00:05:12,860 --> 00:05:17,380
+together to get an entire user interface, user interface frameworks
+
+91
+00:05:17,380 --> 00:05:18,840
+are always somewhat complicated.
+
+92
+00:05:18,840 --> 00:05:22,060
+This one is simpler than most.
+
+93
+00:05:22,060 --> 00:05:23,320
+Don't worry about it.
+
+94
+00:05:23,320 --> 00:05:25,070
+We're going to spend the whole week on it.
+
+95
+00:05:25,070 --> 00:05:26,970
+You'll get a lot more chances at it.
+
+96
+00:05:26,970 --> 00:05:30,150
+But the basic thing to understand is this picture
+
+97
+00:05:30,150 --> 00:05:33,690
+up here in the upper right, that's what big-bang is doing.
+
+98
+00:05:33,690 --> 00:05:36,420
+It's starting with an initial world state,
+
+99
+00:05:36,420 --> 00:05:42,900
+and then it's coordinating, calling functions like render-cat and next-cat,
+
+100
+00:05:42,900 --> 00:05:47,510
+to produce the combined behavior of the interactive program
+
+101
+00:05:47,510 --> 00:05:49,560
+that we want to have.
+
+102
+00:05:49,560 --> 00:05:52,750
+We'll also see, starting in the next video, that there's more options.
+
+103
+00:05:52,750 --> 00:05:56,990
+So for example, big-bang has an option called on-key.
+
+104
+00:05:56,990 --> 00:06:02,060
+And you could imagine that the way that works is on-key wants a function,
+
+105
+00:06:02,060 --> 00:06:06,030
+then it will call when a key is pressed on the keyboard.
+
+106
+00:06:06,030 --> 00:06:09,960
+And that function should process the key properly and produce the next world
+
+107
+00:06:09,960 --> 00:06:10,460
+state.
+
+108
+00:06:10,460 --> 00:06:13,940
+What we'll also see in the next video is we're
+
+109
+00:06:13,940 --> 00:06:18,840
+going to introduce a design recipe for designing interactive programs using
+
+110
+00:06:18,840 --> 00:06:19,850
+big-bang.
+
+111
+00:06:19,850 --> 00:06:22,780
+And that design recipe is going to help make it a lot easier
+
+112
+00:06:22,780 --> 00:06:25,270
+to write programs that use big-bang.
+
+113
+00:06:25,270 --> 00:06:27,285
+
+

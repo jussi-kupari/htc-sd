@@ -1,0 +1,188 @@
+
+GREGOR KICZALES: In this video, we're going
+to look at a new helper function rule.
+It's called the operating on a list rule.
+And as you'll see, what it says is that if you're coding a function
+and you reach a point where you need to operate on a list--
+not just the first element of the list, but the whole list, or at least
+potentially the whole list-- then you need a helper function to do that.
+Now I'm going to work on sort images.
+
+Let's see, function operating on a list.
+We should do the base case first.
+So, if we're going to sort images of an empty list--
+well, if it's already empty, there's not a lot to sort.
+It comes back empty.
+Now we need an example that's at least two long.
+And I've got some good examples up here in arrange images.
+So let me just grab this one.
+
+Go back down here to sort images.
+So let's see, check expect, sort of images of this.
+Get rid of that extra space there.
+Now if I'm asked to sort a list that's already sorted, I better not unsort it.
+This list is already sorted, so there's no use retyping it.
+That's just an opportunity to make a mistake.
+And command I fixes the indentation.
+What doe that say?
+That says, if you get a list that's already in increasing order of size,
+then leave it in that order.
+And there's this ambiguity floating around about what size means.
+And I'm going to clarify that size means area.
+OK, so that's an example where they come in already in order.
+Let's make an example where they come in out of order.
+And we could just do that by swapping these two rectangles again.
+
+So now they come in with the big one first and the little second.
+And we need to confirm that what we produce the list
+they're in the other order.
+So that's pretty good for some examples.
+Save the file here.
+Now let's go get the template.
+
+We'll comment out the stub.
+
+We'll rename the template.
+
+Rename the national recursion.
+We'll start with the base case, that's usually the easiest.
+And this test tells me that the base case result should be empty.
+So that is easy.
+Now let's think about the recursion case.
+
+Sometimes the first element of the list goes
+right at the beginning of the rest of the list, in the result.
+That's this case here.
+The first element of the consumed list goes
+at the beginning of the rest in the result. Sort of stays where it is.
+But sometimes the first thing in the list doesn't go at the beginning.
+And I guess if these lists were long, the first thing in the list
+could go somewhere-- Let's make another example here.
+Let's make an example where the first thing in the list is 30 40.
+The second thing in the list is 10 20.
+And the third thing in the list is 20 30.
+
+That's got to come back in the 10 20, 20 30.
+And we'll make these red so we don't get confused.
+And we'll make that one green.
+That's going to come back in the order 10 20, 20 30, and then that one.
+So this thing, which starts out first, ends up third.
+
+So this somehow has to go in the right place in the rest,
+but notice we don't have the rest.
+What we have is the result of a natural recursion.
+Now there's a really important point here for a function like sort.
+Remember we're supposed to trust the natural recursion.
+And what trusting the natural recursion means
+is it means trusting that it's going to do its job.
+So that means that whatever comes back from the natural recursion,
+will be what?
+Well, it'll be a list of image because the signature says list of image.
+But what else will it be?
+Well, it will also be sorted.
+
+The result of the natural recursion will be sorted.
+
+And so that means I'll have one image in my hand,
+and I'll have a sorted list in my hand, and what I need to do at that point
+is manage to stick the one image in the proper place in the sorted list.
+And what these examples are telling me is sometimes
+it'll go right at the beginning of the list,
+but sometimes it will go farther down in the list.
+And, in fact, because it's a list, the list could be arbitrarily long.
+And this first value that I need to stick
+into the result of natural recursion could be going very far down the list.
+We just don't know.
+That's what arbitrary size means.
+So there's a helper function rule that says
+if you need to operate on arbitrary size data,
+if you're at a place where you all at once you have
+to do an operation or arbitrary sized data,
+you have to use a function to do it.
+In fact, you have to use a recursive function to do it.
+Because you don't know how far into the data
+you have to go as part of the operation.
+So that helper rule basically says, right here
+we need to call a new function.
+Insert.
+
+And we're going to wish for it.
+Let's wish for it right away.
+It's going to consume an image because first of LOI is an image.
+And it's going to consume a list of image
+because the result of the natural recursion of sort images
+is a list of image.
+So it's going to consume an image and a list of image.
+And it's going to produce-- well, it has to produce whatever
+sort images is supposed to produce.
+So it has to produce a list of image.
+And what does it do?
+Produce new list, comma, with image in proper place in list
+in increasing order of size.
+
+That's a little cumbersome.
+Let's see if I can say that better.
+Let's just say insert image in proper place in list
+in increasing order of size.
+And just to be clear about what I mean by image in list,
+I'll give names to the parameters right away.
+
+This is the stub, and the stub has to produce some list of image,
+so it'll produce that.
+
+So insert image in proper place in list in increasing order of size.
+But there's one thing we've left out here.
+Which is, remember the special thing we knew
+about the result of the natural recursion?
+Which was that it was going to be sorted?
+
+So, what we're going to do here is we're going to say,
+assume LST is already sorted.
+
+Because we need to communicate that fact from sort images to whoever designed
+insert.
+Because if the person who designs insert doesn't know that,
+then what are they going to do?
+They're going to have to resort again.
+They're never going to get anywhere because they're going
+to come back to this same helper rule.
+But now we know that the list is sorted.
+So insert has a smaller job to do than sort images.
+All it has to do is put its first argument, ING, in the right place
+in its already sorted second argument, LST.
+Let me go over this one more time because there's
+two things that happen here.
+First, we set up some examples, quite ordinary,
+and we added another example part way through, also quite ordinary.
+The two main things that happened here are, one,
+we realized that the natural recursion was going to produce a sorted list,
+and that was going to be an important fact.
+It meant some of the work had really already been done.
+And we just made a note about that fact right here, to ourselves,
+so we wouldn't forget it.
+Then we realized that what dot dot dot needed to do
+was to put the first image in the right place in the sorted list.
+Then we invoked the operate on arbitrary size data
+rule which says you must use a helper function to do that.
+And so we invented the name of a helper function, insert.
+And we made a wish list entry for that helper function.
+And there we go.
+And now we could run at this point.
+And we have a lot of failing tests.
+We have a lot of failing tests because sort exists.
+Sort is done.
+But it's wishing for a function insert, and insert isn't done.
+We've got a stub for insert.
+But right now, at least, sort images looks done,
+unless there's going to be some problem that crops up.
+It's tests are well formed, and it's wishing for a function insert.
+Turning back to our overview diagram, we started with arrange images
+which we split into two functions because of the function composition
+rule.
+Then we went and finished layout images.
+Sort images is done, but while we were doing it, the operate on arbitrary
+size data rule caused us to wish for another function, insert.
+So now arrange images and sort images are both
+probably done, as long as it turns out that insert works properly,
+and it turns out there were no mistakes in arrange images and sort images.
+So next we got to focus on insert.

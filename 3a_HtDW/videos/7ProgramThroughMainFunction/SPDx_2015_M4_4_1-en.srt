@@ -1,0 +1,1072 @@
+0
+00:00:00,000 --> 00:00:04,930
+
+
+1
+00:00:04,930 --> 00:00:07,550
+GREGOR KICZALES: Now let me just say a thing about templates.
+
+2
+00:00:07,550 --> 00:00:12,000
+Templates are not a beginner's approach to programming.
+
+3
+00:00:12,000 --> 00:00:14,570
+I told you in the intro video that the method
+
+4
+00:00:14,570 --> 00:00:18,780
+we're going to learn in this course is what I do when problems get hard.
+
+5
+00:00:18,780 --> 00:00:21,260
+And that's true.
+
+6
+00:00:21,260 --> 00:00:24,980
+So what templates are-- the way we mean them in this course--
+
+7
+00:00:24,980 --> 00:00:29,580
+is they're an expert's way of saying, gee, before I start on this function,
+
+8
+00:00:29,580 --> 00:00:32,200
+or before I start on this program, what do I
+
+9
+00:00:32,200 --> 00:00:37,140
+know about the basic structure of it before I get to the details?
+
+10
+00:00:37,140 --> 00:00:41,510
+So data-driven templates are saying, given that I know what type of data
+
+11
+00:00:41,510 --> 00:00:45,860
+this function consumes, what do I know about the structure of this function?
+
+12
+00:00:45,860 --> 00:00:48,650
+And the Big Bang World program template is
+
+13
+00:00:48,650 --> 00:00:51,090
+a way of saying given that I know I'm using
+
+14
+00:00:51,090 --> 00:00:54,720
+Big Bang, what do I know about the basic structure of this program
+
+15
+00:00:54,720 --> 00:00:56,500
+before I start?
+
+16
+00:00:56,500 --> 00:00:59,110
+And later on in the course, we'll see templates
+
+17
+00:00:59,110 --> 00:01:03,540
+where we know given that I know I'm using this basic kind of algorithm,
+
+18
+00:01:03,540 --> 00:01:06,460
+what must be true about the structure of the program
+
+19
+00:01:06,460 --> 00:01:09,057
+before I get to the details?
+
+20
+00:01:09,057 --> 00:01:11,640
+Templates are an idea that you can use throughout your career,
+
+21
+00:01:11,640 --> 00:01:15,490
+no matter how sophisticated a programmer you get to be.
+
+22
+00:01:15,490 --> 00:01:18,950
+When you get a hard problem and you don't quite know how to do it,
+
+23
+00:01:18,950 --> 00:01:21,900
+you first say, well, what do I know about the basic structure
+
+24
+00:01:21,900 --> 00:01:25,660
+of the program before I get to the details?
+
+25
+00:01:25,660 --> 00:01:28,020
+That's an incredibly powerful idea.
+
+26
+00:01:28,020 --> 00:01:30,650
+And it's not one that's just for beginners.
+
+27
+00:01:30,650 --> 00:01:33,000
+In the last video we started on the problem
+
+28
+00:01:33,000 --> 00:01:35,520
+of designing the world program the causes
+
+29
+00:01:35,520 --> 00:01:37,970
+the cat to march across the screen.
+
+30
+00:01:37,970 --> 00:01:41,100
+And we did the first half of the world program design recipe.
+
+31
+00:01:41,100 --> 00:01:42,760
+We did the domain analysis half.
+
+32
+00:01:42,760 --> 00:01:45,550
+That produced this domain analysis for us
+
+33
+00:01:45,550 --> 00:01:50,040
+in which we identify constant information, changing information,
+
+34
+00:01:50,040 --> 00:01:53,080
+and the required Big Bang options for this program.
+
+35
+00:01:53,080 --> 00:01:56,680
+In this video, we're going to start on the second part of the
+
+36
+00:01:56,680 --> 00:02:01,400
+how to design world's recipe, the build the actual program part.
+
+37
+00:02:01,400 --> 00:02:05,410
+And we're going to do steps 2.1, 2.2, and 2.3 three in this video.
+
+38
+00:02:05,410 --> 00:02:07,250
+So let's get the starter file.
+
+39
+00:02:07,250 --> 00:02:09,110
+And what I'm going to do now is I'm going
+
+40
+00:02:09,110 --> 00:02:12,652
+to go to the how to design world's recipe page.
+
+41
+00:02:12,652 --> 00:02:14,610
+And I'm going to scoot down here to the bottom.
+
+42
+00:02:14,610 --> 00:02:19,170
+And I'm going to take this template of a world program.
+
+43
+00:02:19,170 --> 00:02:22,950
+And I'm just going to copy this whole template right here
+
+44
+00:02:22,950 --> 00:02:28,060
+and bring it over into my program that I'm working on.
+
+45
+00:02:28,060 --> 00:02:30,110
+Now templates do something else important.
+
+46
+00:02:30,110 --> 00:02:33,550
+Or what I should really say is that the way the recipe is structured
+
+47
+00:02:33,550 --> 00:02:39,200
+does something else important, which is templates break the process of design
+
+48
+00:02:39,200 --> 00:02:44,620
+down into steps of the process, not just pieces of the solution.
+
+49
+00:02:44,620 --> 00:02:49,050
+So this function and that function are two pieces of the solution.
+
+50
+00:02:49,050 --> 00:02:52,450
+But what the template is is it's a step in the process,
+
+51
+00:02:52,450 --> 00:02:54,455
+because when you have the final function,
+
+52
+00:02:54,455 --> 00:02:58,280
+the template is kind of buried in the middle of it somewhere.
+
+53
+00:02:58,280 --> 00:02:59,610
+That's really important.
+
+54
+00:02:59,610 --> 00:03:03,170
+That's what happens when you design a method is you can design it
+
+55
+00:03:03,170 --> 00:03:08,500
+so that you both get pieces of the solution and steps of the process.
+
+56
+00:03:08,500 --> 00:03:11,570
+And so you get a kind of cross-cutting decomposition
+
+57
+00:03:11,570 --> 00:03:15,360
+that helps break the overall work down into smaller and more manageable
+
+58
+00:03:15,360 --> 00:03:16,620
+pieces.
+
+59
+00:03:16,620 --> 00:03:20,090
+So don't let anyone tell you the templates are just for beginners.
+
+60
+00:03:20,090 --> 00:03:23,280
+Nothing could be further from the truth.
+
+61
+00:03:23,280 --> 00:03:26,370
+What is true is that as you get to be a better programmer,
+
+62
+00:03:26,370 --> 00:03:28,440
+you won't template very simple functions,
+
+63
+00:03:28,440 --> 00:03:31,600
+or you'll kind of template them in your head or something.
+
+64
+00:03:31,600 --> 00:03:34,310
+But the idea of templates, the idea of getting
+
+65
+00:03:34,310 --> 00:03:38,350
+the basic structure of a piece of code before you get to the details,
+
+66
+00:03:38,350 --> 00:03:40,022
+you'll always have that idea.
+
+67
+00:03:40,022 --> 00:03:41,730
+And you'll always use it when the problem
+
+68
+00:03:41,730 --> 00:03:45,550
+gets too hard to just immediately write down the solution.
+
+69
+00:03:45,550 --> 00:03:46,160
+So here we go.
+
+70
+00:03:46,160 --> 00:03:52,180
+We need a better title than this-- a cat that walks
+
+71
+00:03:52,180 --> 00:03:56,920
+from left to right across the screen.
+
+72
+00:03:56,920 --> 00:04:00,670
+The first line of a program should give us a short summary of the program.
+
+73
+00:04:00,670 --> 00:04:02,400
+Now, we're going to do the constants.
+
+74
+00:04:02,400 --> 00:04:04,390
+And the constants are going to come directly
+
+75
+00:04:04,390 --> 00:04:09,140
+from the analysis phase of the program-- this analysis here.
+
+76
+00:04:09,140 --> 00:04:12,560
+So for example, one of the constants we identified
+
+77
+00:04:12,560 --> 00:04:15,750
+was that the width of the screen didn't change.
+
+78
+00:04:15,750 --> 00:04:17,930
+So here, I have to just guess a number.
+
+79
+00:04:17,930 --> 00:04:19,950
+I'm going to guess a number like 600.
+
+80
+00:04:19,950 --> 00:04:23,020
+In the rest of the program, we're never going to use the number 600.
+
+81
+00:04:23,020 --> 00:04:26,740
+We're always going to use the constant name WIDTH.
+
+82
+00:04:26,740 --> 00:04:28,810
+So if it turns out that this is the wrong number,
+
+83
+00:04:28,810 --> 00:04:30,170
+it'll be real easy to change.
+
+84
+00:04:30,170 --> 00:04:32,840
+We'll only have to change it in one place.
+
+85
+00:04:32,840 --> 00:04:35,320
+Here we go with the height.
+
+86
+00:04:35,320 --> 00:04:39,570
+And I'll say 400.
+
+87
+00:04:39,570 --> 00:04:43,520
+Another constant we identified is the y-coordinate of the cat.
+
+88
+00:04:43,520 --> 00:04:46,970
+The y-coordinate of the cat never changes.
+
+89
+00:04:46,970 --> 00:04:54,510
+So that's the CTR-Y. And here you might be tempted to put 200.
+
+90
+00:04:54,510 --> 00:04:57,280
+But what I'm going to do is follow the rule that every time I
+
+91
+00:04:57,280 --> 00:05:01,230
+need to refer to the height, I'm going to use the height constant.
+
+92
+00:05:01,230 --> 00:05:05,080
+So what I'm going to do here is put the HEIGHT over 2.
+
+93
+00:05:05,080 --> 00:05:08,700
+Now, if I change height, center y will also change.
+
+94
+00:05:08,700 --> 00:05:12,220
+
+
+95
+00:05:12,220 --> 00:05:15,460
+And let's see, for the empty scene, the background of the scene,
+
+96
+00:05:15,460 --> 00:05:17,455
+there's a primitive called empty-scene.
+
+97
+00:05:17,455 --> 00:05:20,210
+
+
+98
+00:05:20,210 --> 00:05:23,750
+And we'll make it WIDTH by HEIGHT.
+
+99
+00:05:23,750 --> 00:05:26,310
+And that would give us a sort of blank background.
+
+100
+00:05:26,310 --> 00:05:28,060
+If you wanted to make a background, if you
+
+101
+00:05:28,060 --> 00:05:31,550
+wanted to make a background that was a nice midnight blue or something,
+
+102
+00:05:31,550 --> 00:05:39,520
+you could, for example, instead make this overlay rectangle
+
+103
+00:05:39,520 --> 00:05:46,730
+WIDTH HEIGHT solid blue.
+
+104
+00:05:46,730 --> 00:05:48,780
+And that would give you a blue background.
+
+105
+00:05:48,780 --> 00:05:52,120
+I'll just stick with the simpler background for now.
+
+106
+00:05:52,120 --> 00:05:56,970
+And the last constant we identified was the cat image itself.
+
+107
+00:05:56,970 --> 00:06:00,100
+And for that we're just going to use this image here,
+
+108
+00:06:00,100 --> 00:06:01,440
+which the starter file gave us.
+
+109
+00:06:01,440 --> 00:06:03,030
+I'll go up there and copy it.
+
+110
+00:06:03,030 --> 00:06:07,710
+And then I'll come down here and paste it and there's the cat image.
+
+111
+00:06:07,710 --> 00:06:09,240
+And now would be good time to run.
+
+112
+00:06:09,240 --> 00:06:11,720
+In fact, I should have run after each of these definitions.
+
+113
+00:06:11,720 --> 00:06:15,710
+And I don't get any errors, so I know that my constants are well formed.
+
+114
+00:06:15,710 --> 00:06:18,480
+Now, let me reinforce the point I made before
+
+115
+00:06:18,480 --> 00:06:22,460
+about using the constants-- always referring to the constants.
+
+116
+00:06:22,460 --> 00:06:27,740
+Notice that this code that I have here lines up really well with the analysis
+
+117
+00:06:27,740 --> 00:06:29,000
+we did.
+
+118
+00:06:29,000 --> 00:06:32,790
+The fact that I can look at the analysis and look at the code
+
+119
+00:06:32,790 --> 00:06:37,000
+and understand where everything in the analysis showed up in the code
+
+120
+00:06:37,000 --> 00:06:39,300
+is a thing called traceability.
+
+121
+00:06:39,300 --> 00:06:41,840
+Both of those are important for the same reason.
+
+122
+00:06:41,840 --> 00:06:45,140
+And that is this is an important intuition.
+
+123
+00:06:45,140 --> 00:06:50,180
+The way to think about is there's only two kinds of programs in the world.
+
+124
+00:06:50,180 --> 00:06:54,260
+There's program that the change and programs that nobody uses.
+
+125
+00:06:54,260 --> 00:06:58,450
+Put it another way, any program that anybody uses is always changing.
+
+126
+00:06:58,450 --> 00:07:03,181
+People always want it to do more and better things.
+
+127
+00:07:03,181 --> 00:07:05,680
+And so what we're doing here is we're designing this program
+
+128
+00:07:05,680 --> 00:07:07,440
+to make it easy to change.
+
+129
+00:07:07,440 --> 00:07:11,140
+Using constant names makes it easy to change.
+
+130
+00:07:11,140 --> 00:07:15,060
+Having a clear traceability between the code and the analysis--
+
+131
+00:07:15,060 --> 00:07:17,045
+we'll see later-- that makes it easy to change.
+
+132
+00:07:17,045 --> 00:07:20,770
+
+
+133
+00:07:20,770 --> 00:07:21,650
+OK, let's keep going.
+
+134
+00:07:21,650 --> 00:07:22,774
+Now I've got the constants.
+
+135
+00:07:22,774 --> 00:07:27,180
+The next step is to do a data definition that corresponds
+
+136
+00:07:27,180 --> 00:07:30,010
+to the changing state of the program.
+
+137
+00:07:30,010 --> 00:07:32,770
+The changing state of the program for my domain analysis
+
+138
+00:07:32,770 --> 00:07:35,600
+is the cat's x-coordinate.
+
+139
+00:07:35,600 --> 00:07:38,270
+So that's going to be-- that simple atomic data.
+
+140
+00:07:38,270 --> 00:07:41,600
+That's going to be something like a number.
+
+141
+00:07:41,600 --> 00:07:45,810
+The world program template has the beginning of a data definition here.
+
+142
+00:07:45,810 --> 00:07:47,850
+It has WS for world state.
+
+143
+00:07:47,850 --> 00:07:49,940
+But it says to give WS a better name.
+
+144
+00:07:49,940 --> 00:07:53,065
+And sure enough I will because WS isn't a very good name.
+
+145
+00:07:53,065 --> 00:07:54,500
+I'll just call it Cat.
+
+146
+00:07:54,500 --> 00:07:59,990
+And I'll say Cat is, let's say, Number.
+
+147
+00:07:59,990 --> 00:08:02,110
+And let's see, the interpretation is this
+
+148
+00:08:02,110 --> 00:08:09,190
+is the x position of the cat in screen coordinates.
+
+149
+00:08:09,190 --> 00:08:11,900
+And now I need some examples.
+
+150
+00:08:11,900 --> 00:08:16,310
+Let's see, one good example is 0.
+
+151
+00:08:16,310 --> 00:08:21,990
+And another example is-- well, let's see, the middle of the screen
+
+152
+00:08:21,990 --> 00:08:24,232
+is WIDTH over 2.
+
+153
+00:08:24,232 --> 00:08:25,565
+So that's kind of in the middle.
+
+154
+00:08:25,565 --> 00:08:28,150
+
+
+155
+00:08:28,150 --> 00:08:33,496
+And that's kind of all on the right-- on the left edge.
+
+156
+00:08:33,496 --> 00:08:34,970
+And let's do this one.
+
+157
+00:08:34,970 --> 00:08:38,490
+
+
+158
+00:08:38,490 --> 00:08:41,740
+And this is on the right edge.
+
+159
+00:08:41,740 --> 00:08:45,505
+
+
+160
+00:08:45,505 --> 00:08:47,880
+So we'll run just to make sure everything is well formed.
+
+161
+00:08:47,880 --> 00:08:48,405
+And it is.
+
+162
+00:08:48,405 --> 00:08:51,250
+
+
+163
+00:08:51,250 --> 00:08:53,070
+Now, we need a template.
+
+164
+00:08:53,070 --> 00:08:54,360
+Define fn-for-cat.
+
+165
+00:08:54,360 --> 00:08:56,910
+
+
+166
+00:08:56,910 --> 00:09:01,160
+And this is just an atomic non-distinct case, so . . .
+
+167
+00:09:01,160 --> 00:09:02,430
+c.
+
+168
+00:09:02,430 --> 00:09:09,190
+We'll fill in the template rules used of atomic non-distinct and Number.
+
+169
+00:09:09,190 --> 00:09:12,350
+And it's also good to comment out the template.
+
+170
+00:09:12,350 --> 00:09:13,660
+And now we're good to go.
+
+171
+00:09:13,660 --> 00:09:14,320
+So there we go.
+
+172
+00:09:14,320 --> 00:09:17,680
+There's our data definition for Cat, for the changing world
+
+173
+00:09:17,680 --> 00:09:18,910
+state of the program.
+
+174
+00:09:18,910 --> 00:09:21,650
+Now we're going to proceed to our main function.
+
+175
+00:09:21,650 --> 00:09:26,180
+Now we decided not to use the name WS for the changing state of this program.
+
+176
+00:09:26,180 --> 00:09:28,240
+We decided to use the name Cat.
+
+177
+00:09:28,240 --> 00:09:31,540
+So what I'm going to do here is I'm going to say command F or Control F
+
+178
+00:09:31,540 --> 00:09:32,975
+on Windows.
+
+179
+00:09:32,975 --> 00:09:37,550
+And I'm going to take every occurrence of WS.
+
+180
+00:09:37,550 --> 00:09:41,810
+And I'm going to replace it with Cat.
+
+181
+00:09:41,810 --> 00:09:44,251
+Let's see we'll replace that one and that one.
+
+182
+00:09:44,251 --> 00:09:46,500
+And I won't do that one because it's a parameter name.
+
+183
+00:09:46,500 --> 00:09:48,050
+And I don't want to mess up the case.
+
+184
+00:09:48,050 --> 00:09:51,001
+I'll come back and do that one.
+
+185
+00:09:51,001 --> 00:09:52,530
+But I'll do all of these.
+
+186
+00:09:52,530 --> 00:09:56,187
+
+
+187
+00:09:56,187 --> 00:09:58,510
+Oops, I didn't mean to do that one.
+
+188
+00:09:58,510 --> 00:10:00,530
+I'll come back and fix it.
+
+189
+00:10:00,530 --> 00:10:03,270
+I'm not going to do that one.
+
+190
+00:10:03,270 --> 00:10:05,940
+Now what's left is these ones that are parameter names.
+
+191
+00:10:05,940 --> 00:10:07,590
+And these I'll just change to c.
+
+192
+00:10:07,590 --> 00:10:11,570
+
+
+193
+00:10:11,570 --> 00:10:13,980
+And there's that one there that I messed up.
+
+194
+00:10:13,980 --> 00:10:18,980
+
+
+195
+00:10:18,980 --> 00:10:23,889
+And I'll just run now to make sure things are still well formed.
+
+196
+00:10:23,889 --> 00:10:25,680
+So now here what I've got from the template
+
+197
+00:10:25,680 --> 00:10:30,116
+is a main function that has lots of big bang options in it.
+
+198
+00:10:30,116 --> 00:10:31,740
+I'm not going to use all these options.
+
+199
+00:10:31,740 --> 00:10:33,850
+I'm only going to use on-tick and to-draw.
+
+200
+00:10:33,850 --> 00:10:37,410
+That's what my analysis told me.
+
+201
+00:10:37,410 --> 00:10:39,820
+So I'm just going to go ahead and delete all of this.
+
+202
+00:10:39,820 --> 00:10:44,580
+
+
+203
+00:10:44,580 --> 00:10:50,710
+And I might decide that I don't like the name tock for the on-tick function
+
+204
+00:10:50,710 --> 00:10:51,970
+for this program.
+
+205
+00:10:51,970 --> 00:10:54,620
+So let's see, I could change the name tock.
+
+206
+00:10:54,620 --> 00:10:56,505
+Oops, I've got a parenthesis problem here.
+
+207
+00:10:56,505 --> 00:11:00,650
+
+
+208
+00:11:00,650 --> 00:11:02,060
+I'm going to change tock.
+
+209
+00:11:02,060 --> 00:11:04,200
+I clicked on Check Syntax.
+
+210
+00:11:04,200 --> 00:11:05,590
+Now I'll click on tock.
+
+211
+00:11:05,590 --> 00:11:07,490
+I'll say Rename tock.
+
+212
+00:11:07,490 --> 00:11:08,865
+I'm going to call it advance-cat.
+
+213
+00:11:08,865 --> 00:11:11,960
+
+
+214
+00:11:11,960 --> 00:11:15,280
+And I'll have to fix some of my spacing here.
+
+215
+00:11:15,280 --> 00:11:18,020
+
+
+216
+00:11:18,020 --> 00:11:20,740
+Now what's going on here off to the right
+
+217
+00:11:20,740 --> 00:11:23,500
+is that the template for the word program in this main function
+
+218
+00:11:23,500 --> 00:11:28,550
+is reminding us of the signature of each of the handlers.
+
+219
+00:11:28,550 --> 00:11:31,610
+And the other thing the template for the world program did
+
+220
+00:11:31,610 --> 00:11:34,710
+is for these two handlers look at what we've got here.
+
+221
+00:11:34,710 --> 00:11:37,980
+For each of these two handlers we've got its signature,
+
+222
+00:11:37,980 --> 00:11:46,550
+its purpose-- but that's not filled in-- and a stub, which isn't filled in.
+
+223
+00:11:46,550 --> 00:11:48,110
+Let me just fill this in now.
+
+224
+00:11:48,110 --> 00:11:59,070
+It's produce the next cat by advancing it one pixel to right.
+
+225
+00:11:59,070 --> 00:12:05,930
+And that means that a good stub is just 0, because cat is number.
+
+226
+00:12:05,930 --> 00:12:15,910
+And this just says render the cat image at appropriate place on MTS.
+
+227
+00:12:15,910 --> 00:12:22,010
+These two things here-- the combination of signature, purpose, and stub
+
+228
+00:12:22,010 --> 00:12:26,760
+with those exclamation marks-- are what we call a wish list entry.
+
+229
+00:12:26,760 --> 00:12:31,480
+What we're doing here is we're saying, hey, up here when I wrote main,
+
+230
+00:12:31,480 --> 00:12:35,740
+I assumed that this function advance cat was going to exist.
+
+231
+00:12:35,740 --> 00:12:38,180
+And what I'm doing here is I'm writing a reminder
+
+232
+00:12:38,180 --> 00:12:43,540
+to myself of what it is I want that function advance cat to do.
+
+233
+00:12:43,540 --> 00:12:46,820
+I want it to have this signature, this purpose, and by the way,
+
+234
+00:12:46,820 --> 00:12:49,130
+there's a stub.
+
+235
+00:12:49,130 --> 00:12:52,280
+And this is a reminder of what I want the render function to do.
+
+236
+00:12:52,280 --> 00:12:55,070
+I want it to have this signature, this purpose, and by the way,
+
+237
+00:12:55,070 --> 00:12:56,912
+there's a stub.
+
+238
+00:12:56,912 --> 00:12:58,620
+Now, once my program is set up like this,
+
+239
+00:12:58,620 --> 00:13:00,530
+notice two interesting things about.
+
+240
+00:13:00,530 --> 00:13:02,630
+One is it turns out I can actually run it.
+
+241
+00:13:02,630 --> 00:13:05,940
+And I can even say main of 0 and run it.
+
+242
+00:13:05,940 --> 00:13:11,860
+Nothing happens of course, because my tick function doesn't do anything.
+
+243
+00:13:11,860 --> 00:13:16,500
+And my render function only returns the background see no matter what.
+
+244
+00:13:16,500 --> 00:13:17,430
+But it does run.
+
+245
+00:13:17,430 --> 00:13:23,179
+And the reason it runs is I have these stubs for the two big bang handlers.
+
+246
+00:13:23,179 --> 00:13:24,470
+I have a stub for advanced can.
+
+247
+00:13:24,470 --> 00:13:27,270
+And I have a stub for render.
+
+248
+00:13:27,270 --> 00:13:32,270
+The other thing I can do now is I can search for !!!
+
+249
+00:13:32,270 --> 00:13:35,800
+
+
+250
+00:13:35,800 --> 00:13:39,560
+And I can see every place in my program that's incomplete.
+
+251
+00:13:39,560 --> 00:13:44,690
+By marking each of the wish list entries with some well known marker that says,
+
+252
+00:13:44,690 --> 00:13:50,206
+hey, this isn't done, I now know what I have to finish.
+
+253
+00:13:50,206 --> 00:13:53,330
+So now what I've done is I've got the overall structure of this program set
+
+254
+00:13:53,330 --> 00:13:55,010
+up.
+
+255
+00:13:55,010 --> 00:13:57,100
+I've got the constants.
+
+256
+00:13:57,100 --> 00:14:00,820
+I've got the data definition for the changing world state.
+
+257
+00:14:00,820 --> 00:14:02,990
+I've got a main function that calls big bang
+
+258
+00:14:02,990 --> 00:14:06,180
+with two options on-tick and to-draw.
+
+259
+00:14:06,180 --> 00:14:09,880
+And I've got wish list entries for advanced cat and render,
+
+260
+00:14:09,880 --> 00:14:14,150
+which are the Handler functions for those two big bang options.
+
+261
+00:14:14,150 --> 00:14:17,350
+And now, I know what I need to do in order to finish this program.
+
+262
+00:14:17,350 --> 00:14:19,390
+I have to design the advance cat function,
+
+263
+00:14:19,390 --> 00:14:22,870
+or I have to finish the design of the advanced cat function.
+
+264
+00:14:22,870 --> 00:14:26,090
+And I have to finish the design of the render function.
+
+265
+00:14:26,090 --> 00:14:28,360
+And then I should be done.
+
+266
+00:14:28,360 --> 00:14:30,930
+That's what we'll do in the next video.
+
+267
+00:14:30,930 --> 00:14:32,420
+
+

@@ -1,0 +1,44 @@
+0
+00:00:00,000 --> 00:00:00,900
+
+
+1
+00:00:00,900 --> 00:00:03,970
+Gregor Kiczales: So that's two ways you can discover new primitives.
+
+2
+00:00:03,970 --> 00:00:08,410
+You can either guess-- and you'd be surprised how often you get lucky--
+
+3
+00:00:08,410 --> 00:00:11,710
+or you can look up the documentation for an existing primitive
+
+4
+00:00:11,710 --> 00:00:15,790
+and scroll around to find related primitives.
+
+5
+00:00:15,790 --> 00:00:19,610
+As you program more and more, you'll get to know more and more primitives,
+
+6
+00:00:19,610 --> 00:00:23,470
+and you'll be able to guess lucky more often.
+
+7
+00:00:23,470 --> 00:00:26,400
+You're also going to see that programming environments-- that's
+
+8
+00:00:26,400 --> 00:00:31,660
+editors like DrRacket-- have tools that help you guess more quickly.
+
+9
+00:00:31,660 --> 00:00:34,910
+And we'll look at some of those in later weeks of the course.
+
+10
+00:00:34,910 --> 00:00:35,410
+
+

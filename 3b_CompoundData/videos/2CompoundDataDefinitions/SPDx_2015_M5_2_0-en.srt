@@ -1,0 +1,444 @@
+0
+00:00:00,000 --> 00:00:04,296
+
+
+1
+00:00:04,296 --> 00:00:06,920
+GREGOR KICZALES: Now you that you know how define struct works,
+
+2
+00:00:06,920 --> 00:00:10,180
+we're going to look at how to use the how to design data recipe
+
+3
+00:00:10,180 --> 00:00:15,450
+and the data-driven templates recipe to design compound data definitions based
+
+4
+00:00:15,450 --> 00:00:16,841
+on define struct.
+
+5
+00:00:16,841 --> 00:00:17,840
+Here's a sample problem.
+
+6
+00:00:17,840 --> 00:00:22,160
+The problem asks us to design a data definition to represent hockey players,
+
+7
+00:00:22,160 --> 00:00:24,760
+including both their first and last names.
+
+8
+00:00:24,760 --> 00:00:29,170
+So I'm working with the same example we used to learn about define struct,
+
+9
+00:00:29,170 --> 00:00:31,710
+but now we're doing the full data definition.
+
+10
+00:00:31,710 --> 00:00:35,330
+So the key thing in this example is that when I read it,
+
+11
+00:00:35,330 --> 00:00:38,510
+it has this property that it has two or more values that
+
+12
+00:00:38,510 --> 00:00:42,850
+naturally fit together, including both their first and last names.
+
+13
+00:00:42,850 --> 00:00:46,180
+Both the first and last name naturally fit together
+
+14
+00:00:46,180 --> 00:00:48,470
+into a single hockey player.
+
+15
+00:00:48,470 --> 00:00:50,510
+That's the key information property that we're
+
+16
+00:00:50,510 --> 00:00:53,954
+looking for to decide if we want to have a compound data definition.
+
+17
+00:00:53,954 --> 00:00:55,870
+If we look at the Design Recipes page and then
+
+18
+00:00:55,870 --> 00:00:58,760
+go to the How To Design Data page, and we
+
+19
+00:00:58,760 --> 00:01:01,650
+go to our table about form of information
+
+20
+00:01:01,650 --> 00:01:04,640
+and what kind of data definition to use, it
+
+21
+00:01:04,640 --> 00:01:08,570
+says that when there are two or more values that naturally belong together,
+
+22
+00:01:08,570 --> 00:01:10,535
+we want to use a compound data definition.
+
+23
+00:01:10,535 --> 00:01:14,120
+
+
+24
+00:01:14,120 --> 00:01:16,410
+And here it talks about a compound data definition.
+
+25
+00:01:16,410 --> 00:01:19,180
+As we did when we learned the other data definitions,
+
+26
+00:01:19,180 --> 00:01:21,150
+you should go review this on your own.
+
+27
+00:01:21,150 --> 00:01:22,890
+I'll just work through it.
+
+28
+00:01:22,890 --> 00:01:25,186
+So the first thing in a compound data definition
+
+29
+00:01:25,186 --> 00:01:27,060
+is there's going to be a structure that we're
+
+30
+00:01:27,060 --> 00:01:31,650
+going to use to pull the multiple values together into a single value.
+
+31
+00:01:31,650 --> 00:01:35,920
+So we'll say define-struct player.
+
+32
+00:01:35,920 --> 00:01:41,600
+And then the list of field names-- we'll call them first name and last name.
+
+33
+00:01:41,600 --> 00:01:44,610
+So now I have a mechanism for doing it.
+
+34
+00:01:44,610 --> 00:01:54,850
+And I'm going to say player is make-player String String.
+
+35
+00:01:54,850 --> 00:01:56,940
+And what is this doing?
+
+36
+00:01:56,940 --> 00:02:01,000
+So what this is doing is it's saying, something is a player
+
+37
+00:02:01,000 --> 00:02:05,450
+if it's a make player and the first field is a String
+
+38
+00:02:05,450 --> 00:02:07,150
+and the second field is a String.
+
+39
+00:02:07,150 --> 00:02:09,710
+
+
+40
+00:02:09,710 --> 00:02:18,370
+And we'll interpret it this way-- make-player fn ln is a hockey
+
+41
+00:02:18,370 --> 00:02:30,560
+player with first name fn last name ln.
+
+42
+00:02:30,560 --> 00:02:33,010
+Or if you wanted to, you could write it this way.
+
+43
+00:02:33,010 --> 00:02:36,690
+You could say, fn is the first name.
+
+44
+00:02:36,690 --> 00:02:40,080
+
+
+45
+00:02:40,080 --> 00:02:42,260
+ln is less name.
+
+46
+00:02:42,260 --> 00:02:45,270
+You could write this interpretation a number of different ways.
+
+47
+00:02:45,270 --> 00:02:48,490
+The key thing is you have to tell me how to interpret
+
+48
+00:02:48,490 --> 00:02:50,820
+a piece of data of this form.
+
+49
+00:02:50,820 --> 00:02:58,700
+So if I happen to be reading the program and I see make player,
+
+50
+00:02:58,700 --> 00:03:05,340
+I know the first name is Bobby and the last name is Orr.
+
+51
+00:03:05,340 --> 00:03:06,600
+So there's my interpretation.
+
+52
+00:03:06,600 --> 00:03:07,397
+Here's an example.
+
+53
+00:03:07,397 --> 00:03:08,480
+We'll stick it right here.
+
+54
+00:03:08,480 --> 00:03:09,620
+We've already got one.
+
+55
+00:03:09,620 --> 00:03:20,913
+
+
+56
+00:03:20,913 --> 00:03:25,260
+And again, examples for simple compound data
+
+57
+00:03:25,260 --> 00:03:28,800
+definitions-- you don't really need very many of them in order to be clear.
+
+58
+00:03:28,800 --> 00:03:32,160
+One example would probably be good enough here.
+
+59
+00:03:32,160 --> 00:03:35,420
+But starting soon we're going to see that as data definitions become
+
+60
+00:03:35,420 --> 00:03:40,600
+more complicated, you start to have more examples really to make it clear.
+
+61
+00:03:40,600 --> 00:03:43,120
+So let's see I've got the structure definition.
+
+62
+00:03:43,120 --> 00:03:44,714
+I've got the type comment.
+
+63
+00:03:44,714 --> 00:03:45,880
+I've got the interpretation.
+
+64
+00:03:45,880 --> 00:03:48,360
+I've got some examples.
+
+65
+00:03:48,360 --> 00:03:50,490
+Now I need a template.
+
+66
+00:03:50,490 --> 00:03:57,130
+So we'll say define fun for player p.
+
+67
+00:03:57,130 --> 00:03:58,415
+Something's going to go there.
+
+68
+00:03:58,415 --> 00:04:01,060
+
+
+69
+00:04:01,060 --> 00:04:03,445
+Template rules used.
+
+70
+00:04:03,445 --> 00:04:07,990
+
+
+71
+00:04:07,990 --> 00:04:12,280
+So now I'll go back over to the Design Recipes.
+
+72
+00:04:12,280 --> 00:04:15,145
+And I'll go to the data-driven templates recipe.
+
+73
+00:04:15,145 --> 00:04:17,930
+
+
+74
+00:04:17,930 --> 00:04:23,580
+And if the type of data is compound, then
+
+75
+00:04:23,580 --> 00:04:28,370
+what I'm supposed to use for the body is all the selectors.
+
+76
+00:04:28,370 --> 00:04:31,640
+So I'm going to have dot dot dot and then all of the selectors.
+
+77
+00:04:31,640 --> 00:04:34,730
+So jumping back over here to Racket, it means
+
+78
+00:04:34,730 --> 00:04:47,850
+in this case I would write dot dot dot player fn p player ln p.
+
+79
+00:04:47,850 --> 00:04:50,590
+And the rule is-- which rule was that?
+
+80
+00:04:50,590 --> 00:04:52,900
+It's the compound data rule.
+
+81
+00:04:52,900 --> 00:05:00,150
+And so we're going to say the compound rule two fields.
+
+82
+00:05:00,150 --> 00:05:04,230
+Now, over here, there's another detail that
+
+83
+00:05:04,230 --> 00:05:08,130
+says consider the result type of each selector.
+
+84
+00:05:08,130 --> 00:05:10,240
+So what I'm going to do here is I'm actually
+
+85
+00:05:10,240 --> 00:05:13,140
+going to go write this like this.
+
+86
+00:05:13,140 --> 00:05:17,060
+And I'm going to put a note here that says, well, what does player-fn of p
+
+87
+00:05:17,060 --> 00:05:18,310
+produce.
+
+88
+00:05:18,310 --> 00:05:21,120
+Well, if this make player is actually a player,
+
+89
+00:05:21,120 --> 00:05:25,420
+then its first field is of type string.
+
+90
+00:05:25,420 --> 00:05:26,645
+So that will be a string.
+
+91
+00:05:26,645 --> 00:05:29,930
+
+
+92
+00:05:29,930 --> 00:05:30,960
+And what would ln be?
+
+93
+00:05:30,960 --> 00:05:32,330
+Well, it will also be a string.
+
+94
+00:05:32,330 --> 00:05:35,834
+
+
+95
+00:05:35,834 --> 00:05:38,000
+Now let's talk about the template for just a second.
+
+96
+00:05:38,000 --> 00:05:40,130
+What does this template say?
+
+97
+00:05:40,130 --> 00:05:42,370
+Well, remember the fundamental job of a template
+
+98
+00:05:42,370 --> 00:05:46,070
+is to tell you what do you have to work with
+
+99
+00:05:46,070 --> 00:05:48,830
+and what's the basic structure of the function.
+
+100
+00:05:48,830 --> 00:05:51,030
+And what this template is doing is it's saying,
+
+101
+00:05:51,030 --> 00:05:54,490
+listen, if you write a function that consumes a player as an argument,
+
+102
+00:05:54,490 --> 00:05:59,500
+then what it has to work with is all of the fields of the player--
+
+103
+00:05:59,500 --> 00:06:01,880
+in this case, fn and ln.
+
+104
+00:06:01,880 --> 00:06:04,700
+So basically, the fundamental shape of the function
+
+105
+00:06:04,700 --> 00:06:09,350
+is take the player apart into its constituent field values
+
+106
+00:06:09,350 --> 00:06:11,010
+and do something with them.
+
+107
+00:06:11,010 --> 00:06:13,560
+Dot dot dot, as usual, means do something.
+
+108
+00:06:13,560 --> 00:06:14,770
+Here's the first name.
+
+109
+00:06:14,770 --> 00:06:16,940
+Here's the last name.
+
+110
+00:06:16,940 --> 00:06:17,440
+
+

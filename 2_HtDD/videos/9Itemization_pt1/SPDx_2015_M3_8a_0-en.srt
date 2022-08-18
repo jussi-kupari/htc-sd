@@ -1,0 +1,316 @@
+0
+00:00:00,000 --> 00:00:04,810
+
+
+1
+00:00:04,810 --> 00:00:07,250
+GREGOR KICZALES: In this how to design data problem,
+
+2
+00:00:07,250 --> 00:00:12,690
+the type comment is going to end up with a one of, but not all of the subclasses
+
+3
+00:00:12,690 --> 00:00:15,460
+are going to be single distinct values.
+
+4
+00:00:15,460 --> 00:00:17,980
+So this is what's going to be called an itemization,
+
+5
+00:00:17,980 --> 00:00:22,780
+and it'll be the most complex form of data that we see this week.
+
+6
+00:00:22,780 --> 00:00:25,130
+This is the problem in Countdown Starter.
+
+7
+00:00:25,130 --> 00:00:28,300
+So what we're supposed to do here is design a data definition
+
+8
+00:00:28,300 --> 00:00:31,530
+to represent the current state of a New Year's Eve countdown.
+
+9
+00:00:31,530 --> 00:00:34,910
+So this is something like the countdown ball in Times Square.
+
+10
+00:00:34,910 --> 00:00:38,380
+And we're asked to design a data definition for that.
+
+11
+00:00:38,380 --> 00:00:41,280
+As always, when we designed a definition the first thing
+
+12
+00:00:41,280 --> 00:00:44,460
+is to clearly identify the information in the problem domain
+
+13
+00:00:44,460 --> 00:00:46,350
+that we're trying to represent.
+
+14
+00:00:46,350 --> 00:00:50,750
+And in this case, the problem statement makes that very clear to us.
+
+15
+00:00:50,750 --> 00:00:53,020
+In particular, it makes it clear that the information
+
+16
+00:00:53,020 --> 00:00:55,600
+falls into one of three categories.
+
+17
+00:00:55,600 --> 00:00:59,160
+The countdown hasn't started, it's from 10 to 1 seconds before midnight,
+
+18
+00:00:59,160 --> 00:01:00,650
+or it's complete.
+
+19
+00:01:00,650 --> 00:01:04,300
+The previous problem we saw, the letter grade problem,
+
+20
+00:01:04,300 --> 00:01:06,710
+also had three categories.
+
+21
+00:01:06,710 --> 00:01:09,960
+But here the categories are different.
+
+22
+00:01:09,960 --> 00:01:12,690
+This first one is kind of distinct.
+
+23
+00:01:12,690 --> 00:01:17,440
+The countdown hasn't started, that's a clear, distinct state.
+
+24
+00:01:17,440 --> 00:01:22,600
+But in this second category, there's not a single distinct value there.
+
+25
+00:01:22,600 --> 00:01:25,350
+There's 10, 9, 8, all the way to 1.
+
+26
+00:01:25,350 --> 00:01:28,250
+So there's a number of different values there.
+
+27
+00:01:28,250 --> 00:01:33,200
+And then in the third category, again there's a distinct state there,
+
+28
+00:01:33,200 --> 00:01:34,800
+the countdown is complete.
+
+29
+00:01:34,800 --> 00:01:37,740
+So this isn't going to be an enumeration.
+
+30
+00:01:37,740 --> 00:01:40,850
+This is going to be what's called an itemization, because there
+
+31
+00:01:40,850 --> 00:01:45,620
+are two or more subclasses, at least one of which
+
+32
+00:01:45,620 --> 00:01:47,820
+is not a single, distinct value.
+
+33
+00:01:47,820 --> 00:01:50,090
+This center one is not a single, distinct value.
+
+34
+00:01:50,090 --> 00:01:52,910
+So that's going to be an itemization.
+
+35
+00:01:52,910 --> 00:01:56,120
+And again, after this video is over, I encourage
+
+36
+00:01:56,120 --> 00:02:01,010
+you go to the Design Recipes page, go to the How to Design Data page.
+
+37
+00:02:01,010 --> 00:02:03,680
+This table would remind you that itemization
+
+38
+00:02:03,680 --> 00:02:06,320
+is what you need to use in a case like this,
+
+39
+00:02:06,320 --> 00:02:08,729
+and you can go ahead and read about the itemizations.
+
+40
+00:02:08,729 --> 00:02:13,620
+Do that carefully after this video is over, or work through the problem now.
+
+41
+00:02:13,620 --> 00:02:14,660
+So let's see.
+
+42
+00:02:14,660 --> 00:02:17,330
+We start with the Type Comment, as always.
+
+43
+00:02:17,330 --> 00:02:24,755
+So we'll say that Countdown is one of-- and there's three subclasses.
+
+44
+00:02:24,755 --> 00:02:27,690
+
+
+45
+00:02:27,690 --> 00:02:30,980
+And now we have to decide for each subclass how we'll represent that,
+
+46
+00:02:30,980 --> 00:02:33,340
+what data will represent that.
+
+47
+00:02:33,340 --> 00:02:34,190
+Well, lets see.
+
+48
+00:02:34,190 --> 00:02:38,230
+If the countdown hasn't yet started, that's kind of a distinct state.
+
+49
+00:02:38,230 --> 00:02:42,090
+So we could use any piece of atomic, distinct data to represent that.
+
+50
+00:02:42,090 --> 00:02:44,270
+Let's just use False.
+
+51
+00:02:44,270 --> 00:02:47,150
+We'll only use the Boolean value False, to represent
+
+52
+00:02:47,150 --> 00:02:50,970
+that the countdown hasn't yet started.
+
+53
+00:02:50,970 --> 00:02:54,040
+Now in the second subclass, let's just say
+
+54
+00:02:54,040 --> 00:02:59,806
+that that'll be a natural number, from 1 to 10 inclusive.
+
+55
+00:02:59,806 --> 00:03:04,900
+And in the third case, we also need a distinct value there.
+
+56
+00:03:04,900 --> 00:03:09,570
+And we'll just use the string in this case, complete.
+
+57
+00:03:09,570 --> 00:03:13,830
+So now we've got three distinct subclasses
+
+58
+00:03:13,830 --> 00:03:16,980
+that correspond to the three distinct kinds of information that
+
+59
+00:03:16,980 --> 00:03:18,892
+need to be represented.
+
+60
+00:03:18,892 --> 00:03:22,180
+And we'll do an interpretation here.
+
+61
+00:03:22,180 --> 00:03:24,430
+And I'll use multiple lines for this interpretation.
+
+62
+00:03:24,430 --> 00:03:31,250
+I'll say false means countdown has not yet started.
+
+63
+00:03:31,250 --> 00:03:40,555
+Natural 1 to 10 means countdown is running, and how many seconds left.
+
+64
+00:03:40,555 --> 00:03:43,460
+
+
+65
+00:03:43,460 --> 00:03:51,370
+And Complete means countdown is over.
+
+66
+00:03:51,370 --> 00:03:54,720
+And if you want to you, you can indulge your inner Virgo
+
+67
+00:03:54,720 --> 00:03:58,370
+and make these line up nicely.
+
+68
+00:03:58,370 --> 00:04:01,940
+And if you don't want to, you don't have to.
+
+69
+00:04:01,940 --> 00:04:04,400
+There's the Type Comment and the Interpretation.
+
+70
+00:04:04,400 --> 00:04:06,980
+Now we need some examples.
+
+71
+00:04:06,980 --> 00:04:14,610
+So we might say, define Countdown 1 is-- now, I'll put a false here.
+
+72
+00:04:14,610 --> 00:04:16,810
+It's an atomic distinct, so in some sense
+
+73
+00:04:16,810 --> 00:04:20,700
+you might find that that example is not particularly illustrative.
+
+74
+00:04:20,700 --> 00:04:27,900
+But maybe I'll have Countdown 2 is 10, and I could put a comma in here
+
+75
+00:04:27,900 --> 00:04:31,600
+if I want, just started running.
+
+76
+00:04:31,600 --> 00:04:40,500
+Define Countdown 3, almost over.
+
+77
+00:04:40,500 --> 00:04:47,324
+And define Countdown 4, complete.
+
+78
+00:04:47,324 --> 00:04:49,720
+And that one's clear.
+

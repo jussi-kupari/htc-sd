@@ -1,0 +1,139 @@
+
+GREGOR KICZALES: Now, I've completed a little bit of constant analysis
+and defining some constants.
+And I should say first that if you didn't
+see right away that defining constants was a good thing to do here,
+that's completely fine.
+Sometimes you identify constants up front,
+sometimes you realize later that you'll need them.
+If you didn't see that right away, that's fine.
+Let me show you what I've done.
+I'm in a different version of the file now, tuition graph, v1.
+I added a required 2 HTTP image at the top
+because I knew I was going to be doing some drawing.
+I made it part of the file for constants.
+And I said, you know, this font size here
+that we're going to be drawing the name of the schools in,
+that looks like a good constant.
+By defining a constant for it, it'll be easier for me to change later.
+And the font color, similarly, I made that black.
+And I also realized that there would have to be kind of a scaling factor
+because these tuitions are going to be numbers like $20,000.
+And I'm pretty sure I don't want to make the graph 20,000 pixels high.
+That's going to be kind of a very high graph,
+it won't fit on the screen or the piece of paper or anything.
+So I invented a constant that I'm calling the y-scale,
+or I could have called it the y-scale factor or something,
+but it's basically how much I'm going to divide the dollars by
+to convert it to the height of the bar.
+And I just guessed 1/200, maybe that will end up being right,
+maybe it won't.
+We'll see later.
+The bars have to have a width.
+I just guessed that 30 pixels would look good.
+And the bars have to have a color.
+I just guessed that light blue would look good.
+Remember, the reason we give names to these constants
+is to make it easy to get the program going quickly,
+then you can adjust them to look a little bit better.
+So that's the constants.
+The next thing I have to do is the data definitions
+for representing the information in this problem.
+Remember the information that we have to represent
+is for an arbitrary number of schools, we need to know for each school
+what its name is and what its tuition is.
+Now, what makes this problem different is
+we're going to have two data definitions.
+There's going to be one compound data definition called school.
+And that's going to be used to represent information about an individual school.
+And then there's going to be an arbitrary size data definition called
+list of school, which will represent an arbitrary number of those school units.
+And what's going to happen there is the second data definition, list of school,
+is going to refer to the first data definition, school.
+And that's going to carry through the entire problem.
+So there'll be what's called a reference relationship in the type comment.
+There'll be what's called a natural helper in the templates.
+And in the final function, there'll be a helper function call.
+We've seen this before.
+It's a theme of this part of the course.
+The structure of the information determines the structure of the data
+determines the structure of the templates
+determines the structure of the functions.
+
+So now let's go look at how this plays out in the code.
+I'm in tuition graph v2.
+And I've started the data definition.
+But I've saved the most interesting part to do now.
+In terms of the compound information about the school that's
+a compound data definition, like the ones we've seen before.
+I defined a structure called school with two fields, name and intuition.
+And I said that a school is a make school, where name
+is a string and tuition is a natural.
+And I'm just saying here that name is the school's name.
+And tuition is the international student's tuition in US dollars.
+Remember we like to put units for numbers in interpretations.
+And I just decided on US dollars, you could use whatever currency you want.
+And then I just put some examples.
+I said school 1 is a school called school 1 that has a tuition of $27,797
+and school 2 is $23,300 and school 3 is $28,500.
+The template for school is straightforward.
+It's compound of two fields.
+Both fields are primitive types, string and natural.
+So the template just ends up looking like that.
+Now, the list of school data definition starts out just like we've seen before.
+I'll say that list of school is one of either empty for the base
+case, or cons something list of school for the self-reference case.
+But the question is what's the something?
+And for the something here rather than putting a primitive type,
+I've put school.
+Because that's what list of school really needs to be.
+It needs to be a list of representations of schools.
+So that in this list, I'll have an arbitrary number of schools.
+And then for each school, I'll have its name and its tuition.
+And so this type comment has something quite new.
+And it's really the new thing in this whole problem.
+In addition to the self-reference relationship,
+it also has what we want to call a reference relationship.
+It refers right here to a non-primitive type.
+And the way we're going to draw that is with an arrow,
+like the arrow we used for self-reference,
+but we're going to label it with an r for reference.
+That picture of the two type comments with the two arrows
+is going to define the structure of the entire rest of this problem.
+Let me show you how that starts happening in the template.
+Define fn for los, los, template rules used.
+And it starts out pretty normally.
+I'll speed things up a bit here.
+
+Now, here's where it gets a little bit different.
+We've already seen in the previous examples that we know that rest of los
+is going to be a value of type list of school.
+And that's going to cause us to use the self-reference rule.
+I'm going to skip a line here.
+That's going to cause us to use the self-reference rule.
+
+And the self-reference rule makes us put a natural recursion right here.
+
+But remember, this type comment has a second arrow.
+We know that the type of first los is going to be school.
+And school is a non-primitive type, that's why we have the arrow labeled r.
+And that's going to cause us to use what's called the reference rule.
+
+And the reference rule says that first los is school,
+it's a non-primitive type.
+So what we're going to do right here, we're going to put in a call
+to the template function for the referred to type.
+That picture is a little hard to understand like that.
+So let me just rearrange it a little bit.
+And what I've done in this picture is I've
+put the two type comments next to each other and the two templates
+next to each other.
+And I think that when I arrange it like this,
+you could see what's going on here a little bit better.
+In the two type comments, we have the self-reference from earlier this week.
+And we have the reference, which we just saw today for the first time.
+And in the templates, the self-reference produces a natural recursion.
+And the reference produces what we're going to call a natural helper.
+When we design a function that consumes a list of school,
+we'll see what the presence of this natural helper in the template
+does to the design of that function.

@@ -1,0 +1,560 @@
+0
+00:00:00,000 --> 00:00:00,604
+
+
+1
+00:00:00,604 --> 00:00:03,520
+GREGOR KICZALES: Now, I've completed a little bit of constant analysis
+
+2
+00:00:03,520 --> 00:00:05,270
+and defining some constants.
+
+3
+00:00:05,270 --> 00:00:07,560
+And I should say first that if you didn't
+
+4
+00:00:07,560 --> 00:00:11,560
+see right away that defining constants was a good thing to do here,
+
+5
+00:00:11,560 --> 00:00:13,470
+that's completely fine.
+
+6
+00:00:13,470 --> 00:00:15,630
+Sometimes you identify constants up front,
+
+7
+00:00:15,630 --> 00:00:18,900
+sometimes you realize later that you'll need them.
+
+8
+00:00:18,900 --> 00:00:21,840
+If you didn't see that right away, that's fine.
+
+9
+00:00:21,840 --> 00:00:23,460
+Let me show you what I've done.
+
+10
+00:00:23,460 --> 00:00:27,030
+I'm in a different version of the file now, tuition graph, v1.
+
+11
+00:00:27,030 --> 00:00:29,864
+I added a required 2 HTTP image at the top
+
+12
+00:00:29,864 --> 00:00:32,030
+because I knew I was going to be doing some drawing.
+
+13
+00:00:32,030 --> 00:00:34,070
+I made it part of the file for constants.
+
+14
+00:00:34,070 --> 00:00:35,930
+And I said, you know, this font size here
+
+15
+00:00:35,930 --> 00:00:39,490
+that we're going to be drawing the name of the schools in,
+
+16
+00:00:39,490 --> 00:00:40,830
+that looks like a good constant.
+
+17
+00:00:40,830 --> 00:00:44,570
+By defining a constant for it, it'll be easier for me to change later.
+
+18
+00:00:44,570 --> 00:00:48,410
+And the font color, similarly, I made that black.
+
+19
+00:00:48,410 --> 00:00:51,910
+And I also realized that there would have to be kind of a scaling factor
+
+20
+00:00:51,910 --> 00:00:56,550
+because these tuitions are going to be numbers like $20,000.
+
+21
+00:00:56,550 --> 00:01:00,391
+And I'm pretty sure I don't want to make the graph 20,000 pixels high.
+
+22
+00:01:00,391 --> 00:01:02,265
+That's going to be kind of a very high graph,
+
+23
+00:01:02,265 --> 00:01:05,620
+it won't fit on the screen or the piece of paper or anything.
+
+24
+00:01:05,620 --> 00:01:08,850
+So I invented a constant that I'm calling the y-scale,
+
+25
+00:01:08,850 --> 00:01:11,710
+or I could have called it the y-scale factor or something,
+
+26
+00:01:11,710 --> 00:01:15,560
+but it's basically how much I'm going to divide the dollars by
+
+27
+00:01:15,560 --> 00:01:17,420
+to convert it to the height of the bar.
+
+28
+00:01:17,420 --> 00:01:20,990
+And I just guessed 1/200, maybe that will end up being right,
+
+29
+00:01:20,990 --> 00:01:21,620
+maybe it won't.
+
+30
+00:01:21,620 --> 00:01:23,380
+We'll see later.
+
+31
+00:01:23,380 --> 00:01:24,680
+The bars have to have a width.
+
+32
+00:01:24,680 --> 00:01:27,520
+I just guessed that 30 pixels would look good.
+
+33
+00:01:27,520 --> 00:01:29,220
+And the bars have to have a color.
+
+34
+00:01:29,220 --> 00:01:32,230
+I just guessed that light blue would look good.
+
+35
+00:01:32,230 --> 00:01:35,660
+Remember, the reason we give names to these constants
+
+36
+00:01:35,660 --> 00:01:38,780
+is to make it easy to get the program going quickly,
+
+37
+00:01:38,780 --> 00:01:41,120
+then you can adjust them to look a little bit better.
+
+38
+00:01:41,120 --> 00:01:43,290
+So that's the constants.
+
+39
+00:01:43,290 --> 00:01:46,630
+The next thing I have to do is the data definitions
+
+40
+00:01:46,630 --> 00:01:49,700
+for representing the information in this problem.
+
+41
+00:01:49,700 --> 00:01:52,030
+Remember the information that we have to represent
+
+42
+00:01:52,030 --> 00:01:57,070
+is for an arbitrary number of schools, we need to know for each school
+
+43
+00:01:57,070 --> 00:01:59,790
+what its name is and what its tuition is.
+
+44
+00:01:59,790 --> 00:02:01,630
+Now, what makes this problem different is
+
+45
+00:02:01,630 --> 00:02:04,500
+we're going to have two data definitions.
+
+46
+00:02:04,500 --> 00:02:08,340
+There's going to be one compound data definition called school.
+
+47
+00:02:08,340 --> 00:02:13,930
+And that's going to be used to represent information about an individual school.
+
+48
+00:02:13,930 --> 00:02:17,620
+And then there's going to be an arbitrary size data definition called
+
+49
+00:02:17,620 --> 00:02:24,310
+list of school, which will represent an arbitrary number of those school units.
+
+50
+00:02:24,310 --> 00:02:28,380
+And what's going to happen there is the second data definition, list of school,
+
+51
+00:02:28,380 --> 00:02:32,720
+is going to refer to the first data definition, school.
+
+52
+00:02:32,720 --> 00:02:35,960
+And that's going to carry through the entire problem.
+
+53
+00:02:35,960 --> 00:02:39,710
+So there'll be what's called a reference relationship in the type comment.
+
+54
+00:02:39,710 --> 00:02:43,570
+There'll be what's called a natural helper in the templates.
+
+55
+00:02:43,570 --> 00:02:48,020
+And in the final function, there'll be a helper function call.
+
+56
+00:02:48,020 --> 00:02:49,140
+We've seen this before.
+
+57
+00:02:49,140 --> 00:02:51,450
+It's a theme of this part of the course.
+
+58
+00:02:51,450 --> 00:02:55,320
+The structure of the information determines the structure of the data
+
+59
+00:02:55,320 --> 00:02:57,241
+determines the structure of the templates
+
+60
+00:02:57,241 --> 00:02:58,990
+determines the structure of the functions.
+
+61
+00:02:58,990 --> 00:03:01,580
+
+
+62
+00:03:01,580 --> 00:03:04,430
+So now let's go look at how this plays out in the code.
+
+63
+00:03:04,430 --> 00:03:07,110
+I'm in tuition graph v2.
+
+64
+00:03:07,110 --> 00:03:09,590
+And I've started the data definition.
+
+65
+00:03:09,590 --> 00:03:12,990
+But I've saved the most interesting part to do now.
+
+66
+00:03:12,990 --> 00:03:16,710
+In terms of the compound information about the school that's
+
+67
+00:03:16,710 --> 00:03:20,410
+a compound data definition, like the ones we've seen before.
+
+68
+00:03:20,410 --> 00:03:25,480
+I defined a structure called school with two fields, name and intuition.
+
+69
+00:03:25,480 --> 00:03:28,900
+And I said that a school is a make school, where name
+
+70
+00:03:28,900 --> 00:03:32,082
+is a string and tuition is a natural.
+
+71
+00:03:32,082 --> 00:03:34,415
+And I'm just saying here that name is the school's name.
+
+72
+00:03:34,415 --> 00:03:38,620
+And tuition is the international student's tuition in US dollars.
+
+73
+00:03:38,620 --> 00:03:41,990
+Remember we like to put units for numbers in interpretations.
+
+74
+00:03:41,990 --> 00:03:47,370
+And I just decided on US dollars, you could use whatever currency you want.
+
+75
+00:03:47,370 --> 00:03:49,390
+And then I just put some examples.
+
+76
+00:03:49,390 --> 00:03:56,270
+I said school 1 is a school called school 1 that has a tuition of $27,797
+
+77
+00:03:56,270 --> 00:04:03,040
+and school 2 is $23,300 and school 3 is $28,500.
+
+78
+00:04:03,040 --> 00:04:05,900
+The template for school is straightforward.
+
+79
+00:04:05,900 --> 00:04:08,510
+It's compound of two fields.
+
+80
+00:04:08,510 --> 00:04:11,860
+Both fields are primitive types, string and natural.
+
+81
+00:04:11,860 --> 00:04:15,760
+So the template just ends up looking like that.
+
+82
+00:04:15,760 --> 00:04:20,709
+Now, the list of school data definition starts out just like we've seen before.
+
+83
+00:04:20,709 --> 00:04:23,500
+I'll say that list of school is one of either empty for the base
+
+84
+00:04:23,500 --> 00:04:31,120
+case, or cons something list of school for the self-reference case.
+
+85
+00:04:31,120 --> 00:04:33,580
+But the question is what's the something?
+
+86
+00:04:33,580 --> 00:04:37,100
+And for the something here rather than putting a primitive type,
+
+87
+00:04:37,100 --> 00:04:38,690
+I've put school.
+
+88
+00:04:38,690 --> 00:04:41,090
+Because that's what list of school really needs to be.
+
+89
+00:04:41,090 --> 00:04:45,150
+It needs to be a list of representations of schools.
+
+90
+00:04:45,150 --> 00:04:50,160
+So that in this list, I'll have an arbitrary number of schools.
+
+91
+00:04:50,160 --> 00:04:54,410
+And then for each school, I'll have its name and its tuition.
+
+92
+00:04:54,410 --> 00:04:58,170
+And so this type comment has something quite new.
+
+93
+00:04:58,170 --> 00:05:01,830
+And it's really the new thing in this whole problem.
+
+94
+00:05:01,830 --> 00:05:04,880
+In addition to the self-reference relationship,
+
+95
+00:05:04,880 --> 00:05:08,620
+it also has what we want to call a reference relationship.
+
+96
+00:05:08,620 --> 00:05:13,260
+It refers right here to a non-primitive type.
+
+97
+00:05:13,260 --> 00:05:17,630
+And the way we're going to draw that is with an arrow,
+
+98
+00:05:17,630 --> 00:05:19,980
+like the arrow we used for self-reference,
+
+99
+00:05:19,980 --> 00:05:23,110
+but we're going to label it with an r for reference.
+
+100
+00:05:23,110 --> 00:05:26,680
+That picture of the two type comments with the two arrows
+
+101
+00:05:26,680 --> 00:05:31,260
+is going to define the structure of the entire rest of this problem.
+
+102
+00:05:31,260 --> 00:05:33,830
+Let me show you how that starts happening in the template.
+
+103
+00:05:33,830 --> 00:05:43,150
+Define fn for los, los, template rules used.
+
+104
+00:05:43,150 --> 00:05:45,320
+And it starts out pretty normally.
+
+105
+00:05:45,320 --> 00:05:47,070
+I'll speed things up a bit here.
+
+106
+00:05:47,070 --> 00:06:13,790
+
+
+107
+00:06:13,790 --> 00:06:17,700
+Now, here's where it gets a little bit different.
+
+108
+00:06:17,700 --> 00:06:23,886
+We've already seen in the previous examples that we know that rest of los
+
+109
+00:06:23,886 --> 00:06:28,150
+is going to be a value of type list of school.
+
+110
+00:06:28,150 --> 00:06:32,310
+And that's going to cause us to use the self-reference rule.
+
+111
+00:06:32,310 --> 00:06:33,940
+I'm going to skip a line here.
+
+112
+00:06:33,940 --> 00:06:36,515
+That's going to cause us to use the self-reference rule.
+
+113
+00:06:36,515 --> 00:06:42,840
+
+
+114
+00:06:42,840 --> 00:06:47,190
+And the self-reference rule makes us put a natural recursion right here.
+
+115
+00:06:47,190 --> 00:06:50,389
+
+
+116
+00:06:50,389 --> 00:06:53,810
+But remember, this type comment has a second arrow.
+
+117
+00:06:53,810 --> 00:07:00,050
+We know that the type of first los is going to be school.
+
+118
+00:07:00,050 --> 00:07:05,460
+And school is a non-primitive type, that's why we have the arrow labeled r.
+
+119
+00:07:05,460 --> 00:07:08,540
+And that's going to cause us to use what's called the reference rule.
+
+120
+00:07:08,540 --> 00:07:11,770
+
+
+121
+00:07:11,770 --> 00:07:15,950
+And the reference rule says that first los is school,
+
+122
+00:07:15,950 --> 00:07:17,150
+it's a non-primitive type.
+
+123
+00:07:17,150 --> 00:07:19,900
+So what we're going to do right here, we're going to put in a call
+
+124
+00:07:19,900 --> 00:07:24,380
+to the template function for the referred to type.
+
+125
+00:07:24,380 --> 00:07:27,260
+That picture is a little hard to understand like that.
+
+126
+00:07:27,260 --> 00:07:29,470
+So let me just rearrange it a little bit.
+
+127
+00:07:29,470 --> 00:07:31,370
+And what I've done in this picture is I've
+
+128
+00:07:31,370 --> 00:07:35,650
+put the two type comments next to each other and the two templates
+
+129
+00:07:35,650 --> 00:07:37,440
+next to each other.
+
+130
+00:07:37,440 --> 00:07:40,240
+And I think that when I arrange it like this,
+
+131
+00:07:40,240 --> 00:07:43,940
+you could see what's going on here a little bit better.
+
+132
+00:07:43,940 --> 00:07:47,870
+In the two type comments, we have the self-reference from earlier this week.
+
+133
+00:07:47,870 --> 00:07:52,350
+And we have the reference, which we just saw today for the first time.
+
+134
+00:07:52,350 --> 00:07:57,920
+And in the templates, the self-reference produces a natural recursion.
+
+135
+00:07:57,920 --> 00:08:01,650
+And the reference produces what we're going to call a natural helper.
+
+136
+00:08:01,650 --> 00:08:05,520
+When we design a function that consumes a list of school,
+
+137
+00:08:05,520 --> 00:08:09,540
+we'll see what the presence of this natural helper in the template
+
+138
+00:08:09,540 --> 00:08:12,650
+does to the design of that function.
+
+139
+00:08:12,650 --> 00:08:14,259
+
+

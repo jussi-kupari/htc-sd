@@ -1,0 +1,170 @@
+
+GREGOR KICZALES: What I've done now is to jump
+to the v.3 version of the Cowabunga solution.
+That has the next cow solution, which we just developed a few minutes ago.
+And I've actually done a bit more than that.
+I've started doing the design for the render-cow function.
+Just to save time, I did the first part of the design already.
+So I've got the signature, the purpose, the stub, and I did the examples.
+And the examples for this function are actually relatively straightforward.
+If I render a cow that's at position 99 and has a positive velocity--
+In other words, it's facing towards the right edge of the screen--
+then what this function needs to do is to place
+an image of the right facing cow at exposition 99,
+at y position center y onto the background MTS.
+And I need two tests for this function, because sometimes it
+places a cow facing right, and sometimes it places a cow facing left.
+And so I've got a second task here where the cow
+is going in a different direction.
+And to be honest, this test would actually
+be a little bit better if I changed the x-coordinate just
+to be sure that I couldn't accidentally have put in by accident 99
+into the actual solution.
+So let's just make this be 33, and we'll make that be 33,
+and now those are two pretty good examples.
+They vary both the direction that the cow is facing, and the x-coordinate.
+
+So I've already got the template.
+Let's just start filling this in.
+Let's see, both examples tell me that I'm going to place an image.
+
+And sometimes it's one image, and sometimes it's another image.
+Let me just put dots there for a second.
+And I always place the image at the cow's x-coordinate.
+And I always place the image at center y,
+and I always the image on the background.
+
+That's all of it, except for this part here where I have
+to decide exactly which image to place.
+Now, there's two choices here.
+One choice is I could start to put an if expression here
+that would choose which cow image to use.
+But I'm going to do something slightly different.
+And it's going to be something that we talk a lot about the course
+as we go forward.
+Which is, I'm going to say to myself, you know, this function
+is actually doing two things.
+This function is deciding which image to use,
+and putting it in the proper place.
+Two tasks.
+And as a general rule, we don't want functions that do two tasks.
+We want each function to do one task.
+So what I'm going to do is I'm going to wish for a helper.
+I'm going to say, you know, it really would be great here
+if there was a function called Choose image,
+and I could call that function with a cow,
+and it would give me back the right image to use.
+If I had that, then I would be done.
+And so I'm just going to wish for that to exist.
+And I have to wish in a little bit more detail.
+I'll wish in a little bit more detail by writing the wish list entry for it.
+So I'll say cow to image produce-- now, what does it need to do?
+Well, it needs to choose the right cow, produce R cow or L cow,
+depending on direction cow is going.
+
+And the reason I write this signature on purpose right now,
+and I write it in detail right now, is that right now after I've just
+finished wishing for this function, I know what I want it to do.
+So I'm going to take the trouble to write down what I want it to do.
+And then I'm going to say oh, but this doesn't exist yet,
+I hope it will someday.
+And I'll make a stub.
+
+Choose image, consumes a cow-- and it's got to produce some image.
+I could make it produce the blank image.
+In this case, I'll just make the stub produce the right cow.
+And now I run this to see if it's well formed.
+And it is well formed.
+And what we're going to see, paradoxically,
+is that one of these two render-cow tests actually passed.
+The first one actually passed, just because the Choose image stub always
+produces the right facing cow.
+So now I've basically done render-cow, if somebody goes and fulfills
+this wish that I made for Choose image.
+And that somebody is going to be me a little
+bit later when I say to myself, hey, what work remains to be done?
+Let me search for bang, bang, bang-- oh, I need this function, Choose image.
+OK, great.
+Let me do it.
+Let's see, what does it do?
+It consumes a cow, it produces an image.
+It produces either the right cow or the left cow, depending on the direction
+the cow is going.
+
+So I'm going to speed this up a bit.
+I've got two examples, one example for when the cow is moving left to right,
+so it's facing towards the right.
+Another example for when the cow is moving the other way,
+so I need the left cow image.
+I'm going to go and get the template from cow.
+
+And now, let's see.
+There's two cases, so I'll use an if.
+And the question is whether the dx of the cow is greater than 0.
+If it is, I use the right facing cow, otherwise I use the left facing cow.
+And there's a bit of an issue here I have to deal with,
+which is what to do if cow dx is actually 0.
+And in that case, I'm just going to go ahead and decide
+to use the left facing cow.
+
+And when I run it, I get that all my tests pass,
+and that includes the three tests for Choose image,
+but it also includes the two tests for render-cow,
+because Choose image is a helper for render-cow.
+So now render-cow is working completely, because choose-image
+is working completely.
+Let me just recap what happened there.
+We were in the middle of coding the function render-cow.
+And we knew we had to place an image, and we
+knew where it was going to place the image,
+and we knew it had to decide what image it was going to place.
+And that's when this idea about each function
+should only do one task came up.
+What I did was I decided, you know, deciding where to put the image,
+and deciding what the image is, is two tasks.
+I'm going to delegate one of the tasks to a new helper function,
+Choose image in this case.
+We're going to talk a lot more about this idea of helper functions
+as we go along.
+And In some cases, we're going to give you very clear cut
+and dried rules for when to use helper functions.
+This is not one of those cut and dried cases.
+In this case, you have to kind of decide that Choose image is
+its own separate task.
+And some programmers wouldn't make a separate function for Choose image,
+because it's so small.
+But this is a reasonable place to use a helper function,
+because it really is a separate task here.
+And as we work through this part of the course,
+we want you to look out for places where there is a separate task
+and it makes sense to use a separate function.
+What is clear that when I go back to read this function,
+and I go to read render-cow, it says, OK, let's see.
+I'm going to place an image, and somebody else
+is going to choose the image, and I'm going
+to put it at the cow's x-coordinate, center y and MTS.
+That's very clear to me.
+It says, I'm placing the image and somebody else is choosing the image.
+And now when I go down here and read choose the image,
+it says, well, if the dx is greater than 0, it's right facing.
+Otherwise, it's left facing.
+This code is easy to read.
+And at this point, I have all of my handlers done except for handle-key.
+So I actually can run this program at this point.
+I could say, Main, make-cow, the cow that starts at the left edge
+and is moving three pixels per tick, and there is our little cow.
+
+I'll leave it to you to finish the key handler.
+As I said, the solution is there in Cowabunga v.5.
+
+And the problem description also talks about a fun little thing
+you can do where if you take the cow image and take each image and rotate it
+a couple degrees left and a couple degrees right,
+and then you take a speed that's for example an odd number,
+and you arrange to use different cow images depending
+on whether the position is and odd or an even number,
+you can make the cow appear to waddle as it crosses the screen,
+and that looks kind of neat.
+And there's all sorts of other fun stuff you can do here.
+Just go ahead and have some fun with this cow program.
+That will be good practice for doing this week's homework assignment.

@@ -1,0 +1,87 @@
+
+GREGOR KICZALES: It's graduation day.
+We're going to move from the beginning student language
+to the next most advanced language.
+It isn't a big move.
+But it's a good move.
+The way you do it is you go into the lower corner of DrRacket here.
+And you switch from beginning student to beginning student
+with list abbreviations.
+Now, what are list abbreviations?
+Well, by this point you've probably got a little annoyed
+at having to write something like cons a, cons b, cons c,
+empty, when all you really wanted to do was make a list of three items--
+a, b, and c.
+And what list abbreviations do is they let you write that
+more compactly as just list a, b, c.
+
+Now, lists created with the list primitive
+are exactly like lists created with cons.
+That's a list of three elements.
+If I run this now, what you'll see is that because I've
+turned on the list abbreviations language,
+Racket shows me the value of this expression using list notation.
+And it also shows me the value of this expression using list notation.
+So you could still construct list with cons.
+And in many cases, you'll still want to construct them with cons.
+But you could also construct them with list.
+And Racket's always going to show them to you with list.
+Now, just like cons, list is a primitive for constructing lists.
+And it's a notation Racket uses for presenting list values.
+And so, for example, you can say list plus 1 2, plus 3 4, plus 5 6.
+So this is a call to the list primitive with three operands.
+When you run that, you'll get back list 3 7 11
+because those operands are reduced to values before the list is created.
+And so what you see is a list with the values.
+Now, an important point here, which is that when you construct
+lists one at a time in a function, you're still going to want to use cons.
+And let me show you why.
+Suppose I say, define L1 is list b c, and define L2 is list d e f.
+And I'll run that.
+And now I've got those two definitions.
+Now watch this.
+If I say, cons a on to L1, that produces the value I probably wanted,
+which was to take the list L1 and add an a to the front.
+On the other hand, if I say list a L1, that doesn't produce the value I want.
+That produces a list in which the first element is a.
+And the second element is the value of L1, which is some other list.
+So I get a funny list here that has a as its first element,
+and a list as its second element.
+I'm not saying you can't have lists with lists in them.
+Sometimes that's exactly what you want.
+All I'm saying here is, watch out.
+When you're trying to add one element to a list, you use cons.
+You don't use list.
+You use list when you're trying to make a fully formed list all at once.
+So, for example, you might want to say, list L1, list L2.
+That would be a perfectly reasonable thing to say.
+And, conceivably, even this middle thing would be a reasonable thing to say.
+But, usually, when you write something like that,
+you're going to want to use cons.
+
+Let me show you one other list primitive that sometimes is quite useful.
+It's called append.
+
+And it consumes two lists.
+And what it does-- let me comment these things out.
+
+Append consumes two lists.
+And what it does is it produces a single list by adding the two lists together.
+So it's kind of like string append.
+It contains all the elements of L1, followed by all the elements of L2.
+
+Now, one final thing about list notation rather than cons
+notation-- if you find list notation confusing,
+you don't have to start using it right away.
+We're going to use it.
+So you need to be able to read it.
+It's still perfectly fine for you to write that list that way,
+instead of that way.
+
+They both mean the same.
+They're both correct.
+We think most of you will soon find it more convenient to use list notation.
+But cons notation is still perfectly valid.
+There's a few exercises to come up now to help test your understanding of list
+notation, and in particular to test the issue of when
+to use cons to add something to a list.

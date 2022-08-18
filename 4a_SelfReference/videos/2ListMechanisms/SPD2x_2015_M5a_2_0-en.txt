@@ -1,0 +1,149 @@
+
+GREGOR KICZALES: Now, it turns out you can represent arbitrary sized
+information using compound data.
+And that's something we'll do a little bit later this week.
+But the simplest form of arbitrary size data is lists of values.
+And so we're going to do lists of values first.
+Now, before I can talk about designing with lists,
+I have to show you the basic mechanisms that BSL gives us
+for representing lists.
+So this is kind of like what happened last week,
+where first I showed you the define-struct mechanism,
+and then we learned how to design compound data.
+First, I'm going to talk about the BSL primitives for lists,
+and we'll do that in this video.
+And then over the next several videos, we'll look at designing with lists.
+The primitive data that BSL gives us is called lists.
+Here's the value that BSL gives us for representing empty lists.
+So that value empty is an empty list of anything you want.
+It's an empty list of strings.
+It's an empty list of hockey teams.
+It's an empty list of numbers.
+Since it's empty, it can be an empty list of anything.
+Now, let's look at how to make a list that isn't empty.
+The way we do that is we have a primitive cons.
+And if I do this, that is a list that's constructed
+by putting flames on to the front of this list here,
+which happens to be empty.
+So this is going to be a list of one element.
+
+Here's a list two elements.
+
+And again, the way you read this is it says,
+we'll construct a list in which leafs is the first element,
+and add leafs to the front of.
+Construct a list in which you add flames to the front of the list empty.
+So that's a list of two elements.
+
+If we run this, Racket shows us the list using this cons notation, it's called.
+So it shows us values that look very much like these expressions,
+but there's an important point to make here.
+Let me show you a third one of these, kind of a silly one,
+except to make this point.
+
+If I evaluate this third expression, the value that I get is cons Canucks empty.
+What happens is, when Racket evaluates this, the string-append C anucks,
+produces the string Canucks.
+And then the resulting value, the resulting list
+is the list formed with the string Canucks
+at the beginning of the list that's empty.
+So you could put expressions as the operands for cons in expressions.
+When BSL shows us values, it'll always be formed out of values.
+Now, lists can have more than just strings in them.
+For example, you could represent problem set quiz grades.
+And let's suppose we're doing very well on our problem set quizzes.
+So we've got a 10, a 9, and a 10.
+There is a list of three elements-- the numbers 10, 9, and 10.
+And we can also make lists out of images, for example.
+So we have a list that's a square of size 10, and solid, and blue.
+And let's see, the second element of the list would be a triangle of size 20,
+that's solid and green and empty.
+
+So lists can have all kinds of different values in them.
+Technically, you can use the list mechanism
+to make lists that have more than one type of data in them.
+The mechanism will do that.
+But our data definitions don't let us talk about that very well.
+So we're not going to see values like that in this course.
+Let me clean this up a bit.
+And what I'm going to do is give some of these values names.
+So let me call this one L1.
+
+And I will call this one L2.
+
+And I'll just get rid of this one.
+And I'll call this one L3.
+
+Now they've all got names.
+Now that we've made lists of things, we'd kind of
+like to know what's in the lists.
+So Racket gives us two more primitives for doing that.
+One is called first.
+So first, given a list, produces the first element of the list.
+So first of L1 produces flames.
+
+First of L2 would produce 10.
+And first of L3 would produce that square.
+
+OK.
+So that's first.
+First produces the first item in the list.
+First is kind of like a selector.
+That's because lists are kind of like compound data.
+Right?
+Cons is basically a compound data constructor, saying make a new list,
+in which the first element is this, and the rest of the list
+is the second operand for cons.
+So first is the selector that produces the first item in the list.
+And the name of the selector that produces
+the rest of the elements of the list is called rest.
+So rest of L1 is going to be empty, because everything
+in the list after flames is empty.
+Well, I'll just quickly type these other two.
+
+Rest of L2 is cons 9 cons 10 empty.
+And rest of L3 three is cons the triangle empty.
+So that's first and rest.
+Those are the BSL primitives for taking lists apart.
+Now, let me ask you a question.
+Suppose what I want, how do I get the second element of L2?
+Now, BSL has a primitive called second.
+And it has one called third.
+I don't want you to use those.
+For the next couple weeks, in order to get at the insides of lists,
+in order to take lists apart, I only want you to use first and rest.
+So using only first and rest, how do I get at the second element of L2?
+Well, if I call a first as the first thing I do, I'm in trouble,
+because I'll just get 10.
+So what I do actually is I take rest of L2.
+Now, that's going to give me cons 9 cons 10 empty.
+And once I have rest of L2, then the first of that
+is the second thing in L2.
+The way to read this is first of rest of L2.
+So rest of L2 is that.
+Give me the first of that, which is 9.
+How do I get the third element?
+You just do the same trick again.
+You say first of rest of rest of L2.
+Now, that would get tedious if you wanted
+to get the 23rd element of a list.
+And what we'll see, starting in the next lecture,
+is that we'd do it a different way.
+So let's see.
+I have cons for constructing lists.
+I have first and rest for taking lists apart.
+There's one more primitive that BSL gives me for working with lists.
+And that's called empty question mark.
+It's a predicate, because its name ends in question mark.
+And what happens is that empty question mark of empty
+produces-- let me comment these things out, so we won't get confused here.
+
+Empty question mark of empty produces true.
+And empty question mark of a list that isn't empty, or in fact of anything
+at all, produces false.
+You can also say, if you want, empty question mark of 1.
+But you're not going to say that as often.
+We'll often want to know, is the list that we're holding here empty?
+So there you go.
+There's the primitives for constructing and operating on lists
+that are part of the BSL language.

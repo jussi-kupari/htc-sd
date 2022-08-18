@@ -1,0 +1,72 @@
+
+GREGOR KICZALES: OK, that's the basics about strings.
+What I'd like to do now is go look at some basics about images.
+So what I'll do is I'll make a new Tab.
+DrRacket has lots of different kinds of image functions.
+In order to tell it we want to use the ones for this course,
+we're going to type at the top of this file and any file
+in this course that uses image functions: require 2htdp/image.
+
+And what this is telling DrRacket is it means
+we want to use the image functions that come from the second edition of the How
+to Design Programs book.
+So it's a little bit of a mouthful, but you can just
+type that at the top of any file in which we're using image functions.
+Now there's lots and lots of image primitives.
+Some of them make images.
+For example, the Circle primitive.
+The first argument to circle is the radius in screen
+coordinates, or pixels.
+The second argument to Circle says whether the circle
+should be solid or an outline.
+The third argument is a color.
+So that expression there produces that red circle.
+So we call the primitive circle, we get a red circle.
+And there's lots of similar shapes. rectangle-- rectangle
+takes a width and a height.
+And it can take outline or solid.
+And we can try some of our other colors.
+There we've got a rectangle.
+And there's just a whole bunch of them.
+I'm not going to go through all of them right now.
+Another one that's quite useful, though, is called text.
+Text takes a string, for example, Hello, and a font size, like 24.
+And another color, like orange.
+
+It produces-- this is now an image of the string
+Hello in font size 24, color orange.
+So this is an image, not a string.
+So that's a bunch of useful primitives for making images.
+Let me talk about some things we can do with the images once we have them made.
+One useful primitive is above.
+
+So if I say above-- we'll make a circle of size 10 that's solid and red.
+And I'll make you another couple of circles.
+What I'll do is I'll do this easily by cutting and pasting,
+and then I'll just change the sizes.
+Let's say we'll make this one 20, and we'll make this one 30.
+And to make it pretty, we can change the colors, too.
+
+There we go.
+So now what happens when I run that is I get this stack of the images.
+Above takes all the images that it receives as arguments,
+and it stacks them one on top of the other.
+So above is kind of a version of string-append for images.
+But since images can be arrayed in lots of different ways,
+there's lots of other functions.
+So in addition to above, there is, for example, beside.
+And if I run that, I get that shape.
+In addition to Beside, there's a thing called overlay.
+Overlay.
+
+If I run that, overlay stacks them on top of each other.
+There's lots and lots of primitives that operate on images,
+and as you do the homework exercises this week,
+you'll get a chance to look them up and play with them.
+But for example, there's functions that make ellipses and stars
+and triangles and things like that.
+And you can line images up and put them next to each other in different ways.
+But these are good set of basic functions right here:
+circle, rectangle, text, overlay, above, and beside.
+So I've got another little exercise you can do here
+to test your understanding about primitives that operate on images.

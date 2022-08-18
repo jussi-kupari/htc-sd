@@ -1,0 +1,388 @@
+0
+00:00:00,000 --> 00:00:00,500
+
+
+1
+00:00:00,500 --> 00:00:03,100
+Gregor Kiczales: Welcome to systematic program design.
+
+2
+00:00:03,100 --> 00:00:06,400
+What I want to do in this video is tell you a little bit more
+
+3
+00:00:06,400 --> 00:00:09,640
+about what the course covers, how it is organized,
+
+4
+00:00:09,640 --> 00:00:14,790
+and give you some suggestions for how to learn this material most effectively.
+
+5
+00:00:14,790 --> 00:00:18,890
+First, let's talk about what makes it hard to write programs.
+
+6
+00:00:18,890 --> 00:00:21,290
+When you're asked to write a program you're typically
+
+7
+00:00:21,290 --> 00:00:24,300
+given a poorly formed problem.
+
+8
+00:00:24,300 --> 00:00:28,820
+And what I mean by that is you're asked to write a program to solve some task,
+
+9
+00:00:28,820 --> 00:00:32,119
+but the task description is somewhat vague
+
+10
+00:00:32,119 --> 00:00:37,720
+or it might be incomplete or sometimes it's just even inconsistent.
+
+11
+00:00:37,720 --> 00:00:42,130
+So the first challenge is figuring out exactly what we want our program to do.
+
+12
+00:00:42,130 --> 00:00:44,190
+And the design method that we're going to learn,
+
+13
+00:00:44,190 --> 00:00:48,420
+the first big thing it does for us is helps us figure out exactly that,
+
+14
+00:00:48,420 --> 00:00:51,250
+what it is we want our program to do.
+
+15
+00:00:51,250 --> 00:00:55,410
+The second thing that makes programming hard is that oftentimes the program is
+
+16
+00:00:55,410 --> 00:00:58,620
+too big for us to solve in one go.
+
+17
+00:00:58,620 --> 00:01:00,720
+In fact, the way our brains work is we can only
+
+18
+00:01:00,720 --> 00:01:04,810
+focus on one small part of the program at once.
+
+19
+00:01:04,810 --> 00:01:08,080
+So we have to find some way to manage that complexity.
+
+20
+00:01:08,080 --> 00:01:10,110
+The second thing the design method does is
+
+21
+00:01:10,110 --> 00:01:14,820
+to break the program down into well-chosen smaller pieces, not just
+
+22
+00:01:14,820 --> 00:01:18,550
+smaller pieces, but well-chosen smaller pieces.
+
+23
+00:01:18,550 --> 00:01:22,510
+With the problem broken down into smaller pieces what we then need to do
+
+24
+00:01:22,510 --> 00:01:27,520
+is write one part of the program for each piece of the problem.
+
+25
+00:01:27,520 --> 00:01:30,130
+Because the pieces were well chosen and because
+
+26
+00:01:30,130 --> 00:01:33,010
+of other properties of the design method what you'll see
+
+27
+00:01:33,010 --> 00:01:38,680
+is that the pieces end up fitting together well and being well tested.
+
+28
+00:01:38,680 --> 00:01:43,670
+The resulting program is then easy to read and easy to modify,
+
+29
+00:01:43,670 --> 00:01:45,670
+and that turns out to be more important than you
+
+30
+00:01:45,670 --> 00:01:48,820
+might think because here's the thing.
+
+31
+00:01:48,820 --> 00:01:52,030
+Any program that's actually useful ends up
+
+32
+00:01:52,030 --> 00:01:55,660
+needing to be modified maybe to add some new functionality
+
+33
+00:01:55,660 --> 00:01:58,250
+or to fix a hidden problem.
+
+34
+00:01:58,250 --> 00:02:01,390
+So having programs that end up being formed of nice pieces
+
+35
+00:02:01,390 --> 00:02:06,040
+that fit together well, are well tested, and easy to modify that's
+
+36
+00:02:06,040 --> 00:02:07,430
+really the goal.
+
+37
+00:02:07,430 --> 00:02:10,400
+And that's what the method is going to help you do.
+
+38
+00:02:10,400 --> 00:02:16,300
+That whole trip from poorly-formed problem to well-structured solution
+
+39
+00:02:16,300 --> 00:02:18,470
+that's systematic program design.
+
+40
+00:02:18,470 --> 00:02:21,110
+That's what we're going to learn how to do in this course.
+
+41
+00:02:21,110 --> 00:02:24,680
+That's what separates really good programmers from people
+
+42
+00:02:24,680 --> 00:02:27,070
+who just type and hope for the best.
+
+43
+00:02:27,070 --> 00:02:30,140
+The way the course is organized is that each module is broken
+
+44
+00:02:30,140 --> 00:02:33,200
+into a series of extended lectures.
+
+45
+00:02:33,200 --> 00:02:36,050
+In most of those lectures, what I do is I take a design problem
+
+46
+00:02:36,050 --> 00:02:39,980
+and then I work it through to completion following the design method.
+
+47
+00:02:39,980 --> 00:02:42,950
+So it isn't so much of a traditional lecture as it is you
+
+48
+00:02:42,950 --> 00:02:46,550
+and I sitting together at the computer and solving a problem.
+
+49
+00:02:46,550 --> 00:02:48,565
+The lectures are broken up with questions
+
+50
+00:02:48,565 --> 00:02:50,690
+that you can answer to help you be sure that you're
+
+51
+00:02:50,690 --> 00:02:54,290
+following the design process as we go.
+
+52
+00:02:54,290 --> 00:02:56,630
+But what's even better would be if you were
+
+53
+00:02:56,630 --> 00:03:01,310
+to type along the whole way with me, solve the design problem step by step
+
+54
+00:03:01,310 --> 00:03:04,560
+as I'm doing it using your computer.
+
+55
+00:03:04,560 --> 00:03:07,250
+I don't know if maybe you play a sport or a musical instrument
+
+56
+00:03:07,250 --> 00:03:12,140
+or a video game, but if you do you didn't get good at that
+
+57
+00:03:12,140 --> 00:03:14,540
+by watching somebody else do it.
+
+58
+00:03:14,540 --> 00:03:17,060
+You got good at that by doing it yourself.
+
+59
+00:03:17,060 --> 00:03:19,200
+And programming is the same sort of thing.
+
+60
+00:03:19,200 --> 00:03:21,090
+If you really want to learn this material,
+
+61
+00:03:21,090 --> 00:03:25,040
+you're going to have to do it yourself, to practice it and really internalize
+
+62
+00:03:25,040 --> 00:03:26,210
+it.
+
+63
+00:03:26,210 --> 00:03:29,660
+To give you further help with that at the end of each module
+
+64
+00:03:29,660 --> 00:03:32,660
+there's a set of practice problems that you can solve
+
+65
+00:03:32,660 --> 00:03:33,980
+and then there's a module quiz.
+
+66
+00:03:33,980 --> 00:03:37,280
+And we'll talk later about how the module quiz works.
+
+67
+00:03:37,280 --> 00:03:39,350
+The techniques you'll learn in this course
+
+68
+00:03:39,350 --> 00:03:44,390
+can be used with any other programming language you may learn in the future.
+
+69
+00:03:44,390 --> 00:03:48,050
+To help you do that the course uses a specially designed programming
+
+70
+00:03:48,050 --> 00:03:52,520
+language called Beginning Student Language or BSL.
+
+71
+00:03:52,520 --> 00:03:56,120
+BSL is designed to have the core functionality of essentially
+
+72
+00:03:56,120 --> 00:03:59,840
+all other programming languages, but in a simple lean package
+
+73
+00:03:59,840 --> 00:04:02,120
+that makes it easy to learn.
+
+74
+00:04:02,120 --> 00:04:05,860
+So by using BSL we'll be able to learn the language quickly.
+
+75
+00:04:05,860 --> 00:04:08,850
+We'll learn almost all of it in the first week.
+
+76
+00:04:08,850 --> 00:04:13,940
+And then we have more time to focus on learning the design method.
+
+77
+00:04:13,940 --> 00:04:17,420
+Now, the fact that we use BSL rather than an industry standard language
+
+78
+00:04:17,420 --> 00:04:20,959
+like JavaScript surprises some people.
+
+79
+00:04:20,959 --> 00:04:22,160
+But here's the thing.
+
+80
+00:04:22,160 --> 00:04:25,949
+If we use JavaScript then the people who want Python wouldn't be happy.
+
+81
+00:04:25,949 --> 00:04:28,490
+And if we used Python then the JavaScript and the Ruby people
+
+82
+00:04:28,490 --> 00:04:29,690
+wouldn't be happy.
+
+83
+00:04:29,690 --> 00:04:33,680
+And kind of there's no way to win by teaching a given industry
+
+84
+00:04:33,680 --> 00:04:38,000
+standard language because there's hundreds of extremely popular languages
+
+85
+00:04:38,000 --> 00:04:41,930
+and tens of thousands of languages in active use.
+
+86
+00:04:41,930 --> 00:04:45,380
+So we're focusing on BSL for two reasons again.
+
+87
+00:04:45,380 --> 00:04:46,590
+One, because it's simple.
+
+88
+00:04:46,590 --> 00:04:48,260
+We'll learn it quickly.
+
+89
+00:04:48,260 --> 00:04:51,470
+And two, and more importantly, is because it
+
+90
+00:04:51,470 --> 00:04:55,700
+has the core features of nearly all other languages by learning
+
+91
+00:04:55,700 --> 00:04:59,960
+this technique using BSL it'll make it easier for you to move it
+
+92
+00:04:59,960 --> 00:05:02,600
+to other languages in the future.
+
+93
+00:05:02,600 --> 00:05:04,620
+I hope you enjoy the course.
+
+94
+00:05:04,620 --> 00:05:08,630
+If you have any questions, please bring them up on the discussion forums.
+
+95
+00:05:08,630 --> 00:05:11,010
+The TAs and I will see you there.
+
+96
+00:05:11,010 --> 00:05:11,510
+
+

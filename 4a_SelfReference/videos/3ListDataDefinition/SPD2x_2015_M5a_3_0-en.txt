@@ -1,0 +1,220 @@
+
+GREGOR KICZALES: In the next few videos, we're
+going to learn how to design with lists.
+That's going to include changes to both the how-to-design functions
+and how-to-design data recipes.
+Now the way I'm going to present those changes
+is different than I used to originally cover those recipes.
+What I'm going to do is, starting in this video,
+is charge into a data design problem with lists.
+And when I get to a place that I don't know what to do,
+that the recipe doesn't already tell me what to do,
+I'm going to make a lucky guess.
+And it's all going to work out fantastically.
+I'll do that with the data recipe in this video.
+And I'll do it with the function recipe in the next video.
+And then in the third video, I'm going to go back and explain
+why those lucky guesses really were the right guesses.
+And formally include them into the recipes.
+So that you'll be able to design with lists systematically from that point
+on.
+This problem has to do with designing a program that's
+going to keep track of your favorite Quidditch teams.
+So we're going to design a data definition
+to represent a list of Quidditch teams.
+Remembering always that when we design data definitions, what we're doing
+is working out how to represent information as data.
+Let me just do a couple comment boxes here.
+And in this box, we'll put some examples of the information.
+So I'm going to focus on some of the Canadian Quidditch teams.
+One of which is UBC.
+One of which is McGill.
+And one of which is the Team Who Must Not Be Named.
+And by that, I don't mean Toronto.
+I mean a team that's actually chosen that name, which I think
+was a little silly, but never mind.
+So now let's think about the data that might be used to represent that.
+Those things look a lot like strings to me.
+Strings look like a good way to represent that.
+So for example, you might represent the team UBC as the string UBC, and so on.
+
+So that's how we might represent some individual teams.
+Now how might we represent a list of teams?
+Right?
+A list of my favorite teams.
+Well, we saw how to do that using conses.
+I would say cons.
+Let's suppose that my two favorite teams are UBC and McGill.
+
+That's kind of how we would represent that using lists.
+So now I've thought some about the information and the data.
+And I'm ready to go ahead and write out the actual data definition.
+So let's see, what I've got here is kind of a ListOfString.
+Every element of this list is a string.
+So I'm going to go ahead and the type ListOfString.
+Now I could call it list of team, but I'm going to call it ListOfString.
+We'll see some examples where you'd introduce another type
+name, for example, team.
+We'll see some of those a little bit later this week.
+So I'm going to say ListOfString is-- now here's
+there's an interesting little thing, which
+is here's one list of favorite teams.
+And the rest of that list is a list of favorite teams.
+And the rest of that list is also a list of favorite teams,
+but it's an empty list.
+So buried in the midst of here is this subtle point
+that empty would also be a good example.
+Let's just suppose you didn't like any of the current Quidditch teams.
+Your list of favorite teams-- ooh, not with a quote there-- empty like that,
+would also be an example.
+So the way I'm going to write this type comment--
+and again, we'll come back to this.
+Remember I said I was going to kind of get lucky a few times in this design.
+And then after the data designing the function design, I'll explain it all.
+They way I'm going to write this type comment is like this.
+I'm going to say that a ListOfString is one of either empty or cons string
+ListOfString.
+
+Now there's an interesting thing going on there,
+which is that in the middle of this type comment, I refer to the type comment
+itself.
+So I've defined a ListOfString.
+And in the middle of it, I refer to ListOfString.
+And we're going to talk a great deal more about that.
+I'm just pointing out that that is there when you see that.
+That's what I mean to say.
+Let's do an interpretation.
+Interpretation, a ListOfString, because each element in these columns
+is a string.
+And now let's do some examples.
+
+Well, one example is empty.
+
+And another example is, say, just McGill and empty.
+And another example-- oops, that's not one, that's two.
+And another example is cons UBC, cons McGill, and empty.
+Before we go on, let's see if the type comment
+we have matches the examples we have.
+We're going to talk more about the type comment in upcoming videos, as I said.
+But it's a pretty good question right now
+to at least make sure that the type comment admits
+the three examples we have.
+So let's try that.
+The value of the LS1 is empty, so the question we have to ask
+is, is empty ListOfString-- does empty match the type ListOfString?
+Let's see, the type definition for ListOfString is this.
+And there's two cases, so let's see, does empty match the first case?
+Yes, it does.
+So now we know that empty is ListOfString.
+That wasn't that hard.
+Now let's ask about LS2, which is cons McGill empty.
+Again, we want to ask is that ListOfString?
+Well, here's the type definition for ListOfString.
+And there's two cases.
+Let's see, does cons McGill empty match the first case?
+No, it doesn't.
+Cons McGill empty definitely isn't empty.
+Let's try the second case.
+Well, cons McGill empty starts out with open paren cons, which
+is how the second case starts out.
+So that looks promising.
+And cons McGill empty has this close paren
+at the end, which the second case also has.
+So that looks promising.
+Now the question we have to ask is, is McGill,
+is the second thing in cons McGill empty McGill, is that string?
+Well, yes.
+McGill is string.
+That's trivially true.
+We know that McGill is a string.
+So because that's yes, we get a little bit more of a match between cons McGill
+empty and the second case of ListOfString.
+Now we need to ask the question, is empty ListOfString?
+Well, we've done this before, but I'm going
+to do it again just for completeness.
+So we asked the question, is empty ListOfString?
+We look at the type definition for ListOfString.
+And its ListOfString is one of-- there's two cases--
+and empty matches the first case.
+So yes, empty is ListOfString.
+So going back into the prior matching, that means empty
+matches ListOfString there and there.
+So now we have a complete match.
+And we know that cons McGill empty is ListOfString.
+And I think you can see that this will work for longer lists,
+it would just get boring if I had a list that had two elements in it.
+Then I would end up having to go to ListOfString the first time,
+ListOfString the second time, ListOfString the third time to get
+the empty at the end.
+It would just keep going.
+In some sense, what's happening here is that the self-reference in the type
+comment, the place in the type comment where ListOfString refers to itself
+is letting us match arbitrarily long lists,
+because we just start the matching over with the rest of the list as many times
+as we need to before we finally get to the empty case.
+We'll talk more about this, the video, after this next one.
+Now let's do the template.
+I'm going to say define fun for-- and I'm not
+going to write ListOfString here.
+For these list of types, we're going to let you abbreviate it like this.
+
+Let's see, template rules used.
+Now the template starts off easily enough.
+First word after "is" is "one of."
+So the first rule is the "one of" rule.
+And there's two choices.
+So that means I'm going to put in a cond with one question, one answer.
+And another question and another answer.
+And that's the beginning of the template.
+
+Now let's see, the next part is easy.
+After the "one of" is an empty.
+
+So that's an atomic distinct empty because empty is a single value.
+There's a single empty list.
+So atomic distinct empty.
+The predicate for empty is empty question mark.
+And it's an atomic distinct, so we just have dot, dot, dot in the answer.
+
+That's atomic distinct empty.
+Now we have this case.
+And remember what I said.
+The way we're going to think about a cons,
+is that the cons is compound data.
+So we need to use the compound rule here.
+And if we go look at the data-driven templates page,
+we'll see that columns is one of the examples it gives for compound.
+
+So it's compound cons string ListOfString.
+
+It's the last question of an itemization.
+So we can make the question be else.
+And then it's dot, dot, dot and the two selectors.
+Well, the selectors are first of LOS.
+
+And rest of LOS.
+
+And the type of first is string, because it's
+the columns of string and ListOfString.
+So the type of first is string.
+And the type of the rest is list of string.
+
+Now here what I'm going to do, and I'm going
+to talk more about this, not in this video or the next video,
+but in the video after, I'm going to come back to this point.
+So now I'm going to do something.
+This is what I mean by getting lucky.
+I'm going to do something lucky.
+I won't explain why.
+We'll explain why in two videos.
+But I'm going to put this in the template right here.
+I'm going to run that template.
+There are no errors.
+So it's well formed.
+I'll comment it out.
+And now at this point, I can delete this scratch work up here.
+
+And there's a data definition for representing Quidditch teams or lists
+of Quidditch teams using ListOfString.
+In the next video, we're going to go design a function
+operating on these lists.

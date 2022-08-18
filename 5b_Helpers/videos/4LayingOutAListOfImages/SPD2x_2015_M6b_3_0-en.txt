@@ -1,0 +1,72 @@
+
+GREGOR KICZALES: Now I'm going to complete the design of layout images.
+There's nothing really new in this function.
+You know how to design at this point.
+But I suggest you follow along with me anyways.
+I think you might have heard me say once or twice that you can never
+get too much practice.
+Now I want to complete the design of layout images.
+So the next thing I need to do is some check expects.
+
+Check-expect (layout-images-- let's see.
+If you lay out the empty images, then that's just going to produce BLANK.
+And now we'll do one for layout-images of,
+let's see-- we can grab this example from up here.
+It's a perfectly good example.
+It's too long.
+
+In a minute, I'll use Command-I to fix the indentation.
+Let me just do that.
+Command-I fixes the indentation.
+
+Layout-images-- well, what's that going to be?
+We kind of figured this out before, right?
+It's beside of this rectangle, this rectangle, and BLANK.
+
+I'll run that.
+The tests are well formed.
+But now a number of tests are failing.
+I'll go get the template.
+
+I'll paste it in here.
+
+I'll comment out the stub.
+I'll rename the template and the natural recursion.
+
+And now let's see.
+If I'm laying out a empty list of images, I produce BLANK.
+And otherwise, I just put the first image
+beside the result of the natural recursion command.
+That actually fixes the indentation.
+I run it.
+Let's see-- there's one test.
+I have to be careful.
+Because now, one of the four tests are failing.
+First thing I need to know-- is that a test on layout images?
+And it isn't.
+I click on it, it's a test on a range images.
+So layout images is actually working properly now.
+Why is this test on a range images failing?
+Oh look, this other test isn't failing.
+What's happening here is your range images test
+where the list doesn't require sorting is working fine.
+Your range images test where the list does require sorting isn't working.
+And that's because of this stub we made for sort images that
+just produces whatever it's given.
+If you happen to call sort images with a list that's already sorting,
+it happens to work.
+So that's why one of these cases of arrange images is working and one
+isn't.
+This is going to start to happen more and more.
+As you get a big program with multiple stubs in it, some tests might work.
+Some other test might not work.
+The key thing is, since I just finished layout images,
+what I want to be sure is that those tests are passing.
+And they are.
+So layout images seems to be done now.
+Going back to my overview diagram of where we are in the overall process,
+range images is still done except it has uncompleted wish list entries.
+The layout images wish list entries completely done.
+Layout images is done and tested.
+But sort images is still sitting there in stub form.
+That's what we're going to turn to the next video.

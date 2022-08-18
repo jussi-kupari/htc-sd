@@ -1,0 +1,176 @@
+0
+00:00:00,000 --> 00:00:00,500
+
+
+1
+00:00:00,500 --> 00:00:03,470
+GREGOR KICZALES: OK, so that's Boolean values true and false
+
+2
+00:00:03,470 --> 00:00:07,140
+and a number of predicates that are questions
+
+3
+00:00:07,140 --> 00:00:09,430
+that produce true-false answers.
+
+4
+00:00:09,430 --> 00:00:12,270
+Now I want to talk about if expressions, which
+
+5
+00:00:12,270 --> 00:00:16,120
+are going to let us have our program produce different results depending
+
+6
+00:00:16,120 --> 00:00:18,840
+on the answer to true-false questions-- depending
+
+7
+00:00:18,840 --> 00:00:21,350
+on the result produced by a predicate.
+
+8
+00:00:21,350 --> 00:00:23,830
+If expressions are simple to form.
+
+9
+00:00:23,830 --> 00:00:30,420
+It's open paren if and then three expressions and a close paren.
+
+10
+00:00:30,420 --> 00:00:33,590
+We call those three expressions the question, the true answer,
+
+11
+00:00:33,590 --> 00:00:36,080
+and the false answer.
+
+12
+00:00:36,080 --> 00:00:38,150
+And one key thing is the question expression
+
+13
+00:00:38,150 --> 00:00:40,730
+has to produce a Boolean value.
+
+14
+00:00:40,730 --> 00:00:44,780
+So the question expression usually calls a predicate of some form.
+
+15
+00:00:44,780 --> 00:00:46,630
+Now let's look at an example.
+
+16
+00:00:46,630 --> 00:00:48,960
+Going back to where we were, let me start
+
+17
+00:00:48,960 --> 00:00:51,740
+by just deleting this expression here and then we'll
+
+18
+00:00:51,740 --> 00:00:57,400
+try to write an if expression that determines what the shape is of i one.
+
+19
+00:00:57,400 --> 00:01:00,530
+So we'll say open paren if, and then let's
+
+20
+00:01:00,530 --> 00:01:08,095
+say less than-- is the width of I1 less than the height of I1?
+
+21
+00:01:08,095 --> 00:01:13,710
+
+
+22
+00:01:13,710 --> 00:01:16,720
+And if that's true, that's the question.
+
+23
+00:01:16,720 --> 00:01:22,050
+The question is true, then here is the true answer.
+
+24
+00:01:22,050 --> 00:01:23,820
+We're going to say that the image is tall
+
+25
+00:01:23,820 --> 00:01:25,860
+if its width is less than its height.
+
+26
+00:01:25,860 --> 00:01:30,720
+And in the false answer, we'll say that the image is wide.
+
+27
+00:01:30,720 --> 00:01:35,520
+And if I run that now, there's two interesting things to see here.
+
+28
+00:01:35,520 --> 00:01:38,750
+One is that the result was tall because sure enough,
+
+29
+00:01:38,750 --> 00:01:41,140
+I1 is taller than it is wide.
+
+30
+00:01:41,140 --> 00:01:45,430
+And the other interesting thing to see was that right here, this piece of code
+
+31
+00:01:45,430 --> 00:01:47,167
+was highlighted in black.
+
+32
+00:01:47,167 --> 00:01:49,250
+Depending on which version of racket you're using,
+
+33
+00:01:49,250 --> 00:01:50,666
+it might be highlighted in orange.
+
+34
+00:01:50,666 --> 00:01:52,540
+But it's highlighted.
+
+35
+00:01:52,540 --> 00:01:55,780
+We're going to talk a lot more about that later this week.
+
+36
+00:01:55,780 --> 00:01:58,890
+But if I go ahead now and switch around, maybe I
+
+37
+00:01:58,890 --> 00:02:02,710
+ask the question about I2 instead of I1.
+
+38
+00:02:02,710 --> 00:02:05,790
+Well, I2's width is greater than its height, and in this case,
+
+39
+00:02:05,790 --> 00:02:09,210
+if we evaluate the expression, it produces wide
+
+40
+00:02:09,210 --> 00:02:13,610
+and the other-- the true answer this time-- is highlighted in black.
+
+41
+00:02:13,610 --> 00:02:16,860
+So you may be able to start to guess what that black highlighting means,
+
+42
+00:02:16,860 --> 00:02:19,168
+but again, we'll talk about that later.
+
+43
+00:02:19,168 --> 00:02:19,668
+
+

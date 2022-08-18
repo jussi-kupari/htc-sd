@@ -1,0 +1,204 @@
+
+GREGOR KICZALES: So in the last two videos,
+we saw some pretty amazing stuff.
+We had a type comment that referred to itself,
+and then we had a function that called itself.
+And that function actually did what we wanted it to do,
+instead of just going to around and around in circles,
+on and on, and on forever.
+Now why is that?
+That's what I'm going to talk about in this video.
+There's some pretty deep computer science underlying all of this,
+and we're not going to get into it and kind of academic terms.
+But what we will see is that the type comment has two key properties.
+And the way we derive the template preserves those properties,
+so that we end up with functions that work properly,
+even though they call themselves.
+So what I'm going to do is explain that, make a few additions
+to the design recipes, so you can keep doing that
+systematically, and producing recursive functions that work properly
+on your own.
+This file is Quidditch recap starter.
+It's basically just the solutions from the last two videos,
+rearranged slightly so that I have both parts of the problem in one box.
+That gives me some more room below.
+The first thing I want to know is right here in the problem description.
+Notice that we're designing a program that will keep
+track of your favorite Quidditch teams.
+Now ask yourself, how many teams are there?
+We don't know ahead of time.
+There could be one, there could be two, there could be 30, there could be 60,
+we just don't know ahead of time.
+This is what we call arbitrary sized.
+Arbitrary doesn't mean random, it just means we don't know ahead of time.
+Now, whenever we have an arbitrary sized data
+problem, whenever we need data to be of arbitrary size,
+what we're going to see that we want to use self reference in the type comment.
+This type comment has the self reference in it, as we noted before,
+and we saw how that made it possible for it to account for lists of any size.
+We just make one more cycle around the self reference relationship
+for each element of the list.
+But why does this self reference work out?
+Why doesn't it in some sense blow up, because it just keeps going round?
+Well the key thing is this is what's called a well formed self
+referential data definition.
+And it's well formed, because it has the self reference case, that's true.
+That's what lets it get longer and longer.
+But it also has the non-self referential case, or the base case,
+and that's what lets it stop.
+So in a well formed self referential data definition,
+you always have both the base case, that has no self reference,
+and a self reference case.
+Now this is a simple self referential data definition.
+It's possible for these type comments to have more than one self reference
+case and more than one base case.
+The rule for being well formed is that there
+has to be at least one base case, non-self referential case, and at least
+one self referential case.
+So the summary so far is, if you have an arbitrary amount of information you
+need to represent, you need to use a well formed self referential data
+definition.
+That gets us to here.
+And if we look at how to design data page, what we've got so far
+is reflected here in the choice of what form of data definition to use.
+When the information to be represented is of arbitrary size,
+we use a self referential data definition.
+Mutually referential is something we'll talk about another week.
+So if we follow this link, it says that for arbitrary size information,
+we need to use a well formed self referential data definition.
+So that's the how to design data recipe accounts
+for what we've seen the code so far.
+Let's go back to the code now, and let's talk quickly about the examples.
+For soft referential data definitions, it's
+good to have examples of the base case.
+If there's more than one base case that have examples of both base cases,
+they tend to be kind of trivial, but I like to put them in anyways.
+And you should have examples of the self referential case,
+in this particular data definition I probably
+could have done with just two examples, rather than three.
+So I probably could have done with example one and example three.
+It's fine to have an additional one.
+Now, let me scroll a bit and talk about the template.
+
+As we saw before, the beginning of the template's relatively straightforward.
+It's one of the two cases, so that got us to cond.
+The first cases is atomic distinct empty,
+so that got us cond empty question mark, LOS, and dot, dot, dot.
+This case, the second case, is com, so that's compound.
+We take the coms apart into its first and it's rest.
+
+But then the question is, how did we get this fun for LOS.
+Well, the reason we got that from for LOS, let me
+just back up a little bit to where we were right at that point in time.
+
+We knew the first LOS was going to be a string,
+and we knew that rest LOS was list of string.
+So we're not going to do anything with first LOS,
+because it's primitive type, string is a primitive type.
+But with rest LOS, here's where we're getting the self reference.
+There's a self reference here back to listed strength.
+When we take the rest of LOS, we're holding a value of type list of string.
+And so there's a special template rule, called the self reference rule,
+and we use it in this case.
+And the self preference rule says wrap that
+selector in a call to the template function itself.
+And this thing is what's called a natural recursion.
+It's of recursion that shows up exactly where in the type comment,
+we have a self reference.
+So what we have so far is arbitrary size data, well formed self referential data
+definition, have examples of the base case, and the self reference case.
+And in the template, when you hit the self reference,
+put in a natural recursion.
+That last bit shows up in the data driven templates page right here,
+where it says, if you have a self reference
+to form a natural recursion with a call to this type's template function.
+And that's what we did here, we put a call to this type's template function,
+because we had a self reference there.
+And that's why this call, this natural recursion,
+corresponds exactly to this self reference.
+And I tried to draw the arrows here, to show that correspondence clearly.
+So from now on, whenever you see a self reference in a type comment,
+you'll immediately know there's going to be a natural recursion in the template.
+Now let's look at the function we design.
+So the signature is pretty straightforward, nothing really new
+here except that it does consume list of string.
+The purpose, similarly, we knew how to do, and the stub.
+And the check expects look pretty familiar,
+but there are a couple things I want to note here
+about check expects for functions operating on lists.
+First, remember that check expects are always examples first, and tests later.
+So we use them as examples to help us figure out what we're doing.
+And with that in mind, it's always a good idea
+to have the base case example first, the base case test first.
+That's what I have here, I have contained UBC of empty
+as my first test.
+Partly, that helps us figure out the simplest case first, and also
+many tests of these functions end up at the base case.
+And so if the base case result is wrong, that can affect other tests.
+So it's good to get the base case debugged first.
+So there's two reasons to put the base case first.
+One, it helps us figure out the simplest thing first.
+And the other, it makes sure, when we run the test,
+that the base case works properly before we test the other cases.
+And another general guideline for functions operating on list
+is to be sure that you have a test that operates on a list that's
+at least two elements long.
+That's because sometimes there's certain kinds
+of bugs you can introduce that don't show up in one element list.
+This particular example is also an example
+of a function that has two different cases in it.
+There's cases where it finds the string it's looking for and cases where it
+doesn't.
+And so, in that case, of course, you have
+to be able to test the true and false case.
+Finally, let's look at the function itself.
+And to look at the function, what I want to do is I'm going to back up.
+So what I'm going to do is I'm going to delete this and go back to the point
+where we just have the template.
+When you copy the template down, for a template based
+on a type with self reference, then the template has a natural recursion in it.
+And it's very important when you rename the function, that you
+rename both the function definition, and any natural recursion.
+That's very important, and we'll see why in a minute.
+So now, let me start coding the details .
+Let's see if the function is operating on a list that's empty.
+Then we can't find UBC in empty list, so that would be false.
+Otherwise these examples tell me that there's two different cases,
+depending on the first item in the list.
+If the first item is UBC, we produce true.
+If it's not, we need to go look farther down in the list.
+So that makes me put an if in here, and I say, string equal question mark UBC.
+If the first in the list is UBC, we're going to produce true.
+And otherwise, what do we need to do?
+Well, the first item in the list might not be UBC,
+but there might be a UBC farther down the list,
+so we need to go look further down in the list.
+And the key point here is that we want to get
+you to trust the natural recursion.
+At this point in time, you need to know is UBC in the rest of the list?
+And because the template has included a natural recursion,
+and because that natural recursion came from a type
+with well formed self reference, you could count on the natural recursion
+to work.
+So we're just going to trust that contains UBC of rest LOS
+does what we need it to do.
+The key thing is I want you to avoid the temptation to edit in here.
+Trust the natural recursion, that's the game.
+And the reason you could trust it is again,
+is because it came from a well formed self referential type.
+Let's see, all four test passed.
+What I'd like you to do now is go look at the how to design functions,
+and how to design data, and data driven templates web pages,
+and pay attention to the parts that talk specifically
+about designing with lists.
+Just go ahead and review that.
+And then, you'll be in a good position to keep
+designing with lists going forward.
+And remember, the big summary of kind of what we've seen so far
+is, if you have arbitrary size information,
+then you need arbitrary size data.
+That requires a well formed self referential type comment.
+That leads to a natural workers in the template.
+That leads a recursive call in the function.
+You should test the base case first, and you should always
+trust the natural recursion.

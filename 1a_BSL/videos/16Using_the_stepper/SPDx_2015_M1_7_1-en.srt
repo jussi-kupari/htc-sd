@@ -1,0 +1,416 @@
+0
+00:00:00,000 --> 00:00:04,890
+
+
+1
+00:00:04,890 --> 00:00:06,750
+GREGOR KICZALES: In this short video I want
+
+2
+00:00:06,750 --> 00:00:10,520
+to show you how to use the stepper which is functionality
+
+3
+00:00:10,520 --> 00:00:14,920
+built into Dr. Racket that can help you understand the step by step
+
+4
+00:00:14,920 --> 00:00:18,730
+evaluation of complex expressions.
+
+5
+00:00:18,730 --> 00:00:22,334
+I have the stepper-starter.rkt file open here.
+
+6
+00:00:22,334 --> 00:00:25,250
+And if we look at this file there is one expression here at the topp--
+
+7
+00:00:25,250 --> 00:00:28,720
+a simple expression-- and then a function definition and a call
+
+8
+00:00:28,720 --> 00:00:30,100
+to that function.
+
+9
+00:00:30,100 --> 00:00:33,540
+If we look at this expression, let's see, plus times 3 2,
+
+10
+00:00:33,540 --> 00:00:36,960
+that's 6 plus 1, that's going to be 7.
+
+11
+00:00:36,960 --> 00:00:39,250
+That's easy enough to see.
+
+12
+00:00:39,250 --> 00:00:43,620
+And here we're calling max-dim with a rectangle.
+
+13
+00:00:43,620 --> 00:00:46,000
+And there's an if and maybe a little bit harder
+
+14
+00:00:46,000 --> 00:00:48,460
+to quickly see what the result is here.
+
+15
+00:00:48,460 --> 00:00:51,140
+Let's run it.
+
+16
+00:00:51,140 --> 00:00:51,640
+Let's see.
+
+17
+00:00:51,640 --> 00:00:54,790
+That produced 7 and the call to the function produced 20.
+
+18
+00:00:54,790 --> 00:00:57,990
+And you could try to work through this and see why it's 20.
+
+19
+00:00:57,990 --> 00:01:01,160
+And maybe you can see that quickly or maybe you can't.
+
+20
+00:01:01,160 --> 00:01:03,960
+What this stepper is for is to help you understand
+
+21
+00:01:03,960 --> 00:01:08,690
+how the evaluation of expression produced a certain value in cases
+
+22
+00:01:08,690 --> 00:01:12,200
+where it's too complicated to just see.
+
+23
+00:01:12,200 --> 00:01:14,760
+So let's try running the stepper.
+
+24
+00:01:14,760 --> 00:01:20,790
+I'll say step here and I'll make this window a little bit bigger.
+
+25
+00:01:20,790 --> 00:01:24,582
+
+
+26
+00:01:24,582 --> 00:01:26,790
+And what the stepper does is it goes through the file
+
+27
+00:01:26,790 --> 00:01:31,340
+and it follows the beginning student language evaluation rules.
+
+28
+00:01:31,340 --> 00:01:33,620
+So the require doesn't produce a value.
+
+29
+00:01:33,620 --> 00:01:35,130
+The require is just a declaration.
+
+30
+00:01:35,130 --> 00:01:39,030
+So on the left hand side we see what Racket's evaluating.
+
+31
+00:01:39,030 --> 00:01:43,960
+On the right hand side we see the result of the current evaluation step.
+
+32
+00:01:43,960 --> 00:01:44,460
+So lets see.
+
+33
+00:01:44,460 --> 00:01:47,000
+It tried to evaluate open paren plus.
+
+34
+00:01:47,000 --> 00:01:51,750
+But the first operand is not a value so it has to be evaluated.
+
+35
+00:01:51,750 --> 00:01:54,150
+Open paren times.
+
+36
+00:01:54,150 --> 00:01:58,010
+Both operands are values so this expression can now be evaluated.
+
+37
+00:01:58,010 --> 00:02:00,490
+That's what Racket is telling us in green
+
+38
+00:02:00,490 --> 00:02:03,280
+is that this expression is ready to be evaluated.
+
+39
+00:02:03,280 --> 00:02:06,060
+And it produces 6.
+
+40
+00:02:06,060 --> 00:02:11,580
+If I say step again, then what's on the right here moves to the left.
+
+41
+00:02:11,580 --> 00:02:14,990
+And in green Racket is telling us, OK, this whole expression
+
+42
+00:02:14,990 --> 00:02:16,530
+is ready to be evaluated.
+
+43
+00:02:16,530 --> 00:02:21,250
+All of the operands are already values.
+
+44
+00:02:21,250 --> 00:02:24,680
+And when I call plus on 6 and 1 I get 7.
+
+45
+00:02:24,680 --> 00:02:29,972
+If I say step again, now Racket says, hey, it's seen this function definition
+
+46
+00:02:29,972 --> 00:02:31,180
+and that's just a definition.
+
+47
+00:02:31,180 --> 00:02:32,970
+Nothing happens to it.
+
+48
+00:02:32,970 --> 00:02:38,570
+And it's also seen a call to that function max-dim.
+
+49
+00:02:38,570 --> 00:02:41,310
+The call isn't ready to be evaluated yet because one
+
+50
+00:02:41,310 --> 00:02:45,470
+of the operands-- the only operand-- is not yet a value.
+
+51
+00:02:45,470 --> 00:02:50,240
+But that operand itself is ready to be evaluated because all of its operands
+
+52
+00:02:50,240 --> 00:02:53,290
+are values.
+
+53
+00:02:53,290 --> 00:02:57,010
+And when it evaluates rectangle of 10 20 solid blue,
+
+54
+00:02:57,010 --> 00:03:01,240
+the result produced by that is the rectangle.
+
+55
+00:03:01,240 --> 00:03:05,110
+It doesn't quite look blue here because Racket is highlighting it for us,
+
+56
+00:03:05,110 --> 00:03:10,220
+but the call to rectangle with those arguments produces a blue rectangle.
+
+57
+00:03:10,220 --> 00:03:13,630
+So now over here on the left we have max-dim of the blue rectangle.
+
+58
+00:03:13,630 --> 00:03:17,579
+Again, it doesn't quite look blue because of the green highlighting.
+
+59
+00:03:17,579 --> 00:03:19,370
+And what's the rule for calling a function?
+
+60
+00:03:19,370 --> 00:03:23,510
+Well, the rule for calling a function is to replace the call to the function
+
+61
+00:03:23,510 --> 00:03:27,430
+by the body of the function-- this stuff here-- where
+
+62
+00:03:27,430 --> 00:03:31,040
+every occurrence of the parameter-- in this case img--
+
+63
+00:03:31,040 --> 00:03:35,210
+has been replaced by the argument-- in this case the blue rectangle.
+
+64
+00:03:35,210 --> 00:03:36,800
+So that's what we've got here.
+
+65
+00:03:36,800 --> 00:03:43,680
+One evaluation step takes max-dim of the rectangle to this whole expression.
+
+66
+00:03:43,680 --> 00:03:48,070
+If we say step again, now Racket is trying to evaluate the if expression.
+
+67
+00:03:48,070 --> 00:03:52,040
+It can't do that because the question is not yet a value.
+
+68
+00:03:52,040 --> 00:03:54,080
+So it wants to evaluate the greater than.
+
+69
+00:03:54,080 --> 00:03:57,706
+It can't do that because the first operand is not yet a value.
+
+70
+00:03:57,706 --> 00:03:59,580
+It wants to evaluate the call to image-width.
+
+71
+00:03:59,580 --> 00:04:01,930
+It can do that because the first operand is a value.
+
+72
+00:04:01,930 --> 00:04:05,200
+That produces 10.
+
+73
+00:04:05,200 --> 00:04:10,520
+Similarly, now it can do the call to image-height which produces 20.
+
+74
+00:04:10,520 --> 00:04:13,580
+Now it can do the greater than-- greater than 10 20
+
+75
+00:04:13,580 --> 00:04:15,650
+because both operands are values.
+
+76
+00:04:15,650 --> 00:04:16,764
+That produces false.
+
+77
+00:04:16,764 --> 00:04:21,342
+
+
+78
+00:04:21,342 --> 00:04:24,540
+And now the rule for an if is that if the question
+
+79
+00:04:24,540 --> 00:04:28,900
+is the value false then the entire if gets replaced by the false answer
+
+80
+00:04:28,900 --> 00:04:29,832
+expression.
+
+81
+00:04:29,832 --> 00:04:31,040
+That's what's happening here.
+
+82
+00:04:31,040 --> 00:04:33,020
+Here's the false answer expression.
+
+83
+00:04:33,020 --> 00:04:35,420
+And the entire if gets replaced with that here.
+
+84
+00:04:35,420 --> 00:04:38,210
+
+
+85
+00:04:38,210 --> 00:04:42,165
+Now Racket can evaluate this call to image-height because the operand is
+
+86
+00:04:42,165 --> 00:04:44,289
+a value and that produces 20.
+
+87
+00:04:44,289 --> 00:04:45,830
+And that's the end of the evaluation.
+
+88
+00:04:45,830 --> 00:04:48,405
+
+
+89
+00:04:48,405 --> 00:04:52,485
+You can also go backwards if you want to just to go back to some earlier point.
+
+90
+00:04:52,485 --> 00:04:55,077
+
+
+91
+00:04:55,077 --> 00:04:56,410
+So that's how the stepper works.
+
+92
+00:04:56,410 --> 00:04:58,493
+And what the stepper is always showing you is it's
+
+93
+00:04:58,493 --> 00:05:02,270
+always show you what's the innermost expression where
+
+94
+00:05:02,270 --> 00:05:05,710
+all the operands are values.
+
+95
+00:05:05,710 --> 00:05:09,240
+And on the right it's showing you highlighted in pink-- or purple,
+
+96
+00:05:09,240 --> 00:05:12,740
+I guess-- what the value of that expression is.
+
+97
+00:05:12,740 --> 00:05:16,260
+And you can step backwards and forwards to understand this.
+
+98
+00:05:16,260 --> 00:05:18,920
+I'd encourage you to learn how to use the stepper.
+
+99
+00:05:18,920 --> 00:05:21,040
+As our programs get more and more complicated,
+
+100
+00:05:21,040 --> 00:05:25,250
+the stepper can be very useful, particularly if, for example, you
+
+101
+00:05:25,250 --> 00:05:29,110
+have a function which isn't producing the value that you wanted it to.
+
+102
+00:05:29,110 --> 00:05:34,040
+You can then step through it and see why it's producing the value that it does.
+
+103
+00:05:34,040 --> 00:05:34,808
+
+

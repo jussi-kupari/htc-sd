@@ -1,0 +1,127 @@
+
+GREGOR KICZALES: This week we're going to talk about the design of data.
+And what we're going to see is that the design of data
+really turns out to be a point of leverage in designing programs.
+Because when we design data, we make decisions about all the functions
+that later operate on that data.
+But before we get to that, this video covers cond expressions.
+Which are a new kind of expression in racket
+that's going to let us program conditional behavior where
+there's more than just two cases.
+I have the cond-starter.rkt file opened from the lecture page.
+Let's just look at this file quickly.
+It starts by defining three constants, called I1, I2, and I3.
+And they're all three rectangles.
+And let's see, I1 is 10 wide and 20 high, and I2 is 20 by 20,
+and I3 is 20 by 10.
+So these are three rectangles of different shapes.
+Now here's a function design.
+And the function consumes an image and produces a string.
+And let's see, it produces the shape of the image,
+one of tall, square, or wide.
+And these three examples slash check expects really
+help me understand this function.
+If I ask for the aspect ratio I1 I get tall.
+Whereas for I2 I get square.
+And for I3 I get wide.
+And reading through the rest of this there's
+a stub and a template that are commented out.
+Now when we look at the definition of the function, what does it say?
+It says well if the height of the image is greater than the width of the image
+then produce tall.
+That's this whole if there.
+And that's its question.
+And that's it's true answer.
+On the other hand let's see it's false answer is another
+if that asks if the image height and width are equal produce square
+otherwise produce y.
+So this function design works and if I run it, I'll get what I want.
+But there is something I'm not entirely happy about here.
+If you think about this function there are really three cases, right?
+There's the tall case, the square case, and the wide case.
+And those three cases really feel like they're parallel to me.
+They feel like they're corresponding cases.
+Whereas when we implemented here with if, we end up having one case tall.
+Which has two other cases square and wide kind of inside of it.
+And that doesn't feel quite right.
+It doesn't feel quite right to have one case with two inside of it,
+as opposed to three parallel cases.
+So what we're going to learn in this video is a new mechanism called cond.
+That's what's called a multi armed conditional.
+And that is something we can use when we want
+to make an expression that has different behavior depending
+on the answer to predicates.
+But there's more than two different options.
+So here we go, let's do it to this one.
+Let me first show you a new trick.
+If I do sharp sign semicolon, that's going to comment out
+the entire-- all of that stuff.
+It basically comments out from balanced parentheses to balanced parentheses.
+It's easier than putting a semicolon before each line.
+Now let's redo this function.
+I'll say define aspect-ratio image.
+And what I have is three cases.
+So what I would do is I'm going to write cond, and then there's three cases.
+And each case has a question and a answer.
+And there's three of them.
+So I'll just copy that like that.
+Oh, and I spell the name of it wrong.
+
+Now notice something here which is that I'm
+using square brackets instead of round parentheses
+around the question and answer pair.
+That's just a convention to make the question and answer pairs stand out
+better.
+Particularly when they get larger.
+Square brackets and round parentheses are really treated the same by racket.
+Square brackets balance each other and round parentheses balance each other.
+You could use round parentheses here, but square brackets just
+makes it look a little bit better.
+Now what's the question for the first case?
+Well the question for the first case is actually right here.
+I'll take that, and I'll replace that question with it.
+And if that question is true, then what's the answer?
+Well the answer is right here.
+
+And what's the question for the second case?
+Well the question for the second case is right here.
+
+And the answer for the second case is right there.
+
+And then what's the question for the third case?
+Well, the third case is the last case.
+It's the in all other cases case.
+And so there's a special question that we could put there called else.
+Which means if it wasn't the first one or the second one, just do this.
+And the answer for the last case is wide.
+
+Let me first run this to make sure I haven't made any mistakes.
+
+I haven't and it's working.
+And so the way I want read this is it says, gee, there's multiple conditions.
+If image-height is greater than image-width.
+then produce this result. Evaluate this expression and produce that result.
+If image-height is equal to image-width, evaluate this expression
+and produce that result. Otherwise or else, evaluate that expression
+and produce that result.
+And that's kind of nice.
+What that gets me is multiple questions.
+Kind of all at the same level of nesting.
+All at the same level of important in some sense.
+So cond is a good thing to use for multiple case expressions
+when there's more than two cases.
+You can use if.
+You can use if and nest them the way we have up here.
+But, it tends to read more easily if you use cond
+when there's more than two cases.
+Now we'll do the usual thing and look at the rules
+for forming a cond expression.
+It's just open paren cond.
+And then one more question and answer pairs.
+Where each question answer pair is open bracket,
+a question expression, and then an answer expression, and a close bracket.
+And all the question expressions have to produce a Boolean,
+except the last question expression, which
+is allowed to be the special word else.
+Which is going to mean if you get to this question answer pair,
+definitely produce this answer.

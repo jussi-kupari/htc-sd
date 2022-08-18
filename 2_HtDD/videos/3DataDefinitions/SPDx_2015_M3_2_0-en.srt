@@ -1,0 +1,620 @@
+0
+00:00:00,000 --> 00:00:04,620
+
+
+1
+00:00:04,620 --> 00:00:08,119
+GREGOR KICZALES: As you know, this week is about designing data.
+
+2
+00:00:08,119 --> 00:00:10,910
+And as part of that, we're going to introduce a new kind of design
+
+3
+00:00:10,910 --> 00:00:14,300
+element called a data definition.
+
+4
+00:00:14,300 --> 00:00:17,960
+What I'm going to do in this video though is just talk about the problem
+
+5
+00:00:17,960 --> 00:00:20,130
+that data definitions solve.
+
+6
+00:00:20,130 --> 00:00:23,190
+And the way I'm going to do it is first show you
+
+7
+00:00:23,190 --> 00:00:27,890
+how to design functions recipe solution, a complete function design,
+
+8
+00:00:27,890 --> 00:00:31,000
+look at a problem we have in understanding that,
+
+9
+00:00:31,000 --> 00:00:33,260
+and then show you a complete data definition
+
+10
+00:00:33,260 --> 00:00:36,520
+and talk about how it solves the problem.
+
+11
+00:00:36,520 --> 00:00:39,260
+Then in the next video, we'll look at designing data definitions
+
+12
+00:00:39,260 --> 00:00:40,579
+from scratch.
+
+13
+00:00:40,579 --> 00:00:42,370
+So now, suppose you're working on a program
+
+14
+00:00:42,370 --> 00:00:45,010
+that somebody else wrote, and the program has
+
+15
+00:00:45,010 --> 00:00:47,610
+to do with simulating traffic.
+
+16
+00:00:47,610 --> 00:00:50,280
+So it's reasonable to expect in a program like that
+
+17
+00:00:50,280 --> 00:00:53,910
+that there's going to be code that has to do with traffic lights, and cars,
+
+18
+00:00:53,910 --> 00:00:56,650
+and trucks, and things like that.
+
+19
+00:00:56,650 --> 00:01:02,420
+Now, you're reading that program, and you come to this function definition.
+
+20
+00:01:02,420 --> 00:01:05,610
+And you ask yourself, what does it do?
+
+21
+00:01:05,610 --> 00:01:08,680
+Well, you know, the name is kind of a hint.
+
+22
+00:01:08,680 --> 00:01:12,600
+It seems to produce the next color.
+
+23
+00:01:12,600 --> 00:01:17,200
+So maybe if you give it a color, it gives you another color.
+
+24
+00:01:17,200 --> 00:01:19,720
+But it's just not really very clear from this.
+
+25
+00:01:19,720 --> 00:01:22,178
+Now, at this point in the course you might say, well, look.
+
+26
+00:01:22,178 --> 00:01:25,560
+The problem is that this person didn't follow the how to design functions
+
+27
+00:01:25,560 --> 00:01:26,400
+recipe.
+
+28
+00:01:26,400 --> 00:01:30,690
+Let's imagine that they did follow the how to design functions recipe.
+
+29
+00:01:30,690 --> 00:01:36,650
+So here's this same function with the how to design functions recipe.
+
+30
+00:01:36,650 --> 00:01:38,590
+There's the original function definition.
+
+31
+00:01:38,590 --> 00:01:40,780
+And now we see that the function consumes a natural
+
+32
+00:01:40,780 --> 00:01:43,160
+and produces a natural.
+
+33
+00:01:43,160 --> 00:01:46,860
+And it produces the next color of a traffic light.
+
+34
+00:01:46,860 --> 00:01:48,260
+But here's a question.
+
+35
+00:01:48,260 --> 00:01:51,070
+The signature says the function consumes natural.
+
+36
+00:01:51,070 --> 00:01:53,510
+So can I call it with three?
+
+37
+00:01:53,510 --> 00:01:55,760
+Three's a natural number.
+
+38
+00:01:55,760 --> 00:01:58,964
+But I don't see any examples other than zero, one, or two.
+
+39
+00:01:58,964 --> 00:02:00,630
+And what do these examples mean anyways?
+
+40
+00:02:00,630 --> 00:02:02,520
+I mean, the examples match the function.
+
+41
+00:02:02,520 --> 00:02:06,190
+So they kind of tell me the function's probably right.
+
+42
+00:02:06,190 --> 00:02:08,690
+But when I call a next color with zero, and it gives
+
+43
+00:02:08,690 --> 00:02:11,650
+me back a two, what does that mean?
+
+44
+00:02:11,650 --> 00:02:13,420
+Well, in order to understand this problem,
+
+45
+00:02:13,420 --> 00:02:18,070
+we have to understand something very important about data in programs.
+
+46
+00:02:18,070 --> 00:02:21,490
+In any program, we have what we call the problem domain.
+
+47
+00:02:21,490 --> 00:02:23,900
+In this case, the problem domain has to do
+
+48
+00:02:23,900 --> 00:02:27,420
+with traffic and simulation of traffic, and traffic lights, and cars,
+
+49
+00:02:27,420 --> 00:02:28,990
+and roads, and things like that.
+
+50
+00:02:28,990 --> 00:02:32,655
+And in the problem domain, we have information in the problem domain.
+
+51
+00:02:32,655 --> 00:02:34,780
+In this case, we might have a piece of information,
+
+52
+00:02:34,780 --> 00:02:37,110
+like a certain light is red.
+
+53
+00:02:37,110 --> 00:02:39,235
+But inside the program, we don't have red lights.
+
+54
+00:02:39,235 --> 00:02:40,360
+We don't have green lights.
+
+55
+00:02:40,360 --> 00:02:42,318
+We don't have lights at all inside the program.
+
+56
+00:02:42,318 --> 00:02:45,360
+What we have inside the program is data.
+
+57
+00:02:45,360 --> 00:02:48,270
+In this case, the natural number zero.
+
+58
+00:02:48,270 --> 00:02:52,270
+And what's going on when we design a program like this
+
+59
+00:02:52,270 --> 00:02:58,010
+is that we're playing a game where we represent information in the problem
+
+60
+00:02:58,010 --> 00:03:01,010
+domain using data in the program.
+
+61
+00:03:01,010 --> 00:03:06,730
+In this case, we represent the fact that some light might be red
+
+62
+00:03:06,730 --> 00:03:10,010
+using the natural number zero.
+
+63
+00:03:10,010 --> 00:03:12,750
+And the inverse of that relationship is that we
+
+64
+00:03:12,750 --> 00:03:15,460
+can interpret the natural number zero.
+
+65
+00:03:15,460 --> 00:03:18,340
+If we're told that this natural number is supposed
+
+66
+00:03:18,340 --> 00:03:21,040
+to represent some information about a light,
+
+67
+00:03:21,040 --> 00:03:23,780
+we can interpret it as meaning that the light is red.
+
+68
+00:03:23,780 --> 00:03:27,700
+And now, if I tell you this-- if I tell you, hey,
+
+69
+00:03:27,700 --> 00:03:32,370
+to represent a red light you use zero, and if zero is representing a light,
+
+70
+00:03:32,370 --> 00:03:36,530
+it means it's red-- then you can start to understand this program a bit more.
+
+71
+00:03:36,530 --> 00:03:40,220
+You can look at it, and you can say, well, if zero is a red,
+
+72
+00:03:40,220 --> 00:03:44,491
+then I guess maybe one is yellow.
+
+73
+00:03:44,491 --> 00:03:46,240
+But instead of giving you this information
+
+74
+00:03:46,240 --> 00:03:49,680
+in a piecemeal way, what we're going to do is going to use something
+
+75
+00:03:49,680 --> 00:03:51,000
+called a data definition.
+
+76
+00:03:51,000 --> 00:03:54,630
+And a data definition is really going to tell us
+
+77
+00:03:54,630 --> 00:03:59,650
+everything we need to know about how we represent information as data.
+
+78
+00:03:59,650 --> 00:04:02,980
+So now, let's look at a new version of this program, the third version of it,
+
+79
+00:04:02,980 --> 00:04:05,140
+that uses a data definition.
+
+80
+00:04:05,140 --> 00:04:07,800
+In this third version of the traffic program,
+
+81
+00:04:07,800 --> 00:04:09,640
+we've divided the file into two parts.
+
+82
+00:04:09,640 --> 00:04:11,930
+The first part is called data definitions.
+
+83
+00:04:11,930 --> 00:04:14,490
+And the second part is called functions.
+
+84
+00:04:14,490 --> 00:04:18,437
+And in the data definitions part we have one data definition.
+
+85
+00:04:18,437 --> 00:04:20,540
+I want to read this quickly now.
+
+86
+00:04:20,540 --> 00:04:25,510
+And in future videos this week we'll talk about it in more detail.
+
+87
+00:04:25,510 --> 00:04:28,320
+But the data definition starts out with a type comment
+
+88
+00:04:28,320 --> 00:04:31,630
+that says there's a new type, TL color.
+
+89
+00:04:31,630 --> 00:04:34,300
+And the way you form something of TL color
+
+90
+00:04:34,300 --> 00:04:37,150
+is that it's either zero, one, or two.
+
+91
+00:04:37,150 --> 00:04:41,590
+We'll have more elaborate type comments in the next video.
+
+92
+00:04:41,590 --> 00:04:47,060
+And it says that if you have a piece of this data you interpret it as follows.
+
+93
+00:04:47,060 --> 00:04:51,510
+Something that's a TL color is the color of a traffic light, and zero means red,
+
+94
+00:04:51,510 --> 00:04:56,280
+one means yellow, and two means green.
+
+95
+00:04:56,280 --> 00:05:00,890
+And this last part is a template for operating on TL color.
+
+96
+00:05:00,890 --> 00:05:03,420
+And for now, just read it as saying, if you're
+
+97
+00:05:03,420 --> 00:05:08,760
+designing a function that operates on TL color, then there's really three cases.
+
+98
+00:05:08,760 --> 00:05:11,070
+There's one case where the color is zero.
+
+99
+00:05:11,070 --> 00:05:12,810
+There's one case where the color is one.
+
+100
+00:05:12,810 --> 00:05:15,860
+And there's one case where the color is two.
+
+101
+00:05:15,860 --> 00:05:18,610
+And now you know all about TL color.
+
+102
+00:05:18,610 --> 00:05:23,470
+Now, if we scroll down a little bit into the functions part, here is a function.
+
+103
+00:05:23,470 --> 00:05:27,950
+And the signature now says, hey, this function consumes a TL color,
+
+104
+00:05:27,950 --> 00:05:29,990
+and it produces a TL color.
+
+105
+00:05:29,990 --> 00:05:33,380
+And notice we've already answered one of our questions from before.
+
+106
+00:05:33,380 --> 00:05:37,260
+This function can't consume a four or a three
+
+107
+00:05:37,260 --> 00:05:40,360
+because it can only consume a TL color.
+
+108
+00:05:40,360 --> 00:05:43,850
+And the only thing a TL color can be-- I can
+
+109
+00:05:43,850 --> 00:05:45,790
+see by looking up here at the type comment,
+
+110
+00:05:45,790 --> 00:05:48,770
+a TL color can only be a zero, a one, or a two.
+
+111
+00:05:48,770 --> 00:05:53,510
+And this function can only produce a TL color, a zero, a one, or a two.
+
+112
+00:05:53,510 --> 00:05:56,330
+And now it's producing the next color of a traffic light.
+
+113
+00:05:56,330 --> 00:05:59,070
+And now this function gets to be easier to understand.
+
+114
+00:05:59,070 --> 00:06:03,590
+If I say next color of a zero, which means red,
+
+115
+00:06:03,590 --> 00:06:06,120
+then that produces a two, which means green.
+
+116
+00:06:06,120 --> 00:06:07,050
+And that's right.
+
+117
+00:06:07,050 --> 00:06:09,750
+After a light is red, it's green.
+
+118
+00:06:09,750 --> 00:06:15,560
+The next color of a one, which means yellow, is a zero, which means red.
+
+119
+00:06:15,560 --> 00:06:19,769
+And a light also goes from green to yellow.
+
+120
+00:06:19,769 --> 00:06:20,685
+And now, the template.
+
+121
+00:06:20,685 --> 00:06:22,580
+Well, what's the template for this function?
+
+122
+00:06:22,580 --> 00:06:26,620
+Well, the template came from TL color, because this function
+
+123
+00:06:26,620 --> 00:06:28,540
+consumes a TL color.
+
+124
+00:06:28,540 --> 00:06:32,060
+And what we're going to see for the next several weeks is
+
+125
+00:06:32,060 --> 00:06:36,060
+that the template for a function is determined by the type of data
+
+126
+00:06:36,060 --> 00:06:37,240
+it consumes.
+
+127
+00:06:37,240 --> 00:06:42,300
+And this just says, well, if you consume a zero, in other words, a red light,
+
+128
+00:06:42,300 --> 00:06:43,490
+it produces a green light.
+
+129
+00:06:43,490 --> 00:06:47,650
+If you consume a one, in other words, a yellow light, produce a red light.
+
+130
+00:06:47,650 --> 00:06:50,591
+And a green light goes to a yellow light.
+
+131
+00:06:50,591 --> 00:06:53,450
+Now, there's a couple of important things going on here.
+
+132
+00:06:53,450 --> 00:06:58,550
+One is that this data definition tells me how to represent information as data
+
+133
+00:06:58,550 --> 00:07:00,980
+and how to interpret data as information.
+
+134
+00:07:00,980 --> 00:07:05,340
+This data definition has made this program much more meaningful.
+
+135
+00:07:05,340 --> 00:07:08,300
+And this data definition has also greatly simplified
+
+136
+00:07:08,300 --> 00:07:10,950
+the design of this function.
+
+137
+00:07:10,950 --> 00:07:14,160
+Because the signature now says TL color to TL color,
+
+138
+00:07:14,160 --> 00:07:17,280
+I know all sorts of things this function can't consume.
+
+139
+00:07:17,280 --> 00:07:20,610
+It can't consume the number three.
+
+140
+00:07:20,610 --> 00:07:22,510
+And I also know how to read this function
+
+141
+00:07:22,510 --> 00:07:24,030
+and understand what it's doing.
+
+142
+00:07:24,030 --> 00:07:26,519
+
+
+143
+00:07:26,519 --> 00:07:28,810
+So that's what data definitions are going to do for us.
+
+144
+00:07:28,810 --> 00:07:31,240
+They're going to help us really understand
+
+145
+00:07:31,240 --> 00:07:33,540
+the relationship between information in data,
+
+146
+00:07:33,540 --> 00:07:36,250
+and how data represents information, and how
+
+147
+00:07:36,250 --> 00:07:39,720
+data can be interpreted as information.
+
+148
+00:07:39,720 --> 00:07:42,530
+But I didn't talk about how to design data definitions.
+
+149
+00:07:42,530 --> 00:07:45,520
+And I didn't talk about how to design a function that consumes
+
+150
+00:07:45,520 --> 00:07:48,220
+data defined by a data definition.
+
+151
+00:07:48,220 --> 00:07:52,310
+I just showed you examples of the completed product.
+
+152
+00:07:52,310 --> 00:07:54,860
+So now, what we're going to do starting next time
+
+153
+00:07:54,860 --> 00:07:58,000
+is look at how to design data definitions.
+
+154
+00:07:58,000 --> 00:07:58,517
+
+

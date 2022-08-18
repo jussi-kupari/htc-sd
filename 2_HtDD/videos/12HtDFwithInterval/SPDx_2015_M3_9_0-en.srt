@@ -1,0 +1,344 @@
+0
+00:00:00,000 --> 00:00:04,240
+
+
+1
+00:00:04,240 --> 00:00:05,990
+GREGOR KICZALES: The next three videos are
+
+2
+00:00:05,990 --> 00:00:11,160
+examples of designing a function that consumes non-primitive data, data
+
+3
+00:00:11,160 --> 00:00:15,490
+that's defined by your own data definition.
+
+4
+00:00:15,490 --> 00:00:20,200
+Now, they're HtDF problems, so mostly you know how to do them.
+
+5
+00:00:20,200 --> 00:00:25,940
+Remember, I said the HtDF recipe is largely orthogonal to the form of data.
+
+6
+00:00:25,940 --> 00:00:29,100
+But it isn't completely orthogonal to the form of data.
+
+7
+00:00:29,100 --> 00:00:32,920
+One real dependence between function design and form of data
+
+8
+00:00:32,920 --> 00:00:36,770
+has to do with the number of tests that's appropriate for that function.
+
+9
+00:00:36,770 --> 00:00:39,570
+So in these videos, I'm going to pay particular attention
+
+10
+00:00:39,570 --> 00:00:44,740
+to the number of tests that we're going to use, based on the form of data.
+
+11
+00:00:44,740 --> 00:00:47,070
+I'm in aisle-starter.rkt.
+
+12
+00:00:47,070 --> 00:00:51,940
+And the problem we're asked is to use the SeatNum data definition,
+
+13
+00:00:51,940 --> 00:00:54,800
+and design a function to produce is true if the given seat
+
+14
+00:00:54,800 --> 00:00:56,930
+number is on the aisle.
+
+15
+00:00:56,930 --> 00:01:00,300
+So the first thing I would do is go look at the seat num data definition,
+
+16
+00:01:00,300 --> 00:01:05,230
+and it reminds me that the SeatNum is a natural number from 1 to 32 inclusive,
+
+17
+00:01:05,230 --> 00:01:10,840
+and that it's seat numbers in a row, and 1 and 32 are the aisle seats.
+
+18
+00:01:10,840 --> 00:01:12,660
+So now I can get started on my function.
+
+19
+00:01:12,660 --> 00:01:15,545
+I'll quickly do the signature purpose and stub.
+
+20
+00:01:15,545 --> 00:01:19,580
+Let's see, it's going to consume a SeatNum.
+
+21
+00:01:19,580 --> 00:01:23,870
+And we're supposed to produce true when the sea number is on the aisle,
+
+22
+00:01:23,870 --> 00:01:26,510
+so that means it's going to produce a Boolean.
+
+23
+00:01:26,510 --> 00:01:29,962
+And it'll produce false when the seat number isn't on the aisle.
+
+24
+00:01:29,962 --> 00:01:34,970
+And let's see, produce true if the given seat number is on the aisle.
+
+25
+00:01:34,970 --> 00:01:43,390
+
+
+26
+00:01:43,390 --> 00:01:45,670
+And let's see the function.
+
+27
+00:01:45,670 --> 00:01:49,880
+This is a predicate, so we'll name it using the naming convention
+
+28
+00:01:49,880 --> 00:01:53,130
+for predicates like this, aisle?
+
+29
+00:01:53,130 --> 00:01:58,362
+we'll have seat number is-- and we'll just produce false for the stub.
+
+30
+00:01:58,362 --> 00:02:00,900
+So let me run that, to make sure the stub is well formed.
+
+31
+00:02:00,900 --> 00:02:01,950
+And it is.
+
+32
+00:02:01,950 --> 00:02:03,727
+OK, now let's get to the examples.
+
+33
+00:02:03,727 --> 00:02:06,310
+Now here's the first place where the data definition is really
+
+34
+00:02:06,310 --> 00:02:08,449
+going to have something to say.
+
+35
+00:02:08,449 --> 00:02:13,690
+If we go back to the How to Design Data page,
+
+36
+00:02:13,690 --> 00:02:17,320
+and we go to the section on intervals and we go to the section on Guidance
+
+37
+00:02:17,320 --> 00:02:19,930
+on Examples and Test, it tells us that when
+
+38
+00:02:19,930 --> 00:02:22,600
+writing tests for functions operating on intervals,
+
+39
+00:02:22,600 --> 00:02:26,260
+we should be sure to test closed boundaries as well as midpoints,
+
+40
+00:02:26,260 --> 00:02:28,790
+and always be sure to include enough tests to check
+
+41
+00:02:28,790 --> 00:02:31,190
+all other points of variance.
+
+42
+00:02:31,190 --> 00:02:32,930
+So let's go back to the code.
+
+43
+00:02:32,930 --> 00:02:35,910
+I've got an interval with two closed endpoints.
+
+44
+00:02:35,910 --> 00:02:41,570
+So I know that what I'm going to need are three tests.
+
+45
+00:02:41,570 --> 00:02:48,145
+One for the first closed end point, which is 1.
+
+46
+00:02:48,145 --> 00:02:51,640
+
+
+47
+00:02:51,640 --> 00:02:53,910
+One for the middle, which is-- middle doesn't
+
+48
+00:02:53,910 --> 00:02:56,290
+have to be the exact middle, something like the middle.
+
+49
+00:02:56,290 --> 00:02:59,490
+We'll call it 16.
+
+50
+00:02:59,490 --> 00:03:04,032
+And one for the closed upper end point, which is 32.
+
+51
+00:03:04,032 --> 00:03:05,490
+And now what are these going to be?
+
+52
+00:03:05,490 --> 00:03:09,060
+Well, I'm supposed to produce true if the given seat number is on the aisle.
+
+53
+00:03:09,060 --> 00:03:13,470
+Let's see, this one is on the aisle.
+
+54
+00:03:13,470 --> 00:03:16,010
+This one is not.
+
+55
+00:03:16,010 --> 00:03:17,640
+And this one is.
+
+56
+00:03:17,640 --> 00:03:20,190
+Notice how much information the data definition
+
+57
+00:03:20,190 --> 00:03:23,055
+gave me about generating the tests.
+
+58
+00:03:23,055 --> 00:03:25,430
+Data definitions are always going to be helpful this way.
+
+59
+00:03:25,430 --> 00:03:28,500
+They're not always going to make it quite this straightforward,
+
+60
+00:03:28,500 --> 00:03:30,760
+but data definitions, the structure of the data
+
+61
+00:03:30,760 --> 00:03:37,190
+definition, the structure of the data, tells us a lot about the tests we need.
+
+62
+00:03:37,190 --> 00:03:39,180
+So let me run that.
+
+63
+00:03:39,180 --> 00:03:41,530
+Good.
+
+64
+00:03:41,530 --> 00:03:44,140
+They're all running.
+
+65
+00:03:44,140 --> 00:03:46,699
+Now, for the template what I'm going to do
+
+66
+00:03:46,699 --> 00:03:48,490
+is I'm first going to comment out the stub.
+
+67
+00:03:48,490 --> 00:03:57,330
+I'm going to say use template from SeatNum, and I'll just leave that note.
+
+68
+00:03:57,330 --> 00:04:02,620
+I'll copy the template down, and I'll use it like that.
+
+69
+00:04:02,620 --> 00:04:05,790
+I have to rename it to be aisle?
+
+70
+00:04:05,790 --> 00:04:08,920
+because that's the name of this function.
+
+71
+00:04:08,920 --> 00:04:09,810
+And let's see.
+
+72
+00:04:09,810 --> 00:04:13,530
+I'm consuming a seat number, which is a natural from 1 to 32,
+
+73
+00:04:13,530 --> 00:04:16,440
+and I need to produce true if it's an aisle seat.
+
+74
+00:04:16,440 --> 00:04:24,652
+That means I need to produce true if seat num is 1, also seat num is 32.
+
+75
+00:04:24,652 --> 00:04:29,090
+And I just need to or those two together.
+
+76
+00:04:29,090 --> 00:04:30,520
+Let's try that.
+
+77
+00:04:30,520 --> 00:04:34,410
+All three tests pass.
+
+78
+00:04:34,410 --> 00:04:35,090
+So there you.
+
+79
+00:04:35,090 --> 00:04:38,040
+That's designing a function that consumes an interval.
+
+80
+00:04:38,040 --> 00:04:41,540
+And the big piece of help we got from knowing that's an interval
+
+81
+00:04:41,540 --> 00:04:44,260
+is well, of course we got the template, but we also
+
+82
+00:04:44,260 --> 00:04:46,180
+got the structure of the tests.
+
+83
+00:04:46,180 --> 00:04:49,130
+In this case, it's an interval with two closed ends.
+
+84
+00:04:49,130 --> 00:04:53,770
+So we have a test for each of the ends, and a test for somewhere in the middle.
+
+85
+00:04:53,770 --> 00:04:55,218
+
+

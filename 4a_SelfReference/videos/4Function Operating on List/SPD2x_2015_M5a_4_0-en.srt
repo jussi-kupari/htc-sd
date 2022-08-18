@@ -1,0 +1,496 @@
+0
+00:00:00,000 --> 00:00:03,559
+
+
+1
+00:00:03,559 --> 00:00:06,100
+GREGOR KICZALES: So now we're going to design a function that
+
+2
+00:00:06,100 --> 00:00:10,460
+operates on ListOfString, and remember what I said in the last video,
+
+3
+00:00:10,460 --> 00:00:13,580
+we still don't have all the changes we need to the how
+
+4
+00:00:13,580 --> 00:00:17,820
+to design function recipe to do this, so there's going to be a place in here
+
+5
+00:00:17,820 --> 00:00:21,430
+where I'm going to make a lucky guess, and that lucky guess is
+
+6
+00:00:21,430 --> 00:00:23,630
+going to turn out splendidly for me.
+
+7
+00:00:23,630 --> 00:00:26,950
+And then in the next video, I'm going to come back and really
+
+8
+00:00:26,950 --> 00:00:31,710
+explain away all those lucky guesses so that you can make them too.
+
+9
+00:00:31,710 --> 00:00:34,790
+We're starting where we left off in the last video.
+
+10
+00:00:34,790 --> 00:00:38,500
+We have a data definition for ListOfString, and that's
+
+11
+00:00:38,500 --> 00:00:42,880
+the type that we're using to represent lists of Quidditch teams,
+
+12
+00:00:42,880 --> 00:00:45,505
+but remember there were three things about this data definition
+
+13
+00:00:45,505 --> 00:00:47,970
+that I said I would talk more about later,
+
+14
+00:00:47,970 --> 00:00:49,570
+and that'll be in the next video.
+
+15
+00:00:49,570 --> 00:00:53,080
+One was this self reference here at the top,
+
+16
+00:00:53,080 --> 00:00:59,180
+one was the fact that I put in this funny call to fn-for-los here,
+
+17
+00:00:59,180 --> 00:01:02,460
+and the last thing is I didn't say what template rule caused
+
+18
+00:01:02,460 --> 00:01:05,417
+me to put that fn-for-los.
+
+19
+00:01:05,417 --> 00:01:07,750
+Now if we go down a little farther in this starter file,
+
+20
+00:01:07,750 --> 00:01:11,460
+there's a second problem, and the problem here
+
+21
+00:01:11,460 --> 00:01:16,420
+is we want to know whether your list of favorite Quidditch teams includes UBC.
+
+22
+00:01:16,420 --> 00:01:20,160
+So we're going to design a function that consumes ListOfString and produces
+
+23
+00:01:20,160 --> 00:01:23,480
+true if the list includes UBC.
+
+24
+00:01:23,480 --> 00:01:27,410
+So this is a how to design function problem, so let's just get going.
+
+25
+00:01:27,410 --> 00:01:31,650
+Signature first, it's going to consume a list of favorite Quidditch teams,
+
+26
+00:01:31,650 --> 00:01:32,810
+so that's ListOfString.
+
+27
+00:01:32,810 --> 00:01:36,800
+That's how we're representing that, and it's
+
+28
+00:01:36,800 --> 00:01:39,070
+going to produce true if the list includes UBC,
+
+29
+00:01:39,070 --> 00:01:40,986
+so that means it's going to produce a Boolean.
+
+30
+00:01:40,986 --> 00:01:43,430
+
+
+31
+00:01:43,430 --> 00:01:54,060
+And let's see, we'll say produce true if los, we'll call it, includes UBC,
+
+32
+00:01:54,060 --> 00:01:59,010
+and stop is defined-- let's say we'll call this function contains-ubc?
+
+33
+00:01:59,010 --> 00:02:03,270
+los, and we'll make the stop produce false.
+
+34
+00:02:03,270 --> 00:02:05,780
+We'll say that that's the stub.
+
+35
+00:02:05,780 --> 00:02:07,950
+Now let's do some examples.
+
+36
+00:02:07,950 --> 00:02:10,539
+We can get some inspiration from the data examples
+
+37
+00:02:10,539 --> 00:02:13,920
+that we have in the list of string data definition.
+
+38
+00:02:13,920 --> 00:02:16,557
+So empty is definitely a list of strings, so let's try that.
+
+39
+00:02:16,557 --> 00:02:17,515
+Let's say contains-ubc?
+
+40
+00:02:17,515 --> 00:02:20,170
+
+
+41
+00:02:20,170 --> 00:02:22,880
+of empty.
+
+42
+00:02:22,880 --> 00:02:26,320
+We want to check expected that.
+
+43
+00:02:26,320 --> 00:02:29,397
+Well, let's see, does the empty list contain UBC?
+
+44
+00:02:29,397 --> 00:02:30,230
+Well, no it doesn't.
+
+45
+00:02:30,230 --> 00:02:33,249
+So that's easy, that's false.
+
+46
+00:02:33,249 --> 00:02:34,040
+Here's another one.
+
+47
+00:02:34,040 --> 00:02:36,620
+Check expect contains-ubc?
+
+48
+00:02:36,620 --> 00:02:39,900
+
+
+49
+00:02:39,900 --> 00:02:46,570
+outcomes of cons McGill empty.
+
+50
+00:02:46,570 --> 00:02:49,430
+
+
+51
+00:02:49,430 --> 00:02:53,280
+Well no, UBC is not in there either.
+
+52
+00:02:53,280 --> 00:02:55,330
+Let's make one that UBC is in.
+
+53
+00:02:55,330 --> 00:02:58,290
+Check expect contains-ubc?
+
+54
+00:02:58,290 --> 00:03:01,950
+
+
+55
+00:03:01,950 --> 00:03:04,430
+cons UBC empty.
+
+56
+00:03:04,430 --> 00:03:07,250
+
+
+57
+00:03:07,250 --> 00:03:09,000
+That's true.
+
+58
+00:03:09,000 --> 00:03:14,400
+Let's make one that UBC is in but not in the first position.
+
+59
+00:03:14,400 --> 00:03:20,400
+
+
+60
+00:03:20,400 --> 00:03:25,310
+So let's say UBC is in that list, so that'll be true.
+
+61
+00:03:25,310 --> 00:03:28,990
+So we'll run that, make sure those examples are well formed, and they are.
+
+62
+00:03:28,990 --> 00:03:31,980
+Two are failing.
+
+63
+00:03:31,980 --> 00:03:40,120
+Now let's see, let's go get the template,
+
+64
+00:03:40,120 --> 00:03:46,355
+and we'll comment out the stub, we'll rename the template.
+
+65
+00:03:46,355 --> 00:03:48,890
+
+
+66
+00:03:48,890 --> 00:03:52,010
+Now it's time to code the body.
+
+67
+00:03:52,010 --> 00:03:55,660
+So let's see, contains UBC if los is empty.
+
+68
+00:03:55,660 --> 00:04:01,260
+That's this first case, then intuition the purpose, and this first example,
+
+69
+00:04:01,260 --> 00:04:07,967
+all three tell me that the result in that case is false.
+
+70
+00:04:07,967 --> 00:04:09,300
+Now what about this second case?
+
+71
+00:04:09,300 --> 00:04:12,270
+So this is the case where, let's see, it's compound.
+
+72
+00:04:12,270 --> 00:04:19,760
+This is the case where we have an actual cons, and this first of the cons
+
+73
+00:04:19,760 --> 00:04:23,780
+will be a string, so that's a case like this,
+
+74
+00:04:23,780 --> 00:04:27,300
+where we have Miguel as the first element of the list,
+
+75
+00:04:27,300 --> 00:04:32,600
+or it's a case like this where we have UBC as the first element of a list.
+
+76
+00:04:32,600 --> 00:04:37,320
+So in that case, we would produce false, in that case we would produce true.
+
+77
+00:04:37,320 --> 00:04:40,450
+So let's see, it seems like-- or it could
+
+78
+00:04:40,450 --> 00:04:44,440
+be this case here where is in the beginning of the list,
+
+79
+00:04:44,440 --> 00:04:47,640
+but we need to keep looking.
+
+80
+00:04:47,640 --> 00:04:52,540
+So it seems like we need an IF, and there is the IF,
+
+81
+00:04:52,540 --> 00:04:58,430
+and it seems like what we want to know is, is the first thing in the list UBC?
+
+82
+00:04:58,430 --> 00:05:04,620
+So if the first thing in the list is UBC,
+
+83
+00:05:04,620 --> 00:05:09,110
+that's this case here, where the first thing in the list is UBC.
+
+84
+00:05:09,110 --> 00:05:13,362
+If the first thing in the list is UBC, then in that case
+
+85
+00:05:13,362 --> 00:05:14,320
+we should produce true.
+
+86
+00:05:14,320 --> 00:05:17,680
+
+
+87
+00:05:17,680 --> 00:05:19,640
+Now what do we need to do here?
+
+88
+00:05:19,640 --> 00:05:21,750
+What do we need to do in this case?
+
+89
+00:05:21,750 --> 00:05:27,420
+This is the case where the first thing in the list is not UBC,
+
+90
+00:05:27,420 --> 00:05:32,310
+so that's a case like this one, where the first thing in the list is not UBC,
+
+91
+00:05:32,310 --> 00:05:35,850
+and it's also a case like this one, where the first thing the list
+
+92
+00:05:35,850 --> 00:05:37,190
+is not UBC.
+
+93
+00:05:37,190 --> 00:05:41,800
+In this case, UBC isn't anywhere in the list, but in this case,
+
+94
+00:05:41,800 --> 00:05:45,850
+UBC is in the rest of the list.
+
+95
+00:05:45,850 --> 00:05:52,040
+So it seems like what we need to do here is we've got the rest of the list.
+
+96
+00:05:52,040 --> 00:05:55,070
+It seems like we need to go look in the rest of the list
+
+97
+00:05:55,070 --> 00:06:00,640
+to see whether the rest of the list contains UBC.
+
+98
+00:06:00,640 --> 00:06:03,345
+That way, in this case, when we go look in empty,
+
+99
+00:06:03,345 --> 00:06:06,670
+there won't be UBC there, so it will produce false, and in this case,
+
+100
+00:06:06,670 --> 00:06:13,390
+when we go look in cons UBC empty, we'll find the UBC and produce true.
+
+101
+00:06:13,390 --> 00:06:18,260
+So what we need right here-- what we need fn for los to be,
+
+102
+00:06:18,260 --> 00:06:23,080
+is we need fn for los to be a function, then if we give it a list of strings,
+
+103
+00:06:23,080 --> 00:06:28,190
+it will tell us whether UBC is in that list.
+
+104
+00:06:28,190 --> 00:06:29,955
+It will be nice to have such a function.
+
+105
+00:06:29,955 --> 00:06:33,450
+
+
+106
+00:06:33,450 --> 00:06:37,310
+Well, we do-- or I should say we almost do.
+
+107
+00:06:37,310 --> 00:06:40,680
+It says right here that there's a function that consumes list of string
+
+108
+00:06:40,680 --> 00:06:47,120
+and produces a Boolean, and it produces true if the list includes UBC,
+
+109
+00:06:47,120 --> 00:06:52,111
+and all of this says that the name of that function is contains UBC,
+
+110
+00:06:52,111 --> 00:06:54,860
+so since there is a function that does that-- it says right there,
+
+111
+00:06:54,860 --> 00:07:01,690
+there is-- I can just make this contains UBC,
+
+112
+00:07:01,690 --> 00:07:04,910
+and now I'm done writing that function.
+
+113
+00:07:04,910 --> 00:07:06,120
+Let's run it.
+
+114
+00:07:06,120 --> 00:07:08,600
+All four tests pass.
+
+115
+00:07:08,600 --> 00:07:10,545
+You may find that surprising.
+
+116
+00:07:10,545 --> 00:07:14,910
+A funny thing happened here, which is we wrote a function that used itself.
+
+117
+00:07:14,910 --> 00:07:19,250
+This idea, which is called recursion, is deeply
+
+118
+00:07:19,250 --> 00:07:21,790
+connected to the idea we saw in the last video, which
+
+119
+00:07:21,790 --> 00:07:24,000
+was self reference in type comment.
+
+120
+00:07:24,000 --> 00:07:26,750
+For now, I'm just going to leave this video
+
+121
+00:07:26,750 --> 00:07:31,220
+as it is, say that we're done doing this function, and then in the next video
+
+122
+00:07:31,220 --> 00:07:34,160
+I'll talk about why this all worked out.
+
+123
+00:07:34,160 --> 00:07:34,994
+
+

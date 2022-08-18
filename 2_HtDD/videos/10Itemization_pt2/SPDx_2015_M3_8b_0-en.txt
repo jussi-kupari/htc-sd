@@ -1,0 +1,110 @@
+
+GREGOR KICZALES: So there's my examples.
+Now we'll set up to do the template.
+Define fn-for-countdown c.
+They'll be somebody template rules used.
+
+So now we have to go find the first template rule used.
+And again we always start by looking at the word right
+after is in the type comment.
+And that word is one of.
+So if we go find the template rules page,
+again we can find that by following this link,
+the data driven templates recipe link-- The one of role
+is the rule we're going to use this because this is an itemization.
+The one of role is also what we used for enumerations,
+so we know how it starts out.
+It's going to tell us to make a cond with one
+clause per subclass of the one of.
+So I'll go back over to the code now, and I'll say cond
+and there's three subclasses.
+So there'll be three question answer pairs.
+
+And I'll say that the rule that I used was one of three cases.
+
+OK, so now I go to the first case.
+The first case is false.
+Well false is an atomic distinct value.
+And I need a predicate for the question that tests for false.
+It turns out there is a predicate that tests whether a value is exactly false.
+So back at the code I could put that predicate,
+and I can say false question mark c.
+This is atomic distinct so dot dot dot.
+
+Atomic distinct false.
+So now for the second sub case, so let's see, this is an interval.
+So going back to the data templates page, for interval I
+need an appropriate predicate.
+So this is a predicate that for example tells
+me is it a number between one and 10.
+But I have to be a little careful here.
+If I just make this predicate be and one is less than or equal to C,
+and C is less than or equal to 10, and let
+me just do the answer clause quickly so we'll have that out of way.
+Since this is an atomic non-distinct, this would be dot dot dot c.
+That might be what you write, but this particular itemization
+is called a mixed data itemization.
+It's a mixed date itemization because there's different kinds of data in it.
+Not all three clauses are numbers.
+The first clause, the data is a boolean, the second clause it's a number,
+in the third it's a string.
+So I have to be very careful here.
+Because if I call this template with c being the string complete, this less
+than or equal right here, this less than or equal is going to blow up.
+Because you can't call less than or equal giving it
+a string as an argument.
+So because this is a mixed data itemization,
+we have to guard this less than or equal against being called
+with a value that isn't a number.
+The way we're going to guard it is we're going to say well,
+you're only this middle case if you're a number
+and you are a number between one and 10.
+So I'm going to add one more test to the and.
+
+So now if I call fun for countdown with false this template will go there.
+If I call fun for countdown with a number that's between one and 10,
+this template will go there.
+So now I've done the the code properly, and I need
+to add the template role that I used.
+Atomic non distinct and it's this interval right here.
+I'll just copy it.
+
+Now going back over to the data templates page
+there's a note here that says it is permissible to use else
+for the last question for itemization's and large enumerations.
+This is an itemization.
+So we're allowed to use else for the last question.
+What that means is, right here for this question I'm allowed to put else.
+I don't have to put a question that tests whether C is actually
+the string complete.
+Let me do the answer quickly.
+This complete is an atomic distinct, so the answer's going to be that.
+Now let me talk about why I'm allowed to put this else here,
+and it's really important.
+In this course, if you have written a well formed type
+comment like countdown, and you later say
+that a function consumes a countdown, then you
+can count on the function being called with a legal countdown.
+So what that means is when this template runs in some specific function,
+if C isn't false, and C isn't a number between one and 10,
+then C is guaranteed to be the string complete.
+You don't have to actually test here whether C is the string complete.
+What we're saying is that having taken the trouble to do type comment,
+and having taken the trouble to specify the signature of a function,
+you can count on that being respected.
+The reason that's a reasonable thing to do in this course
+is the other programming languages that you will use
+is a part of the programming language implementation call
+the compiler, which will actually enforce that rule
+to make sure that it's always true.
+So it's a reasonable rule for you to start counting on here.
+So now that I've done this last case I do
+need to go and add my template rule used, which is atomic distinct.
+
+And it's this complete here.
+
+So let's see, I'll run it to make sure everything's well formed.
+I don't get any errors, so it is well formed.
+And I will comment out that piece of it.
+Save the file.
+And now, I've got the data definition for this countdown type.

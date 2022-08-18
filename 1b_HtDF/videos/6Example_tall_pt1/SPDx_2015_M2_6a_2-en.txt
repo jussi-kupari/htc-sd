@@ -1,0 +1,72 @@
+
+GREGOR KICZALES: In this HtDF example problem,
+you're going to see a case where the problem
+statement isn't very specific about the function we need to design.
+That's going to happen more and more as we go forward in the course.
+Remember what I said in the first video.
+Design is the process of going from a poorly formed problem
+to a well structured solution.
+So making the problem more specific is part of the design process.
+In this video, I'm also going to talk about how
+many tests you need for a function.
+And we'll see another example of a case where
+you get part way through the recipe and realize that you need to go back
+and refine some work that you did in an earlier step of the recipe.
+In this problem, we're asked to design a function that consumes an image
+and determines whether the image is tall.
+So let's see.
+It seems clear that it consumes an image,
+but what does it mean to determine whether the image is tall?
+Well, we're asking is this image tall, so that's kind of a yes/no question.
+By convention, whenever we design a function
+that produces the answer to a yes/no or true/false question,
+we design that function to produce a boolean.
+So we'll say Boolean here.
+And now what's the purpose going to be?
+The purpose is going to be something about if the image is tall.
+And the key thing is so far, I've only said it produces a boolean,
+but I haven't said what true means.
+So you want to say in the purpose, produce true if the image is tall.
+You need to distinguish which does true mean.
+Does true mean that it's tall or that it's not tall?
+So whenever you've got a function producing a boolean,
+your purpose has to be very clear about what true means
+and by implication what false means.
+So let's see.
+Here's a stub, and this didn't tell us what name of a function to use.
+The problem statement didn't tell us what name to use.
+That's usually going to be the case.
+You're usually going to have to invent the name of a function
+when you design it.
+And it turns out that in the programming language we're using,
+there's a convention that functions that produce a boolean, functions
+that produce an answer to a yes/no question or a true/false question
+have a name that ends in question mark.
+So we're going to call this function tall?.
+
+It's going to consume image, and a good dummy answer is false.
+
+So that would be the stub.
+And now we can write some tests.
+So let's see.
+Check-expect, tall?.
+
+Let's see, I need an image.
+So let's take a rectangle.
+Oh, wait a minute.
+Before I forget here, I'm using rectangle.
+So let me quickly go up top here and say require 2htdp/image.
+
+So I'm going to make a rectangle that let's say is two wide and three high
+and is red.
+The color doesn't really matter here, but rectangle needs the arguments.
+Let's see.
+It seems to me that rectangle that's three high and two wide is tall,
+so we'll say true.
+Now, I want you to ask yourself right now,
+how many tests does this function need?
+The right number of tests for a function is
+going to be an issue that we talk about more and more during the course.
+How many do you think that this function needs?
+
+Write down your answer or just remember it, and we'll see where we end up.

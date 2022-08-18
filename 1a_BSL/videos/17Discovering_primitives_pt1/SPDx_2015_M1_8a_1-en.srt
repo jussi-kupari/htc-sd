@@ -1,0 +1,372 @@
+0
+00:00:00,000 --> 00:00:05,142
+
+
+1
+00:00:05,142 --> 00:00:06,850
+GREGOR KICZALES: In this video, I'm going
+
+2
+00:00:06,850 --> 00:00:10,130
+to talk about how you can discover more primitives than the ones I
+
+3
+00:00:10,130 --> 00:00:13,210
+cover in the videos.
+
+4
+00:00:13,210 --> 00:00:16,770
+In the Beginning Student Language, there's far too many primitives for you
+
+5
+00:00:16,770 --> 00:00:20,600
+to learn them all, and far, far too many for us to cover them in the videos.
+
+6
+00:00:20,600 --> 00:00:23,497
+So you need to be able to discover primitives on your own.
+
+7
+00:00:23,497 --> 00:00:25,330
+And in other programming languages, there'll
+
+8
+00:00:25,330 --> 00:00:29,471
+be even more primitives that you need to be able to discover on your own.
+
+9
+00:00:29,471 --> 00:00:31,720
+So what I want to talk about is two general techniques
+
+10
+00:00:31,720 --> 00:00:34,820
+you can use for discovering primitives.
+
+11
+00:00:34,820 --> 00:00:38,120
+Now, the first one-- you're going to laugh at this-- but the first one
+
+12
+00:00:38,120 --> 00:00:41,270
+is actually to make a lucky guess.
+
+13
+00:00:41,270 --> 00:00:43,290
+You may think that's crazy, but it turns out
+
+14
+00:00:43,290 --> 00:00:47,254
+that what happens after you've been programming language for awhile,
+
+15
+00:00:47,254 --> 00:00:49,670
+is you start to get a pretty good sense of what the naming
+
+16
+00:00:49,670 --> 00:00:52,900
+conventions are and it turns out you do manage
+
+17
+00:00:52,900 --> 00:00:58,040
+to guess the name of a new primitive more often than you might think.
+
+18
+00:00:58,040 --> 00:01:00,450
+Let me show you how that works.
+
+19
+00:01:00,450 --> 00:01:05,740
+Imagine now we go back to where we were in the strings and images video.
+
+20
+00:01:05,740 --> 00:01:09,240
+
+
+21
+00:01:09,240 --> 00:01:11,444
+I know there's circle, rectangle and text.
+
+22
+00:01:11,444 --> 00:01:14,360
+I might say, well, gee, I wonder if there's something called triangle.
+
+23
+00:01:14,360 --> 00:01:16,930
+And I could just try it.
+
+24
+00:01:16,930 --> 00:01:19,050
+And I guess triangle must have some kind of size.
+
+25
+00:01:19,050 --> 00:01:21,320
+I'll just put in a number.
+
+26
+00:01:21,320 --> 00:01:25,710
+And it probably has something like a fill and a color
+
+27
+00:01:25,710 --> 00:01:31,030
+so let's just say solid and purple.
+
+28
+00:01:31,030 --> 00:01:33,980
+Again, I'm just trying this to see if it works.
+
+29
+00:01:33,980 --> 00:01:36,080
+And sure enough, it does seem to work.
+
+30
+00:01:36,080 --> 00:01:39,900
+At this point, I might wonder, well, what exactly is that number 40?
+
+31
+00:01:39,900 --> 00:01:44,430
+And then I can go up here to triangle, click on it, and on my Mac
+
+32
+00:01:44,430 --> 00:01:48,020
+I'm going to control click-- on Windows you would right click-- and say
+
+33
+00:01:48,020 --> 00:01:51,910
+Search in Help Desk for Triangle.
+
+34
+00:01:51,910 --> 00:01:56,280
+And this is going to bring up the Dr. Racket documentation for Triangle.
+
+35
+00:01:56,280 --> 00:01:59,180
+And I want the one from 2htdp/image So I'm always going
+
+36
+00:01:59,180 --> 00:02:04,600
+to select the one from 2htdp/image
+
+37
+00:02:04,600 --> 00:02:09,130
+And it says that the first number is the side length.
+
+38
+00:02:09,130 --> 00:02:13,110
+So I know that 40 is this side length right along there.
+
+39
+00:02:13,110 --> 00:02:15,390
+That's the 40.
+
+40
+00:02:15,390 --> 00:02:18,070
+So you can guess, and often you can guess right.
+
+41
+00:02:18,070 --> 00:02:19,820
+That's the first technique for discovering
+
+42
+00:02:19,820 --> 00:02:22,800
+new primitives is to make a good guess.
+
+43
+00:02:22,800 --> 00:02:25,820
+Another good trick for discovering the name of new primitives
+
+44
+00:02:25,820 --> 00:02:27,815
+is called search and scroll.
+
+45
+00:02:27,815 --> 00:02:30,270
+Or look up and scroll.
+
+46
+00:02:30,270 --> 00:02:32,570
+Imagine that what I'm doing is I'm writing
+
+47
+00:02:32,570 --> 00:02:37,655
+some expressions that-- in my Racket-- like this one, divide 3 by 4.
+
+48
+00:02:37,655 --> 00:02:40,870
+Now, if I run that, of course, I get 0.75.
+
+49
+00:02:40,870 --> 00:02:44,385
+But maybe what I'd really like to do is round that to the nearest whole number,
+
+50
+00:02:44,385 --> 00:02:46,390
+like 1 in this case.
+
+51
+00:02:46,390 --> 00:02:49,970
+There must be a function in Racket to help me do that.
+
+52
+00:02:49,970 --> 00:02:51,750
+So here's how the trick works.
+
+53
+00:02:51,750 --> 00:02:54,250
+I find a place in code where there's a related function.
+
+54
+00:02:54,250 --> 00:02:55,669
+In this case, divide.
+
+55
+00:02:55,669 --> 00:02:56,835
+Divide's kind of like round.
+
+56
+00:02:56,835 --> 00:02:58,940
+It operates on numbers.
+
+57
+00:02:58,940 --> 00:03:04,440
+And I control click on top of divide-- or in Windows I right click--
+
+58
+00:03:04,440 --> 00:03:10,270
+and then I pick the menu item Search in Help Desk for Slash.
+
+59
+00:03:10,270 --> 00:03:14,110
+Now, the thing is, Racket supports a lot of different languages.
+
+60
+00:03:14,110 --> 00:03:16,390
+I want to choose the documentation for Slash
+
+61
+00:03:16,390 --> 00:03:22,380
+from htdp/beginner I want to choose this line of it here.
+
+62
+00:03:22,380 --> 00:03:26,640
+And so I'm going to click on that slash right there
+
+63
+00:03:26,640 --> 00:03:31,000
+and that'll take me to the documentation for this version of divide.
+
+64
+00:03:31,000 --> 00:03:31,760
+And here I am.
+
+65
+00:03:31,760 --> 00:03:34,135
+And goodness gracious, there's a whole bunch of functions
+
+66
+00:03:34,135 --> 00:03:37,449
+here that look like they operate on numbers. divide, less-than greater-than
+
+67
+00:03:37,449 --> 00:03:39,990
+And what I'm going to do is I'm going to scroll through these
+
+68
+00:03:39,990 --> 00:03:43,190
+and I'm going to try not to pay too much attention to the list
+
+69
+00:03:43,190 --> 00:03:45,740
+because there's a lot of these functions.
+
+70
+00:03:45,740 --> 00:03:49,100
+So I'm just kind of scrolling, scrolling, scrolling my way
+
+71
+00:03:49,100 --> 00:03:49,900
+through this list.
+
+72
+00:03:49,900 --> 00:03:53,110
+I need to not get lost in all these functions or else
+
+73
+00:03:53,110 --> 00:03:55,160
+my head is going to explode.
+
+74
+00:03:55,160 --> 00:03:59,820
+But I'm scrolling, scrolling, scrolling, and eventually,
+
+75
+00:03:59,820 --> 00:04:02,620
+after just a whole lot of scrolling-- in this case
+
+76
+00:04:02,620 --> 00:04:05,130
+there are lots of functions that operate on numbers--
+
+77
+00:04:05,130 --> 00:04:08,250
+I will come to a function that is the one I need in this case.
+
+78
+00:04:08,250 --> 00:04:10,300
+And here it is.
+
+79
+00:04:10,300 --> 00:04:10,800
+Round.
+
+80
+00:04:10,800 --> 00:04:14,435
+
+
+81
+00:04:14,435 --> 00:04:15,810
+And round does what I want to do.
+
+82
+00:04:15,810 --> 00:04:17,700
+It rounds a real number to an integer.
+
+83
+00:04:17,700 --> 00:04:20,660
+
+
+84
+00:04:20,660 --> 00:04:22,160
+So now I've got what I need.
+
+85
+00:04:22,160 --> 00:04:29,300
+I go back to Racket, I put round around the previous expression-- ha, ha,
+
+86
+00:04:29,300 --> 00:04:33,350
+ha-- I run that and I get 1.
+
+87
+00:04:33,350 --> 00:04:35,720
+Which is what I was looking for.
+
+88
+00:04:35,720 --> 00:04:39,441
+So the trick here is to look up the documentation for a related function
+
+89
+00:04:39,441 --> 00:04:41,440
+and then scroll around looking for the thing you
+
+90
+00:04:41,440 --> 00:04:45,440
+want without getting lost in all the very, very many functions
+
+91
+00:04:45,440 --> 00:04:47,405
+that Racket provides.
+
+92
+00:04:47,405 --> 00:04:47,904
+
+

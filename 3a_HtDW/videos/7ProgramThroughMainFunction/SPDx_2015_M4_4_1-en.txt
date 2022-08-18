@@ -1,0 +1,267 @@
+
+GREGOR KICZALES: Now let me just say a thing about templates.
+Templates are not a beginner's approach to programming.
+I told you in the intro video that the method
+we're going to learn in this course is what I do when problems get hard.
+And that's true.
+So what templates are-- the way we mean them in this course--
+is they're an expert's way of saying, gee, before I start on this function,
+or before I start on this program, what do I
+know about the basic structure of it before I get to the details?
+So data-driven templates are saying, given that I know what type of data
+this function consumes, what do I know about the structure of this function?
+And the Big Bang World program template is
+a way of saying given that I know I'm using
+Big Bang, what do I know about the basic structure of this program
+before I start?
+And later on in the course, we'll see templates
+where we know given that I know I'm using this basic kind of algorithm,
+what must be true about the structure of the program
+before I get to the details?
+Templates are an idea that you can use throughout your career,
+no matter how sophisticated a programmer you get to be.
+When you get a hard problem and you don't quite know how to do it,
+you first say, well, what do I know about the basic structure
+of the program before I get to the details?
+That's an incredibly powerful idea.
+And it's not one that's just for beginners.
+In the last video we started on the problem
+of designing the world program the causes
+the cat to march across the screen.
+And we did the first half of the world program design recipe.
+We did the domain analysis half.
+That produced this domain analysis for us
+in which we identify constant information, changing information,
+and the required Big Bang options for this program.
+In this video, we're going to start on the second part of the
+how to design world's recipe, the build the actual program part.
+And we're going to do steps 2.1, 2.2, and 2.3 three in this video.
+So let's get the starter file.
+And what I'm going to do now is I'm going
+to go to the how to design world's recipe page.
+And I'm going to scoot down here to the bottom.
+And I'm going to take this template of a world program.
+And I'm just going to copy this whole template right here
+and bring it over into my program that I'm working on.
+Now templates do something else important.
+Or what I should really say is that the way the recipe is structured
+does something else important, which is templates break the process of design
+down into steps of the process, not just pieces of the solution.
+So this function and that function are two pieces of the solution.
+But what the template is is it's a step in the process,
+because when you have the final function,
+the template is kind of buried in the middle of it somewhere.
+That's really important.
+That's what happens when you design a method is you can design it
+so that you both get pieces of the solution and steps of the process.
+And so you get a kind of cross-cutting decomposition
+that helps break the overall work down into smaller and more manageable
+pieces.
+So don't let anyone tell you the templates are just for beginners.
+Nothing could be further from the truth.
+What is true is that as you get to be a better programmer,
+you won't template very simple functions,
+or you'll kind of template them in your head or something.
+But the idea of templates, the idea of getting
+the basic structure of a piece of code before you get to the details,
+you'll always have that idea.
+And you'll always use it when the problem
+gets too hard to just immediately write down the solution.
+So here we go.
+We need a better title than this-- a cat that walks
+from left to right across the screen.
+The first line of a program should give us a short summary of the program.
+Now, we're going to do the constants.
+And the constants are going to come directly
+from the analysis phase of the program-- this analysis here.
+So for example, one of the constants we identified
+was that the width of the screen didn't change.
+So here, I have to just guess a number.
+I'm going to guess a number like 600.
+In the rest of the program, we're never going to use the number 600.
+We're always going to use the constant name WIDTH.
+So if it turns out that this is the wrong number,
+it'll be real easy to change.
+We'll only have to change it in one place.
+Here we go with the height.
+And I'll say 400.
+Another constant we identified is the y-coordinate of the cat.
+The y-coordinate of the cat never changes.
+So that's the CTR-Y. And here you might be tempted to put 200.
+But what I'm going to do is follow the rule that every time I
+need to refer to the height, I'm going to use the height constant.
+So what I'm going to do here is put the HEIGHT over 2.
+Now, if I change height, center y will also change.
+
+And let's see, for the empty scene, the background of the scene,
+there's a primitive called empty-scene.
+
+And we'll make it WIDTH by HEIGHT.
+And that would give us a sort of blank background.
+If you wanted to make a background, if you
+wanted to make a background that was a nice midnight blue or something,
+you could, for example, instead make this overlay rectangle
+WIDTH HEIGHT solid blue.
+And that would give you a blue background.
+I'll just stick with the simpler background for now.
+And the last constant we identified was the cat image itself.
+And for that we're just going to use this image here,
+which the starter file gave us.
+I'll go up there and copy it.
+And then I'll come down here and paste it and there's the cat image.
+And now would be good time to run.
+In fact, I should have run after each of these definitions.
+And I don't get any errors, so I know that my constants are well formed.
+Now, let me reinforce the point I made before
+about using the constants-- always referring to the constants.
+Notice that this code that I have here lines up really well with the analysis
+we did.
+The fact that I can look at the analysis and look at the code
+and understand where everything in the analysis showed up in the code
+is a thing called traceability.
+Both of those are important for the same reason.
+And that is this is an important intuition.
+The way to think about is there's only two kinds of programs in the world.
+There's program that the change and programs that nobody uses.
+Put it another way, any program that anybody uses is always changing.
+People always want it to do more and better things.
+And so what we're doing here is we're designing this program
+to make it easy to change.
+Using constant names makes it easy to change.
+Having a clear traceability between the code and the analysis--
+we'll see later-- that makes it easy to change.
+
+OK, let's keep going.
+Now I've got the constants.
+The next step is to do a data definition that corresponds
+to the changing state of the program.
+The changing state of the program for my domain analysis
+is the cat's x-coordinate.
+So that's going to be-- that simple atomic data.
+That's going to be something like a number.
+The world program template has the beginning of a data definition here.
+It has WS for world state.
+But it says to give WS a better name.
+And sure enough I will because WS isn't a very good name.
+I'll just call it Cat.
+And I'll say Cat is, let's say, Number.
+And let's see, the interpretation is this
+is the x position of the cat in screen coordinates.
+And now I need some examples.
+Let's see, one good example is 0.
+And another example is-- well, let's see, the middle of the screen
+is WIDTH over 2.
+So that's kind of in the middle.
+
+And that's kind of all on the right-- on the left edge.
+And let's do this one.
+
+And this is on the right edge.
+
+So we'll run just to make sure everything is well formed.
+And it is.
+
+Now, we need a template.
+Define fn-for-cat.
+
+And this is just an atomic non-distinct case, so . . .
+c.
+We'll fill in the template rules used of atomic non-distinct and Number.
+And it's also good to comment out the template.
+And now we're good to go.
+So there we go.
+There's our data definition for Cat, for the changing world
+state of the program.
+Now we're going to proceed to our main function.
+Now we decided not to use the name WS for the changing state of this program.
+We decided to use the name Cat.
+So what I'm going to do here is I'm going to say command F or Control F
+on Windows.
+And I'm going to take every occurrence of WS.
+And I'm going to replace it with Cat.
+Let's see we'll replace that one and that one.
+And I won't do that one because it's a parameter name.
+And I don't want to mess up the case.
+I'll come back and do that one.
+But I'll do all of these.
+
+Oops, I didn't mean to do that one.
+I'll come back and fix it.
+I'm not going to do that one.
+Now what's left is these ones that are parameter names.
+And these I'll just change to c.
+
+And there's that one there that I messed up.
+
+And I'll just run now to make sure things are still well formed.
+So now here what I've got from the template
+is a main function that has lots of big bang options in it.
+I'm not going to use all these options.
+I'm only going to use on-tick and to-draw.
+That's what my analysis told me.
+So I'm just going to go ahead and delete all of this.
+
+And I might decide that I don't like the name tock for the on-tick function
+for this program.
+So let's see, I could change the name tock.
+Oops, I've got a parenthesis problem here.
+
+I'm going to change tock.
+I clicked on Check Syntax.
+Now I'll click on tock.
+I'll say Rename tock.
+I'm going to call it advance-cat.
+
+And I'll have to fix some of my spacing here.
+
+Now what's going on here off to the right
+is that the template for the word program in this main function
+is reminding us of the signature of each of the handlers.
+And the other thing the template for the world program did
+is for these two handlers look at what we've got here.
+For each of these two handlers we've got its signature,
+its purpose-- but that's not filled in-- and a stub, which isn't filled in.
+Let me just fill this in now.
+It's produce the next cat by advancing it one pixel to right.
+And that means that a good stub is just 0, because cat is number.
+And this just says render the cat image at appropriate place on MTS.
+These two things here-- the combination of signature, purpose, and stub
+with those exclamation marks-- are what we call a wish list entry.
+What we're doing here is we're saying, hey, up here when I wrote main,
+I assumed that this function advance cat was going to exist.
+And what I'm doing here is I'm writing a reminder
+to myself of what it is I want that function advance cat to do.
+I want it to have this signature, this purpose, and by the way,
+there's a stub.
+And this is a reminder of what I want the render function to do.
+I want it to have this signature, this purpose, and by the way,
+there's a stub.
+Now, once my program is set up like this,
+notice two interesting things about.
+One is it turns out I can actually run it.
+And I can even say main of 0 and run it.
+Nothing happens of course, because my tick function doesn't do anything.
+And my render function only returns the background see no matter what.
+But it does run.
+And the reason it runs is I have these stubs for the two big bang handlers.
+I have a stub for advanced can.
+And I have a stub for render.
+The other thing I can do now is I can search for !!!
+
+And I can see every place in my program that's incomplete.
+By marking each of the wish list entries with some well known marker that says,
+hey, this isn't done, I now know what I have to finish.
+So now what I've done is I've got the overall structure of this program set
+up.
+I've got the constants.
+I've got the data definition for the changing world state.
+I've got a main function that calls big bang
+with two options on-tick and to-draw.
+And I've got wish list entries for advanced cat and render,
+which are the Handler functions for those two big bang options.
+And now, I know what I need to do in order to finish this program.
+I have to design the advance cat function,
+or I have to finish the design of the advanced cat function.
+And I have to finish the design of the render function.
+And then I should be done.
+That's what we'll do in the next video.

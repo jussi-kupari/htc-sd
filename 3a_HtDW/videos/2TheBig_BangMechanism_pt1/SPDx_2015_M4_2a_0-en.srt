@@ -1,0 +1,260 @@
+0
+00:00:00,000 --> 00:00:04,667
+
+
+1
+00:00:04,667 --> 00:00:07,500
+GREGOR KICZALES: This week is going to have the same basic structure
+
+2
+00:00:07,500 --> 00:00:09,210
+of previous weeks.
+
+3
+00:00:09,210 --> 00:00:14,140
+First, we're going to learn a mechanism that supports interactive programs.
+
+4
+00:00:14,140 --> 00:00:16,360
+That mechanism's called big-bang.
+
+5
+00:00:16,360 --> 00:00:20,400
+And no surprise, there's kind of a bad pun involved in the name of big bang.
+
+6
+00:00:20,400 --> 00:00:22,645
+We'll talk about that later.
+
+7
+00:00:22,645 --> 00:00:24,520
+So first we're going to learn that mechanism.
+
+8
+00:00:24,520 --> 00:00:29,510
+And then later in the week, we'll start learning how to design with it.
+
+9
+00:00:29,510 --> 00:00:32,490
+To explain the big-bang mechanism, what I'm going to do
+
+10
+00:00:32,490 --> 00:00:35,120
+is I'm going to start by looking at a couple example
+
+11
+00:00:35,120 --> 00:00:38,910
+interactive programs and just kind of reason from first principles
+
+12
+00:00:38,910 --> 00:00:41,680
+about what has to be going on inside those programs,
+
+13
+00:00:41,680 --> 00:00:44,530
+the inherent structure of those programs.
+
+14
+00:00:44,530 --> 00:00:48,930
+Then I'll explain how big bang works and how it supports that structure.
+
+15
+00:00:48,930 --> 00:00:52,450
+So imagine that we have two fairly boring interactive programs.
+
+16
+00:00:52,450 --> 00:00:57,820
+So the one on the left is just counting down, 8, 7, 6, 5, 4, and so on.
+
+17
+00:00:57,820 --> 00:01:03,474
+And the one on the right just has a cat walking very slowly across the screen.
+
+18
+00:01:03,474 --> 00:01:06,140
+And I'm going to say these programs are interactive because if I
+
+19
+00:01:06,140 --> 00:01:10,700
+press the Space key, they both reset back to the beginning
+
+20
+00:01:10,700 --> 00:01:12,190
+and start running again.
+
+21
+00:01:12,190 --> 00:01:14,400
+So that's the sense in which they're interactive.
+
+22
+00:01:14,400 --> 00:01:17,870
+These two programs have classical interactive behavior.
+
+23
+00:01:17,870 --> 00:01:21,740
+Some underlying state is changing, the number in the countdown
+
+24
+00:01:21,740 --> 00:01:24,020
+or the position of the cat.
+
+25
+00:01:24,020 --> 00:01:26,480
+There's a changing image on the screen.
+
+26
+00:01:26,480 --> 00:01:29,510
+And pressing the key does something or perhaps
+
+27
+00:01:29,510 --> 00:01:32,180
+clicking the mouse might do something.
+
+28
+00:01:32,180 --> 00:01:34,580
+So there's two simple interactive programs.
+
+29
+00:01:34,580 --> 00:01:37,700
+Now let's think about what's going on behind the scenes starting
+
+30
+00:01:37,700 --> 00:01:40,107
+with the countdown program.
+
+31
+00:01:40,107 --> 00:01:42,190
+There's the current number in the countdown, which
+
+32
+00:01:42,190 --> 00:01:43,880
+is the middle column of this table.
+
+33
+00:01:43,880 --> 00:01:47,520
+It starts at 10, and then it goes to 9, and so on.
+
+34
+00:01:47,520 --> 00:01:49,270
+And there's the currently displayed image,
+
+35
+00:01:49,270 --> 00:01:55,130
+which is the image of the number 10, the image of the number 9, and so on.
+
+36
+00:01:55,130 --> 00:02:01,180
+And what's happening is that once a second, n gets decreased by 1,
+
+37
+00:02:01,180 --> 00:02:07,850
+and the image gets updated to be the image corresponding to the current n.
+
+38
+00:02:07,850 --> 00:02:11,530
+So there's kind of this behavior of the clock ticking, tick, tick, tick.
+
+39
+00:02:11,530 --> 00:02:16,820
+And each time, n and the image are both updated.
+
+40
+00:02:16,820 --> 00:02:20,020
+Now, if we look at the cat program, the same kind of thing just
+
+41
+00:02:20,020 --> 00:02:23,550
+inherently has to be going on inside of it.
+
+42
+00:02:23,550 --> 00:02:27,690
+In this case, the changing state is the cat's x position.
+
+43
+00:02:27,690 --> 00:02:31,390
+It starts at 0, and then it goes to 3, and then it goes to 6.
+
+44
+00:02:31,390 --> 00:02:35,572
+The idea is that the cat's moving three units per tick.
+
+45
+00:02:35,572 --> 00:02:39,590
+And in this case, the image is an image of a cat at that position
+
+46
+00:02:39,590 --> 00:02:41,650
+rather than an image of the numeral.
+
+47
+00:02:41,650 --> 00:02:46,270
+And in this case, the ticks are also counting up, 0, 1, 2, 3, 4, but they're
+
+48
+00:02:46,270 --> 00:02:48,570
+counting much faster in this case.
+
+49
+00:02:48,570 --> 00:02:52,030
+Let's just say for now they're ticking 28 times per second,
+
+50
+00:02:52,030 --> 00:02:56,594
+whereas in the countdown program we wanted it to tick one time per second.
+
+51
+00:02:56,594 --> 00:02:58,510
+Now, continuing with this exercise of thinking
+
+52
+00:02:58,510 --> 00:03:03,130
+about what just has to inherently be inside this program,
+
+53
+00:03:03,130 --> 00:03:07,360
+let's think in terms of information and data for a second.
+
+54
+00:03:07,360 --> 00:03:10,540
+We've got these numbers, 0, 3, 6, that are
+
+55
+00:03:10,540 --> 00:03:13,962
+representing the x position of the cat.
+
+56
+00:03:13,962 --> 00:03:16,795
+So when we do something like that, what we use is a data definition.
+
+57
+00:03:16,795 --> 00:03:20,280
+We use a data definition to tell us how we're
+
+58
+00:03:20,280 --> 00:03:24,530
+going to represent domain information using data.
+
+59
+00:03:24,530 --> 00:03:26,370
+So here's a data definition for that.
+
+60
+00:03:26,370 --> 00:03:29,760
+We're going to say that cat is a number, and we're
+
+61
+00:03:29,760 --> 00:03:33,209
+going to interpret that number to be the x-coordinate of a cat.
+
+62
+00:03:33,209 --> 00:03:36,000
+And the rest of this data definition is fairly straightforward now.
+
+63
+00:03:36,000 --> 00:03:38,255
+It's simple atomic data.
+
+64
+00:03:38,255 --> 00:03:38,755
+
+

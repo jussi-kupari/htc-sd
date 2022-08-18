@@ -1,0 +1,60 @@
+0
+00:00:00,000 --> 00:00:04,637
+
+
+1
+00:00:04,637 --> 00:00:07,220
+GREGOR KICZALES: The key to solving complex design problems is
+
+2
+00:00:07,220 --> 00:00:10,280
+to break them down into smaller pieces.
+
+3
+00:00:10,280 --> 00:00:13,320
+Now, the recipes already do that, of course.
+
+4
+00:00:13,320 --> 00:00:17,700
+The data recipe breaks data design down into individual steps.
+
+5
+00:00:17,700 --> 00:00:22,370
+The function recipe does the same and so does the world recipe.
+
+6
+00:00:22,370 --> 00:00:25,960
+But sometimes we need more decomposition than that.
+
+7
+00:00:25,960 --> 00:00:28,910
+Sometimes we need to break a data representation
+
+8
+00:00:28,910 --> 00:00:34,250
+into multiple types or a function design into multiple functions.
+
+9
+00:00:34,250 --> 00:00:37,600
+Now, we've seen a couple examples of that already, of course.
+
+10
+00:00:37,600 --> 00:00:40,560
+Whenever we have the reference rule, then we
+
+11
+00:00:40,560 --> 00:00:46,710
+end up with a natural helper function, and the world's recipe also breaks
+
+12
+00:00:46,710 --> 00:00:50,500
+the design down into multiple handlers.
+
+13
+00:00:50,500 --> 00:00:53,770
+But this week, we're going to look at more examples of how
+
+14
+00:00:53,770 --> 00:00:59,480
+we break types and functions down into multiple types and multiple functions.
+

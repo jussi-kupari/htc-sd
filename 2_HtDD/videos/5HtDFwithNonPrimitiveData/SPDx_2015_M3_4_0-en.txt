@@ -1,0 +1,135 @@
+
+GREGOR KICZALES: Last time I showed you how
+to use the how to design data recipe to design a simple data definition.
+In this video what I'm going to do is show you
+how to use the how to design functions recipe
+to design a function that consumes data defined by your own data definition.
+So this will be a function that consumes what's called non-primitive data.
+In this case, it'll be a function that consumes the type CityName.
+In this problem we're asked to design a function
+based on having a data definition.
+So the problem says use the CityName data definition below
+to design a function that produces true if the given
+city is the best in the world.
+We're allowed to decide whatever best city we want.
+So what's going on here is that we know that city
+name itself that's consumed by the function
+is going to be represented as a CityName.
+CityName type here.
+So that lets us get started right away our signature.
+This function is going to consume a CityName.
+And let's see, we're producing true.
+So it's a yes/no question we're representing it with a Boolean.
+So that's going to produce a Boolean.
+Now, what we do we got to do here?
+Well, we produce true if the given city is the best in the world.
+We could start with this is as a purpose.
+Produce, I'll just copy it.
+
+Let's see, the next step of the recipe is the stub.
+We'll call this function best question mark.
+Remember there's a convention that the name of predicate functions
+to produce a Boolean value should end in a question mark.
+So we'll say best of some cn, for the stub I'll say false.
+And I'll just label this as the stub.
+And now we can get on to the check expects.
+And when we design a function using a data definition,
+this is a good time to go back to the how to design data definitions web
+page, remember I get to that web page by first going to the design recipes page
+and then going to how to design data, and then
+this is an atomic data definition.
+A simple atomic data definition, so I'll go there.
+And in this web page each kind of data definition
+has a section called guidance on examples and tests.
+And this gives us some hints about making
+check expects for this particular kind of data definition.
+So whenever you design a function using data definition,
+go to this part of how to design data definition web page,
+and get some of this guidance.
+For our purposes now I'll tell you what it says as we keep working.
+It basically says that one or two examples are enough.
+And that also is true of a function that produces a Boolean value.
+If you have a function that produces a Boolean value
+you should always have at least two examples.
+The one that produces true, and the one that produces false.
+So let's see, if I say check expect, best question mark,
+and now I need to give some city name like let's say Boston.
+And is that the best city in the world?
+Well remember, the problem description said
+we were free to choose any best city we want.
+So I loved Boston where I lived there, but let me say
+that it's not the best in the world.
+Let's use an imaginary city for the best in the world.
+So no one can possibly be upset.
+We'll use Hogsmeade as our best in the world.
+Now that is the best city in the world.
+And probably this is a good time to make the purpose more specific.
+So we'll say produce true if the given city is Hogsmeade.
+
+So now I've got two tests and the stub I should run.
+And I get that one of the two tests fail,
+but both tests actually managed to run.
+So that tells me that my tests are well formed.
+Both tests ran.
+
+So now we can keep going.
+Let me start by making the screen bigger again.
+So let's see, signature, purpose, stub, check-expects, now the template.
+Well, the way we get the template now is we're going to put a note here
+that says took template from CityName.
+Because this function consumes a CityName CityName
+is a data definition that we designed.
+So we're going to take the template right here.
+What I'm going to do is copy it.
+
+I'll have this note about where I got it.
+And the first thing I'm going to do is remember to rename it.
+I'll rename it to best?
+And now here's the template.
+Now let's see what I do next.
+This is a function that has two cases.
+A false case and a true case.
+So a good first thing to do when you've got a function that has two cases
+is to add an if to the template.
+So what I'm going to do is I'm going to copy the existing template.
+
+I'll put an if in here and for both the question and the true and false answer
+I'll put the copy of the template.
+This is a way of telling me listen there's an if, in order
+to fill out all these parts, dot dot dot cn is what you have to work with.
+Let's see cn is the city name.
+So let's see, in one case the CityName is Hogsmeade.
+
+Let's see if the CityName is Hogsmeade, than this example right here
+tells me I should produce true.
+
+So that's true.
+And if the CityName is not Hogsmeade, then this example and the purpose
+tell me I should produce false.
+So that's going to be false.
+Let me run it.
+Oh, I forgot when I was up here to comment out this stub.
+There we go.
+Both tests passed.
+Now, let me make a couple points here.
+One is, did you notice that there was a point in the template where
+this was dot dot dot cn?
+And then I deleted that and replaced it with true.
+This is an important thing about templates.
+Templates tell you everything you have available to work with.
+They don't tell you have to use all of it.
+So oftentimes you'll be deleting things out of templates.
+Another point to make about this function is let's think about this.
+This says if string equals cn Hogsmeade is true, produce true.
+Otherwise, if string equals cn then Hogsmeade is false, produce false.
+When you follow very structured approach to designing code,
+sometimes you produce code that's a little bit more
+cumbersome than it needs to be.
+This function could instead just me this.
+
+Let me comment out this version of it and run it again.
+Now that's working too.
+But don't worry if you produce this version of function.
+This is clear and it's well tested.
+It's just that if you ever find yourself writing if XXX true false,
+that's always the same as just XXX.

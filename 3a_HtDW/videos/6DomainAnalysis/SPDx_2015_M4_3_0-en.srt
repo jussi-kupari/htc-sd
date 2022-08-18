@@ -1,0 +1,588 @@
+0
+00:00:00,000 --> 00:00:04,856
+
+
+1
+00:00:04,856 --> 00:00:07,480
+GREGOR KICZALES: Now that we've covered the Big Bang mechanism,
+
+2
+00:00:07,480 --> 00:00:11,270
+we're going to get into the how to design worlds recipe.
+
+3
+00:00:11,270 --> 00:00:13,440
+That's a process that lets us systematically
+
+4
+00:00:13,440 --> 00:00:19,590
+design interactive programs, or what the big bang calls world programs.
+
+5
+00:00:19,590 --> 00:00:23,300
+Now interactive programs are the most complicated thing we've done so far
+
+6
+00:00:23,300 --> 00:00:28,210
+and you can imagine that designing them is going to take a little bit longer.
+
+7
+00:00:28,210 --> 00:00:31,680
+In fact, that shows up in the how to design world's recipe
+
+8
+00:00:31,680 --> 00:00:33,080
+because it has two parts.
+
+9
+00:00:33,080 --> 00:00:36,820
+It first has an analysis part that takes place with paper and pencil.
+
+10
+00:00:36,820 --> 00:00:40,400
+And then it has a second part where we actually take the analysis
+
+11
+00:00:40,400 --> 00:00:43,060
+and develop code for it.
+
+12
+00:00:43,060 --> 00:00:47,010
+In this video, we're just going to do the first part, the analysis part.
+
+13
+00:00:47,010 --> 00:00:50,380
+So I really encourage you to get out an actual piece of paper
+
+14
+00:00:50,380 --> 00:00:55,170
+and work along with me through the rest of this video.
+
+15
+00:00:55,170 --> 00:00:57,240
+Here's the problem that we're asked to solve.
+
+16
+00:00:57,240 --> 00:01:00,050
+And I apologize if this is a bit boring, but what
+
+17
+00:01:00,050 --> 00:01:04,819
+we're going to do is we're going to design the catwalk program that we
+
+18
+00:01:04,819 --> 00:01:06,900
+saw as an example in the last video.
+
+19
+00:01:06,900 --> 00:01:10,680
+But this time we're going to design it systematically using the recipe.
+
+20
+00:01:10,680 --> 00:01:16,290
+I'm keeping the same example just to make it easier to focus on the recipe.
+
+21
+00:01:16,290 --> 00:01:20,180
+We'll quickly start doing more challenging interactive program design
+
+22
+00:01:20,180 --> 00:01:21,510
+problems.
+
+23
+00:01:21,510 --> 00:01:23,650
+So what we're asked to do is an interactive program
+
+24
+00:01:23,650 --> 00:01:26,160
+in which a cat starts at the left edge of the display
+
+25
+00:01:26,160 --> 00:01:27,934
+and walks across the screen to the right.
+
+26
+00:01:27,934 --> 00:01:29,850
+When it reaches the right edge, it should just
+
+27
+00:01:29,850 --> 00:01:33,070
+keep going right off the screen.
+
+28
+00:01:33,070 --> 00:01:36,050
+And then this next paragraph talks about something
+
+29
+00:01:36,050 --> 00:01:39,200
+that we're going to add to the program what's it's complete.
+
+30
+00:01:39,200 --> 00:01:41,560
+So let's skip that for now.
+
+31
+00:01:41,560 --> 00:01:44,274
+And it's giving us an image of a cat here that we can use.
+
+32
+00:01:44,274 --> 00:01:46,190
+You can, of course, use a better looking image
+
+33
+00:01:46,190 --> 00:01:48,090
+of a cat than that if you have one.
+
+34
+00:01:48,090 --> 00:01:50,270
+So this is a how to design worlds problem,
+
+35
+00:01:50,270 --> 00:01:53,190
+and so we want to turn to the how to design worlds recipe.
+
+36
+00:01:53,190 --> 00:01:58,115
+Going to the design recipes page, the link to the how to design worlds recipe
+
+37
+00:01:58,115 --> 00:02:00,100
+is here.
+
+38
+00:02:00,100 --> 00:02:04,420
+And as with the other recipes, the page starts with a summary
+
+39
+00:02:04,420 --> 00:02:06,950
+and then a more detailed explanation.
+
+40
+00:02:06,950 --> 00:02:08,990
+You should read the more detailed explanation
+
+41
+00:02:08,990 --> 00:02:11,980
+after you watch these videos.
+
+42
+00:02:11,980 --> 00:02:14,030
+The recipe says that world program design
+
+43
+00:02:14,030 --> 00:02:17,550
+is divided into two phases, each of which has sub parts.
+
+44
+00:02:17,550 --> 00:02:20,190
+And the first part is domain analysis that we
+
+45
+00:02:20,190 --> 00:02:21,940
+want to do using a piece of paper.
+
+46
+00:02:21,940 --> 00:02:23,690
+So the first thing we're supposed to do is
+
+47
+00:02:23,690 --> 00:02:27,210
+draw two or three pictures that show different stages
+
+48
+00:02:27,210 --> 00:02:30,240
+in the progression of the program.
+
+49
+00:02:30,240 --> 00:02:30,980
+So here we go.
+
+50
+00:02:30,980 --> 00:02:34,680
+Here's what the program might look like at the beginning.
+
+51
+00:02:34,680 --> 00:02:37,820
+We've got the screen.
+
+52
+00:02:37,820 --> 00:02:39,860
+And there's an image of a cat.
+
+53
+00:02:39,860 --> 00:02:42,700
+
+
+54
+00:02:42,700 --> 00:02:45,230
+And there's the little cat's ears, and if you want to,
+
+55
+00:02:45,230 --> 00:02:46,450
+you can make whiskers too.
+
+56
+00:02:46,450 --> 00:02:47,890
+I'm not very good at drawing.
+
+57
+00:02:47,890 --> 00:02:50,990
+That's why I got into computer science.
+
+58
+00:02:50,990 --> 00:02:55,360
+So there's an image of the program early on in its progression.
+
+59
+00:02:55,360 --> 00:03:01,070
+And after a little while, perhaps it looks like this.
+
+60
+00:03:01,070 --> 00:03:03,500
+There's the cat.
+
+61
+00:03:03,500 --> 00:03:08,770
+And later, it looks like this.
+
+62
+00:03:08,770 --> 00:03:11,940
+The cat is in the midst of walking off the edge of the screen.
+
+63
+00:03:11,940 --> 00:03:14,860
+
+
+64
+00:03:14,860 --> 00:03:19,670
+So the key thing is to draw two or three images that
+
+65
+00:03:19,670 --> 00:03:24,990
+reflect different stages in the program's evolution
+
+66
+00:03:24,990 --> 00:03:27,730
+and try to capture some of the interesting events.
+
+67
+00:03:27,730 --> 00:03:29,480
+Sometimes you need more than two or three.
+
+68
+00:03:29,480 --> 00:03:31,890
+Sometimes you want to zoom in on one.
+
+69
+00:03:31,890 --> 00:03:36,490
+The next things we're going to do is identify the constant information.
+
+70
+00:03:36,490 --> 00:03:39,340
+So this is information that does not change
+
+71
+00:03:39,340 --> 00:03:41,100
+through the progression of the program.
+
+72
+00:03:41,100 --> 00:03:43,790
+A lot of these values are fairly canonical in the sense
+
+73
+00:03:43,790 --> 00:03:46,490
+that you'll find them in almost every world program.
+
+74
+00:03:46,490 --> 00:03:47,960
+But we still want to identify them.
+
+75
+00:03:47,960 --> 00:03:50,660
+So for example, there's the width of the screen.
+
+76
+00:03:50,660 --> 00:03:53,670
+
+
+77
+00:03:53,670 --> 00:04:02,880
+And what I like to do is label up here what I mean by this.
+
+78
+00:04:02,880 --> 00:04:05,860
+Width is fairly obvious, but they're not all quite as obvious.
+
+79
+00:04:05,860 --> 00:04:08,370
+So there's the width of the screen.
+
+80
+00:04:08,370 --> 00:04:09,955
+There is the height of the screen.
+
+81
+00:04:09,955 --> 00:04:16,540
+
+
+82
+00:04:16,540 --> 00:04:17,910
+What else is there?
+
+83
+00:04:17,910 --> 00:04:24,360
+Well, the cat progresses from left to right, but its height always stays.
+
+84
+00:04:24,360 --> 00:04:27,789
+So the cat's y-coordinate doesn't change.
+
+85
+00:04:27,789 --> 00:04:30,830
+And it has a funny little thing you're going to see here in a little bit.
+
+86
+00:04:30,830 --> 00:04:34,110
+But I'll tell you now, which is that computer scientists, in order
+
+87
+00:04:34,110 --> 00:04:38,820
+to sort of be annoying, have decided that the zero-zero coordinate
+
+88
+00:04:38,820 --> 00:04:45,690
+in screens is up here in the left and that y values increase going down.
+
+89
+00:04:45,690 --> 00:04:48,000
+So that's kind of the opposite of the way it works in,
+
+90
+00:04:48,000 --> 00:04:49,430
+for example, grade school.
+
+91
+00:04:49,430 --> 00:04:54,280
+So another constant thing is the cat's y it kind of sits there at the center.
+
+92
+00:04:54,280 --> 00:04:55,820
+So I'll just call that center-y.
+
+93
+00:04:55,820 --> 00:04:59,210
+
+
+94
+00:04:59,210 --> 00:05:00,444
+What else doesn't change?
+
+95
+00:05:00,444 --> 00:05:01,110
+Well, let's see.
+
+96
+00:05:01,110 --> 00:05:04,900
+The background image itself doesn't change.
+
+97
+00:05:04,900 --> 00:05:06,510
+We'll call that MTS.
+
+98
+00:05:06,510 --> 00:05:08,580
+That's the abbreviation that the book uses.
+
+99
+00:05:08,580 --> 00:05:11,190
+It stands for empty scene.
+
+100
+00:05:11,190 --> 00:05:13,700
+And let's see what else doesn't change.
+
+101
+00:05:13,700 --> 00:05:15,880
+Oh, the actual image of the cat doesn't change.
+
+102
+00:05:15,880 --> 00:05:19,610
+
+
+103
+00:05:19,610 --> 00:05:21,550
+So there are some things that don't change.
+
+104
+00:05:21,550 --> 00:05:25,660
+Now a real important point about this analysis is you should do it.
+
+105
+00:05:25,660 --> 00:05:27,110
+You should do it in this order.
+
+106
+00:05:27,110 --> 00:05:30,470
+And you should try to identify all the constants.
+
+107
+00:05:30,470 --> 00:05:33,470
+In a complicated program, you're not going to identify them all.
+
+108
+00:05:33,470 --> 00:05:36,970
+You'll realize part way through the process that you were missing one,
+
+109
+00:05:36,970 --> 00:05:38,450
+and that's just fine.
+
+110
+00:05:38,450 --> 00:05:42,023
+Just go back and add it to your list.
+
+111
+00:05:42,023 --> 00:05:44,273
+We're also going to identify the changing information.
+
+112
+00:05:44,273 --> 00:05:47,988
+
+
+113
+00:05:47,988 --> 00:05:51,785
+And in this case, the changing information is fairly straightforward.
+
+114
+00:05:51,785 --> 00:05:57,190
+
+
+115
+00:05:57,190 --> 00:05:58,785
+It's just the x-coordinate of the cat.
+
+116
+00:05:58,785 --> 00:06:05,380
+
+
+117
+00:06:05,380 --> 00:06:08,430
+And the last we're going to identify is the big-bang options.
+
+118
+00:06:08,430 --> 00:06:13,940
+And the recipe page gives us a table that helps us do this.
+
+119
+00:06:13,940 --> 00:06:17,080
+The table talks about behavior that our program has
+
+120
+00:06:17,080 --> 00:06:21,200
+and what options we need to have to support that behavior.
+
+121
+00:06:21,200 --> 00:06:22,920
+So this program changes.
+
+122
+00:06:22,920 --> 00:06:25,480
+It has information that changes as time goes along
+
+123
+00:06:25,480 --> 00:06:31,340
+because the x-coordinate of the cat, this value here, changes
+
+124
+00:06:31,340 --> 00:06:33,190
+as time goes on.
+
+125
+00:06:33,190 --> 00:06:39,740
+So that means that we're going to need to use the on-tick option to big-bang.
+
+126
+00:06:39,740 --> 00:06:43,260
+And this program also has behavior that we see.
+
+127
+00:06:43,260 --> 00:06:44,930
+The display changes.
+
+128
+00:06:44,930 --> 00:06:51,600
+And so that means we're going to need to use to-draw option to big-bang.
+
+129
+00:06:51,600 --> 00:06:55,230
+Once we've done that, we've done the analysis for this program.
+
+130
+00:06:55,230 --> 00:06:58,930
+Just to recap quickly, we drew three pictures of different states
+
+131
+00:06:58,930 --> 00:07:01,020
+in the program's progression.
+
+132
+00:07:01,020 --> 00:07:05,710
+And then using the pictures, we identified constant information,
+
+133
+00:07:05,710 --> 00:07:08,880
+changing information, and big bang options.
+
+134
+00:07:08,880 --> 00:07:12,660
+The constant information, inherently, will show up in every picture.
+
+135
+00:07:12,660 --> 00:07:14,840
+You may need to use more than one of the pictures
+
+136
+00:07:14,840 --> 00:07:19,720
+to identify the changing information or the big bang options.
+
+137
+00:07:19,720 --> 00:07:23,400
+For example, if your program is going to have special behavior that
+
+138
+00:07:23,400 --> 00:07:26,190
+happens when you click the mouse, you may only
+
+139
+00:07:26,190 --> 00:07:28,560
+have one picture that shows that.
+
+140
+00:07:28,560 --> 00:07:31,260
+So big bang options don't have to all be in the picture that's
+
+141
+00:07:31,260 --> 00:07:33,870
+above big bang options.
+
+142
+00:07:33,870 --> 00:07:36,370
+This is really two parts of your analysis.
+
+143
+00:07:36,370 --> 00:07:40,320
+One part is the diagrams, and then the other part
+
+144
+00:07:40,320 --> 00:07:45,620
+is these three elements of constant changing and big bang options.
+
+145
+00:07:45,620 --> 00:07:49,060
+In the next video, we'll start converting this into code.
+
+146
+00:07:49,060 --> 00:07:50,807
+
+

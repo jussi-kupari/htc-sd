@@ -1,0 +1,17 @@
+
+GREGOR KICZALES: So now you've seen the How to Design Functions Recipe,
+and you've seen me work through four examples of it,
+where each example showed some more wrinkles to the process.
+What you should do now is go work through all the practice
+problems for this week, and then do the homework problems and the quiz.
+Let me stress something about this material.
+I just can't make this point strongly enough.
+This is the kind of material that you learn by doing.
+I really want to encourage you, don't look at the problem
+and then look at the solution.
+If you do that, you're going to say to yourself, oh, I know how to do this.
+You need to actually take the blank starter file
+and work through the problem yourself from beginning to end.
+That's the only way to learn this kind of material.
+At any rate, have fun with the practice problems and the homework,
+and I'll see you next week.

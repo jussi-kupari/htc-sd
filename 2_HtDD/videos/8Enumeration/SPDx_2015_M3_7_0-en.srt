@@ -1,0 +1,644 @@
+0
+00:00:00,000 --> 00:00:04,590
+
+
+1
+00:00:04,590 --> 00:00:07,380
+GREGOR KICZALES: Here's another how to design data problem.
+
+2
+00:00:07,380 --> 00:00:10,160
+In this case, it's going to be for an enumeration.
+
+3
+00:00:10,160 --> 00:00:12,290
+So the data definition that we produce will
+
+4
+00:00:12,290 --> 00:00:17,870
+be similar to the TrafficLightColor example from earlier in the week.
+
+5
+00:00:17,870 --> 00:00:20,820
+This is the problem in letter-grade-starter.rkt.
+
+6
+00:00:20,820 --> 00:00:23,580
+And again, I know that this is a data design problem,
+
+7
+00:00:23,580 --> 00:00:26,290
+so I've got the how to design data recipe here.
+
+8
+00:00:26,290 --> 00:00:31,410
+And I've got the how to design data web page open in my browser here.
+
+9
+00:00:31,410 --> 00:00:34,540
+We're designing a system to keep track of student grades.
+
+10
+00:00:34,540 --> 00:00:37,910
+And we need to design a data definition to represent the letter
+
+11
+00:00:37,910 --> 00:00:42,607
+grade in a course, which is one of A, B, or C.
+
+12
+00:00:42,607 --> 00:00:44,940
+Now, the key thing about the information in this problem
+
+13
+00:00:44,940 --> 00:00:48,550
+is that there's three distinct values.
+
+14
+00:00:48,550 --> 00:00:50,400
+In other words, every letter grade is going
+
+15
+00:00:50,400 --> 00:00:54,230
+to be either the distinct value A or the distinct value B
+
+16
+00:00:54,230 --> 00:00:58,150
+or the distinct value C. It isn't like something where
+
+17
+00:00:58,150 --> 00:01:00,610
+we might be keeping track of the numerical score
+
+18
+00:01:00,610 --> 00:01:03,770
+in a course, which is a whole bunch of numbers.
+
+19
+00:01:03,770 --> 00:01:12,080
+Here, there's really a modest number of distinct values A, B, or C.
+
+20
+00:01:12,080 --> 00:01:13,920
+And when the problem domain information is
+
+21
+00:01:13,920 --> 00:01:18,870
+like that, when it consists of a fixed number of distinct values,
+
+22
+00:01:18,870 --> 00:01:20,830
+then there's a special kind of data definition
+
+23
+00:01:20,830 --> 00:01:24,180
+to use for that called an enumeration.
+
+24
+00:01:24,180 --> 00:01:26,790
+And the way an enumeration works is that we're
+
+25
+00:01:26,790 --> 00:01:31,530
+going to use one of in the type comment this way.
+
+26
+00:01:31,530 --> 00:01:34,910
+Now, this is exactly like the traffic light data
+
+27
+00:01:34,910 --> 00:01:37,570
+definition from earlier this week.
+
+28
+00:01:37,570 --> 00:01:38,810
+So here we go.
+
+29
+00:01:38,810 --> 00:01:45,950
+I'm going to say letter grade is one of.
+
+30
+00:01:45,950 --> 00:01:47,680
+And now what I'm going to do is I'm going
+
+31
+00:01:47,680 --> 00:01:53,510
+to talk about the data used to represent each of the distinct cases.
+
+32
+00:01:53,510 --> 00:01:55,560
+And I'll use strings in this case.
+
+33
+00:01:55,560 --> 00:02:02,270
+I'll say that these are the three distinct data
+
+34
+00:02:02,270 --> 00:02:09,090
+values, which are going to represent the three distinct information values.
+
+35
+00:02:09,090 --> 00:02:12,310
+And when you do an enumeration, the interpretation
+
+36
+00:02:12,310 --> 00:02:15,380
+tends to be relatively straightforward.
+
+37
+00:02:15,380 --> 00:02:22,420
+In this case, you'll just say the letter grade in a course.
+
+38
+00:02:22,420 --> 00:02:26,000
+But if you think back to that example we saw at the beginning of the week,
+
+39
+00:02:26,000 --> 00:02:30,520
+if for example you had decided to use the three data values,
+
+40
+00:02:30,520 --> 00:02:38,000
+maybe numbers like 0, 1, and 2, well then your interpretation
+
+41
+00:02:38,000 --> 00:02:39,670
+would be more substantive.
+
+42
+00:02:39,670 --> 00:02:41,870
+Then your interpretation would have to say something
+
+43
+00:02:41,870 --> 00:02:49,440
+like zero means A, 1 means B, 2 means C. So part
+
+44
+00:02:49,440 --> 00:02:52,340
+of why the interpretation is simple in this case
+
+45
+00:02:52,340 --> 00:02:58,720
+is because we're using strings to represent the three cases.
+
+46
+00:02:58,720 --> 00:03:02,986
+And the strings so clearly say what the cases are.
+
+47
+00:03:02,986 --> 00:03:05,270
+The other thing that happens in enumerations
+
+48
+00:03:05,270 --> 00:03:08,500
+is that examples are silly.
+
+49
+00:03:08,500 --> 00:03:11,020
+If we tried to write examples for this, what would we write?
+
+50
+00:03:11,020 --> 00:03:19,480
+We'd write some like define letter grade 1 is A. Means A. Define letter grade 2
+
+51
+00:03:19,480 --> 00:03:31,860
+is B. Means B. Define letter grade 3 is C means C. it's silly, right?
+
+52
+00:03:31,860 --> 00:03:32,850
+It's ridiculous.
+
+53
+00:03:32,850 --> 00:03:35,480
+Because it's an enumeration, there's only three values.
+
+54
+00:03:35,480 --> 00:03:39,370
+We know what the examples are before we get to the example stage.
+
+55
+00:03:39,370 --> 00:03:41,000
+So we don't even bother to write them.
+
+56
+00:03:41,000 --> 00:03:48,170
+What we write here is we say examples are redundant for enumerations.
+
+57
+00:03:48,170 --> 00:03:50,410
+And once we get a couple weeks farther in the course,
+
+58
+00:03:50,410 --> 00:03:52,430
+you don't even have to write that.
+
+59
+00:03:52,430 --> 00:03:55,610
+We want to write it for now just as a way of remembering
+
+60
+00:03:55,610 --> 00:03:59,410
+that the example step existed.
+
+61
+00:03:59,410 --> 00:04:01,790
+Now we're going to do the template.
+
+62
+00:04:01,790 --> 00:04:11,500
+So define fn-for-letter-grade lg is going to be some body here.
+
+63
+00:04:11,500 --> 00:04:16,329
+Template rules used.
+
+64
+00:04:16,329 --> 00:04:18,410
+And here we go.
+
+65
+00:04:18,410 --> 00:04:21,910
+I'll go back over to the how to design data web page.
+
+66
+00:04:21,910 --> 00:04:23,610
+Here we were.
+
+67
+00:04:23,610 --> 00:04:26,840
+And I'll scroll up to find the link to the data driven templates recipe.
+
+68
+00:04:26,840 --> 00:04:30,110
+
+
+69
+00:04:30,110 --> 00:04:32,730
+And here we go.
+
+70
+00:04:32,730 --> 00:04:36,910
+So I need to look in this column for the first word after is.
+
+71
+00:04:36,910 --> 00:04:42,350
+Now remember, the first word after is is one of.
+
+72
+00:04:42,350 --> 00:04:44,540
+So it's not any of these.
+
+73
+00:04:44,540 --> 00:04:47,490
+There's a special rule for one of.
+
+74
+00:04:47,490 --> 00:04:50,790
+And one ofs are always enumerations, like this case is,
+
+75
+00:04:50,790 --> 00:04:54,090
+or an itemization, which is the example we'll do after this.
+
+76
+00:04:54,090 --> 00:04:57,470
+And now this says that the body is a cond with one
+
+77
+00:04:57,470 --> 00:04:59,807
+clause per subclass of the one of.
+
+78
+00:04:59,807 --> 00:05:00,640
+What does that mean?
+
+79
+00:05:00,640 --> 00:05:02,750
+What's a subclass of the one of?
+
+80
+00:05:02,750 --> 00:05:04,920
+Well, what's going on here in this one of
+
+81
+00:05:04,920 --> 00:05:07,570
+is there's three cases or three subclasses.
+
+82
+00:05:07,570 --> 00:05:10,420
+This says every letter grade in the world
+
+83
+00:05:10,420 --> 00:05:14,740
+is either in this class, in this class, or in this class.
+
+84
+00:05:14,740 --> 00:05:19,120
+Every letter grade in the world is either an A, a B, or a C.
+
+85
+00:05:19,120 --> 00:05:21,100
+So here we go.
+
+86
+00:05:21,100 --> 00:05:23,600
+It says that we're going to make a cond with one
+
+87
+00:05:23,600 --> 00:05:26,010
+clause per subclass of the one of.
+
+88
+00:05:26,010 --> 00:05:28,550
+So let me just do that.
+
+89
+00:05:28,550 --> 00:05:31,870
+I'm going to say cond.
+
+90
+00:05:31,870 --> 00:05:33,860
+And there's going to be three of these.
+
+91
+00:05:33,860 --> 00:05:36,560
+Because there's three there, so there will be three here.
+
+92
+00:05:36,560 --> 00:05:42,670
+
+
+93
+00:05:42,670 --> 00:05:44,940
+And down here in my template rules, I'm going
+
+94
+00:05:44,940 --> 00:05:51,370
+to put that we use the one of rule and that there are three cases.
+
+95
+00:05:51,370 --> 00:05:52,160
+Now what happens?
+
+96
+00:05:52,160 --> 00:05:55,080
+Well, now I've gotten past the one of.
+
+97
+00:05:55,080 --> 00:05:59,320
+And the next thing I see is an A. The next thing I see, in fact,
+
+98
+00:05:59,320 --> 00:06:02,390
+is the string A.
+
+99
+00:06:02,390 --> 00:06:04,590
+So which template rule is that?
+
+100
+00:06:04,590 --> 00:06:09,000
+Because what this says is that for each question and answer expression,
+
+101
+00:06:09,000 --> 00:06:12,990
+I'm going to form it by following the rule in the question or answer
+
+102
+00:06:12,990 --> 00:06:16,170
+column of this table for the corresponding case.
+
+103
+00:06:16,170 --> 00:06:19,610
+So I'm going to this a.
+
+104
+00:06:19,610 --> 00:06:23,000
+And I need to find its row in this table.
+
+105
+00:06:23,000 --> 00:06:25,200
+And a is an atomic, distinct value.
+
+106
+00:06:25,200 --> 00:06:28,100
+Now you understand what the distinct value rule that we were just
+
+107
+00:06:28,100 --> 00:06:30,370
+skipping over before was.
+
+108
+00:06:30,370 --> 00:06:33,080
+There's a single value, the string a.
+
+109
+00:06:33,080 --> 00:06:35,180
+So it's this case.
+
+110
+00:06:35,180 --> 00:06:39,280
+And now you also understand what the cond question column of this table
+
+111
+00:06:39,280 --> 00:06:41,230
+was for.
+
+112
+00:06:41,230 --> 00:06:43,070
+It says that in the question column, we're
+
+113
+00:06:43,070 --> 00:06:48,790
+going to put the appropriate predicate, which is a string equal in this case.
+
+114
+00:06:48,790 --> 00:06:51,320
+So we'll go back over here.
+
+115
+00:06:51,320 --> 00:06:57,520
+And we'll say string=?
+
+116
+00:06:57,520 --> 00:07:00,350
+letter grade to A.
+
+117
+00:07:00,350 --> 00:07:02,110
+That's the question.
+
+118
+00:07:02,110 --> 00:07:06,520
+And in the cond answer, we're going to put just dot dot dot.
+
+119
+00:07:06,520 --> 00:07:11,110
+
+
+120
+00:07:11,110 --> 00:07:15,070
+Now, you might ask, why aren't we putting dot dot dot letter grade?
+
+121
+00:07:15,070 --> 00:07:16,060
+Well, two answers.
+
+122
+00:07:16,060 --> 00:07:19,500
+One answer is the table told us to put just dot dot dot.
+
+123
+00:07:19,500 --> 00:07:22,850
+It didn't tell us to put dot, dot, dot in the name of the parameter.
+
+124
+00:07:22,850 --> 00:07:25,530
+It told us to just put dot, dot, dot.
+
+125
+00:07:25,530 --> 00:07:28,000
+But the question is, why does the table say that?
+
+126
+00:07:28,000 --> 00:07:31,710
+Well, the table says that because in this case, we know what lg is.
+
+127
+00:07:31,710 --> 00:07:38,820
+Lg is the string A. It'll always be the string A if we get to this cond answer.
+
+128
+00:07:38,820 --> 00:07:42,410
+So we're not putting it there to make that more clear.
+
+129
+00:07:42,410 --> 00:07:51,570
+And so the template that we used here was atomic distinct value A.
+
+130
+00:07:51,570 --> 00:07:52,910
+Now we go onto the next row.
+
+131
+00:07:52,910 --> 00:07:57,370
+Well, the next row is the string B. So we could go back to the table.
+
+132
+00:07:57,370 --> 00:07:57,870
+Let's see.
+
+133
+00:07:57,870 --> 00:08:01,080
+The string B is an atomic distinct value.
+
+134
+00:08:01,080 --> 00:08:04,430
+So the cond question will be an appropriate predicate.
+
+135
+00:08:04,430 --> 00:08:08,950
+And the cond answer will be open paren dot dot dot closed round bracket.
+
+136
+00:08:08,950 --> 00:08:13,260
+So let's see the cond question.
+
+137
+00:08:13,260 --> 00:08:16,150
+It's string=?
+
+138
+00:08:16,150 --> 00:08:23,940
+letter grade to B. And the cond answer is dot dot dot.
+
+139
+00:08:23,940 --> 00:08:33,380
+And this is atomic distinct value B. And at this point,
+
+140
+00:08:33,380 --> 00:08:34,909
+you can see how this is working.
+
+141
+00:08:34,909 --> 00:08:38,289
+And you can short circuit the process of doing C a bit if you want.
+
+142
+00:08:38,289 --> 00:08:41,720
+We'll just copy the case for B. We'll get rid
+
+143
+00:08:41,720 --> 00:08:43,980
+of this last question answer pair.
+
+144
+00:08:43,980 --> 00:08:47,676
+We'll make that be C. And we can do that down here in the template rules
+
+145
+00:08:47,676 --> 00:08:48,175
+as well.
+
+146
+00:08:48,175 --> 00:08:54,670
+
+
+147
+00:08:54,670 --> 00:08:57,038
+Now we'll run it.
+
+148
+00:08:57,038 --> 00:08:58,410
+There's no errors.
+
+149
+00:08:58,410 --> 00:09:00,992
+So it's all well formed.
+
+150
+00:09:00,992 --> 00:09:03,840
+We'll comment that out.
+
+151
+00:09:03,840 --> 00:09:10,340
+So this is an enumeration because the domain information here
+
+152
+00:09:10,340 --> 00:09:12,630
+has two or more distinct values.
+
+153
+00:09:12,630 --> 00:09:18,610
+A, B, and C. And an enumeration data definition
+
+154
+00:09:18,610 --> 00:09:23,910
+uses a one of with the data values that are
+
+155
+00:09:23,910 --> 00:09:27,260
+going to be used to represent the information.
+
+156
+00:09:27,260 --> 00:09:29,150
+And now we've seen two new template rules.
+
+157
+00:09:29,150 --> 00:09:33,600
+The one of rule and the distinct value rule.
+
+158
+00:09:33,600 --> 00:09:34,280
+So there we go.
+
+159
+00:09:34,280 --> 00:09:37,000
+That's our data definition for LetterGrade.
+
+160
+00:09:37,000 --> 00:09:38,153
+
+

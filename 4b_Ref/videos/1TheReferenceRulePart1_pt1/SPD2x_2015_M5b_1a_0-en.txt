@@ -1,0 +1,49 @@
+
+GREGOR KICZALES: In the next few videos, we're
+going to look at a more complex form of data than we've seen before.
+This data involves something called reference,
+and it comes up when the information we're trying to represent naturally
+has different related parts.
+Now that only happens in problems that are more complex than the ones
+we've seen so far, so in order to motivate this,
+I have to be working on a more complex problem and a problem that
+will take several videos to solve.
+Now of course when I do that, there'll be parts of this problem-- a number
+of parts of this problem-- that are quite familiar,
+that only take things that we've seen before.
+So as always, when that's the situation, that's a good place to stop the video
+and work ahead.
+In fact, to really encourage that this time,
+there'll be pauses in the video-- breaks in the video-- where I jump ahead.
+I won't actually work through some of the stuff
+that you've seen now many times before.
+That's a place for you to do that yourself and then see
+where you are when the video restarts.
+OK, the problem is in Tuition Graph Starter.
+What's going on here is that we're trying
+to design a program that can produce bar charts
+of different kinds of information.
+The way I've got the problem set up is it's
+supposed to produce a bar chart of tuition information
+for an arbitrary number of schools.
+We're saying that Eva has to decide where to go to university,
+and she wants to make a plot of the different tuition
+costs for universities.
+So it's a three part problem.
+First, we have to design a data definition
+to represent the information about the tuition of the different universities.
+Then we have to design a function that's going to consume a list like that
+and produce a bar chart like this one here.
+Finally, we have to design a function that's
+going to consume a list of tuition information
+at the different universities and produce
+the school that has the lowest tuition.
+What I'm going to do now is that even though this isn't a world program,
+I can see that there's some constants here
+related to the drawing-- things like the color of the bars
+and the size of the font.
+And so I'm going to do a little bit constant analysis
+and define some constants now.
+So why don't you stop the video, and you do that too?
+And when you're done, restart the video, and you can compare
+what you've done to what I've done.

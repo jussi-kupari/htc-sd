@@ -1,0 +1,15 @@
+
+GREGOR KICZALES: The key to solving complex design problems is
+to break them down into smaller pieces.
+Now, the recipes already do that, of course.
+The data recipe breaks data design down into individual steps.
+The function recipe does the same and so does the world recipe.
+But sometimes we need more decomposition than that.
+Sometimes we need to break a data representation
+into multiple types or a function design into multiple functions.
+Now, we've seen a couple examples of that already, of course.
+Whenever we have the reference rule, then we
+end up with a natural helper function, and the world's recipe also breaks
+the design down into multiple handlers.
+But this week, we're going to look at more examples of how
+we break types and functions down into multiple types and multiple functions.

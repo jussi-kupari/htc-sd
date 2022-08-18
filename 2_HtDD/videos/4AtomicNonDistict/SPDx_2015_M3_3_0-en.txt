@@ -1,0 +1,131 @@
+
+GREGOR KICZALES: Now we're going to work through an example of designing a data
+definition from scratch using the How to Design Data
+recipe and the accompanying Data-Driven-Templates recipe.
+It's going to be a simpler example than the traffic light example
+you saw earlier in the week.
+What we're going to do over the next couple of lessons
+is build up our skills to designing more complicated data definitions like that.
+What I've got is the CityName starter from the HtDD module web page,
+and it says, imagine that I'm designing a program that, among other things,
+has information about the names of cities in its problem domain.
+Design a data definition to represent the name of a city.
+So the key first thing that we do when we design a data definition
+is to work out the form of the information we're trying to represent.
+And it might even be good to just write down a couple examples.
+Maybe I'll put a little comment box right here,
+and I'll write some example.
+So one example city name is Vancouver, and another example city name
+is Boston for example.
+And these are all information.
+
+OK, now the question is how am I going to represent that.
+What I'm going to do is go to the course website,
+and I'm going to go to the Design Recipes page,
+and this again provides me an index into all the design recipes.
+And I'll go to the How To Design Data recipe.
+
+And this web page, I won't go through in detail now.
+I'm just going to work through it by example,
+but you should review it on your own.
+It tells me about the basic parts of every data definition,
+and I'll pick this up later and set it down off
+to the right when we're working in DrRacket.
+And the key thing it helps me do is decide what kind of data definition
+to use based on the form of the information that we need to represent.
+Now remember, we're trying to represent city names, things
+like Vancouver and Boston.
+And the thing about that information is that it's atomic,
+and what I mean by atomic is you can't take it apart
+into pieces that are still meaningfully part of the same problem domain.
+So yes, it's true, I can take the city name Boston apart into the letters
+B-O-S-T-O-N, but those aren't meaningfully part of a city name
+in a sense.
+They're not like neighborhoods of the city or something like that.
+So this information is atomic, and the way
+we represent atomic information is with a type comment that looks like this.
+We simply have a new type name, and we say
+what underlying primitive atomic data it's going to be represented as.
+So going back over here DrRacket, I'm going to say city name is string.
+A good way to represent this information is using strings,
+so for example if we do this, the data that represents the city name Vancouver
+is going to be the string Vancouver, and the data that represents the city
+and Boston is going to be the string Boston.
+So here's my type comment, CityName is String,
+and now I need to provide interpretations so I type Interp.
+And for simple atomic data, the interpretation
+is often fairly simple, especially for a case like this.
+We're just going to say the name of a city.
+
+Now the next part of the data definition is something
+that we didn't see in the last example, and we'll
+talk about why that is more in a couple videos.
+But we want to provide some examples of how the data definition represents
+information.
+So what I'm going to do is I'm going to say to define City Name one is,
+well, one good example is Boston.
+And define City Name two, and another good example is Vancouver.
+Now I'll be honest with you, providing examples of really simple data
+definitions like this doesn't do that much work,
+but again, we're learning the recipe now so that'll help
+us more with more complicated examples.
+And fairly soon we'll have data definitions
+where examples really are going to help us understand the data
+definition better.
+So there's the examples.
+The next step of the recipe is to produce
+the template for this data definition.
+Now to produce the template, what I do I go back to the course website,
+and I go to the Design Recipes page, and I get the Data Driven Templates rules.
+So here's the Data Driven Templates recipe, and the way this works is it
+says for a given type name the data-driven template looks like this.
+
+So what I do is I say define fn-for-city-name.
+
+And we're going to be quite particular about the name of the template.
+Naming the template directly after the type name
+is going to turn out to help us quite a bit later on in the course.
+And I'll pick as a parameter name for this template cn,
+and now I've got to do something about the body here.
+And what I'm also going to do is I'm going
+to write Template rules used like this.
+And now looking back at the Data Driven Templates page, what I see
+is the way to produce the body is to follow the rules in this table.
+What I do is I go to the type comment.
+I look at the first word after is, so that's string.
+And then I start working in this table from there.
+Now the string is what's called an atomic, non-distinct type.
+The best way to understand what non-distinct means is
+to wait for a couple more videos, and then we'll
+see what distinct examples are.
+But string is right here, so this is the row of the table that I'm going to use,
+and I'm not inside of a cond.
+You'll see what it means to be inside a cond again in a couple of videos.
+But for the body, I'm just going to say dot dot dot x,
+where x is the actual parameter name.
+So the body of this template is just going to be dot dot dot cn.
+
+And I'm also going to right here the template rule that I used,
+and the rule that I used was the atomic non-distinct rule.
+
+And I'm also going to write the part of the type comment
+that matched that rule, which in this case is string.
+
+And now I'm going to run this.
+And there's nothing really to run, but the key thing
+is I didn't get any errors.
+If for example, if I had made a mistake like I left a parenthesis off there,
+then I would get an error right now.
+And I would fix this poorly-formed template right now,
+so I'll fix this poorly-formed template right now.
+And now I've got this running properly, and what
+I'll do is I'll comment out the template because we're never actually going
+to call this template function, we're just
+going to copy it into later function designs.
+And I'll get rid of this now, this scratch work,
+because that's already really captured in the data definition.
+So there you go.
+I've completed a first data definition by following the How
+To Design Data recipe using also the Data Driven Templates recipe.
+In the next video, we'll design a function
+that uses this data definition.

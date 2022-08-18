@@ -1,0 +1,20 @@
+
+GREGOR KICZALES: Going back to the table again and still
+thinking about just what inherently has to be inside this program,
+we see that at each clock tick, we need to produce an image based
+on the cat's current x-coordinate that shows the actual cat farther
+and farther across the image of some background scene.
+In this case, the background scene is white.
+So here's a function that does that.
+The function consumes a cat and produces an image.
+
+And we're using a primitive here that you
+haven't seen before called place-image.
+But the way place-image works is it takes an image,
+and then it takes an x-coordinate, a y-coordinate, and a second image,
+and it places the first image at the given x,
+y-coordinate on the second image.
+So what this function's doing here is it's
+placing the image of the cat, which happens
+to be the value of a constant called CAT-IMG at the appropriate x-coordinate
+in the middle of the background image, which happens to be called MTS.

@@ -1,0 +1,520 @@
+0
+00:00:00,000 --> 00:00:04,459
+
+
+1
+00:00:04,459 --> 00:00:06,500
+GREGOR KICZALES: So far, you've seen how to write
+
+2
+00:00:06,500 --> 00:00:08,740
+expressions that operate on numbers.
+
+3
+00:00:08,740 --> 00:00:13,120
+And you've learned the primitive call rule for evaluating those expressions.
+
+4
+00:00:13,120 --> 00:00:16,480
+But numbers aren't the only primitive kind of data in Racket.
+
+5
+00:00:16,480 --> 00:00:18,750
+In this video, we're going to learn about strings,
+
+6
+00:00:18,750 --> 00:00:21,420
+which are used to represent words and names,
+
+7
+00:00:21,420 --> 00:00:25,790
+and images, which let us start to build up pictures.
+
+8
+00:00:25,790 --> 00:00:29,380
+We won't have to learn any new evaluation rules, though,
+
+9
+00:00:29,380 --> 00:00:32,880
+because calls to string and image primitives
+
+10
+00:00:32,880 --> 00:00:36,470
+work just like calls to number primitives.
+
+11
+00:00:36,470 --> 00:00:38,750
+So even though this video is a little bit long,
+
+12
+00:00:38,750 --> 00:00:40,880
+I think you'll find it moves along quite quickly.
+
+13
+00:00:40,880 --> 00:00:42,870
+First, we'll look at string primitives.
+
+14
+00:00:42,870 --> 00:00:45,400
+Then we'll look at some image primitives.
+
+15
+00:00:45,400 --> 00:00:47,980
+There's one tricky part having to do with the way we number
+
+16
+00:00:47,980 --> 00:00:49,820
+the characters in a string.
+
+17
+00:00:49,820 --> 00:00:51,762
+But I plan to spend a couple minutes on that,
+
+18
+00:00:51,762 --> 00:00:53,470
+just to be sure to show you how it works.
+
+19
+00:00:53,470 --> 00:00:56,430
+
+
+20
+00:00:56,430 --> 00:00:59,690
+In the beginning student language, strings look like this.
+
+21
+00:00:59,690 --> 00:01:04,640
+There's a double quote and then some characters,
+
+22
+00:01:04,640 --> 00:01:07,900
+like apple, and then another double quote.
+
+23
+00:01:07,900 --> 00:01:12,850
+And Racket highlights the string between the quotes with green for us
+
+24
+00:01:12,850 --> 00:01:14,650
+to help us see it.
+
+25
+00:01:14,650 --> 00:01:17,220
+So that's a string.
+
+26
+00:01:17,220 --> 00:01:24,040
+Here's another string, Ada, someone's name, and strings are values.
+
+27
+00:01:24,040 --> 00:01:30,330
+So if we run the program with these two strings in it, the value of the strings
+
+28
+00:01:30,330 --> 00:01:31,420
+is the strings themselves.
+
+29
+00:01:31,420 --> 00:01:33,795
+So apple produces apple and Ada produces Ada.
+
+30
+00:01:33,795 --> 00:01:36,930
+
+
+31
+00:01:36,930 --> 00:01:38,930
+Now what are some things we can do with strings?
+
+32
+00:01:38,930 --> 00:01:43,020
+Well, one things we could do with strings is put them together.
+
+33
+00:01:43,020 --> 00:01:48,400
+So let's say we have two strings, Ada, which is someone's first name,
+
+34
+00:01:48,400 --> 00:01:53,260
+and Lovelace, which is someone's last name, we can put them together
+
+35
+00:01:53,260 --> 00:01:54,130
+like that.
+
+36
+00:01:54,130 --> 00:01:58,270
+And if we run that, string append is an operation, kind of like plus,
+
+37
+00:01:58,270 --> 00:01:59,690
+but for strings.
+
+38
+00:01:59,690 --> 00:02:02,970
+It glues the two strings together like that.
+
+39
+00:02:02,970 --> 00:02:04,770
+And probably, if it's somebody's name, we
+
+40
+00:02:04,770 --> 00:02:06,478
+might want to put another space in there.
+
+41
+00:02:06,478 --> 00:02:10,190
+And one way to do that would be to just add a third argument to string
+
+42
+00:02:10,190 --> 00:02:15,396
+append that adds the extra space in there.
+
+43
+00:02:15,396 --> 00:02:16,360
+And there we go.
+
+44
+00:02:16,360 --> 00:02:20,280
+And there we get Ada Lovelace-- who you might want to look up.
+
+45
+00:02:20,280 --> 00:02:22,050
+She's very famous for computer scientists.
+
+46
+00:02:22,050 --> 00:02:27,770
+In the 1840s, the 1840s, she wrote the first computer program ever written.
+
+47
+00:02:27,770 --> 00:02:31,250
+It was written for a machine which, at the time, only existed on paper.
+
+48
+00:02:31,250 --> 00:02:34,590
+The machine itself didn't run until quite recently,
+
+49
+00:02:34,590 --> 00:02:38,519
+but she wrote the program in the 1840s.
+
+50
+00:02:38,519 --> 00:02:40,310
+So that's one thing we can do with strings.
+
+51
+00:02:40,310 --> 00:02:41,150
+We've got strings.
+
+52
+00:02:41,150 --> 00:02:44,060
+We can put strings together like that.
+
+53
+00:02:44,060 --> 00:02:46,500
+Let me just point out one little wrinkle about strings.
+
+54
+00:02:46,500 --> 00:02:48,650
+This is a string.
+
+55
+00:02:48,650 --> 00:02:52,275
+That is a string that happens to have the characters 1, 2, and 3 in it.
+
+56
+00:02:52,275 --> 00:02:55,940
+And this is a number, 123.
+
+57
+00:02:55,940 --> 00:02:57,830
+And they're not the same.
+
+58
+00:02:57,830 --> 00:03:04,033
+So, in particular, you could take the number and add 1 to it.
+
+59
+00:03:04,033 --> 00:03:09,370
+If we run that program, get 124 as the result of that expression.
+
+60
+00:03:09,370 --> 00:03:15,560
+But you can't take the string and add 1 to it.
+
+61
+00:03:15,560 --> 00:03:18,970
+If you try to do that, you'll get this error message.
+
+62
+00:03:18,970 --> 00:03:21,280
+Plus expects a number as its second argument.
+
+63
+00:03:21,280 --> 00:03:23,290
+You gave it a string.
+
+64
+00:03:23,290 --> 00:03:27,500
+And Racket nicely highlights, for us, where the error is.
+
+65
+00:03:27,500 --> 00:03:29,084
+And you'll probably make this mistake.
+
+66
+00:03:29,084 --> 00:03:32,416
+Everybody makes it at first when they're learning the difference between strings
+
+67
+00:03:32,416 --> 00:03:33,000
+and numbers.
+
+68
+00:03:33,000 --> 00:03:36,340
+And you just look at that, and you say, oh, I meant this to be a number.
+
+69
+00:03:36,340 --> 00:03:39,272
+And you just get rid of those string quotes.
+
+70
+00:03:39,272 --> 00:03:41,041
+And now this program does run.
+
+71
+00:03:41,041 --> 00:03:42,290
+And both of those are working.
+
+72
+00:03:42,290 --> 00:03:44,870
+We get 124 twice.
+
+73
+00:03:44,870 --> 00:03:48,180
+OK, let me show you two more primitives on strings very quickly.
+
+74
+00:03:48,180 --> 00:03:51,090
+What I'll do is I'll delete that stuff.
+
+75
+00:03:51,090 --> 00:03:54,170
+And I'll comment this stuff out.
+
+76
+00:03:54,170 --> 00:04:01,395
+The one operation we can do on strings is to take string length, for example,
+
+77
+00:04:01,395 --> 00:04:03,660
+of apple.
+
+78
+00:04:03,660 --> 00:04:07,350
+And string-length is a primitive which tells us how long a string is.
+
+79
+00:04:07,350 --> 00:04:10,570
+And that string is, let's see, a-p-p-l-e, five characters,
+
+80
+00:04:10,570 --> 00:04:11,070
+sure enough.
+
+81
+00:04:11,070 --> 00:04:13,375
+
+
+82
+00:04:13,375 --> 00:04:15,250
+So that's one thing we could do with strings.
+
+83
+00:04:15,250 --> 00:04:18,786
+There's another operation we have called substring.
+
+84
+00:04:18,786 --> 00:04:23,150
+And substring is going to let us take out parts of the string.
+
+85
+00:04:23,150 --> 00:04:27,680
+So if, for example, we have a string like caribou,
+
+86
+00:04:27,680 --> 00:04:30,780
+substring lets us take out parts of the string.
+
+87
+00:04:30,780 --> 00:04:32,620
+Let me just give you an example here.
+
+88
+00:04:32,620 --> 00:04:38,270
+If I say caribou 2 and 4, that's going to mean take out
+
+89
+00:04:38,270 --> 00:04:42,070
+all the characters from 2 to 4.
+
+90
+00:04:42,070 --> 00:04:43,485
+Give us just those characters.
+
+91
+00:04:43,485 --> 00:04:46,050
+
+
+92
+00:04:46,050 --> 00:04:47,810
+Now, that's ri.
+
+93
+00:04:47,810 --> 00:04:50,230
+And the question is, why is that ri?
+
+94
+00:04:50,230 --> 00:04:52,970
+Well, there's a funny little trick here that computer scientists
+
+95
+00:04:52,970 --> 00:04:55,380
+have played on the world, which is to use something
+
+96
+00:04:55,380 --> 00:04:58,970
+called the zero-based indexing.
+
+97
+00:04:58,970 --> 00:05:02,430
+And in order to understand zero-based indexing, the way I always do it is I
+
+98
+00:05:02,430 --> 00:05:05,390
+make myself a string that looks like this.
+
+99
+00:05:05,390 --> 00:05:09,990
+I make a little string that's 012345678--
+
+100
+00:05:09,990 --> 00:05:11,490
+that's probably long enough for now.
+
+101
+00:05:11,490 --> 00:05:14,160
+
+
+102
+00:05:14,160 --> 00:05:19,930
+And what zero-based indexing means is it means that, for substring,
+
+103
+00:05:19,930 --> 00:05:30,395
+if we operate in this string here, 012345678-- and we go from 2 to 4,
+
+104
+00:05:30,395 --> 00:05:39,320
+it means start at character number 2 in zero-based indexing and go right up
+
+105
+00:05:39,320 --> 00:05:43,700
+to, but not including, character number 4 in zero-based indexing.
+
+106
+00:05:43,700 --> 00:05:48,360
+So again, if you take this, what I'll do is I'll take this string here,
+
+107
+00:05:48,360 --> 00:05:54,540
+and I'll line it up perfectly with caribou.
+
+108
+00:05:54,540 --> 00:06:00,910
+And now you can see why we get ri-- because r starts at 2.
+
+109
+00:06:00,910 --> 00:06:03,470
+And we end right before 4.
+
+110
+00:06:03,470 --> 00:06:06,160
+So that's the trick of zero-based indexing.
+
+111
+00:06:06,160 --> 00:06:09,780
+And a lot of people make mistakes about this.
+
+112
+00:06:09,780 --> 00:06:11,900
+They get what are called off by one errors
+
+113
+00:06:11,900 --> 00:06:14,107
+because they confuse the zero-based indexing.
+
+114
+00:06:14,107 --> 00:06:15,940
+Again, don't worry about it if that happens.
+
+115
+00:06:15,940 --> 00:06:17,350
+One of the great things about computer programming
+
+116
+00:06:17,350 --> 00:06:19,210
+is these machines are not fragile.
+
+117
+00:06:19,210 --> 00:06:22,800
+If you make a mistake, you get an error message,
+
+118
+00:06:22,800 --> 00:06:27,520
+not quite the right thing happens, you just fix it.
+
+119
+00:06:27,520 --> 00:06:30,492
+I'm not saying we shouldn't worry about errors in our programs.
+
+120
+00:06:30,492 --> 00:06:32,200
+The design method we're going to learn is
+
+121
+00:06:32,200 --> 00:06:35,410
+going to help us prevent and find such errors.
+
+122
+00:06:35,410 --> 00:06:38,060
+All I'm saying is, if you get an error while you are working,
+
+123
+00:06:38,060 --> 00:06:38,935
+don't worry about it.
+
+124
+00:06:38,935 --> 00:06:42,860
+Look at the error message and fix the problem.
+
+125
+00:06:42,860 --> 00:06:46,230
+So just so you see one other example of substring,
+
+126
+00:06:46,230 --> 00:06:51,020
+let's say if I say substring of caribou, and I
+
+127
+00:06:51,020 --> 00:06:56,975
+want just the first three characters, I would say 0, and I'll stop at 3.
+
+128
+00:06:56,975 --> 00:07:00,570
+
+
+129
+00:07:00,570 --> 00:07:02,900
+And that gives me the car.
+

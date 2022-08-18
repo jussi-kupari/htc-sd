@@ -1,0 +1,110 @@
+
+GREGOR KICZALES: Now you that you know how define struct works,
+we're going to look at how to use the how to design data recipe
+and the data-driven templates recipe to design compound data definitions based
+on define struct.
+Here's a sample problem.
+The problem asks us to design a data definition to represent hockey players,
+including both their first and last names.
+So I'm working with the same example we used to learn about define struct,
+but now we're doing the full data definition.
+So the key thing in this example is that when I read it,
+it has this property that it has two or more values that
+naturally fit together, including both their first and last names.
+Both the first and last name naturally fit together
+into a single hockey player.
+That's the key information property that we're
+looking for to decide if we want to have a compound data definition.
+If we look at the Design Recipes page and then
+go to the How To Design Data page, and we
+go to our table about form of information
+and what kind of data definition to use, it
+says that when there are two or more values that naturally belong together,
+we want to use a compound data definition.
+
+And here it talks about a compound data definition.
+As we did when we learned the other data definitions,
+you should go review this on your own.
+I'll just work through it.
+So the first thing in a compound data definition
+is there's going to be a structure that we're
+going to use to pull the multiple values together into a single value.
+So we'll say define-struct player.
+And then the list of field names-- we'll call them first name and last name.
+So now I have a mechanism for doing it.
+And I'm going to say player is make-player String String.
+And what is this doing?
+So what this is doing is it's saying, something is a player
+if it's a make player and the first field is a String
+and the second field is a String.
+
+And we'll interpret it this way-- make-player fn ln is a hockey
+player with first name fn last name ln.
+Or if you wanted to, you could write it this way.
+You could say, fn is the first name.
+
+ln is less name.
+You could write this interpretation a number of different ways.
+The key thing is you have to tell me how to interpret
+a piece of data of this form.
+So if I happen to be reading the program and I see make player,
+I know the first name is Bobby and the last name is Orr.
+So there's my interpretation.
+Here's an example.
+We'll stick it right here.
+We've already got one.
+
+And again, examples for simple compound data
+definitions-- you don't really need very many of them in order to be clear.
+One example would probably be good enough here.
+But starting soon we're going to see that as data definitions become
+more complicated, you start to have more examples really to make it clear.
+So let's see I've got the structure definition.
+I've got the type comment.
+I've got the interpretation.
+I've got some examples.
+Now I need a template.
+So we'll say define fun for player p.
+Something's going to go there.
+
+Template rules used.
+
+So now I'll go back over to the Design Recipes.
+And I'll go to the data-driven templates recipe.
+
+And if the type of data is compound, then
+what I'm supposed to use for the body is all the selectors.
+So I'm going to have dot dot dot and then all of the selectors.
+So jumping back over here to Racket, it means
+in this case I would write dot dot dot player fn p player ln p.
+And the rule is-- which rule was that?
+It's the compound data rule.
+And so we're going to say the compound rule two fields.
+Now, over here, there's another detail that
+says consider the result type of each selector.
+So what I'm going to do here is I'm actually
+going to go write this like this.
+And I'm going to put a note here that says, well, what does player-fn of p
+produce.
+Well, if this make player is actually a player,
+then its first field is of type string.
+So that will be a string.
+
+And what would ln be?
+Well, it will also be a string.
+
+Now let's talk about the template for just a second.
+What does this template say?
+Well, remember the fundamental job of a template
+is to tell you what do you have to work with
+and what's the basic structure of the function.
+And what this template is doing is it's saying,
+listen, if you write a function that consumes a player as an argument,
+then what it has to work with is all of the fields of the player--
+in this case, fn and ln.
+So basically, the fundamental shape of the function
+is take the player apart into its constituent field values
+and do something with them.
+Dot dot dot, as usual, means do something.
+Here's the first name.
+Here's the last name.

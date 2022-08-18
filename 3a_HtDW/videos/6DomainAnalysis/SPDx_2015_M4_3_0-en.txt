@@ -1,0 +1,146 @@
+
+GREGOR KICZALES: Now that we've covered the Big Bang mechanism,
+we're going to get into the how to design worlds recipe.
+That's a process that lets us systematically
+design interactive programs, or what the big bang calls world programs.
+Now interactive programs are the most complicated thing we've done so far
+and you can imagine that designing them is going to take a little bit longer.
+In fact, that shows up in the how to design world's recipe
+because it has two parts.
+It first has an analysis part that takes place with paper and pencil.
+And then it has a second part where we actually take the analysis
+and develop code for it.
+In this video, we're just going to do the first part, the analysis part.
+So I really encourage you to get out an actual piece of paper
+and work along with me through the rest of this video.
+Here's the problem that we're asked to solve.
+And I apologize if this is a bit boring, but what
+we're going to do is we're going to design the catwalk program that we
+saw as an example in the last video.
+But this time we're going to design it systematically using the recipe.
+I'm keeping the same example just to make it easier to focus on the recipe.
+We'll quickly start doing more challenging interactive program design
+problems.
+So what we're asked to do is an interactive program
+in which a cat starts at the left edge of the display
+and walks across the screen to the right.
+When it reaches the right edge, it should just
+keep going right off the screen.
+And then this next paragraph talks about something
+that we're going to add to the program what's it's complete.
+So let's skip that for now.
+And it's giving us an image of a cat here that we can use.
+You can, of course, use a better looking image
+of a cat than that if you have one.
+So this is a how to design worlds problem,
+and so we want to turn to the how to design worlds recipe.
+Going to the design recipes page, the link to the how to design worlds recipe
+is here.
+And as with the other recipes, the page starts with a summary
+and then a more detailed explanation.
+You should read the more detailed explanation
+after you watch these videos.
+The recipe says that world program design
+is divided into two phases, each of which has sub parts.
+And the first part is domain analysis that we
+want to do using a piece of paper.
+So the first thing we're supposed to do is
+draw two or three pictures that show different stages
+in the progression of the program.
+So here we go.
+Here's what the program might look like at the beginning.
+We've got the screen.
+And there's an image of a cat.
+
+And there's the little cat's ears, and if you want to,
+you can make whiskers too.
+I'm not very good at drawing.
+That's why I got into computer science.
+So there's an image of the program early on in its progression.
+And after a little while, perhaps it looks like this.
+There's the cat.
+And later, it looks like this.
+The cat is in the midst of walking off the edge of the screen.
+
+So the key thing is to draw two or three images that
+reflect different stages in the program's evolution
+and try to capture some of the interesting events.
+Sometimes you need more than two or three.
+Sometimes you want to zoom in on one.
+The next things we're going to do is identify the constant information.
+So this is information that does not change
+through the progression of the program.
+A lot of these values are fairly canonical in the sense
+that you'll find them in almost every world program.
+But we still want to identify them.
+So for example, there's the width of the screen.
+
+And what I like to do is label up here what I mean by this.
+Width is fairly obvious, but they're not all quite as obvious.
+So there's the width of the screen.
+There is the height of the screen.
+
+What else is there?
+Well, the cat progresses from left to right, but its height always stays.
+So the cat's y-coordinate doesn't change.
+And it has a funny little thing you're going to see here in a little bit.
+But I'll tell you now, which is that computer scientists, in order
+to sort of be annoying, have decided that the zero-zero coordinate
+in screens is up here in the left and that y values increase going down.
+So that's kind of the opposite of the way it works in,
+for example, grade school.
+So another constant thing is the cat's y it kind of sits there at the center.
+So I'll just call that center-y.
+
+What else doesn't change?
+Well, let's see.
+The background image itself doesn't change.
+We'll call that MTS.
+That's the abbreviation that the book uses.
+It stands for empty scene.
+And let's see what else doesn't change.
+Oh, the actual image of the cat doesn't change.
+
+So there are some things that don't change.
+Now a real important point about this analysis is you should do it.
+You should do it in this order.
+And you should try to identify all the constants.
+In a complicated program, you're not going to identify them all.
+You'll realize part way through the process that you were missing one,
+and that's just fine.
+Just go back and add it to your list.
+We're also going to identify the changing information.
+
+And in this case, the changing information is fairly straightforward.
+
+It's just the x-coordinate of the cat.
+
+And the last we're going to identify is the big-bang options.
+And the recipe page gives us a table that helps us do this.
+The table talks about behavior that our program has
+and what options we need to have to support that behavior.
+So this program changes.
+It has information that changes as time goes along
+because the x-coordinate of the cat, this value here, changes
+as time goes on.
+So that means that we're going to need to use the on-tick option to big-bang.
+And this program also has behavior that we see.
+The display changes.
+And so that means we're going to need to use to-draw option to big-bang.
+Once we've done that, we've done the analysis for this program.
+Just to recap quickly, we drew three pictures of different states
+in the program's progression.
+And then using the pictures, we identified constant information,
+changing information, and big bang options.
+The constant information, inherently, will show up in every picture.
+You may need to use more than one of the pictures
+to identify the changing information or the big bang options.
+For example, if your program is going to have special behavior that
+happens when you click the mouse, you may only
+have one picture that shows that.
+So big bang options don't have to all be in the picture that's
+above big bang options.
+This is really two parts of your analysis.
+One part is the diagrams, and then the other part
+is these three elements of constant changing and big bang options.
+In the next video, we'll start converting this into code.

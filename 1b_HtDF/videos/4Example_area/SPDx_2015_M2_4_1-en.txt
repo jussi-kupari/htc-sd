@@ -1,0 +1,87 @@
+
+GREGOR KICZALES: Here's another sample how to design functions problem.
+In this problem, we're going to see a few extra wrinkles; including
+an example of how not to write a good purpose,
+some problems that can come up with tests,
+and some issues having to do with copying part of what's in the template.
+OK, so here's the example, I'm going to design a function called
+area that consumes the length of one side of a square
+and produces the area of the square.
+
+Let's see, so the length is going to be a number, and the area of a square
+is also going to be a number.
+So the signature is number to number.
+
+And the purpose is given length of one side of square produce
+the area of the square.
+Let me just make a note here about what's not a good purpose.
+This is not a good purpose.
+Given number, produce number.
+That just repeats the signature.
+That's not telling me something we don't already know.
+The purpose needs to tell me something more specific
+than the signature about exactly what we do with the given number
+and exactly what the number we produce means.
+Given the length of one side of the square,
+it says this is the length of one side of the square,
+produce the area of the square.
+This number is going to be the area of the square.
+So that's what we want a purpose statement to do
+is be quite specific about what's going on.
+So now, let's see, the stub is define area.
+This is a one-argument function.
+And maybe the length of a side will be s.
+We can use any name we want, but s seems good.
+And, let's see, this is producing a number,
+so a good dummy value to produce is 0.
+Now let's do some check-expects.
+Let's see, check-expect area of 3.
+Well, if one side of the square is 3, then the area is 9.
+We'll do another one, check-expect area of, let's say, 3.2.
+And, let's see, the area of that square is times 3.2,
+3.2-- I won't try to do that in my head.
+
+Now we run the check-expects.
+And both ran, they failed, but they both ran, so that means they're well-formed.
+We can continue.
+
+Now, let's see, we've got the stub.
+Let's comment out the stub and label it, and we'll write the template.
+Area with a parameter s that's number, the template is . . .
+s.
+And it's going to be good to have a copy of that template,
+so I'll make a copy of it right there.
+We'll comment out the original template, we'll label it as the original.
+And now, let's see, if this is a function that consumes the side
+and it just multiplies this side by itself, so this becomes times s s.
+
+Let's run that.
+We've got a failing test here, let's see what's happening.
+
+This says that the actual value 9 differs from 3, the expected value.
+And I can click to see which test it is.
+It said it produced 9 and; oh, here's a thing that happens,
+this test is actually wrong.
+That's not supposed to be 3, that's supposed to be 9.
+
+Now if we run it, both tests pass.
+So there's two interesting things in this example,
+one is to note that you need to be careful if you get a failing test
+to make sure the test is right.
+If your test is wrong and you make the function conform to it,
+then the function will be wrong.
+And that happens, sometimes you write a test
+and you're just going a bit too quickly and you put the wrong expected value.
+So whenever you have a failing test, first
+look at the test to see if the test is right.
+The second interesting thing that's happening in this example
+is to see that sometimes you have to copy part of the template.
+Remember the template for this function was dot dot dot s.
+In the final function we ended up with s times s.
+So we copied a piece of the template, and that's OK.
+The template is really trying to tell you;
+hey, here's the stuff you have to work with.
+You can use it in any way you want, it's just
+telling you this is the parts list, you can use s twice.
+So there you go, that's our second function.
+I'll save it, run it one more time.

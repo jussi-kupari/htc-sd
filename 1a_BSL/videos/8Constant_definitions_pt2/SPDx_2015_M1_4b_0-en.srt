@@ -1,0 +1,36 @@
+0
+00:00:00,000 --> 00:00:00,270
+
+
+1
+00:00:00,270 --> 00:00:02,894
+Gregor Kiczales: So now you've seen how we can define constants
+
+2
+00:00:02,894 --> 00:00:05,322
+in the Beginning Student Language.
+
+3
+00:00:05,322 --> 00:00:07,030
+As I said at the beginning of this video,
+
+4
+00:00:07,030 --> 00:00:10,120
+we're going to see more and more how important this is.
+
+5
+00:00:10,120 --> 00:00:12,520
+Really, this notion of defining name constants
+
+6
+00:00:12,520 --> 00:00:15,400
+is going to have a big effect on making our programs
+
+7
+00:00:15,400 --> 00:00:19,840
+comprehensible to other programmers and easy to change in the future.
+
+8
+00:00:19,840 --> 00:00:20,340
+
+

@@ -1,0 +1,89 @@
+
+GREGOR KICZALES: So far we've seen several different types
+of data-- primitive, interval, enumeration, itemization.
+But all of them have been what's called atomic.
+In each case a single data value really consists of just one value.
+But lots of times we want to represent different kinds
+of information-- information where two or more values naturally
+belong together.
+So for example, we might want to represent the xy position
+of an object moving on the screen.
+Or you might want to represent the first and last name of a single person.
+We might want to represent the name, supervisor, and salary of an employee.
+In all those cases there's two or more pieces of information
+that naturally belong together.
+To do that we're going to need compound data.
+And we're going to cover compound data in three videos in a now-familiar form.
+In this video we'll learn a basic mechanism called define-struct that
+allows us to create compound values.
+In the next video we'll learn how to update the how to design data
+recipe for compound data.
+And in the third video we'll see that the
+how to design worlds recipe works pretty much unchanged for compound data.
+And we'll make our most elaborate world program yet.
+What we're learning is a new kind of definition called define-struct.
+So here I'm going to define a struct, or a structure,
+and I'm just going to call this one pos, as an abbreviation for position.
+So that's the structure name.
+And what comes next is something called the field names.
+In this particular structure, I'll say that the fields are x and y.
+So you can see I'm making a structure that's going
+to help me represent xy positions.
+Now when I write that definition, if I run it,
+I don't get any value back because define-struct
+is a definition just like the defines we've seen so far functioning
+constant definitions.
+It doesn't produce a value.
+It just declares definitions.
+In this case it declares four definitions.
+The first one is a thing called a constructor, and it works like this.
+I can say make-pos of 3 and 6.
+And what that does is it produces a position
+structure for which the value of the x field is 3 and the value of the y field
+is 6.
+That's an ordinary value, so I can do something
+like make it be the value of a constant like P1.
+
+And if I run that, now P1 is a constant, and if I go down here
+and I just look at P1, DrRacket is going to show it to me.
+Or I should say, the BSL language is going
+to show it to me in the form of a call to the constructor-- make-pos 3 6,
+in this case.
+So that lets me put 3 and 6 together into a pos structure.
+How do I then take them back apart?
+Well before I show you that, let me just quickly do another example.
+
+And now I'll show you how they come back apart.
+The way they come back apart is that this define-struct also
+defined two selectors.
+One of the selectors is called pos-x.
+And if I say pos-x of P1, then-- well, I get 3.
+Because P1 is the make-pos 3 6, and so the x field of that is 3.
+So pos-x of P1 is 3, and unsurprisingly, pos-y of P2 is 8.
+So this produces 3, and this produces 8.
+So make-pos is the constructor, pos-x and pos-y are the selectors,
+and there's one more function that define-struct defines
+for me-- a thing called the predicate.
+It in this case is called pos?
+And if I say pos?
+of P1, I get true.
+And if I say pos?
+of some value that isn't produced by make-pos, like hello,
+that gives me false.
+So this is true and that's false.
+
+So just to review quickly.
+The way to form a define-struct is (define-struct some name,
+which is going to be the name of the structure, a parenthesis,
+and then some number of other names-- one or more--
+that's the name of the fields.
+That definition sets up a constructor which is always
+called make dash the structure name.
+It sets up as many selectors as there are
+fields, which are always called the structure name dash the field name.
+And it sets up a predicate which is always called structure name question
+mark.
+So that's the basic define-struct mechanism.
+In the next video we're going to look at how to design compound data
+definitions-- in other words, data definitions for compound data--
+and they're going to use define-struct as a supporting mechanism.

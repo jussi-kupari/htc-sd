@@ -1,0 +1,292 @@
+0
+00:00:00,000 --> 00:00:04,690
+
+
+1
+00:00:04,690 --> 00:00:08,050
+GREGOR KICZALES: Now I'm going to complete the design of layout images.
+
+2
+00:00:08,050 --> 00:00:10,080
+There's nothing really new in this function.
+
+3
+00:00:10,080 --> 00:00:13,140
+You know how to design at this point.
+
+4
+00:00:13,140 --> 00:00:16,257
+But I suggest you follow along with me anyways.
+
+5
+00:00:16,257 --> 00:00:19,090
+I think you might have heard me say once or twice that you can never
+
+6
+00:00:19,090 --> 00:00:21,870
+get too much practice.
+
+7
+00:00:21,870 --> 00:00:25,260
+Now I want to complete the design of layout images.
+
+8
+00:00:25,260 --> 00:00:27,540
+So the next thing I need to do is some check expects.
+
+9
+00:00:27,540 --> 00:00:30,070
+
+
+10
+00:00:30,070 --> 00:00:34,540
+Check-expect (layout-images-- let's see.
+
+11
+00:00:34,540 --> 00:00:40,650
+If you lay out the empty images, then that's just going to produce BLANK.
+
+12
+00:00:40,650 --> 00:00:46,050
+And now we'll do one for layout-images of,
+
+13
+00:00:46,050 --> 00:00:49,870
+let's see-- we can grab this example from up here.
+
+14
+00:00:49,870 --> 00:00:51,360
+It's a perfectly good example.
+
+15
+00:00:51,360 --> 00:00:52,105
+It's too long.
+
+16
+00:00:52,105 --> 00:00:57,610
+
+
+17
+00:00:57,610 --> 00:00:59,980
+In a minute, I'll use Command-I to fix the indentation.
+
+18
+00:00:59,980 --> 00:01:01,070
+Let me just do that.
+
+19
+00:01:01,070 --> 00:01:02,526
+Command-I fixes the indentation.
+
+20
+00:01:02,526 --> 00:01:05,290
+
+
+21
+00:01:05,290 --> 00:01:07,870
+Layout-images-- well, what's that going to be?
+
+22
+00:01:07,870 --> 00:01:09,840
+We kind of figured this out before, right?
+
+23
+00:01:09,840 --> 00:01:24,780
+It's beside of this rectangle, this rectangle, and BLANK.
+
+24
+00:01:24,780 --> 00:01:31,560
+
+
+25
+00:01:31,560 --> 00:01:32,430
+I'll run that.
+
+26
+00:01:32,430 --> 00:01:33,760
+The tests are well formed.
+
+27
+00:01:33,760 --> 00:01:37,730
+But now a number of tests are failing.
+
+28
+00:01:37,730 --> 00:01:39,000
+I'll go get the template.
+
+29
+00:01:39,000 --> 00:01:47,580
+
+
+30
+00:01:47,580 --> 00:01:48,950
+I'll paste it in here.
+
+31
+00:01:48,950 --> 00:01:52,030
+
+
+32
+00:01:52,030 --> 00:01:54,000
+I'll comment out the stub.
+
+33
+00:01:54,000 --> 00:02:01,625
+I'll rename the template and the natural recursion.
+
+34
+00:02:01,625 --> 00:02:04,500
+
+
+35
+00:02:04,500 --> 00:02:05,940
+And now let's see.
+
+36
+00:02:05,940 --> 00:02:10,100
+If I'm laying out a empty list of images, I produce BLANK.
+
+37
+00:02:10,100 --> 00:02:13,510
+And otherwise, I just put the first image
+
+38
+00:02:13,510 --> 00:02:18,461
+beside the result of the natural recursion command.
+
+39
+00:02:18,461 --> 00:02:19,960
+That actually fixes the indentation.
+
+40
+00:02:19,960 --> 00:02:21,152
+I run it.
+
+41
+00:02:21,152 --> 00:02:22,360
+Let's see-- there's one test.
+
+42
+00:02:22,360 --> 00:02:24,470
+I have to be careful.
+
+43
+00:02:24,470 --> 00:02:27,500
+Because now, one of the four tests are failing.
+
+44
+00:02:27,500 --> 00:02:31,459
+First thing I need to know-- is that a test on layout images?
+
+45
+00:02:31,459 --> 00:02:32,000
+And it isn't.
+
+46
+00:02:32,000 --> 00:02:34,540
+I click on it, it's a test on a range images.
+
+47
+00:02:34,540 --> 00:02:39,610
+So layout images is actually working properly now.
+
+48
+00:02:39,610 --> 00:02:43,740
+Why is this test on a range images failing?
+
+49
+00:02:43,740 --> 00:02:47,250
+Oh look, this other test isn't failing.
+
+50
+00:02:47,250 --> 00:02:51,780
+What's happening here is your range images test
+
+51
+00:02:51,780 --> 00:02:56,040
+where the list doesn't require sorting is working fine.
+
+52
+00:02:56,040 --> 00:03:00,740
+Your range images test where the list does require sorting isn't working.
+
+53
+00:03:00,740 --> 00:03:05,760
+And that's because of this stub we made for sort images that
+
+54
+00:03:05,760 --> 00:03:08,520
+just produces whatever it's given.
+
+55
+00:03:08,520 --> 00:03:11,850
+If you happen to call sort images with a list that's already sorting,
+
+56
+00:03:11,850 --> 00:03:13,920
+it happens to work.
+
+57
+00:03:13,920 --> 00:03:17,460
+So that's why one of these cases of arrange images is working and one
+
+58
+00:03:17,460 --> 00:03:18,472
+isn't.
+
+59
+00:03:18,472 --> 00:03:20,430
+This is going to start to happen more and more.
+
+60
+00:03:20,430 --> 00:03:24,420
+As you get a big program with multiple stubs in it, some tests might work.
+
+61
+00:03:24,420 --> 00:03:26,490
+Some other test might not work.
+
+62
+00:03:26,490 --> 00:03:30,000
+The key thing is, since I just finished layout images,
+
+63
+00:03:30,000 --> 00:03:32,780
+what I want to be sure is that those tests are passing.
+
+64
+00:03:32,780 --> 00:03:33,990
+And they are.
+
+65
+00:03:33,990 --> 00:03:37,440
+So layout images seems to be done now.
+
+66
+00:03:37,440 --> 00:03:42,320
+Going back to my overview diagram of where we are in the overall process,
+
+67
+00:03:42,320 --> 00:03:48,640
+range images is still done except it has uncompleted wish list entries.
+
+68
+00:03:48,640 --> 00:03:51,070
+The layout images wish list entries completely done.
+
+69
+00:03:51,070 --> 00:03:53,830
+Layout images is done and tested.
+
+70
+00:03:53,830 --> 00:03:59,470
+But sort images is still sitting there in stub form.
+
+71
+00:03:59,470 --> 00:04:02,460
+That's what we're going to turn to the next video.
+
+72
+00:04:02,460 --> 00:04:03,529
+
+

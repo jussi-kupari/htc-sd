@@ -1,0 +1,288 @@
+0
+00:00:00,000 --> 00:00:04,640
+
+
+1
+00:00:04,640 --> 00:00:07,667
+GREGOR KICZALES: In this HtDF example problem,
+
+2
+00:00:07,667 --> 00:00:09,500
+you're going to see a case where the problem
+
+3
+00:00:09,500 --> 00:00:14,550
+statement isn't very specific about the function we need to design.
+
+4
+00:00:14,550 --> 00:00:18,230
+That's going to happen more and more as we go forward in the course.
+
+5
+00:00:18,230 --> 00:00:20,920
+Remember what I said in the first video.
+
+6
+00:00:20,920 --> 00:00:24,910
+Design is the process of going from a poorly formed problem
+
+7
+00:00:24,910 --> 00:00:27,620
+to a well structured solution.
+
+8
+00:00:27,620 --> 00:00:32,500
+So making the problem more specific is part of the design process.
+
+9
+00:00:32,500 --> 00:00:35,370
+In this video, I'm also going to talk about how
+
+10
+00:00:35,370 --> 00:00:37,820
+many tests you need for a function.
+
+11
+00:00:37,820 --> 00:00:40,680
+And we'll see another example of a case where
+
+12
+00:00:40,680 --> 00:00:44,670
+you get part way through the recipe and realize that you need to go back
+
+13
+00:00:44,670 --> 00:00:50,350
+and refine some work that you did in an earlier step of the recipe.
+
+14
+00:00:50,350 --> 00:00:54,550
+In this problem, we're asked to design a function that consumes an image
+
+15
+00:00:54,550 --> 00:00:57,850
+and determines whether the image is tall.
+
+16
+00:00:57,850 --> 00:00:58,550
+So let's see.
+
+17
+00:00:58,550 --> 00:01:01,930
+It seems clear that it consumes an image,
+
+18
+00:01:01,930 --> 00:01:06,390
+but what does it mean to determine whether the image is tall?
+
+19
+00:01:06,390 --> 00:01:10,910
+Well, we're asking is this image tall, so that's kind of a yes/no question.
+
+20
+00:01:10,910 --> 00:01:13,340
+By convention, whenever we design a function
+
+21
+00:01:13,340 --> 00:01:17,990
+that produces the answer to a yes/no or true/false question,
+
+22
+00:01:17,990 --> 00:01:21,130
+we design that function to produce a boolean.
+
+23
+00:01:21,130 --> 00:01:24,325
+So we'll say Boolean here.
+
+24
+00:01:24,325 --> 00:01:26,730
+And now what's the purpose going to be?
+
+25
+00:01:26,730 --> 00:01:33,850
+The purpose is going to be something about if the image is tall.
+
+26
+00:01:33,850 --> 00:01:36,850
+And the key thing is so far, I've only said it produces a boolean,
+
+27
+00:01:36,850 --> 00:01:39,260
+but I haven't said what true means.
+
+28
+00:01:39,260 --> 00:01:45,260
+So you want to say in the purpose, produce true if the image is tall.
+
+29
+00:01:45,260 --> 00:01:47,135
+You need to distinguish which does true mean.
+
+30
+00:01:47,135 --> 00:01:50,530
+Does true mean that it's tall or that it's not tall?
+
+31
+00:01:50,530 --> 00:01:53,890
+So whenever you've got a function producing a boolean,
+
+32
+00:01:53,890 --> 00:01:57,270
+your purpose has to be very clear about what true means
+
+33
+00:01:57,270 --> 00:02:01,620
+and by implication what false means.
+
+34
+00:02:01,620 --> 00:02:02,310
+So let's see.
+
+35
+00:02:02,310 --> 00:02:07,070
+Here's a stub, and this didn't tell us what name of a function to use.
+
+36
+00:02:07,070 --> 00:02:10,540
+The problem statement didn't tell us what name to use.
+
+37
+00:02:10,540 --> 00:02:12,040
+That's usually going to be the case.
+
+38
+00:02:12,040 --> 00:02:14,581
+You're usually going to have to invent the name of a function
+
+39
+00:02:14,581 --> 00:02:16,067
+when you design it.
+
+40
+00:02:16,067 --> 00:02:18,650
+And it turns out that in the programming language we're using,
+
+41
+00:02:18,650 --> 00:02:24,500
+there's a convention that functions that produce a boolean, functions
+
+42
+00:02:24,500 --> 00:02:28,510
+that produce an answer to a yes/no question or a true/false question
+
+43
+00:02:28,510 --> 00:02:31,199
+have a name that ends in question mark.
+
+44
+00:02:31,199 --> 00:02:32,990
+So we're going to call this function tall?.
+
+45
+00:02:32,990 --> 00:02:35,500
+
+
+46
+00:02:35,500 --> 00:02:41,000
+It's going to consume image, and a good dummy answer is false.
+
+47
+00:02:41,000 --> 00:02:43,830
+
+
+48
+00:02:43,830 --> 00:02:45,480
+So that would be the stub.
+
+49
+00:02:45,480 --> 00:02:47,570
+And now we can write some tests.
+
+50
+00:02:47,570 --> 00:02:48,340
+So let's see.
+
+51
+00:02:48,340 --> 00:02:52,515
+Check-expect, tall?.
+
+52
+00:02:52,515 --> 00:02:55,310
+
+
+53
+00:02:55,310 --> 00:02:56,570
+Let's see, I need an image.
+
+54
+00:02:56,570 --> 00:02:59,290
+So let's take a rectangle.
+
+55
+00:02:59,290 --> 00:03:00,040
+Oh, wait a minute.
+
+56
+00:03:00,040 --> 00:03:02,500
+Before I forget here, I'm using rectangle.
+
+57
+00:03:02,500 --> 00:03:07,820
+So let me quickly go up top here and say require 2htdp/image.
+
+58
+00:03:07,820 --> 00:03:13,010
+
+
+59
+00:03:13,010 --> 00:03:18,650
+So I'm going to make a rectangle that let's say is two wide and three high
+
+60
+00:03:18,650 --> 00:03:20,990
+and is red.
+
+61
+00:03:20,990 --> 00:03:25,491
+The color doesn't really matter here, but rectangle needs the arguments.
+
+62
+00:03:25,491 --> 00:03:25,990
+Let's see.
+
+63
+00:03:25,990 --> 00:03:29,700
+It seems to me that rectangle that's three high and two wide is tall,
+
+64
+00:03:29,700 --> 00:03:32,390
+so we'll say true.
+
+65
+00:03:32,390 --> 00:03:34,610
+Now, I want you to ask yourself right now,
+
+66
+00:03:34,610 --> 00:03:38,719
+how many tests does this function need?
+
+67
+00:03:38,719 --> 00:03:40,510
+The right number of tests for a function is
+
+68
+00:03:40,510 --> 00:03:43,750
+going to be an issue that we talk about more and more during the course.
+
+69
+00:03:43,750 --> 00:03:46,111
+How many do you think that this function needs?
+
+70
+00:03:46,111 --> 00:03:49,000
+
+
+71
+00:03:49,000 --> 00:03:55,060
+Write down your answer or just remember it, and we'll see where we end up.
+

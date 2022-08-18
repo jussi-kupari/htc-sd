@@ -1,0 +1,256 @@
+0
+00:00:00,000 --> 00:00:01,419
+
+
+1
+00:00:01,419 --> 00:00:04,710
+GREGOR KICZALES: Now I'm going to go on to the data definition for the changing
+
+2
+00:00:04,710 --> 00:00:06,210
+world state.
+
+3
+00:00:06,210 --> 00:00:08,400
+And looking at the analysis, I see that there's
+
+4
+00:00:08,400 --> 00:00:12,830
+two pieces of changing information, two changing information values
+
+5
+00:00:12,830 --> 00:00:14,320
+that naturally belong together.
+
+6
+00:00:14,320 --> 00:00:18,189
+And so that tells me that I want to use a compound data definition.
+
+7
+00:00:18,189 --> 00:00:19,980
+So when you use a compound data definition,
+
+8
+00:00:19,980 --> 00:00:23,660
+the first thing we have to do is a structure definition for it.
+
+9
+00:00:23,660 --> 00:00:28,480
+So let me make a structure, and I guess I'll just call it cow.
+
+10
+00:00:28,480 --> 00:00:29,820
+And it has two fields.
+
+11
+00:00:29,820 --> 00:00:34,110
+And I'll call one x for the x-coordinate and one dx
+
+12
+00:00:34,110 --> 00:00:37,290
+for the current rate of change in the x-coordinate.
+
+13
+00:00:37,290 --> 00:00:41,650
+And I'll say cow is make cow.
+
+14
+00:00:41,650 --> 00:00:46,180
+Now we know that this cow nicely stays in the box.
+
+15
+00:00:46,180 --> 00:00:48,720
+So that means we know that the x-coordinate is bounded
+
+16
+00:00:48,720 --> 00:00:51,820
+a certain way in this world program.
+
+17
+00:00:51,820 --> 00:00:56,770
+So what I'm going to do here is I'm going to say natural zero comma
+
+18
+00:00:56,770 --> 00:01:01,870
+width as a way of saying that the cow's x-coordinate stays
+
+19
+00:01:01,870 --> 00:01:03,245
+within the boundaries of the box.
+
+20
+00:01:03,245 --> 00:01:05,820
+
+
+21
+00:01:05,820 --> 00:01:11,880
+And we don't know any bounds on dx or on the velocity of the cow.
+
+22
+00:01:11,880 --> 00:01:15,050
+But let's just decide that it's going to be at least an integer.
+
+23
+00:01:15,050 --> 00:01:16,854
+That'll make some other things simpler.
+
+24
+00:01:16,854 --> 00:01:18,395
+So we'll say that this is an integer.
+
+25
+00:01:18,395 --> 00:01:23,430
+
+
+26
+00:01:23,430 --> 00:01:27,050
+We'll say the interpretation of a cow is that if you have a cow make cow
+
+27
+00:01:27,050 --> 00:01:37,850
+with an x and dx, then that's a cow with x-coordinates x and velocity dx.
+
+28
+00:01:37,850 --> 00:01:42,300
+
+
+29
+00:01:42,300 --> 00:01:46,320
+We'll say that the x is the center of the cow.
+
+30
+00:01:46,320 --> 00:01:50,500
+
+
+31
+00:01:50,500 --> 00:01:55,320
+We'll say that x is in screen coordinates, or pixels.
+
+32
+00:01:55,320 --> 00:01:59,110
+
+
+33
+00:01:59,110 --> 00:02:03,110
+And we'll say that dx is in pixels per tick.
+
+34
+00:02:03,110 --> 00:02:05,770
+
+
+35
+00:02:05,770 --> 00:02:08,990
+So that if dx is 3, for example, that means that on each clock tick,
+
+36
+00:02:08,990 --> 00:02:13,450
+the cow moves by three pixels or its x value gets bigger by three.
+
+37
+00:02:13,450 --> 00:02:15,950
+And here we're going to start to see where some examples get
+
+38
+00:02:15,950 --> 00:02:16,920
+a bit more interesting.
+
+39
+00:02:16,920 --> 00:02:19,140
+I'm going to make a couple of them.
+
+40
+00:02:19,140 --> 00:02:20,730
+Let's say C1.
+
+41
+00:02:20,730 --> 00:02:26,720
+Let's say this is a cow that's current position is 10
+
+42
+00:02:26,720 --> 00:02:29,870
+and that its current dx is 3.
+
+43
+00:02:29,870 --> 00:02:33,940
+And I'll just label this one to help me understand the interpretation.
+
+44
+00:02:33,940 --> 00:02:41,070
+At position 10, moving left to right.
+
+45
+00:02:41,070 --> 00:02:42,050
+And here's another one.
+
+46
+00:02:42,050 --> 00:02:49,010
+
+
+47
+00:02:49,010 --> 00:02:56,050
+And this one is at 20, and it's moving the other way.
+
+48
+00:02:56,050 --> 00:02:59,075
+So this is a case where as the data definition becomes more complicated,
+
+49
+00:02:59,075 --> 00:03:02,420
+the examples become more useful to really understand
+
+50
+00:03:02,420 --> 00:03:05,690
+how the data definition works and what the interpretation is.
+
+51
+00:03:05,690 --> 00:03:08,752
+Now, of course, I have to do the template and template rules used.
+
+52
+00:03:08,752 --> 00:03:10,710
+But what I'm going to do to speed this video up
+
+53
+00:03:10,710 --> 00:03:14,180
+a little bit is I'm kind of going to pull the next stage of the roast out
+
+54
+00:03:14,180 --> 00:03:16,230
+of the oven ready done.
+
+55
+00:03:16,230 --> 00:03:23,180
+I'll go to Cowabunga V1, and it already has the complete data definition here,
+
+56
+00:03:23,180 --> 00:03:28,260
+everything that we just did plus the template and template rules used.
+
+57
+00:03:28,260 --> 00:03:32,620
+Next step is going to be to set up the main function and all of the wish list
+
+58
+00:03:32,620 --> 00:03:35,297
+entries for the Big Bang option handlers.
+
+59
+00:03:35,297 --> 00:03:37,130
+And since that's straightforward, again, I'm
+
+60
+00:03:37,130 --> 00:03:41,600
+going to jump ahead to go to Cowabunga V2 that has all that.
+
+61
+00:03:41,600 --> 00:03:45,150
+You might want to not do that and go ahead and develop that yourself
+
+62
+00:03:45,150 --> 00:03:47,300
+as a way of checking your work.
+
+63
+00:03:47,300 --> 00:03:49,980
+I'm going to jump ahead now, though.
+

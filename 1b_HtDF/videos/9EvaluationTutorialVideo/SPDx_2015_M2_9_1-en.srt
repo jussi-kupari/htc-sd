@@ -1,0 +1,1080 @@
+0
+00:00:00,000 --> 00:00:03,590
+
+
+1
+00:00:03,590 --> 00:00:05,340
+GREGOR KICZALES: The purpose of this video
+
+2
+00:00:05,340 --> 00:00:10,490
+is to just show you how we would assess a range of solutions
+
+3
+00:00:10,490 --> 00:00:12,950
+according to the rubric for this design quiz,
+
+4
+00:00:12,950 --> 00:00:18,820
+help you understand how to look at an HTDF design and see how good a job
+
+5
+00:00:18,820 --> 00:00:19,760
+it is.
+
+6
+00:00:19,760 --> 00:00:22,970
+So we'll just work through a few examples with the rubric right
+
+7
+00:00:22,970 --> 00:00:23,980
+by our side.
+
+8
+00:00:23,980 --> 00:00:24,950
+Here we go.
+
+9
+00:00:24,950 --> 00:00:27,500
+OK, here's the first solution that we want to look at.
+
+10
+00:00:27,500 --> 00:00:30,490
+And the first criteria is commit ready.
+
+11
+00:00:30,490 --> 00:00:32,899
+And this is about whether the files neat and tidy,
+
+12
+00:00:32,899 --> 00:00:35,690
+whether things are sitting around that shouldn't be sitting around,
+
+13
+00:00:35,690 --> 00:00:38,610
+things are commented out this shouldn't be commented in and out.
+
+14
+00:00:38,610 --> 00:00:39,500
+Let's see.
+
+15
+00:00:39,500 --> 00:00:40,750
+There's the signature purpose.
+
+16
+00:00:40,750 --> 00:00:42,460
+They're properly commented out.
+
+17
+00:00:42,460 --> 00:00:45,490
+There's some tests, which are not commented out, which is good.
+
+18
+00:00:45,490 --> 00:00:47,940
+Th The stub and template are commented out.
+
+19
+00:00:47,940 --> 00:00:50,140
+There is the function definition.
+
+20
+00:00:50,140 --> 00:00:53,110
+There's no other stuff lying around in here.
+
+21
+00:00:53,110 --> 00:00:56,220
+So, we'll give a good for commit ready.
+
+22
+00:00:56,220 --> 00:00:58,090
+Now let's look at design completeness.
+
+23
+00:00:58,090 --> 00:01:01,170
+And it helps me to put up the rest of the steps to do this.
+
+24
+00:01:01,170 --> 00:01:04,720
+So there's the rest of these steps and we'll just go through them.
+
+25
+00:01:04,720 --> 00:01:08,210
+Let's see, there's the signature and it is there,
+
+26
+00:01:08,210 --> 00:01:11,980
+but it is poorly formed because that comma doesn't belong there.
+
+27
+00:01:11,980 --> 00:01:17,044
+And there's the purpose, and it's good.
+
+28
+00:01:17,044 --> 00:01:19,210
+There should be a space right here that isn't there.
+
+29
+00:01:19,210 --> 00:01:20,680
+That's kind of a detail.
+
+30
+00:01:20,680 --> 00:01:22,430
+But you know, we're going to pay attention
+
+31
+00:01:22,430 --> 00:01:24,260
+to details while we do this because that's
+
+32
+00:01:24,260 --> 00:01:25,990
+what helps us do better next time.
+
+33
+00:01:25,990 --> 00:01:28,210
+So, you know, there kind of should be a space there.
+
+34
+00:01:28,210 --> 00:01:32,720
+There is some check expects, they all look well formed.
+
+35
+00:01:32,720 --> 00:01:39,880
+And there is the stub, the template and the function definition's well formed.
+
+36
+00:01:39,880 --> 00:01:44,090
+And I can tell all that because if I run the program right now, I get to a place
+
+37
+00:01:44,090 --> 00:01:45,556
+where all my tests pass.
+
+38
+00:01:45,556 --> 00:01:47,430
+So that means they were at least well formed.
+
+39
+00:01:47,430 --> 00:01:50,960
+If some of them passed and some of them failed, they're still well formed.
+
+40
+00:01:50,960 --> 00:01:53,250
+But we did have this problem in the signature,
+
+41
+00:01:53,250 --> 00:01:57,080
+and these two problems in the purpose, so since the space problems really
+
+42
+00:01:57,080 --> 00:02:00,332
+are being a little bit too picky, we'll just say there's only one problem.
+
+43
+00:02:00,332 --> 00:02:01,290
+We'll give this a fair.
+
+44
+00:02:01,290 --> 00:02:05,840
+But you might have also given in a poor in terms of design completeness.
+
+45
+00:02:05,840 --> 00:02:08,199
+Now let's look at internal quality.
+
+46
+00:02:08,199 --> 00:02:12,060
+Again, I use the recipe steps to drive me through the design step by step.
+
+47
+00:02:12,060 --> 00:02:14,430
+There is the signature.
+
+48
+00:02:14,430 --> 00:02:17,951
+And it is image, image to Boolean, which is what it should be.
+
+49
+00:02:17,951 --> 00:02:19,700
+Later on in the course, we'll see examples
+
+50
+00:02:19,700 --> 00:02:22,410
+where there are multiple signatures that could be correct.
+
+51
+00:02:22,410 --> 00:02:25,500
+But really, for this function, its image, image to Boolean.
+
+52
+00:02:25,500 --> 00:02:26,510
+It consumes two images.
+
+53
+00:02:26,510 --> 00:02:29,194
+It has to produce a yes/no answer, that's a Boolean.
+
+54
+00:02:29,194 --> 00:02:30,610
+The purpose is clear and succinct.
+
+55
+00:02:30,610 --> 00:02:32,700
+It tells me when it produces true.
+
+56
+00:02:32,700 --> 00:02:37,120
+It is very clear about that, otherwise it produces false.
+
+57
+00:02:37,120 --> 00:02:42,199
+Now let's look at the tests and whether they're sufficient.
+
+58
+00:02:42,199 --> 00:02:44,240
+And what I have to do now is look at the purpose.
+
+59
+00:02:44,240 --> 00:02:47,200
+I'm going to produce true if the first image is larger,
+
+60
+00:02:47,200 --> 00:02:50,730
+if the height and width are both larger than the second image.
+
+61
+00:02:50,730 --> 00:02:51,900
+So let's think about that.
+
+62
+00:02:51,900 --> 00:02:56,250
+This definition of larger requires comparing the height and width
+
+63
+00:02:56,250 --> 00:02:57,450
+independently.
+
+64
+00:02:57,450 --> 00:03:00,450
+So we can kind of build a little matrix here.
+
+65
+00:03:00,450 --> 00:03:04,520
+The height of image one could be less than image two.
+
+66
+00:03:04,520 --> 00:03:06,860
+Or the height of image one and two could be the same.
+
+67
+00:03:06,860 --> 00:03:11,920
+Or the height of image one could be greater than the height image two.
+
+68
+00:03:11,920 --> 00:03:14,444
+And then that same thing is true for the width.
+
+69
+00:03:14,444 --> 00:03:16,360
+So there's three possibilities for the height,
+
+70
+00:03:16,360 --> 00:03:18,520
+and three possibilities for the width.
+
+71
+00:03:18,520 --> 00:03:24,380
+And those vary independently, so there's nine total possible cases here.
+
+72
+00:03:24,380 --> 00:03:28,020
+This function needs nine tests in order to be sufficiently tested.
+
+73
+00:03:28,020 --> 00:03:30,880
+And here we only have five.
+
+74
+00:03:30,880 --> 00:03:32,630
+So that's an insufficient number of tests.
+
+75
+00:03:32,630 --> 00:03:34,713
+I don't have to even in some sense go through them
+
+76
+00:03:34,713 --> 00:03:36,320
+to know whether they're sufficient.
+
+77
+00:03:36,320 --> 00:03:38,010
+There can't be enough of them.
+
+78
+00:03:38,010 --> 00:03:41,500
+When I write tests for a function like this, the way
+
+79
+00:03:41,500 --> 00:03:44,870
+I would do it as I would use rectangle in all my tests.
+
+80
+00:03:44,870 --> 00:03:48,280
+Because that makes it really easy to vary the width and height.
+
+81
+00:03:48,280 --> 00:03:51,350
+So I would write my test so they look something more like this.
+
+82
+00:03:51,350 --> 00:03:54,140
+Now putting that aside, let's go on.
+
+83
+00:03:54,140 --> 00:03:56,130
+The function name is well chosen.
+
+84
+00:03:56,130 --> 00:03:58,230
+It follows the naming convention in this language,
+
+85
+00:03:58,230 --> 00:04:01,160
+that functions that produce a Boolean end with a question mark.
+
+86
+00:04:01,160 --> 00:04:03,760
+It separates words with a dash, which is the naming
+
+87
+00:04:03,760 --> 00:04:05,980
+convention we use in this language.
+
+88
+00:04:05,980 --> 00:04:09,470
+And larger dash image, I feel like that tells me
+
+89
+00:04:09,470 --> 00:04:12,100
+what this function is supposed to do.
+
+90
+00:04:12,100 --> 00:04:13,500
+The stub matches the signature.
+
+91
+00:04:13,500 --> 00:04:14,560
+It sends two parameters.
+
+92
+00:04:14,560 --> 00:04:16,070
+It produces a Boolean.
+
+93
+00:04:16,070 --> 00:04:18,200
+The template matches the signature.
+
+94
+00:04:18,200 --> 00:04:22,426
+It consumes two parameters, and its dot, dot, dot of the two parameters.
+
+95
+00:04:22,426 --> 00:04:23,550
+The function body is clear.
+
+96
+00:04:23,550 --> 00:04:28,160
+It's and of greater than the width of image one and two,
+
+97
+00:04:28,160 --> 00:04:32,700
+and greater than the height of image one and image two, so that's quite clear.
+
+98
+00:04:32,700 --> 00:04:36,740
+And when I run this program, all the tests pass.
+
+99
+00:04:36,740 --> 00:04:41,250
+And, because there's no black or orange highlighting on this, when I'm done
+
+100
+00:04:41,250 --> 00:04:44,470
+it means that the tests covered the entire program.
+
+101
+00:04:44,470 --> 00:04:46,750
+But remember, there weren't enough tests.
+
+102
+00:04:46,750 --> 00:04:49,070
+The tests that are there cover the whole program,
+
+103
+00:04:49,070 --> 00:04:50,460
+but there weren't enough of them.
+
+104
+00:04:50,460 --> 00:04:52,970
+So wrapping up an image quality, everything
+
+105
+00:04:52,970 --> 00:04:56,040
+is great except for an insufficient number of tests.
+
+106
+00:04:56,040 --> 00:04:59,694
+So we're going to score this as good on internal quality.
+
+107
+00:04:59,694 --> 00:05:02,110
+Finally, does this function satisfy the problem statement?
+
+108
+00:05:02,110 --> 00:05:03,390
+Well, it really does.
+
+109
+00:05:03,390 --> 00:05:06,100
+It determines whether one image is larger than another.
+
+110
+00:05:06,100 --> 00:05:08,500
+It has a very clear definition of what that means.
+
+111
+00:05:08,500 --> 00:05:10,860
+So it resolved the ambiguity that so many of you
+
+112
+00:05:10,860 --> 00:05:12,690
+tried to ask about on the forums.
+
+113
+00:05:12,690 --> 00:05:17,030
+They did it here by using the examples to help them surface the ambiguity,
+
+114
+00:05:17,030 --> 00:05:20,570
+and making very clear in the purpose what was going to happen here.
+
+115
+00:05:20,570 --> 00:05:24,110
+So we're going to score this as good on satisfying the problem statement.
+
+116
+00:05:24,110 --> 00:05:27,000
+So, all and all, this is quite a good solution.
+
+117
+00:05:27,000 --> 00:05:30,390
+It's good on commit ready, it's fair on completeness,
+
+118
+00:05:30,390 --> 00:05:34,840
+it's good on internal quality, and it's good on satisfying the problem
+
+119
+00:05:34,840 --> 00:05:35,500
+statement.
+
+120
+00:05:35,500 --> 00:05:38,880
+If this was your solution, I would feel very, very happy with it.
+
+121
+00:05:38,880 --> 00:05:41,370
+We were pretty picky on design completeness,
+
+122
+00:05:41,370 --> 00:05:44,120
+because of those spaces and that comma.
+
+123
+00:05:44,120 --> 00:05:47,950
+So I wouldn't feel too bad about that, if this is your solution.
+
+124
+00:05:47,950 --> 00:05:49,440
+This is a really good job.
+
+125
+00:05:49,440 --> 00:05:52,230
+Here's the second submission that we want to look at.
+
+126
+00:05:52,230 --> 00:05:54,271
+And again, we'll start with commit ready.
+
+127
+00:05:54,271 --> 00:05:54,770
+Let's see.
+
+128
+00:05:54,770 --> 00:05:58,820
+Is this file neat and tidy, and is all the commenting proper?
+
+129
+00:05:58,820 --> 00:06:01,350
+Minor detail here which we haven't really talked about yet.
+
+130
+00:06:01,350 --> 00:06:04,950
+But in our design guidelines, we use two semicolons
+
+131
+00:06:04,950 --> 00:06:08,430
+for things that are kind of a permanent part of the file.
+
+132
+00:06:08,430 --> 00:06:12,769
+So these really should be two semicolon comments right here.
+
+133
+00:06:12,769 --> 00:06:14,560
+Otherwise, there's a signature and purpose.
+
+134
+00:06:14,560 --> 00:06:15,476
+They're commented out.
+
+135
+00:06:15,476 --> 00:06:17,510
+The check expects are not commented out.
+
+136
+00:06:17,510 --> 00:06:20,070
+The stub and template are commented out.
+
+137
+00:06:20,070 --> 00:06:22,200
+And there's the function definition.
+
+138
+00:06:22,200 --> 00:06:25,470
+It's got this note here in the middle of it, which
+
+139
+00:06:25,470 --> 00:06:27,860
+is sort of scratch work left behind.
+
+140
+00:06:27,860 --> 00:06:33,040
+So this is a very good start, as the person says they got stuck.
+
+141
+00:06:33,040 --> 00:06:34,770
+We'll give it a fair on commit ready.
+
+142
+00:06:34,770 --> 00:06:39,220
+So even though isn't finished, it's getting points on commit ready.
+
+143
+00:06:39,220 --> 00:06:41,870
+And you'll see as we go on that it will get more points.
+
+144
+00:06:41,870 --> 00:06:44,070
+Let's talk about design completeness.
+
+145
+00:06:44,070 --> 00:06:46,840
+We'll put up the HTDF elements.
+
+146
+00:06:46,840 --> 00:06:48,350
+And here we go.
+
+147
+00:06:48,350 --> 00:06:50,400
+There is the signature.
+
+148
+00:06:50,400 --> 00:06:52,460
+There's the purpose.
+
+149
+00:06:52,460 --> 00:06:54,950
+There's the check expects.
+
+150
+00:06:54,950 --> 00:06:57,350
+There's a commented out stud, a commented out template,
+
+151
+00:06:57,350 --> 00:06:58,870
+and a function definition.
+
+152
+00:06:58,870 --> 00:07:03,270
+But we also need these things to be well formed.
+
+153
+00:07:03,270 --> 00:07:05,250
+So let's try this.
+
+154
+00:07:05,250 --> 00:07:07,060
+We know this isn't well formed.
+
+155
+00:07:07,060 --> 00:07:09,920
+And in fact, it's so badly formed that I have commented out
+
+156
+00:07:09,920 --> 00:07:13,780
+to test whether other things are well formed.
+
+157
+00:07:13,780 --> 00:07:15,590
+Let's try to run.
+
+158
+00:07:15,590 --> 00:07:18,570
+Since that's not there, let's put the stub back,
+
+159
+00:07:18,570 --> 00:07:21,610
+and check whether the check expects are well formed.
+
+160
+00:07:21,610 --> 00:07:24,510
+This is how you can check whether the check expects are well formed.
+
+161
+00:07:24,510 --> 00:07:27,620
+You just uncomment the stub and run.
+
+162
+00:07:27,620 --> 00:07:30,530
+And we've got a problem here.
+
+163
+00:07:30,530 --> 00:07:33,515
+Circle is getting too many arguments.
+
+164
+00:07:33,515 --> 00:07:35,730
+Yes, circle only wants a radius.
+
+165
+00:07:35,730 --> 00:07:36,825
+So I can fix that.
+
+166
+00:07:36,825 --> 00:07:41,190
+
+
+167
+00:07:41,190 --> 00:07:44,020
+And, let's see, we've got another problem here.
+
+168
+00:07:44,020 --> 00:07:49,730
+Greater than got an image as its first argument.
+
+169
+00:07:49,730 --> 00:07:50,381
+Right there.
+
+170
+00:07:50,381 --> 00:07:50,880
+Oh, yeah.
+
+171
+00:07:50,880 --> 00:07:56,020
+Sure, the first argument to greater than is rectangle.
+
+172
+00:07:56,020 --> 00:07:59,460
+Oh, we're calling our function with a call to greater than instead of
+
+173
+00:07:59,460 --> 00:08:01,280
+with two images.
+
+174
+00:08:01,280 --> 00:08:03,510
+This probably should be something like this.
+
+175
+00:08:03,510 --> 00:08:06,130
+
+
+176
+00:08:06,130 --> 00:08:09,600
+What I'm trying to show you here's something really important.
+
+177
+00:08:09,600 --> 00:08:14,490
+This person was following the recipe, and that's a pretty good.
+
+178
+00:08:14,490 --> 00:08:18,190
+Except, they didn't really completely follow the recipe.
+
+179
+00:08:18,190 --> 00:08:21,150
+They wrote examples, and they wrote a stub,
+
+180
+00:08:21,150 --> 00:08:24,400
+but they never ran the examples against just the stub.
+
+181
+00:08:24,400 --> 00:08:28,960
+And if they had done that, they would have fixed this call to larger here
+
+182
+00:08:28,960 --> 00:08:30,160
+to look like that.
+
+183
+00:08:30,160 --> 00:08:34,960
+They then would have realized that the stub was missing a parameter.
+
+184
+00:08:34,960 --> 00:08:36,679
+It needs two parameters.
+
+185
+00:08:36,679 --> 00:08:40,730
+And lots of other things would have gone better from that point forward.
+
+186
+00:08:40,730 --> 00:08:43,850
+So an important step of the recipe, the reason we write the stub,
+
+187
+00:08:43,850 --> 00:08:47,460
+is so that you can run the tests with just the stub.
+
+188
+00:08:47,460 --> 00:08:50,530
+Let me go through the rest of this a bit more quickly now.
+
+189
+00:08:50,530 --> 00:08:54,220
+There's enough problems here with the well formedness.
+
+190
+00:08:54,220 --> 00:08:57,235
+I'll just back it out to where it started.
+
+191
+00:08:57,235 --> 00:08:59,820
+
+
+192
+00:08:59,820 --> 00:09:04,520
+There's enough problems here in terms of the well formedness in the design.
+
+193
+00:09:04,520 --> 00:09:07,560
+That will get a poor here on design completeness.
+
+194
+00:09:07,560 --> 00:09:10,942
+In terms of internal quality, let's see, the signature, well the signature
+
+195
+00:09:10,942 --> 00:09:13,150
+is not correct because it doesn't consume two images.
+
+196
+00:09:13,150 --> 00:09:15,160
+The purpose is clear and succinct.
+
+197
+00:09:15,160 --> 00:09:17,485
+
+
+198
+00:09:17,485 --> 00:09:19,960
+The examples, it's hard with the examples of say
+
+199
+00:09:19,960 --> 00:09:23,410
+whether they test the function because they're not well formed.
+
+200
+00:09:23,410 --> 00:09:27,870
+But if we kind of pretend they're a bit well formed, [? 3 ?] by 3
+
+201
+00:09:27,870 --> 00:09:30,650
+is bigger than a circle of size 1.
+
+202
+00:09:30,650 --> 00:09:34,400
+3 by 3, the problem is that 9 is the radius, not the diameter.
+
+203
+00:09:34,400 --> 00:09:38,600
+So, you know, this is bigger than that.
+
+204
+00:09:38,600 --> 00:09:39,890
+This is smaller than that.
+
+205
+00:09:39,890 --> 00:09:41,450
+And this is smaller than that.
+
+206
+00:09:41,450 --> 00:09:44,360
+So there isn't the boundary case, the middle case,
+
+207
+00:09:44,360 --> 00:09:47,330
+where they're the equal that's not checked.
+
+208
+00:09:47,330 --> 00:09:49,650
+So the tests aren't really quite sufficient,
+
+209
+00:09:49,650 --> 00:09:53,460
+and of course, the function definition itself is incomplete.
+
+210
+00:09:53,460 --> 00:09:57,870
+So we end up at poor for internal quality.
+
+211
+00:09:57,870 --> 00:10:00,434
+And does this design satisfy the problem statement?
+
+212
+00:10:00,434 --> 00:10:02,350
+Well there's kind of a rule that we use, which
+
+213
+00:10:02,350 --> 00:10:06,770
+is you don't lose points twice for the same thing.
+
+214
+00:10:06,770 --> 00:10:10,510
+So this kind of does satisfy the problem statement,
+
+215
+00:10:10,510 --> 00:10:13,610
+but it doesn't resolve the ambiguity about what larger means.
+
+216
+00:10:13,610 --> 00:10:16,890
+So we'll give this a fair on satisfying the problem statement.
+
+217
+00:10:16,890 --> 00:10:22,820
+The moral of the story here is following the recipe gets points in the rubric.
+
+218
+00:10:22,820 --> 00:10:24,570
+But much more important than that, follow
+
+219
+00:10:24,570 --> 00:10:26,970
+the recipe helps you make progress.
+
+220
+00:10:26,970 --> 00:10:28,840
+And you've really got to follow it.
+
+221
+00:10:28,840 --> 00:10:33,500
+You really got to do things like run the check expects against just the stub.
+
+222
+00:10:33,500 --> 00:10:37,940
+Because when you do that, you find problems that you fix them right then
+
+223
+00:10:37,940 --> 00:10:41,690
+and it gets you back on the tracks, in order to get to a complete design.
+
+224
+00:10:41,690 --> 00:10:44,800
+So if this is your design, this is a really good start,
+
+225
+00:10:44,800 --> 00:10:47,670
+but trust the recipe a little bit more and you'll
+
+226
+00:10:47,670 --> 00:10:50,790
+get all the way their next time.
+
+227
+00:10:50,790 --> 00:10:53,770
+And this is last one we'll look at for this week.
+
+228
+00:10:53,770 --> 00:10:57,710
+And I think you can tell almost right away that this is bad.
+
+229
+00:10:57,710 --> 00:10:59,730
+I mean, it's from the dark side of the force.
+
+230
+00:10:59,730 --> 00:11:01,570
+It's just, sorry.
+
+231
+00:11:01,570 --> 00:11:05,190
+We can't ask ourselves questions about whether the design is complete,
+
+232
+00:11:05,190 --> 00:11:08,470
+or in some sense we can, but there's no signature, no purpose,
+
+233
+00:11:08,470 --> 00:11:10,899
+no check expects, no stub.
+
+234
+00:11:10,899 --> 00:11:12,690
+There's just kind of a function definition.
+
+235
+00:11:12,690 --> 00:11:13,940
+And let me show you something.
+
+236
+00:11:13,940 --> 00:11:16,750
+If I try to run this, it's not well formed.
+
+237
+00:11:16,750 --> 00:11:21,450
+There's a semicolon missing here probably from the end somewhere.
+
+238
+00:11:21,450 --> 00:11:23,210
+So this file never ran.
+
+239
+00:11:23,210 --> 00:11:25,890
+And part of why there was no motivation to run it was there
+
+240
+00:11:25,890 --> 00:11:27,470
+was no test for it to run.
+
+241
+00:11:27,470 --> 00:11:34,690
+So if we do put up our criteria, I guess it's OK on commit ready.
+
+242
+00:11:34,690 --> 00:11:38,270
+But it doesn't do very well on anything other than that.
+
+243
+00:11:38,270 --> 00:11:39,570
+It's not complete.
+
+244
+00:11:39,570 --> 00:11:43,820
+Most of the recipe elements aren't there, so they can't have high quality.
+
+245
+00:11:43,820 --> 00:11:45,030
+The code doesn't run.
+
+246
+00:11:45,030 --> 00:11:47,530
+And I don't know whether it satisfies the problem statement,
+
+247
+00:11:47,530 --> 00:11:49,488
+or not, because there's no purpose or anything.
+
+248
+00:11:49,488 --> 00:11:52,299
+Really, really, really, really, really, really, really, this
+
+249
+00:11:52,299 --> 00:11:54,340
+is not the way we want to program in this course.
+
+250
+00:11:54,340 --> 00:11:57,900
+This is actually pretty close to the right function definition,
+
+251
+00:11:57,900 --> 00:12:00,560
+but it's not the way we want to program in this course.
+
+252
+00:12:00,560 --> 00:12:01,130
+OK?
+
+253
+00:12:01,130 --> 00:12:04,580
+So this, which in some sense has a better function
+
+254
+00:12:04,580 --> 00:12:08,470
+definition than the previous submission we saw,
+
+255
+00:12:08,470 --> 00:12:10,880
+is actually going to come away with many fewer points.
+
+256
+00:12:10,880 --> 00:12:12,800
+Follow the recipe.
+
+257
+00:12:12,800 --> 00:12:15,440
+It is the rule in this class.
+
+258
+00:12:15,440 --> 00:12:19,220
+So what you need to do now is take your solution, take the rubric,
+
+259
+00:12:19,220 --> 00:12:23,460
+take this video, and do a self-assessment of your solution
+
+260
+00:12:23,460 --> 00:12:26,020
+according to the rubric.
+
+261
+00:12:26,020 --> 00:12:30,060
+Obviously, you're free to improve your solution
+
+262
+00:12:30,060 --> 00:12:31,830
+before you do the assessment of it.
+
+263
+00:12:31,830 --> 00:12:33,830
+But if you're going to do that, let me encourage
+
+264
+00:12:33,830 --> 00:12:37,570
+you to first do the assessment, then improve it, then do the re-assessment.
+
+265
+00:12:37,570 --> 00:12:40,500
+You could submit the higher of the two scores, that's fine.
+
+266
+00:12:40,500 --> 00:12:43,240
+But really take the trouble to do the assessment
+
+267
+00:12:43,240 --> 00:12:45,260
+and figure out how well you did.
+
+268
+00:12:45,260 --> 00:12:50,300
+Because as the problems get harder, if you're not following the recipe well,
+
+269
+00:12:50,300 --> 00:12:53,060
+you're going to have a harder and harder time getting there.
+

@@ -1,0 +1,360 @@
+0
+00:00:00,000 --> 00:00:04,574
+
+
+1
+00:00:04,574 --> 00:00:06,990
+GREGOR KICZALES: So far we've seen several different types
+
+2
+00:00:06,990 --> 00:00:12,660
+of data-- primitive, interval, enumeration, itemization.
+
+3
+00:00:12,660 --> 00:00:15,060
+But all of them have been what's called atomic.
+
+4
+00:00:15,060 --> 00:00:21,231
+In each case a single data value really consists of just one value.
+
+5
+00:00:21,231 --> 00:00:23,480
+But lots of times we want to represent different kinds
+
+6
+00:00:23,480 --> 00:00:27,200
+of information-- information where two or more values naturally
+
+7
+00:00:27,200 --> 00:00:29,340
+belong together.
+
+8
+00:00:29,340 --> 00:00:32,500
+So for example, we might want to represent the xy position
+
+9
+00:00:32,500 --> 00:00:34,950
+of an object moving on the screen.
+
+10
+00:00:34,950 --> 00:00:39,750
+Or you might want to represent the first and last name of a single person.
+
+11
+00:00:39,750 --> 00:00:44,590
+We might want to represent the name, supervisor, and salary of an employee.
+
+12
+00:00:44,590 --> 00:00:48,570
+In all those cases there's two or more pieces of information
+
+13
+00:00:48,570 --> 00:00:50,190
+that naturally belong together.
+
+14
+00:00:50,190 --> 00:00:53,740
+To do that we're going to need compound data.
+
+15
+00:00:53,740 --> 00:00:59,550
+And we're going to cover compound data in three videos in a now-familiar form.
+
+16
+00:00:59,550 --> 00:01:03,860
+In this video we'll learn a basic mechanism called define-struct that
+
+17
+00:01:03,860 --> 00:01:07,060
+allows us to create compound values.
+
+18
+00:01:07,060 --> 00:01:11,530
+In the next video we'll learn how to update the how to design data
+
+19
+00:01:11,530 --> 00:01:14,180
+recipe for compound data.
+
+20
+00:01:14,180 --> 00:01:16,830
+And in the third video we'll see that the
+
+21
+00:01:16,830 --> 00:01:21,990
+how to design worlds recipe works pretty much unchanged for compound data.
+
+22
+00:01:21,990 --> 00:01:25,500
+And we'll make our most elaborate world program yet.
+
+23
+00:01:25,500 --> 00:01:30,550
+What we're learning is a new kind of definition called define-struct.
+
+24
+00:01:30,550 --> 00:01:33,380
+So here I'm going to define a struct, or a structure,
+
+25
+00:01:33,380 --> 00:01:38,270
+and I'm just going to call this one pos, as an abbreviation for position.
+
+26
+00:01:38,270 --> 00:01:40,760
+So that's the structure name.
+
+27
+00:01:40,760 --> 00:01:43,140
+And what comes next is something called the field names.
+
+28
+00:01:43,140 --> 00:01:47,950
+In this particular structure, I'll say that the fields are x and y.
+
+29
+00:01:47,950 --> 00:01:51,100
+So you can see I'm making a structure that's going
+
+30
+00:01:51,100 --> 00:01:55,810
+to help me represent xy positions.
+
+31
+00:01:55,810 --> 00:01:58,200
+Now when I write that definition, if I run it,
+
+32
+00:01:58,200 --> 00:02:00,550
+I don't get any value back because define-struct
+
+33
+00:02:00,550 --> 00:02:05,030
+is a definition just like the defines we've seen so far functioning
+
+34
+00:02:05,030 --> 00:02:06,690
+constant definitions.
+
+35
+00:02:06,690 --> 00:02:08,050
+It doesn't produce a value.
+
+36
+00:02:08,050 --> 00:02:10,430
+It just declares definitions.
+
+37
+00:02:10,430 --> 00:02:15,160
+In this case it declares four definitions.
+
+38
+00:02:15,160 --> 00:02:19,230
+The first one is a thing called a constructor, and it works like this.
+
+39
+00:02:19,230 --> 00:02:25,790
+I can say make-pos of 3 and 6.
+
+40
+00:02:25,790 --> 00:02:28,160
+And what that does is it produces a position
+
+41
+00:02:28,160 --> 00:02:33,470
+structure for which the value of the x field is 3 and the value of the y field
+
+42
+00:02:33,470 --> 00:02:35,462
+is 6.
+
+43
+00:02:35,462 --> 00:02:37,420
+That's an ordinary value, so I can do something
+
+44
+00:02:37,420 --> 00:02:39,620
+like make it be the value of a constant like P1.
+
+45
+00:02:39,620 --> 00:02:42,280
+
+
+46
+00:02:42,280 --> 00:02:45,210
+And if I run that, now P1 is a constant, and if I go down here
+
+47
+00:02:45,210 --> 00:02:49,000
+and I just look at P1, DrRacket is going to show it to me.
+
+48
+00:02:49,000 --> 00:02:51,800
+Or I should say, the BSL language is going
+
+49
+00:02:51,800 --> 00:02:56,710
+to show it to me in the form of a call to the constructor-- make-pos 3 6,
+
+50
+00:02:56,710 --> 00:02:57,530
+in this case.
+
+51
+00:02:57,530 --> 00:03:01,370
+So that lets me put 3 and 6 together into a pos structure.
+
+52
+00:03:01,370 --> 00:03:03,157
+How do I then take them back apart?
+
+53
+00:03:03,157 --> 00:03:05,990
+Well before I show you that, let me just quickly do another example.
+
+54
+00:03:05,990 --> 00:03:10,790
+
+
+55
+00:03:10,790 --> 00:03:12,990
+And now I'll show you how they come back apart.
+
+56
+00:03:12,990 --> 00:03:15,750
+The way they come back apart is that this define-struct also
+
+57
+00:03:15,750 --> 00:03:18,560
+defined two selectors.
+
+58
+00:03:18,560 --> 00:03:21,270
+One of the selectors is called pos-x.
+
+59
+00:03:21,270 --> 00:03:27,690
+And if I say pos-x of P1, then-- well, I get 3.
+
+60
+00:03:27,690 --> 00:03:35,010
+Because P1 is the make-pos 3 6, and so the x field of that is 3.
+
+61
+00:03:35,010 --> 00:03:45,340
+So pos-x of P1 is 3, and unsurprisingly, pos-y of P2 is 8.
+
+62
+00:03:45,340 --> 00:03:50,620
+So this produces 3, and this produces 8.
+
+63
+00:03:50,620 --> 00:03:54,950
+So make-pos is the constructor, pos-x and pos-y are the selectors,
+
+64
+00:03:54,950 --> 00:03:57,370
+and there's one more function that define-struct defines
+
+65
+00:03:57,370 --> 00:04:00,666
+for me-- a thing called the predicate.
+
+66
+00:04:00,666 --> 00:04:04,820
+It in this case is called pos?
+
+67
+00:04:04,820 --> 00:04:06,110
+And if I say pos?
+
+68
+00:04:06,110 --> 00:04:10,500
+of P1, I get true.
+
+69
+00:04:10,500 --> 00:04:12,040
+And if I say pos?
+
+70
+00:04:12,040 --> 00:04:21,170
+of some value that isn't produced by make-pos, like hello,
+
+71
+00:04:21,170 --> 00:04:22,130
+that gives me false.
+
+72
+00:04:22,130 --> 00:04:27,430
+So this is true and that's false.
+
+73
+00:04:27,430 --> 00:04:32,330
+
+
+74
+00:04:32,330 --> 00:04:34,700
+So just to review quickly.
+
+75
+00:04:34,700 --> 00:04:39,860
+The way to form a define-struct is (define-struct some name,
+
+76
+00:04:39,860 --> 00:04:43,570
+which is going to be the name of the structure, a parenthesis,
+
+77
+00:04:43,570 --> 00:04:46,880
+and then some number of other names-- one or more--
+
+78
+00:04:46,880 --> 00:04:49,640
+that's the name of the fields.
+
+79
+00:04:49,640 --> 00:04:54,290
+That definition sets up a constructor which is always
+
+80
+00:04:54,290 --> 00:04:57,410
+called make dash the structure name.
+
+81
+00:04:57,410 --> 00:05:00,260
+It sets up as many selectors as there are
+
+82
+00:05:00,260 --> 00:05:05,630
+fields, which are always called the structure name dash the field name.
+
+83
+00:05:05,630 --> 00:05:09,110
+And it sets up a predicate which is always called structure name question
+
+84
+00:05:09,110 --> 00:05:10,610
+mark.
+
+85
+00:05:10,610 --> 00:05:13,750
+So that's the basic define-struct mechanism.
+
+86
+00:05:13,750 --> 00:05:17,460
+In the next video we're going to look at how to design compound data
+
+87
+00:05:17,460 --> 00:05:21,700
+definitions-- in other words, data definitions for compound data--
+
+88
+00:05:21,700 --> 00:05:25,276
+and they're going to use define-struct as a supporting mechanism.
+
+89
+00:05:25,276 --> 00:05:25,776
+
+

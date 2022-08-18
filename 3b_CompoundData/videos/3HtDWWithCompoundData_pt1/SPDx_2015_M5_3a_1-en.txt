@@ -1,0 +1,71 @@
+
+GREGOR KICZALES: I'm going to end the week with our most elaborate world
+program yet.
+What we saw earlier was that cats have a mind of their own.
+When they get to the edge of the box, they just keep walking off the screen.
+Cows, on the other hand, cows are a docile creature.
+When they get to the fence, they turn around and they go back the other way.
+So we're going to do a cow animation now.
+And you can kind of see the key way it's going to be different, right?
+A cat only has a position.
+It always goes the same direction.
+But a cow has two changing properties, its position and its direction.
+So this is going to be a compound data problem.
+It's going to be a how to design a world's problem with compound data.
+This is a long video.
+You may not want to watch it all at one sitting.
+But a world problem is a long problem, and compound data
+makes it a bit longer.
+And there's a couple other interesting points that happen here along the way.
+So I would encourage you to be sure to watch this whole video through.
+Again, a good thing to do might be to stop it every now and then
+and try to work a bit of it on your own getting ahead of the video.
+But don't do that when you get to the render cow
+function because there's a special thing going
+on there that we need to talk about.
+What I have open here in DrRacket is the starter file.
+We're also providing intermediate solutions
+at different points along the way of developing the whole solution.
+And as I said, I'll be dropping into different places in this as we go.
+So here's the problem statement worked out in a bit more detail.
+We're going to have a cow that walks back and forth across the screen,
+and when it gets to the edge it changes direction and goes back the other way.
+And we're giving you a couple nice images
+of cows, which we got from Brown.
+Of course, with any world program, the first step is to do an analysis.
+I have the analysis already worked out, and here it is.
+And mostly, it's like the analysis for the cat program.
+A lot of the constant information is the same-- the width, the height,
+the ctr-y, the background.
+One difference is here the cow has two images, the image where
+it's facing to the right and the image where it's facing to the left.
+So that's one difference.
+The most important difference is reflected in the center picture
+and also in the changing information, which
+is that here there are two changing information values associated
+with the cow, the cow's x-coordinate and the cow's direction and speed.
+We're going to call the direction speed dx for the change in x.
+So that is how we're going to label the velocity, which
+is the change in the position.
+Another difference shows up here in the third image,
+where I've made a detailed note to myself
+describing what's going to happen when the cow gets to the edge.
+So what I'm saying here is that if the cow center, cow x,
+tries to go past width or past 0, then we're going to reset it.
+So here the decision I'm making is that I'm
+going to let the cow get all the way up to the edge of the box,
+but not outside.
+The big-bang options are relatively straightforward.
+There's on-tick, to-draw, and on-key.
+So now I'm going to jump to the v0 solution.
+And in all of these solution files, you can see a list
+of kind of where each one is in it.
+You might choose not to read that so that you don't get too far ahead.
+What you might want to do now is try to do some of this
+yourself and then use these solution files to catch yourself up,
+or watch the video to catch yourself up, or follow along with me either way.
+So look, here's the constants, and the constants
+are relatively straightforward.
+There's the width, the height, the ctr-y.
+There's two cow images and the background.
+Nothing really new there.

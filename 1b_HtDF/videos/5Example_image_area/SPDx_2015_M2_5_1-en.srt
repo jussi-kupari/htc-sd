@@ -1,0 +1,404 @@
+0
+00:00:00,000 --> 00:00:04,374
+
+
+1
+00:00:04,374 --> 00:00:07,040
+GREGOR KICZALES: Here's another How to Design Functions problem.
+
+2
+00:00:07,040 --> 00:00:10,680
+And, again, it elaborates on the problem we saw before.
+
+3
+00:00:10,680 --> 00:00:13,420
+What I'm going to do in this problem is when I start out,
+
+4
+00:00:13,420 --> 00:00:16,070
+I'm not going to choose the best signature.
+
+5
+00:00:16,070 --> 00:00:18,120
+And then we'll fix it later.
+
+6
+00:00:18,120 --> 00:00:21,110
+And the reason I'm doing that is I want to illustrate to you that the
+
+7
+00:00:21,110 --> 00:00:24,520
+How to Design Functions recipe is not intended to be
+
+8
+00:00:24,520 --> 00:00:26,580
+what's called a waterfall process.
+
+9
+00:00:26,580 --> 00:00:29,650
+It's not intended to be something that you do the first step and then
+
+10
+00:00:29,650 --> 00:00:34,100
+the second step and then the third step and absolutely get each step right.
+
+11
+00:00:34,100 --> 00:00:37,210
+It happens pretty often that you go through the recipe
+
+12
+00:00:37,210 --> 00:00:39,880
+and you get to the third or fourth step and maybe you realize;
+
+13
+00:00:39,880 --> 00:00:41,950
+oh, the signature's not exactly right.
+
+14
+00:00:41,950 --> 00:00:44,280
+And you go back and fix it.
+
+15
+00:00:44,280 --> 00:00:47,280
+And sometimes what even happens is you skip a first step
+
+16
+00:00:47,280 --> 00:00:50,050
+to go to a later step just to get started.
+
+17
+00:00:50,050 --> 00:00:54,190
+A common example is you're not quite sure about the signature
+
+18
+00:00:54,190 --> 00:00:58,680
+so you go write some examples and then you come back and do the signature.
+
+19
+00:00:58,680 --> 00:01:01,350
+Now, what I don't want to do is give you carte blanche
+
+20
+00:01:01,350 --> 00:01:04,580
+to jump immediately to the function definition and do that;
+
+21
+00:01:04,580 --> 00:01:08,340
+that's not going to be what we're going to call systematic design.
+
+22
+00:01:08,340 --> 00:01:11,434
+But I also don't want you to feel like; gee, I just
+
+23
+00:01:11,434 --> 00:01:13,600
+don't know what the signature is but I'm not allowed
+
+24
+00:01:13,600 --> 00:01:16,160
+to do anything else until I write it.
+
+25
+00:01:16,160 --> 00:01:19,620
+There is some flexibility in following the steps of the process.
+
+26
+00:01:19,620 --> 00:01:24,644
+It's a structured process, but it's not a locked-in waterfall process.
+
+27
+00:01:24,644 --> 00:01:26,185
+So here we go, let's do this example.
+
+28
+00:01:26,185 --> 00:01:28,959
+
+
+29
+00:01:28,959 --> 00:01:31,250
+In this problem we're going to design a function called
+
+30
+00:01:31,250 --> 00:01:36,860
+image area that consumes an image and produces the area of that image.
+
+31
+00:01:36,860 --> 00:01:38,780
+And it says for area we just need to multiply
+
+32
+00:01:38,780 --> 00:01:41,570
+the image's width by its height.
+
+33
+00:01:41,570 --> 00:01:44,630
+So, let's see, this function consumes an image
+
+34
+00:01:44,630 --> 00:01:48,700
+and it produces the area of the image.
+
+35
+00:01:48,700 --> 00:01:51,460
+Now, you might think this should be number,
+
+36
+00:01:51,460 --> 00:01:53,729
+and that's actually going to turn out not to be right.
+
+37
+00:01:53,729 --> 00:01:56,020
+But I'm going to go ahead and pretend that I put number
+
+38
+00:01:56,020 --> 00:01:58,240
+for now because one of things I want to show
+
+39
+00:01:58,240 --> 00:02:01,270
+is that sometimes you realize part way through the process
+
+40
+00:02:01,270 --> 00:02:03,390
+that a piece of what you did before isn't right,
+
+41
+00:02:03,390 --> 00:02:06,270
+so I'm just going to put number for now.
+
+42
+00:02:06,270 --> 00:02:16,120
+I'm going to say produce image's width times height for area.
+
+43
+00:02:16,120 --> 00:02:20,440
+
+
+44
+00:02:20,440 --> 00:02:26,970
+Let's see, the stub is going to be define image area.
+
+45
+00:02:26,970 --> 00:02:33,560
+I like to abbreviate image to img, and a good dummy value
+
+46
+00:02:33,560 --> 00:02:36,710
+is 0 because it's a number.
+
+47
+00:02:36,710 --> 00:02:38,890
+Now, let's do some examples.
+
+48
+00:02:38,890 --> 00:02:45,720
+Check-expect image-area of let's say I have
+
+49
+00:02:45,720 --> 00:02:54,950
+a rectangle that's 2 wide and 3 high and then it's just red.
+
+50
+00:02:54,950 --> 00:02:57,120
+What's the area of that?
+
+51
+00:02:57,120 --> 00:02:58,980
+Well, the area of that is times 2 3.
+
+52
+00:02:58,980 --> 00:03:02,072
+
+
+53
+00:03:02,072 --> 00:03:04,030
+Let's run that test to see if it's well-formed.
+
+54
+00:03:04,030 --> 00:03:07,370
+
+
+55
+00:03:07,370 --> 00:03:10,380
+Uh-oh, rectangle is not defined.
+
+56
+00:03:10,380 --> 00:03:12,540
+Oh, that's because whenever we use image functions,
+
+57
+00:03:12,540 --> 00:03:16,030
+we need to tell DrRacket that we want to use the image function.
+
+58
+00:03:16,030 --> 00:03:18,620
+And I forgot to do that.
+
+59
+00:03:18,620 --> 00:03:24,086
+So we're going to say require 2htdp/image
+
+60
+00:03:24,086 --> 00:03:26,086
+This is a very common mistake and I made it here
+
+61
+00:03:26,086 --> 00:03:28,580
+on purpose so that you would see it happen,
+
+62
+00:03:28,580 --> 00:03:30,900
+you just forget to do the require.
+
+63
+00:03:30,900 --> 00:03:35,350
+Now that we've done the require, the test is actually running and failing,
+
+64
+00:03:35,350 --> 00:03:40,270
+but it's running so we're doing reasonably well.
+
+65
+00:03:40,270 --> 00:03:45,770
+Let's keep going here to find image-area So that's the stub,
+
+66
+00:03:45,770 --> 00:03:48,936
+we'll label it as that.
+
+67
+00:03:48,936 --> 00:03:54,711
+We'll do the template, which will be . . .
+
+68
+00:03:54,711 --> 00:03:55,210
+img.
+
+69
+00:03:55,210 --> 00:04:00,750
+
+
+70
+00:04:00,750 --> 00:04:02,980
+Now we'll make a copy of the template.
+
+71
+00:04:02,980 --> 00:04:09,700
+
+
+72
+00:04:09,700 --> 00:04:17,640
+We'll comment out the original template and label it.
+
+73
+00:04:17,640 --> 00:04:22,140
+And now what's this going to be, it's got to be the image's width.
+
+74
+00:04:22,140 --> 00:04:26,050
+We're going to use image twice because we need its width and its height.
+
+75
+00:04:26,050 --> 00:04:28,825
+So we're going to use image twice.
+
+76
+00:04:28,825 --> 00:04:39,022
+We're going to say image-width of the image and image-height of the image,
+
+77
+00:04:39,022 --> 00:04:40,980
+and we're going to multiply those two together.
+
+78
+00:04:40,980 --> 00:04:43,580
+
+
+79
+00:04:43,580 --> 00:04:45,846
+Let's run that.
+
+80
+00:04:45,846 --> 00:04:47,013
+And the test passed.
+
+81
+00:04:47,013 --> 00:04:50,480
+
+
+82
+00:04:50,480 --> 00:04:53,250
+But now we might realize this interesting thing,
+
+83
+00:04:53,250 --> 00:04:58,290
+which is that images are always sized in pixels.
+
+84
+00:04:58,290 --> 00:05:03,600
+And pixels are always a natural number; 0, 1, 2, 3, 4, 5, something like that.
+
+85
+00:05:03,600 --> 00:05:07,580
+You can't have 3.2 pixels, that's not how pixels are.
+
+86
+00:05:07,580 --> 00:05:10,330
+So if the width is always going to be a natural
+
+87
+00:05:10,330 --> 00:05:14,840
+and the height is always going to be a natural and you multiply those two,
+
+88
+00:05:14,840 --> 00:05:19,340
+this actually could be natural instead of number.
+
+89
+00:05:19,340 --> 00:05:22,320
+And one of things we're going to talk about a lot in the course
+
+90
+00:05:22,320 --> 00:05:26,150
+is that when you write the signature for a function,
+
+91
+00:05:26,150 --> 00:05:31,520
+you always want to use the most specific types that are correct.
+
+92
+00:05:31,520 --> 00:05:34,630
+Turns out it makes it much easier to think about using the function
+
+93
+00:05:34,630 --> 00:05:39,892
+and to debug programs if you use the most specific correct type.
+
+94
+00:05:39,892 --> 00:05:41,600
+So, in this case, this function was never
+
+95
+00:05:41,600 --> 00:05:45,290
+going to produce a floating point number, like 3.2.
+
+96
+00:05:45,290 --> 00:05:48,100
+It's always going to produce a natural, so we take the trouble
+
+97
+00:05:48,100 --> 00:05:50,440
+to make the signatures say that.
+
+98
+00:05:50,440 --> 00:05:53,460
+I'll save that file and run it one last time.
+
+99
+00:05:53,460 --> 00:05:55,740
+The test passed.
+
+100
+00:05:55,740 --> 00:05:57,471
+
+

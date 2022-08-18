@@ -1,0 +1,39 @@
+
+GREGOR KICZALES: We've covered quite a lot so far.
+You've learned about different forms of primitive data
+like numbers and strings and images.
+You've learned about expressions like if and cond,
+how to define functions and constants, the rules for evaluating BSL code.
+We've also learned how to design functions recipe,
+and how to design data recipe, and how to use the data-driven template rules.
+Really quite a lot.
+But you've had to be a certain kind of patient
+because the programs we've written so far have been kind of boring.
+A function that consumes a seat number and tells you whether it's on the aisle
+might be useful as part of a big system, but the function itself
+isn't very exciting.
+That's going to change this week.
+This week we're going to start to get into interactive programs.
+So I mean things like animations, and games,
+and the kind of desktop applications that you might use every day.
+Now, I want to stress something about the way our programs are going to look.
+Here, for example, is a fireworks program we might design.
+And what I'm doing is I'm shooting off a bunch of fireworks,
+and they rise into the sky and explode beautifully like that.
+Now, the graphic quality there isn't fantastic.
+It's not Harry Potter Deathly Hallows fantastic.
+That's the way our programs are going to look this week because graphic quality
+is something that requires a great deal of math sophistication
+and a great deal of programming power.
+So we're going to have simple graphics.
+But the basic structure of our programs, the basic structure
+of our animations and games and desktop applications,
+is really going to be like the same structure
+of the more sophisticated versions.
+So by the end of this week, you'll be able to design interactive programs,
+and I think you'll also have a better understanding of how
+some of the programs that you use every day work.
+In fact, project 1, which you'll start at the end of this week,
+is to complete the design of a simple one-line text editor,
+kind of like the text editor you use on your phone
+when you want to send a text message.

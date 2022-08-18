@@ -1,0 +1,209 @@
+GREGOR KICZALES: Here's the rubric for this week.
+We'll start with criteria 1 and 2 from the rubric.
+What I did was I copied a solution out of edX
+and pasted it into DrRacket and typed Command-I on the Macintosh
+to fix the indentation.
+That would be Control-I on a Windows machine.
+Now, I'll just go through.
+The first question is, "Is the program safe?"
+It needs to be set to Beginning Student.
+Now, you can't really assess that because when you copied it out of edX,
+you don't know what the file was set, but you yourself
+should know that the file has to be in Beginning Student.
+"Does it have any requires?"
+For checking that, in order to really check it properly, what I'm going to do
+is, I'm going to search to see if there's
+a require anywhere in the program.
+You can type Command-F, you could type Control-F on Windows,
+and look for certain require, and I don't find any.
+So this program meets the safety criteria, and it is acceptable.
+Now, let's abort this search and go on to whether it is commit ready.
+Is it commit ready?
+The file needs to be neat and tidy.
+Let's see, that looks pretty neat and tidy to me.
+I don't see stuff that's not supposed to be here.
+I don't see a bunch of commented-out code.
+I don't see notes to your friends.
+It all looks pretty good this way.
+I'm happy with that.
+The thing about the indentation should conform to course conventions. , ,
+Again, if you've copied it out a bracket, you can't test that,
+but you could test your original file, and it should.
+Basically, typing Command-I at this point shouldn't move anything.
+So that gets us to a good for commit ready.
+This program is off to a great start.
+I'm now going to go into parts 3 and 4 of the rubric having
+to do with whether the designs are complete and high quality.
+In order to do that, what I'm going to do is focus here on just problem 4.
+That's called spot grading where you just look at part of it.
+And that's all you're going to have to do for your assessment.
+You probably want to do the assessment for your whole design,
+just for your own edification, but for the self-assessment part that you type
+into the system, just do problem 4.
+First, we need to do completeness and well-formedness.
+
+A data definition has all of these parts.
+There's the type comment.
+There is the interpretation.
+There's examples.
+They all are there, and they look well-formed.
+Here's the template.
+There's the template rules used.
+But if you notice carefully here something, watch this.
+What if I uncomment the template and now run the file.
+Now I'm going to get an error that this n is not
+defined because that n should be an h.
+This template is not well-formed.
+It never ran.
+Somebody typed # ; in front of it before they ever run it.
+You gotta run it first to make sure it's well-formed.
+Let's try it now.
+That's better.
+We'll comment it out.
+
+The whole data definition is complete and well-formed
+except for the template, which has a small problem with it.
+When we look at the function design, signature
+looks good, well-formed purpose, examples, there's the stub,
+there's the template, and there is increased health.
+You know this template could actually just be took template from health.
+We'd rather do it that way.
+You know, we won't ding that.
+Let's just say there's one problem in the completeness
+and well-formedness of the design, which is just the template.
+So we will give this a fair for completeness.
+Now let's go on to correctness.
+Again, we need to check the correctness of all the different parts of the two
+designs.
+So working through here in terms of the type comment,
+correctness of a type comment is "Does it
+capture the information it's supposed to?"
+If we go look at the problem statement, it says the only thing
+that matters about their health is either they're dead,
+or if they're alive, they have zero or more extra lives.
+So this is clearly a one-of.
+It's a one-of of a distinct.
+They're dead or an interval of integers or natural numbers.
+So let's see, does the type comment do that?
+Yes, it's a one-of.
+There is the distinct dead, and natural is good for the interval,
+so that's great.
+That's correct.
+There are other options that could be correct.
+You could use false for the dead or you could use not alive for the dead.
+There's various different ways that you could do this, all of which
+would be fine as long as you're capturing that information.
+The interpretation is good.
+It tells me what that means.
+It tells me what the number means, and in any itemization,
+you want examples of all the cases, and we've got that here.
+So that's good and correct.
+There's the template, and the template rules used.
+Now is there's another little problem with this template, which
+is that the order of the subclasses here is not
+the same order as in the template, and we really
+would like those to be in the same order.
+Consistency is the hobgoblin of little minds.
+Maybe I have a little mind, but I like to have them be in the same order.
+I'm going to switch this to string to make that be the first case.
+I'll switch these two here in the rules used.
+
+I'll change those curlies to square brackets.
+
+You might call all of those details, but there's
+one of these that isn't a detail.
+In the case of the distinct, then the question answer
+is just the three parens inside the three dots inside of parens.
+But in the case of the non-distinct, the question answer has to be that.
+That is a real problem with the way the template is built up.
+It's the only real problem.
+The other ones were kind of small, but we really
+do want them to be in the same order, please.
+So there we go.
+We've got a data definition which is mostly correct,
+but there's some problems with the template.
+Let's look at the function design.
+It consumes health and produces health.
+That's what it's supposed to do, so that's good.
+And increases the number of lives for the player with one,
+except when the player is already dead.
+I think I know what that means.
+That means if the player is alive, then it increases the number of lives.
+I could leave it that way.
+I could maybe improve it a little bit by just saying
+increases the number of lives if the player this is alive.
+That's a little bit cleaner, but the other was fine.
+I might put these tests in this order again so they match the type comment,
+but that truly is a detail.
+
+There's the stub.
+There is the template.
+There's this.
+Now I really want this to match the template that I improved.
+Let's take the template up here and redo it.
+
+We'll rename the function, and in the case where it's a string,
+it doesn't change the string.
+It produces dead every time, and otherwise it adds one to the health.
+That's the same as this but flipped around in the new order.
+We'll run it to check the tests.
+
+There was a problem with the template up here.
+Once we fix that, this down here had to change.
+We don't ding twice.
+
+We'll do a deduction because the template had a problem.
+We won't do a deduction here.
+We improve the grammar of this.
+That's not going to count.
+So this one problem here will give the quality here a good.
+Now, the final element of the rubric is "Does the design
+satisfy the problem requirements?"
+In some sense, we've already made this clear to ourselves.
+The data design does capture what it's supposed to capture.
+The health has the properties it needs to have.
+Because the interpretation and the type comment match up,
+the date design has done the thing that it's supposed to do.
+The function design is supposed to allow us
+to increase the lives of a character, but it should only
+do it if the character is not dead.
+That is what this function does, increases the number
+of lives that the player is alive.
+That's the same thing as saying they're not dead.
+The check expects clearly check that, so this design clearly
+satisfies the problem requirements in both the data definition
+and the function.
+So this gets a good for satisfying problem requirements.
+Now very quickly, let me just show you one other solution
+so you'll see some variation that could also be a valid solution.
+Here is another data definition for health.
+This one uses false.
+I already said that was a reasonable thing to do.
+I really want to look at the function here.
+Look, this function is going to take two arguments.
+It takes a health and the number of lives to add.
+So it adds not just one additional lives but any number of additional lives.
+We didn't explicitly say that you needed to do this,
+but we also didn't explicitly say that it only adds one.
+So this is a completely reasonable design for this function.
+The signature is correct for this alternative design.
+The purpose is correct for this alternative design.
+There are tests that test adding different number of lives.
+The tests are good.
+There's the stub.
+There should be a note here about the template, but other than that,
+this is a very high quality and correct solution to this slightly different
+problem statement.
+Totally good if you did this too, except you really
+should have had a template comment here.
+So that's it for this week's self-assessment video.
+You've seen how we apply the rubric to both a data
+design and a function design.
+You should do this now with your design.
+Remember, your design doesn't have to be exactly
+like what we showed in the video.
+You're applying the rubric in assessing whether the design is good.
+You could have a different design than ours and still be good.
+So there you go.
+Do the self-assessment of your work, and hopefully that
+will help you improve your ability to use the recipes to design.

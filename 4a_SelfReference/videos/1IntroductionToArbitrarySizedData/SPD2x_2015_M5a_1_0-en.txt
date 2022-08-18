@@ -1,0 +1,24 @@
+
+GREGOR KICZALES: So far we've done quite a lot.
+We looked at primitive data and primitive operations on that data.
+You learned the How to Design Functions recipe, and the
+How to Design Data recipe.
+And you also learned the How to Design Worlds recipe for designing world
+programs, like animations and games.
+Most recently, we looked at compound data
+and learned how to use that in world programs.
+But so far all of the data definitions we've worked with
+have been what's called fixed-size.
+And this week we're going to add to our repertoire,
+working with arbitrary sized data.
+And what do I mean by arbitrary sized data?
+I mean, the kind of data we use when we want to represent
+an unknown amount of information.
+Information that we don't know upfront how much there will be.
+So for example, if we want to represent all of someone's favorite hockey teams,
+or all the students in a course, we just don't know how many of those
+there will be upfront.
+And that's what we need arbitrary sized data for.
+So that's what we're going to work with this week.
+We'll look at how to do the data definitions.
+And we'll look at the effect that has on functions we design on that data.

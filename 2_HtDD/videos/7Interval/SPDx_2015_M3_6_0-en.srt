@@ -1,0 +1,532 @@
+0
+00:00:00,000 --> 00:00:04,012
+
+
+1
+00:00:04,012 --> 00:00:05,720
+GREGOR KICZALES: In this video, I'm going
+
+2
+00:00:05,720 --> 00:00:08,730
+to talk about the next form of data definition, which
+
+3
+00:00:08,730 --> 00:00:10,930
+is called an interval.
+
+4
+00:00:10,930 --> 00:00:13,380
+So this is really just an example of how to design
+
+5
+00:00:13,380 --> 00:00:16,450
+data and data-driven templates problem.
+
+6
+00:00:16,450 --> 00:00:19,440
+I've got the seat-num starter file open.
+
+7
+00:00:19,440 --> 00:00:23,730
+And because this is a How to Design Data problem, I'm going to put the How
+
+8
+00:00:23,730 --> 00:00:28,090
+to Design Data definition's recipe here, off to the right.
+
+9
+00:00:28,090 --> 00:00:31,220
+And over in my browser window, I've got the
+
+10
+00:00:31,220 --> 00:00:35,130
+How to Design Data recipe page open.
+
+11
+00:00:35,130 --> 00:00:36,350
+Back at the problem.
+
+12
+00:00:36,350 --> 00:00:39,730
+So imagine we're designing a program to manage ticket sales for a theater.
+
+13
+00:00:39,730 --> 00:00:42,980
+And we want to represent the seat number in a row.
+
+14
+00:00:42,980 --> 00:00:44,740
+And each row has 32 seats.
+
+15
+00:00:44,740 --> 00:00:47,785
+So it's a boring theater-- that's what this comment here means, that it's
+
+16
+00:00:47,785 --> 00:00:49,490
+a perfectly rectangular theater.
+
+17
+00:00:49,490 --> 00:00:52,020
+And we need to represent a seat number.
+
+18
+00:00:52,020 --> 00:00:54,950
+So if you think about that, a row looks like this.
+
+19
+00:00:54,950 --> 00:00:57,460
+And the seat number is going to be something like 1 or 2
+
+20
+00:00:57,460 --> 00:01:00,870
+or 3, all the way up to 32.
+
+21
+00:01:00,870 --> 00:01:04,860
+Since these are seat numbers and not indexes in a string,
+
+22
+00:01:04,860 --> 00:01:08,390
+let's use the normal kind of numbers that people like, where they start at 1
+
+23
+00:01:08,390 --> 00:01:09,650
+and go to 32.
+
+24
+00:01:09,650 --> 00:01:11,560
+So the question is, that's the information--
+
+25
+00:01:11,560 --> 00:01:17,380
+the information is numbers from 1 to 32 that are going to be seat numbers.
+
+26
+00:01:17,380 --> 00:01:19,110
+How are we going to represent that?
+
+27
+00:01:19,110 --> 00:01:22,230
+Well, if we go over to the How to Design Data web page-- and again,
+
+28
+00:01:22,230 --> 00:01:25,460
+this is a web page that you should read ahead of time.
+
+29
+00:01:25,460 --> 00:01:30,280
+I'm going to be using it in a mode where I already know how to use it.
+
+30
+00:01:30,280 --> 00:01:34,680
+But I'm going to scroll down to this table that says,
+
+31
+00:01:34,680 --> 00:01:40,790
+when the form of the information to be represented is atomic-- well,
+
+32
+00:01:40,790 --> 00:01:41,670
+this is atomic.
+
+33
+00:01:41,670 --> 00:01:44,350
+Seat numbers are going to be something like 1 or 2.
+
+34
+00:01:44,350 --> 00:01:45,687
+And that's atomic.
+
+35
+00:01:45,687 --> 00:01:48,020
+But I'm going to keep reading, because sometimes there's
+
+36
+00:01:48,020 --> 00:01:50,860
+something more specific.
+
+37
+00:01:50,860 --> 00:01:54,970
+And here it is-- when it's numbers within a certain range.
+
+38
+00:01:54,970 --> 00:01:56,670
+And that's exactly what this case is.
+
+39
+00:01:56,670 --> 00:02:00,930
+It's numbers like 1, 2, 3, all the way up to 32.
+
+40
+00:02:00,930 --> 00:02:03,510
+So it's numbers within a certain range.
+
+41
+00:02:03,510 --> 00:02:07,130
+And there's a kind of data definition for that called an interval.
+
+42
+00:02:07,130 --> 00:02:08,669
+So here we go to intervals.
+
+43
+00:02:08,669 --> 00:02:11,560
+And now an interval type comment looks something
+
+44
+00:02:11,560 --> 00:02:14,190
+like this-- there's a type name and then we're
+
+45
+00:02:14,190 --> 00:02:19,340
+going to say a kind of number and then a notation for talking about the range.
+
+46
+00:02:19,340 --> 00:02:21,900
+Let me jump back over here to DrRacket and do it.
+
+47
+00:02:21,900 --> 00:02:25,290
+And I'll talk about that notation as I go.
+
+48
+00:02:25,290 --> 00:02:25,920
+So let's see.
+
+49
+00:02:25,920 --> 00:02:30,710
+We're going to say something like, SeatNum is.
+
+50
+00:02:30,710 --> 00:02:40,160
+And then these are integers between 1 and 32.
+
+51
+00:02:40,160 --> 00:02:42,490
+And what's going on with these square brackets
+
+52
+00:02:42,490 --> 00:02:47,040
+is the square brackets mean inclusive.
+
+53
+00:02:47,040 --> 00:02:49,370
+So this means the integer's starting at 1, including
+
+54
+00:02:49,370 --> 00:02:54,520
+1, going up to 32, including 32.
+
+55
+00:02:54,520 --> 00:02:56,540
+Let me just show you some variations on this,
+
+56
+00:02:56,540 --> 00:02:59,700
+so you'll understand all of what we can say.
+
+57
+00:02:59,700 --> 00:03:02,980
+For one thing, this could be natural, because natural numbers
+
+58
+00:03:02,980 --> 00:03:05,780
+are integers that start at 0.
+
+59
+00:03:05,780 --> 00:03:10,130
+So I could say natural here-- NaturalNatural[1, 32], IntegerInteger[1, 32]--
+
+60
+00:03:10,130 --> 00:03:11,240
+they're the same.
+
+61
+00:03:11,240 --> 00:03:15,060
+But some other variations-- for example, if I said something like
+
+62
+00:03:15,060 --> 00:03:20,190
+NumberNumber[1, 32]-- well, that's going to be a lot more things,
+
+63
+00:03:20,190 --> 00:03:25,362
+because numbers include real numbers, like 1.3 and 1.4 and 1.5.
+
+64
+00:03:25,362 --> 00:03:27,070
+And we don't have that with seat numbers.
+
+65
+00:03:27,070 --> 00:03:30,200
+We really need naturals or integers here.
+
+66
+00:03:30,200 --> 00:03:39,710
+If I said Natural[1, 32), then that wouldn't include the 32,
+
+67
+00:03:39,710 --> 00:03:43,250
+because a round bracket means up-to but not including.
+
+68
+00:03:43,250 --> 00:03:47,966
+So square means inclusive and round means not inclusive.
+
+69
+00:03:47,966 --> 00:03:48,590
+So there we go.
+
+70
+00:03:48,590 --> 00:03:49,631
+There's our type comment.
+
+71
+00:03:49,631 --> 00:03:52,300
+
+
+72
+00:03:52,300 --> 00:03:55,160
+Now I've got to say, interpret this.
+
+73
+00:03:55,160 --> 00:03:56,630
+So what's the interpretation here?
+
+74
+00:03:56,630 --> 00:03:59,490
+
+
+75
+00:03:59,490 --> 00:04:01,340
+Well, let's see.
+
+76
+00:04:01,340 --> 00:04:06,040
+These are seat numbers in a row.
+
+77
+00:04:06,040 --> 00:04:08,990
+And I might know some more information about that.
+
+78
+00:04:08,990 --> 00:04:14,670
+In particular, what I might know is that 1 and 32 are aisle seats.
+
+79
+00:04:14,670 --> 00:04:17,700
+
+
+80
+00:04:17,700 --> 00:04:22,510
+Or I might know something else about the theater.
+
+81
+00:04:22,510 --> 00:04:24,300
+But anything that would help me understand
+
+82
+00:04:24,300 --> 00:04:28,340
+exactly what the numbers 1, 32, and all the numbers in between mean
+
+83
+00:04:28,340 --> 00:04:31,746
+is what I would put in the interpretation.
+
+84
+00:04:31,746 --> 00:04:32,995
+Now let me make some examples.
+
+85
+00:04:32,995 --> 00:04:36,110
+
+
+86
+00:04:36,110 --> 00:04:39,740
+I'll say seat number one and I'll just call that 1.
+
+87
+00:04:39,740 --> 00:04:44,500
+And seat number two might be 12.
+
+88
+00:04:44,500 --> 00:04:47,032
+And seat number three might be 32.
+
+89
+00:04:47,032 --> 00:04:49,740
+And the reason we're going to do multiple examples in this case--
+
+90
+00:04:49,740 --> 00:04:53,630
+sometimes it's nice to have examples that illustrate specific things.
+
+91
+00:04:53,630 --> 00:04:55,520
+So this might be an aisle.
+
+92
+00:04:55,520 --> 00:04:57,090
+And this is a middle.
+
+93
+00:04:57,090 --> 00:04:59,950
+
+
+94
+00:04:59,950 --> 00:05:03,070
+And this is an aisle, for example.
+
+95
+00:05:03,070 --> 00:05:05,160
+You always want to have at least one example.
+
+96
+00:05:05,160 --> 00:05:08,120
+And you should have other examples if they're illustrative.
+
+97
+00:05:08,120 --> 00:05:13,550
+And again, as I said when we were doing the CityName data definition,
+
+98
+00:05:13,550 --> 00:05:16,510
+as data definitions become richer, examples
+
+99
+00:05:16,510 --> 00:05:20,520
+will become more important and more useful.
+
+100
+00:05:20,520 --> 00:05:23,480
+So we've got the type comment, the interpretation, and the examples--
+
+101
+00:05:23,480 --> 00:05:26,180
+now we have to do the template.
+
+102
+00:05:26,180 --> 00:05:29,964
+So I'll start the template like this-- define fn-or-seat-num.
+
+103
+00:05:29,964 --> 00:05:35,670
+
+
+104
+00:05:35,670 --> 00:05:37,655
+And there's going to be some body there.
+
+105
+00:05:37,655 --> 00:05:39,780
+And I'll also start the template process like this,
+
+106
+00:05:39,780 --> 00:05:41,205
+by saying template rules used.
+
+107
+00:05:41,205 --> 00:05:46,045
+
+
+108
+00:05:46,045 --> 00:05:49,540
+And now I'm set to do the template.
+
+109
+00:05:49,540 --> 00:05:52,520
+I'll go back over here to the Data Definitions page.
+
+110
+00:05:52,520 --> 00:05:57,300
+I'll follow this link to the Data-driven Templates page.
+
+111
+00:05:57,300 --> 00:06:02,860
+And now I've got to look down and find this form of data-- an interval.
+
+112
+00:06:02,860 --> 00:06:06,030
+Intervals are atomic, non-distinct.
+
+113
+00:06:06,030 --> 00:06:08,910
+So we're going to end up using the same template rule here
+
+114
+00:06:08,910 --> 00:06:15,280
+that we used for city name, which is just open paren, dot dot
+
+115
+00:06:15,280 --> 00:06:18,340
+dot, and the parameter name.
+
+116
+00:06:18,340 --> 00:06:19,875
+So we go back here.
+
+117
+00:06:19,875 --> 00:06:24,550
+
+
+118
+00:06:24,550 --> 00:06:30,150
+You say, open paren, dot dot dot, the parameter name, which is seat-num.
+
+119
+00:06:30,150 --> 00:06:34,225
+And here we say, atomic non-distinct.
+
+120
+00:06:34,225 --> 00:06:36,820
+
+
+121
+00:06:36,820 --> 00:06:41,830
+And I always like to put after the colon here exactly what part of the type
+
+122
+00:06:41,830 --> 00:06:45,790
+comment it was caused us to do that.
+
+123
+00:06:45,790 --> 00:06:48,060
+You'll see, starting in the next data definition
+
+124
+00:06:48,060 --> 00:06:53,560
+we do, when data definitions get more complicated, why we're doing that.
+
+125
+00:06:53,560 --> 00:06:54,210
+There we go.
+
+126
+00:06:54,210 --> 00:06:55,860
+That data definition is complete.
+
+127
+00:06:55,860 --> 00:06:59,500
+I'm going to run it now, just to make sure everything's well-formed.
+
+128
+00:06:59,500 --> 00:07:03,650
+I didn't get any errors, so everything is well-formed.
+
+129
+00:07:03,650 --> 00:07:05,705
+I'll put a comment like that there.
+
+130
+00:07:05,705 --> 00:07:09,000
+
+
+131
+00:07:09,000 --> 00:07:11,050
+And we're good to go.
+
+132
+00:07:11,050 --> 00:07:12,541
+
+

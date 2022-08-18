@@ -1,0 +1,117 @@
+
+GREGOR KICZALES: In this video, I'm going to finish the larger predicate.
+And the function itself is mostly straightforward,
+but there's two interesting things that come up here.
+One is an interesting point about writing tests for functions that
+consume two of the same type of data.
+And the other is the pretty fun point where
+you've built up a whole chain of helpers,
+going from an initial function to a helper to a helper to a helper--
+and you finally finish that last helper and bang, bang, bang.
+If you're lucky, the whole thing works.
+OK, now I need to finish the larger predicate.
+And the examples are what I need to do next.
+And I'm not going to use the name constants
+I defined for the last function and I'll show you why.
+Let me just get started.
+Check-expect, larger-- it's really easy in a function like this.
+Here's a function that consumes two images
+and it's going to have to get the width and height of both images.
+And it's really easy in a function like this to make a mistake,
+where, for example, you use the same image twice.
+Or you use the width twice instead of the width and the height.
+So what I'm going to do is I'm going to use numbers for my images
+that are very sensitive to making any one of those mistakes.
+So watch this-- I'll say, three by four, solid and red.
+Whoops, I mean rectangle.
+I was thinking so hard about the numbers,
+I forgot to make the rectangle.
+Rectangle-- three, four, solid, red.
+And rectangle to six solid red.
+Now the area of both of those is the same-- it's 12.
+So that should be false.
+Now we can make the other four cases, where we'll
+vary each of the numbers a little bit.
+So now, let's make this be five.
+Now the first rectangle is bigger.
+
+We'll make this be five.
+First rectangle is also bigger.
+
+We'll make this be five-- second rectangle is definitely bigger.
+In other words, the first rectangle is definitely not bigger.
+And for this last one, we'll make six be seven.
+The first rectangle is definitely not bigger.
+So those are examples.
+Run to make sure it's well-formed.
+It is-- lots of tests are failing.
+Now let's see-- this is a function operating on two primitive atomic data.
+So we have to make the template for ourselves.
+The template is defined-- larger, question mark, img1, img2.
+And if it was just img2, that would be the template,
+but we have an additional atomic parameter, so we add img1.
+
+There we go.
+And now what do I need to do?
+Do I need to get the area of one of them?
+So that's the width times the height.
+And I'll copy here, because I was very careful about that.
+So now I've got the top line is the area of image one,
+the bottom line is the area of image two,
+and one is bigger than two, if that's a greater/than.
+Command-I to fix the indentation-- one.
+Wow, all at once.
+Only one test is failing-- let's go see which test this is.
+
+If I insert I3 into cons I2 or I3-- this is just wrong.
+I made this test wrong.
+This was supposed to be the test where I was inserting I3
+into a list that already had I1 and I2.
+That was just a broken test.
+If I insert i3 in that list, it should go
+at the end-- cons I1, cons I2, cons I3.
+Empty is the result. Now let's run it.
+All 17 tests pass.
+So here, you're seeing a thing that happens all the time when
+you start designing more complicated functions
+and you have to have more and more helpers.
+Is you get to the end and it all comes together.
+And if you're lucky, every single test passes.
+In that one final moment, every single test now passes.
+You're not usually that lucky.
+You're almost never that lucky.
+Usually what happens is you get that final piece done and a bunch of tests
+start working.
+But sometimes what happens is, there's some tests
+that are broken-- like in this case, where there was a broken test.
+Other times what happens isn't that tests are broken,
+but that some function along the way actually isn't correct.
+And then things will only partially work or not work at all.
+This was a pretty good case-- we finished the last function
+in the chain of helpers and we had only one broken test that we had to go fix.
+But whether it all works in one fell swoop or not
+isn't so much the real issue, as much as that they're
+going back to this picture.
+What happens is, all at once, all our boxes
+get checked off, because we finish the helper larger,
+which basically finishes insert, which basically finishes sort, which
+basically finishes arrange images.
+Bang, bang, bang-- we check off the whole chain
+of functions that were waiting on this last helper to be done.
+So from these lectures, for the first part of this week-- two main lessons.
+One is some more helper rules-- the rule about function composition,
+the rule about operating on arbitrary size data,
+the rule about a change in knowledge domain.
+
+The other is this more macro notion that, very often,
+when we design more complicated functions,
+we end up having to design a bunch of helper functions
+as we use different helper rules to split the work of the main function
+out.
+These rules have an effect similar to the effect that the reference rule has.
+But in this example, we've seen some additional rules.
+Whenever you're designing functions-- the rest of this course
+and in the rest of your life-- keep these helper rules in mind.
+They're good guidelines for where to put in a helper function.
+Some programmers will adopt their own style for using rules in other places,
+but these are good general principles for where to put helper functions.

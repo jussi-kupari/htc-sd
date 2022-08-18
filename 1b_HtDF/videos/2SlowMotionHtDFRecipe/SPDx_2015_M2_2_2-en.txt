@@ -1,0 +1,205 @@
+
+GREGOR KICZALES: In the last video, you saw
+me use the HtDF design recipe to design a very simple function,
+but I went through it very quickly.
+Too quickly for you to absorb the different elements of the recipe.
+What I'm going to go through in this video
+is the same design much more slowly and talk more carefully
+about what I'm doing in each step.
+What I recommend you do is have your computer open, open up Dr. Racket
+and follow along with the design recipe as I'm going through.
+At each step, you could stop the video and catch up in your Dr. Racket.
+And I'll also recommend that you open up a web browser to the HTDF design recipe
+page from the course website, so that you can follow along with that as well.
+Then you'll be able to see what I'm doing
+and practice it as it's going through.
+
+Just like before, I've taken the doublestarter.racket file
+from the HTDF module web page.
+I've opened it up.
+And here's the problem.
+We're supposed to design a function that consumes a number
+and produces twice that number, and the function should be called double.
+Again, it's a very, very simple function.
+Remember we're using simple functions to learn the recipe,
+and then the recipe will let us do harder functions.
+And also, just like in the full speed version of the video,
+I've taken a copy of How to Design Functions recipe, which
+I got from the Design Recipes page.
+And I am setting here on the right hand side, so we can refer to it as we go.
+The first step of the recipe is write the signature.
+The job of the signature is to tell me what type of data a function consumes
+and what type of data it produces.
+In this case, the function consumes a number and produces a number.
+So I write the signature with two semi-colons, a space,
+capitalized number-- type names are always capitalized--
+and then I make a little arrow and again capitalize number,
+because this function produces a number.
+If the function consumes multiple arguments,
+then I'd have multiple type names before the arrow.
+In this case, it just consumes one argument.
+And I read this signature as saying the function consumes a number
+and produces a number.
+
+Now I need to write the purpose.
+The job of the purpose is to give me a succinct description
+of what the function produces given what it consumes.
+So in this case, a good purpose is to say that the function produces
+two times the given number.
+Now I know exactly what it's producing in terms of what it consumed.
+The purpose needs to say more than the signature.
+So purpose, for example, that just says consumes a number
+and produces a number isn't telling me anymore than the signature.
+And that wouldn't be a good purpose.
+We also want the purpose to be short.
+Sometimes it's hard to write it short, less than one line.
+But it's good to do so, because it starts
+to help you understand the function.
+And the stub is like a piece of scaffolding
+that we're going to put in place for a short period of time.
+It's going to help us with some other parts of our work.
+And then we'll end up commenting it out or later in the course,
+we'll just actually delete it.
+So it only lasts a short while, but it will do an important piece of work.
+What the stub has to be is a function definition
+that has the correct function name, in this case,
+double, has the correct number of parameters, in this case, one.
+I'll just call it n.
+And it produces a dummy result of the correct type.
+Since this function produces number, I'll make the stub produce zero,
+because zero is certainly a number.
+So now I'm going to write the examples in tests.
+We call them examples and tests, because they're going to serve both roles.
+What I mean by examples is that oftentimes, it's
+easier to design a general function if we
+start with some very specific examples of what it's going to do.
+So in this case, for example I might write check-expect
+that if I call double with an argument of three, then
+what I expect to get back is six.
+
+And I'll also write check expect that if I call double with an argument of 4.2,
+I'll expect to get back 8.4.
+The reason I'm calling double with these two arguments,
+the reason I have two examples, is I've said here in the signature
+that the function consumes number.
+And by number I mean real numbers, integers, natural,
+all kinds of numbers.
+And so I'm going to put two examples here just
+to really illustrate that I don't just mean integers.
+The first example might lead you to think I just mean integers.
+We're going to talk a lot in the course about reasons to have multiple examples
+and how many examples are enough for a given function.
+But here's two examples for this function.
+Because I've wrapped them in check expect,
+they're also going to be able to serve as test.
+And we'll see shortly how they're going to help
+us code the final body of the function.
+But first what we're going to do is make sure
+that the examples, that the check expects are well formed.
+And here's where the stub is going to help us.
+What I'm going to do now is I'm going to go ahead and run this program.
+And when Dr. Racket has a program that has check-expects in it, what
+it does is it runs the check-expects and it checks to see for each check-expect
+it will call double with three, and it checks
+to see whether the result is six.
+And then it will call double with 4.2 and checks
+to see where the result is 8.4.
+And if the result isn't what it's supposed to be,
+then Dr. Racket reports that the test failed.
+Now in this case both tests failed.
+And I'm very happy.
+The reason I'm very happy is both tests actually ran.
+Here's what the stub is doing for us.
+It's letting us make sure that the tests actually run.
+They're going to fail, because the stub always produces zero,
+and that's not the right answer for these cases.
+But we're going to know that they ran.
+And you'll see later as programs start to get big
+that making sure all your tests are well formed
+before you get further along in the process is a good thing to do,
+because the sooner you find a mistake the easier it is to fix.
+So here we go.
+Both of these tests ran, and they failed, and I'm really happy.
+I want to take a minute here to make an important general point
+about the recipe.
+And that is that every step of the recipe
+is intended to help with all the steps after it.
+For example, the signature helps us write the purpose,
+because the signature tells us that the function consumes a number
+and produces a number.
+
+Similarly, the signature helps us write the stub,
+because the signature says the function consumes a single argument
+so this function has one parameter.
+It's a number that's why I called it n.
+It also tells us that the function produces
+a number, that's why I chose zero as the dummy value for the stub to produce.
+The signature also helps us write the check expects.
+It tells us that this function, when I sit there right check expects double,
+and then I ask myself what to put it.
+Well, the signature tells me, put a number.
+And then when I try to write the expected value,
+the signature says that it's a number, and the purpose
+tells me exactly how that number relates to the argument in the example call.
+The key thing is when you're trying to figure out
+what to write at one step of the recipe, look at what you wrote
+at the previous steps of the recipe.
+That's how the recipe is helping you, is it's letting you slowly build up
+the knowledge you need to design the final function.
+The next step of the recipe is the template
+or sometimes called the inventory.
+Starting next week, we're going to get richer and richer templates.
+But for this week, the template is going to be quite simple.
+The template is a function with the right function
+name and the right parameter.
+And for this week, the body of the template is just going to be (...n.
+
+the way we're going to read that is we're going to read that as saying,
+hey, the outline of this function is that it's
+going to do something-- that's what the dots mean-- is do something.
+It's going to do something with the parameter n.
+That's the role of the template is to give us the outline of the function.
+
+What we're going to do here is label the template.
+
+And now we'll make a copy of it.
+Put the copy here or remove the label from the copy,
+and I'll comment out the original template.
+What you're going to do later in the course
+is you're not actually going to keep a copy of the template.
+What we've found for the first few weeks of the course
+that it helps to keep a copy of the stub and template around.
+And that's why that's what I'm doing here.
+There is the template.
+It's the outline of the final function definition.
+Now I'm going to code the function body.
+In this step, I'm going to use everything
+I've written before to help me know how to finish the function body.
+One thing that's useful to do sometimes is elaborate the examples.
+So in this example, I know the double of 4.2 is 8.4,
+but what I'm going to do now is make it more clear to me why that's true.
+The reason that's true is that it's times 2 of 4.2.
+And now all at once, I know exactly how to finish this function body.
+It's just times 2 of n, whatever n is.
+
+The last step is to run the tests.
+So I run the test here, and I get both tests pass,
+which makes me pretty happy.
+We'll see examples later about what to do when the tests don't pass.
+Now you've seen the HTDF design recipe used twice
+to design the same simple function.
+In the last video, I went through it quite quickly.
+And in this video, I went through it in slow motion
+where I talked in detail about each step.
+At this point, you should be starting to understand
+what to do at each step of the design recipe.
+If you don't necessarily feel comfortable with it,
+then I would suggest that you take a blank editor tab
+and rework the process of designing the function from this video
+on your own step by step.
+But when you do it, do be sure to have the HTDF design recipe
+page from the website open.
+Use that as a reference whenever you're using the HTDF design recipe.
+Our goal is not for you to memorize the recipe.
+Our goal is for you to learn how to use it as a resource
+in designing increasingly more complicated functions.

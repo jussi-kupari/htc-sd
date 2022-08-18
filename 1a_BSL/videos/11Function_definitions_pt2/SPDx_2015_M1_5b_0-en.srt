@@ -1,0 +1,480 @@
+0
+00:00:00,000 --> 00:00:00,077
+
+
+1
+00:00:00,077 --> 00:00:02,410
+GREGOR KICZALES: What I want to do now is the same thing
+
+2
+00:00:02,410 --> 00:00:05,940
+we've done with all the other beginning student language constructs we've seen,
+
+3
+00:00:05,940 --> 00:00:08,000
+which is to go over in a little bit more detail
+
+4
+00:00:08,000 --> 00:00:11,330
+the rules for forming function definitions and function calls,
+
+5
+00:00:11,330 --> 00:00:14,930
+and also the rules for evaluating function calls.
+
+6
+00:00:14,930 --> 00:00:17,820
+Before I get to those rules, I just want to show you
+
+7
+00:00:17,820 --> 00:00:22,360
+something, which is where you could find all the rules for the BSL language.
+
+8
+00:00:22,360 --> 00:00:27,790
+If you go to the course web page and you scroll here to the Languages tab,
+
+9
+00:00:27,790 --> 00:00:31,100
+then this page has all the rules for the BSL language including
+
+10
+00:00:31,100 --> 00:00:33,490
+how to form all the kinds of expressions we've seen
+
+11
+00:00:33,490 --> 00:00:36,560
+and the rules for evaluating them and so on.
+
+12
+00:00:36,560 --> 00:00:40,060
+The rule for forming a function definition is simple.
+
+13
+00:00:40,060 --> 00:00:43,890
+We start with open paren define because it's a definition.
+
+14
+00:00:43,890 --> 00:00:47,720
+And then we have paren and the name of the function
+
+15
+00:00:47,720 --> 00:00:50,260
+followed by the names of the parameters.
+
+16
+00:00:50,260 --> 00:00:54,490
+In the example we have so far, we just have one parameter c.
+
+17
+00:00:54,490 --> 00:00:58,500
+But we'll define other functions later that have more than one parameter.
+
+18
+00:00:58,500 --> 00:01:02,480
+And then we close that paren-- so this first part
+
+19
+00:01:02,480 --> 00:01:05,550
+has open paren, the name of the function, the name of the parameters,
+
+20
+00:01:05,550 --> 00:01:07,980
+and we close that paren.
+
+21
+00:01:07,980 --> 00:01:10,380
+And then-- and we always put it on a new line--
+
+22
+00:01:10,380 --> 00:01:14,700
+we have an expression which forms the body of the function.
+
+23
+00:01:14,700 --> 00:01:16,720
+So here's the example we've seen so far.
+
+24
+00:01:16,720 --> 00:01:21,290
+Define, the name of the function is bulb, the parameter is c,
+
+25
+00:01:21,290 --> 00:01:23,770
+and here's the body of the function.
+
+26
+00:01:23,770 --> 00:01:27,360
+To form a function call expression, we put open paren,
+
+27
+00:01:27,360 --> 00:01:30,750
+the name of a defined function, and then we
+
+28
+00:01:30,750 --> 00:01:33,240
+put some number of expressions corresponding
+
+29
+00:01:33,240 --> 00:01:36,420
+to the number of parameters the function has.
+
+30
+00:01:36,420 --> 00:01:39,320
+So for our bulb function, which has a single parameter,
+
+31
+00:01:39,320 --> 00:01:43,060
+we put a single expression after the bulb name.
+
+32
+00:01:43,060 --> 00:01:46,120
+And those expressions are all called operands.
+
+33
+00:01:46,120 --> 00:01:50,160
+To show you how the rules for evaluation related to functions work,
+
+34
+00:01:50,160 --> 00:01:54,930
+you're going to first start by getting a somewhat simpler example.
+
+35
+00:01:54,930 --> 00:01:59,190
+What I've got here is a call to bulb, where it's argument,
+
+36
+00:01:59,190 --> 00:02:01,660
+instead of already being a value, is going to be
+
+37
+00:02:01,660 --> 00:02:04,390
+another call, a primitive call.
+
+38
+00:02:04,390 --> 00:02:08,949
+And I'm also going to set up by putting the rules for evaluating functions
+
+39
+00:02:08,949 --> 00:02:13,199
+and primitive calls here on the right.
+
+40
+00:02:13,199 --> 00:02:13,740
+So let's see.
+
+41
+00:02:13,740 --> 00:02:16,440
+We look at open paren bulb and that tells us
+
+42
+00:02:16,440 --> 00:02:19,570
+that we've got a function call.
+
+43
+00:02:19,570 --> 00:02:22,200
+So the rule for evaluating a function call
+
+44
+00:02:22,200 --> 00:02:28,380
+is to first reduce the operands to values.
+
+45
+00:02:28,380 --> 00:02:31,950
+So now let's go look at the first operand.
+
+46
+00:02:31,950 --> 00:02:36,900
+The first operand is open paren string append.
+
+47
+00:02:36,900 --> 00:02:40,010
+So that's a primitive call.
+
+48
+00:02:40,010 --> 00:02:44,830
+So we now look at the rules for evaluating a primitive call.
+
+49
+00:02:44,830 --> 00:02:48,520
+And the first rule is to reduce operands to values again.
+
+50
+00:02:48,520 --> 00:02:52,390
+Notice that the rule-- the first rule for function calls and primitive calls
+
+51
+00:02:52,390 --> 00:02:52,940
+is the same.
+
+52
+00:02:52,940 --> 00:02:56,520
+You reduce the operands to values.
+
+53
+00:02:56,520 --> 00:02:57,490
+Well, let's see.
+
+54
+00:02:57,490 --> 00:03:01,850
+The string re and the string d are both already values.
+
+55
+00:03:01,850 --> 00:03:04,390
+So now we can apply the string append primitive.
+
+56
+00:03:04,390 --> 00:03:06,840
+And the first full step in the evaluation
+
+57
+00:03:06,840 --> 00:03:11,070
+is that we now have bulb with an operand of the value red.
+
+58
+00:03:11,070 --> 00:03:13,590
+
+
+59
+00:03:13,590 --> 00:03:17,830
+So now, going back to the function call roles,
+
+60
+00:03:17,830 --> 00:03:21,550
+we have now reduced the first operand to a value.
+
+61
+00:03:21,550 --> 00:03:24,510
+So we reduced all the operands to value.
+
+62
+00:03:24,510 --> 00:03:26,690
+And now we're going to replace the function
+
+63
+00:03:26,690 --> 00:03:33,250
+call by the body of the function-- so I've copied the body of the function
+
+64
+00:03:33,250 --> 00:03:36,380
+down here-- but in the body of the function
+
+65
+00:03:36,380 --> 00:03:38,860
+we're going to replace every occurrence of the parameter
+
+66
+00:03:38,860 --> 00:03:45,340
+c by the argument-- the corresponding argument-- to the function,
+
+67
+00:03:45,340 --> 00:03:46,180
+in this case, red.
+
+68
+00:03:46,180 --> 00:03:48,930
+
+
+69
+00:03:48,930 --> 00:03:50,390
+And now what do we have?
+
+70
+00:03:50,390 --> 00:03:55,140
+Well, open paren circle, this is a call to a primitive.
+
+71
+00:03:55,140 --> 00:03:57,530
+So notice the function call is completely gone now.
+
+72
+00:03:57,530 --> 00:04:00,210
+Once we replaced the call with its body, we just
+
+73
+00:04:00,210 --> 00:04:03,180
+work on evaluating the replaced body.
+
+74
+00:04:03,180 --> 00:04:05,310
+This is a call to a primitive.
+
+75
+00:04:05,310 --> 00:04:09,680
+The first rule for a primitive is to reduce all the operands to values.
+
+76
+00:04:09,680 --> 00:04:13,725
+There's three operands in this case and they are all already values.
+
+77
+00:04:13,725 --> 00:04:16,490
+
+
+78
+00:04:16,490 --> 00:04:19,170
+So now, the second step of a call to a primitive
+
+79
+00:04:19,170 --> 00:04:22,660
+is to just apply the primitive to the values.
+
+80
+00:04:22,660 --> 00:04:26,930
+And the value of that primitive call is a red circle.
+
+81
+00:04:26,930 --> 00:04:29,305
+And now all we've got is a value so evaluation stops.
+
+82
+00:04:29,305 --> 00:04:33,174
+
+
+83
+00:04:33,174 --> 00:04:35,340
+Let me just point one thing out to you about the way
+
+84
+00:04:35,340 --> 00:04:38,920
+I've done this hand step by step evaluation.
+
+85
+00:04:38,920 --> 00:04:42,850
+By writing all of the different steps of the evaluation in the definitions
+
+86
+00:04:42,850 --> 00:04:47,410
+window this way, what I can do now is actually run this.
+
+87
+00:04:47,410 --> 00:04:50,830
+And since there's four steps to the evaluation,
+
+88
+00:04:50,830 --> 00:04:53,930
+I should see the same result four times.
+
+89
+00:04:53,930 --> 00:04:56,620
+Because when Racket starts here and runs to the end
+
+90
+00:04:56,620 --> 00:04:59,229
+it gets a red circle, when it starts here and runs to the end
+
+91
+00:04:59,229 --> 00:05:01,770
+it gets a red circle, when it starts here and runs to the end
+
+92
+00:05:01,770 --> 00:05:05,019
+it gets a red circle, and when it starts with a red circle and runs to the end
+
+93
+00:05:05,019 --> 00:05:06,930
+it gets a red circle.
+
+94
+00:05:06,930 --> 00:05:10,930
+So if you do your step by step evaluation exercises in the Definitions
+
+95
+00:05:10,930 --> 00:05:15,130
+window like this and then run it, you can kind of
+
+96
+00:05:15,130 --> 00:05:17,570
+check whether you've got the right step by step evaluation
+
+97
+00:05:17,570 --> 00:05:21,060
+because you should see the same value repeated each time.
+
+98
+00:05:21,060 --> 00:05:23,750
+
+
+99
+00:05:23,750 --> 00:05:26,030
+Now you understand how to define functions
+
+100
+00:05:26,030 --> 00:05:30,152
+and you know the rules for evaluating function calls.
+
+101
+00:05:30,152 --> 00:05:31,860
+As I said at the beginning, functions are
+
+102
+00:05:31,860 --> 00:05:35,150
+going to be incredibly important to all of our Racket programs
+
+103
+00:05:35,150 --> 00:05:38,290
+so it's really important that you understand how they work.
+
+104
+00:05:38,290 --> 00:05:41,900
+So if it's ever unclear to you, just come back to this video
+
+105
+00:05:41,900 --> 00:05:44,710
+and also be sure to work the practice problems that
+
+106
+00:05:44,710 --> 00:05:47,220
+are associated with this video.
+
+107
+00:05:47,220 --> 00:05:51,970
+Just as an aside so you understand how powerful functions are,
+
+108
+00:05:51,970 --> 00:05:55,490
+one of the most important theoretical results in computer science
+
+109
+00:05:55,490 --> 00:05:59,490
+says that if you have a language that just has functions-- just functions,
+
+110
+00:05:59,490 --> 00:06:02,400
+no strings, no numbers, just functions-- you
+
+111
+00:06:02,400 --> 00:06:06,060
+could actually write any program that can be written in any language.
+
+112
+00:06:06,060 --> 00:06:09,310
+Now, you know that's a theoretical result that makes academics happy.
+
+113
+00:06:09,310 --> 00:06:12,370
+A language like that would be pretty cumbersome to program
+
+114
+00:06:12,370 --> 00:06:15,130
+in so you would never do it.
+
+115
+00:06:15,130 --> 00:06:17,550
+Back in practical terms now.
+
+116
+00:06:17,550 --> 00:06:20,770
+We want functions, we want strings, we want images, we want numbers,
+
+117
+00:06:20,770 --> 00:06:22,670
+we want all of that.
+
+118
+00:06:22,670 --> 00:06:27,090
+Even so, functions are pretty central to the whole game.
+
+119
+00:06:27,090 --> 00:06:27,610
+
+

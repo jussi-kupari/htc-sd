@@ -1,0 +1,756 @@
+0
+00:00:00,000 --> 00:00:04,280
+
+
+1
+00:00:04,280 --> 00:00:06,710
+ERIKA THOMPSON: In this week's evaluation tutorial video,
+
+2
+00:00:06,710 --> 00:00:09,960
+we're going to walk through an evaluation of the sample project
+
+3
+00:00:09,960 --> 00:00:12,910
+we suggested, so that's the flower animation.
+
+4
+00:00:12,910 --> 00:00:15,330
+And the first two criteria we're going to look at are
+
+5
+00:00:15,330 --> 00:00:18,310
+is the program safe and is it commit ready.
+
+6
+00:00:18,310 --> 00:00:19,580
+So let's get started.
+
+7
+00:00:19,580 --> 00:00:21,907
+So this is the flower animation program.
+
+8
+00:00:21,907 --> 00:00:23,740
+So now we can look through this to make sure
+
+9
+00:00:23,740 --> 00:00:26,100
+that it fills the requirements for safe.
+
+10
+00:00:26,100 --> 00:00:29,040
+So we have two requires up here-- image and universe.
+
+11
+00:00:29,040 --> 00:00:30,840
+Those are ones we want.
+
+12
+00:00:30,840 --> 00:00:33,980
+We can press Command F or Control F to check
+
+13
+00:00:33,980 --> 00:00:36,730
+if there's any other requires hiding that we don't want.
+
+14
+00:00:36,730 --> 00:00:39,000
+And there's not, so that's good.
+
+15
+00:00:39,000 --> 00:00:43,190
+So this gets an acceptable for is the program safe.
+
+16
+00:00:43,190 --> 00:00:47,450
+Now we can look through the file to check that it is commit ready.
+
+17
+00:00:47,450 --> 00:00:50,110
+So we're looking for any comments or notes
+
+18
+00:00:50,110 --> 00:00:52,110
+that are left behind that shouldn't be there
+
+19
+00:00:52,110 --> 00:00:55,340
+or any code that is commented out that shouldn't be.
+
+20
+00:00:55,340 --> 00:01:00,470
+So if we scroll through we've got types, comments, interps, signatures
+
+21
+00:01:00,470 --> 00:01:04,700
+and purpose that are commented out, which we want.
+
+22
+00:01:04,700 --> 00:01:08,290
+And there doesn't seem to be anything commented out that shouldn't be,
+
+23
+00:01:08,290 --> 00:01:09,460
+so that's good.
+
+24
+00:01:09,460 --> 00:01:12,170
+We can give this a good for commit ready.
+
+25
+00:01:12,170 --> 00:01:16,710
+So the next criteria we want to look at is are all HTT elements complete
+
+26
+00:01:16,710 --> 00:01:18,610
+and do you have high internal quality.
+
+27
+00:01:18,610 --> 00:01:21,640
+So this is structured a little differently than the past design quiz.
+
+28
+00:01:21,640 --> 00:01:25,470
+Instead of grading the completeness and internal quality separately,
+
+29
+00:01:25,470 --> 00:01:28,050
+we're going to look at the three different recipes and grade
+
+30
+00:01:28,050 --> 00:01:30,800
+completeness and internal quality together for each one.
+
+31
+00:01:30,800 --> 00:01:35,000
+So for HTW specifically, we want to look to see that the file includes
+
+32
+00:01:35,000 --> 00:01:39,210
+constants, data definitions, and functions, that the Constant section is
+
+33
+00:01:39,210 --> 00:01:40,210
+complete.
+
+34
+00:01:40,210 --> 00:01:43,700
+We want to check that the main function operates on the correct type
+
+35
+00:01:43,700 --> 00:01:45,450
+and that that type is compound.
+
+36
+00:01:45,450 --> 00:01:49,710
+And we want to make sure that all of the necessary big bang options are present
+
+37
+00:01:49,710 --> 00:01:52,550
+and each one has a handler present in the file.
+
+38
+00:01:52,550 --> 00:01:54,500
+So first, let's look at the Constant section.
+
+39
+00:01:54,500 --> 00:01:56,650
+We have width and height defined.
+
+40
+00:01:56,650 --> 00:01:57,710
+That's good.
+
+41
+00:01:57,710 --> 00:01:59,300
+Then here's the MTS.
+
+42
+00:01:59,300 --> 00:02:03,220
+We can see here that they've used the correct width and height for their MTS,
+
+43
+00:02:03,220 --> 00:02:06,930
+but they've hard coded those in rather than using the constants.
+
+44
+00:02:06,930 --> 00:02:09,970
+So really, we should use width and height here so we have
+
+45
+00:02:09,970 --> 00:02:12,620
+what's called a single point of control.
+
+46
+00:02:12,620 --> 00:02:14,070
+So this would be better.
+
+47
+00:02:14,070 --> 00:02:17,880
+Then we have this flower defined, so that looks good.
+
+48
+00:02:17,880 --> 00:02:21,950
+So other than that small error, here the Constant section looks good.
+
+49
+00:02:21,950 --> 00:02:26,200
+We can see that the data definition is present and that it's a compound type,
+
+50
+00:02:26,200 --> 00:02:28,970
+so we'll evaluate the actual completeness of that data definition
+
+51
+00:02:28,970 --> 00:02:30,990
+in the next criteria.
+
+52
+00:02:30,990 --> 00:02:32,640
+Next, we'll look at the main function.
+
+53
+00:02:32,640 --> 00:02:35,420
+It's going from flower to flower, which is good.
+
+54
+00:02:35,420 --> 00:02:38,480
+It gives us a note about what to start the animation with.
+
+55
+00:02:38,480 --> 00:02:40,810
+We see here that we have three big bang options--
+
+56
+00:02:40,810 --> 00:02:45,310
+On Tick, To Draw, and On Mouse, and that each one has a handler.
+
+57
+00:02:45,310 --> 00:02:48,560
+We have these notes about the signature of each handler.
+
+58
+00:02:48,560 --> 00:02:50,080
+Those are all correct.
+
+59
+00:02:50,080 --> 00:02:53,060
+And we'll check to make sure each one of those handlers is present.
+
+60
+00:02:53,060 --> 00:02:56,760
+So we see here we have Top.
+
+61
+00:02:56,760 --> 00:02:58,960
+There is Render.
+
+62
+00:02:58,960 --> 00:03:00,980
+And down here, we have Handle Mouse.
+
+63
+00:03:00,980 --> 00:03:03,700
+So we had one small problem in the constants.
+
+64
+00:03:03,700 --> 00:03:07,940
+Other than that, everything is good, so we give this a good for completeness
+
+65
+00:03:07,940 --> 00:03:10,040
+and internal quality of HTDW.
+
+66
+00:03:10,040 --> 00:03:14,315
+So the next criteria we want to look at is the HTTD elements of the file,
+
+67
+00:03:14,315 --> 00:03:16,940
+and we want to look at completeness and internal quality again.
+
+68
+00:03:16,940 --> 00:03:19,351
+So this is similar to the last design quiz.
+
+69
+00:03:19,351 --> 00:03:22,100
+The only new thing we need to look at is the structure definition,
+
+70
+00:03:22,100 --> 00:03:23,750
+which is specific to compound.
+
+71
+00:03:23,750 --> 00:03:27,170
+Other than that, we want to check the type comment, interpretation, examples,
+
+72
+00:03:27,170 --> 00:03:29,600
+the template, and then the template rules used.
+
+73
+00:03:29,600 --> 00:03:35,510
+So we have define struck flower, and it has three fields, X, Y, and Size.
+
+74
+00:03:35,510 --> 00:03:37,320
+So that looks well formed.
+
+75
+00:03:37,320 --> 00:03:38,620
+We have a Types comment.
+
+76
+00:03:38,620 --> 00:03:41,670
+Flower is make flower integer integer natural.
+
+77
+00:03:41,670 --> 00:03:42,625
+That's great.
+
+78
+00:03:42,625 --> 00:03:46,560
+And we have the interpretation, which says a flower with x position, y
+
+79
+00:03:46,560 --> 00:03:48,690
+position, and a side length.
+
+80
+00:03:48,690 --> 00:03:49,640
+That's pretty good.
+
+81
+00:03:49,640 --> 00:03:51,970
+We could be a little bit more specific by saying
+
+82
+00:03:51,970 --> 00:03:54,200
+what the units are for the side length.
+
+83
+00:03:54,200 --> 00:03:57,970
+So we could add in pixels here.
+
+84
+00:03:57,970 --> 00:04:00,440
+Then we have two examples of flowers.
+
+85
+00:04:00,440 --> 00:04:01,840
+And here's the template.
+
+86
+00:04:01,840 --> 00:04:06,870
+We have Fun for Flower F, which is the correct name for a template.
+
+87
+00:04:06,870 --> 00:04:09,600
+And then we have all three selectors.
+
+88
+00:04:09,600 --> 00:04:11,460
+There's a bit of a problem here, though.
+
+89
+00:04:11,460 --> 00:04:15,030
+If you look closely, they've forgotten to add the parameters
+
+90
+00:04:15,030 --> 00:04:16,680
+to each one of those.
+
+91
+00:04:16,680 --> 00:04:18,510
+So that's not actually correct.
+
+92
+00:04:18,510 --> 00:04:21,399
+We need to add an F in for all of those.
+
+93
+00:04:21,399 --> 00:04:23,630
+But now that's good and complete.
+
+94
+00:04:23,630 --> 00:04:28,520
+And for the template rules used, it says compound, four fields.
+
+95
+00:04:28,520 --> 00:04:29,750
+That seems to be a typo.
+
+96
+00:04:29,750 --> 00:04:30,800
+There's three fields.
+
+97
+00:04:30,800 --> 00:04:33,170
+So we'll just change that.
+
+98
+00:04:33,170 --> 00:04:36,340
+So we have one really big problem here in the template,
+
+99
+00:04:36,340 --> 00:04:40,100
+and then these two little ones here-- making the interp more specific
+
+100
+00:04:40,100 --> 00:04:43,610
+and this typo in the template roles used.
+
+101
+00:04:43,610 --> 00:04:46,580
+These two are pretty small problems, so we would maybe
+
+102
+00:04:46,580 --> 00:04:50,220
+give this a good or fair for the data definition completeness
+
+103
+00:04:50,220 --> 00:04:51,260
+and internal quality.
+
+104
+00:04:51,260 --> 00:04:56,195
+So the next criteria we need to look at is the HTDF elements of our program.
+
+105
+00:04:56,195 --> 00:04:58,570
+So it says to choose either the [INAUDIBLE], [INAUDIBLE],
+
+106
+00:04:58,570 --> 00:05:01,280
+or On Mouse Handler and examine that.
+
+107
+00:05:01,280 --> 00:05:03,750
+And we want to look for all the parts of each TDF.
+
+108
+00:05:03,750 --> 00:05:07,020
+So that's the signature, purpose, step, examples, tests, template,
+
+109
+00:05:07,020 --> 00:05:08,610
+and the function body.
+
+110
+00:05:08,610 --> 00:05:11,450
+We're going to look at the render function for this program.
+
+111
+00:05:11,450 --> 00:05:15,360
+So if we take a look, we have a signature, flower to flower.
+
+112
+00:05:15,360 --> 00:05:17,320
+That's actually incorrect.
+
+113
+00:05:17,320 --> 00:05:21,070
+If we look back at our main function, it says
+
+114
+00:05:21,070 --> 00:05:23,080
+that render goes from flower to image.
+
+115
+00:05:23,080 --> 00:05:27,220
+So that's a good hint there that we have the wrong signature.
+
+116
+00:05:27,220 --> 00:05:30,660
+So change this to image, and we'll keep going.
+
+117
+00:05:30,660 --> 00:05:34,380
+It says renders the flower onto the screen.
+
+118
+00:05:34,380 --> 00:05:35,270
+That's pretty good.
+
+119
+00:05:35,270 --> 00:05:40,780
+We could be a bit more specific and say on the MTS
+
+120
+00:05:40,780 --> 00:05:45,790
+at the correct x and y-coordinates.
+
+121
+00:05:45,790 --> 00:05:53,500
+And then we could even add vendors, the flower of the given size.
+
+122
+00:05:53,500 --> 00:05:55,220
+So that's a much more specific purpose.
+
+123
+00:05:55,220 --> 00:05:57,440
+It really tells us how we're going to render
+
+124
+00:05:57,440 --> 00:06:00,300
+our flower based on the compound data.
+
+125
+00:06:00,300 --> 00:06:02,550
+So we can look at some check expects.
+
+126
+00:06:02,550 --> 00:06:06,420
+We have one example here of size 20.
+
+127
+00:06:06,420 --> 00:06:07,630
+That looks good.
+
+128
+00:06:07,630 --> 00:06:09,330
+We have one of size 0.
+
+129
+00:06:09,330 --> 00:06:12,050
+And then we have another one here of size 40.
+
+130
+00:06:12,050 --> 00:06:14,740
+Seems pretty much the same as this one, so I'm not sure
+
+131
+00:06:14,740 --> 00:06:17,060
+if it's really necessary, but those look good.
+
+132
+00:06:17,060 --> 00:06:21,980
+Now we can look at the stub, which is well formed.
+
+133
+00:06:21,980 --> 00:06:25,180
+There's a note about taking the template from flower, which is correct.
+
+134
+00:06:25,180 --> 00:06:28,720
+And then we can examine our function here.
+
+135
+00:06:28,720 --> 00:06:30,950
+This should really be on the next line.
+
+136
+00:06:30,950 --> 00:06:32,472
+Not a big deal, though.
+
+137
+00:06:32,472 --> 00:06:33,930
+So let's look at the function body.
+
+138
+00:06:33,930 --> 00:06:37,070
+First, it checks if the flower size is 0, in which case
+
+139
+00:06:37,070 --> 00:06:40,670
+it produces an empty image, which seems reasonable.
+
+140
+00:06:40,670 --> 00:06:45,240
+Otherwise, we're scaling the flower by the size over 100
+
+141
+00:06:45,240 --> 00:06:48,110
+and then rotating by that size again.
+
+142
+00:06:48,110 --> 00:06:51,600
+So that looks OK and seems to work.
+
+143
+00:06:51,600 --> 00:06:55,410
+But by using this Rotate function, we've actually created another case
+
+144
+00:06:55,410 --> 00:06:57,070
+that we need to test.
+
+145
+00:06:57,070 --> 00:07:01,880
+The Rotate function can only actually accept numbers that are less than 360.
+
+146
+00:07:01,880 --> 00:07:08,070
+So if we add a test here that, say, has size of 370,
+
+147
+00:07:08,070 --> 00:07:15,050
+then in theory, this should be 370 and that should be 370.
+
+148
+00:07:15,050 --> 00:07:18,800
+And if we try and run that, we're actually going to get an error.
+
+149
+00:07:18,800 --> 00:07:23,340
+It says expects an angle in degrees as first argument, but given 370.
+
+150
+00:07:23,340 --> 00:07:27,690
+So we really need to do something else to handle this case.
+
+151
+00:07:27,690 --> 00:07:31,830
+So one thing that we could do is just add remainder here,
+
+152
+00:07:31,830 --> 00:07:35,440
+which gives us the remainder when divided by a number.
+
+153
+00:07:35,440 --> 00:07:38,610
+And we can divide by 360.
+
+154
+00:07:38,610 --> 00:07:43,410
+So 370 degrees will really become 10 degrees up here.
+
+155
+00:07:43,410 --> 00:07:47,350
+And if we run this now, all nine tests passed.
+
+156
+00:07:47,350 --> 00:07:49,890
+So that's a bit of a problem, because we didn't really
+
+157
+00:07:49,890 --> 00:07:53,580
+have enough tests to notice that we were missing that case.
+
+158
+00:07:53,580 --> 00:07:55,890
+But the problem with the tests and the function body
+
+159
+00:07:55,890 --> 00:07:57,510
+are kind of the same problem.
+
+160
+00:07:57,510 --> 00:07:59,390
+So we'll take one mark off there and another
+
+161
+00:07:59,390 --> 00:08:01,990
+for the incorrect signature, which will give us
+
+162
+00:08:01,990 --> 00:08:06,220
+a fair for HTDF completeness and internal quality.
+
+163
+00:08:06,220 --> 00:08:08,990
+So the final criteria we have to look at is does the design
+
+164
+00:08:08,990 --> 00:08:10,924
+satisfy the problem requirements.
+
+165
+00:08:10,924 --> 00:08:12,340
+So it needs to be a world program.
+
+166
+00:08:12,340 --> 00:08:15,050
+It needs to operate on compound data, and it needs
+
+167
+00:08:15,050 --> 00:08:16,930
+to be within the scope of the course.
+
+168
+00:08:16,930 --> 00:08:19,840
+So we were really clear that we want them to be simple.
+
+169
+00:08:19,840 --> 00:08:22,610
+So this is definitely a world program.
+
+170
+00:08:22,610 --> 00:08:26,030
+The world state is flower, which is clearly compound data.
+
+171
+00:08:26,030 --> 00:08:28,620
+And there was nothing that was outside the scope of the course
+
+172
+00:08:28,620 --> 00:08:30,870
+or overly complicated.
+
+173
+00:08:30,870 --> 00:08:36,280
+So the last thing we'll do before we finish is we'll copy this here,
+
+174
+00:08:36,280 --> 00:08:37,993
+and we'll actually run our animation.
+
+175
+00:08:37,993 --> 00:08:41,720
+
+
+176
+00:08:41,720 --> 00:08:45,450
+So there's a flower growing and spinning.
+
+177
+00:08:45,450 --> 00:08:48,790
+And when we click, we get a new one.
+
+178
+00:08:48,790 --> 00:08:52,070
+That's pretty cool, and it seems to work well.
+
+179
+00:08:52,070 --> 00:08:55,530
+So this design does indeed satisfy the problem requirements,
+
+180
+00:08:55,530 --> 00:08:57,470
+and we will give it a good.
+
+181
+00:08:57,470 --> 00:09:00,420
+So this was a very good solution to the flower program.
+
+182
+00:09:00,420 --> 00:09:02,940
+It had a few inconsistencies here and there.
+
+183
+00:09:02,940 --> 00:09:05,130
+But really, overall, it was very well done.
+
+184
+00:09:05,130 --> 00:09:08,120
+So if this was your program, I'd be very proud of it.
+
+185
+00:09:08,120 --> 00:09:11,120
+So now you're ready to apply this rubric to your own final project.
+
+186
+00:09:11,120 --> 00:09:14,760
+If you have any questions or want some extra feedback on your project,
+
+187
+00:09:14,760 --> 00:09:17,910
+you can post it in the discussion forums, and we as well as your peers
+
+188
+00:09:17,910 --> 00:09:20,060
+will be there to help you.
+

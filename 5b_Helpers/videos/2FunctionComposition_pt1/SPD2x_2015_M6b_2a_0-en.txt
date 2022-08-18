@@ -1,0 +1,26 @@
+
+GREGOR KICZALES: In this video we're going to start a big function design
+problem that's going to last through several videos,
+and it will lead us eventually to designing five functions.
+That's not at all unusual.
+In some function design problems you design many more functions than that.
+Imagine, for example, designing a function that consumes a location,
+and drives a car from its current position to that location.
+I think you can easily imagine that that would
+involve many, many, many functions.
+The one we're going to do now, though, starts with one function
+and will end up designing five.
+The basic problem is we have a bunch of pictures or images
+that we want to be able to store and present in different ways.
+This problem will do a simple version of the presentation,
+and later on will set the stage for more elaborate version.
+So there's two parts to this problem.
+First we have to design a data definition to represent
+an arbitrary number of images.
+And then we'll design a function to arrange those images in a nice way.
+The video will pause here while you go ahead and do part a:
+design a data definition to represent an arbitrary number of images.
+I strongly recommend that you take the time to do this yourself right now,
+rather than just restart the video.
+But of course nobody's watching, so you can just
+restart the video if you want to.

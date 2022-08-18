@@ -1,0 +1,114 @@
+GREGOR KICZALES: For now I'm just going to kind of assume
+that it only needs this one test.
+That won't turn out to be right, but we'll see what happens.
+Let me run the tests, and there's one test, and it runs and fails.
+So it's well formed.
+So we can keep going.
+Let's see.
+This is the stub.
+We'll comment it out.
+We'll write the template.
+The template is tall, question mark img, . . .
+img.
+
+We'll make a copy of that and we'll comment out.
+The original template, we'll label it as the template.
+
+Let's see.
+These functions have two cases, right?
+Sometimes it's tall and sometimes it's not tall.
+So when you have two cases, you can use an if, because that'd be the case where
+it is tall, and the case where it isn't.
+And what I'd like to do whatever I add an if to my template,
+is I put in the if.
+And then I make myself three copies of the rest
+of the template as a way of saying OK, now I've got the if in there,
+and I need to decide what happens here.
+Now let's see: tall?
+involves comparing the width to the height.
+So let's see.
+If the image height of the image is greater than the image
+width of the image-- well, let's see.
+If that's true, then the image is tall and so I should produce true.
+And otherwise I should produce false.
+
+Well, let's try running that.
+
+OK, the test passed.
+
+The test passed, but are we done?
+
+Have we really tested this function?
+Well, one clue that we haven't DrRacket is giving us right here
+in the way it's colored this false.
+Depending on how you have your DrRacket configured,
+it might actually just highlight this false with black.
+But in both cases, what it's saying is, it's saying hey,
+this expression here was never evaluated.
+
+There's this concept called code coverage for a test,
+or test coverage, which says given all my tests, how much of the code
+is actually being evaluated?
+And if the answer is not all of the code,
+then you don't have enough tests, because what
+if the piece of code that isn't evaluated is wrong?
+You haven't tested that piece of code.
+So, whenever you run your tests, if you see
+code that's highlighted that says that it didn't get evaluated,
+then you know for sure you need more tests.
+And what's happening for us in this case is we tested the case where it is tall,
+but we didn't test the case where isn't tall.
+In this case, we can do that fairly straightforwardly by copying
+the first test and just swapping these two around.
+And saying, well in that case, it's false.
+Now let's run it.
+Both tests pass, but are we really done?
+Let me make this a little bit-- give us a bit more room here.
+Are we really done?
+At this point, what you might think of is, hey, wait a minute.
+There's one more case.
+What if it's the image width and the height are the same?
+What should happen then?
+And this is a thing that happens in function and program design
+all the time.
+You realize partway through the design process
+that there's a boundary condition, or sometimes we call it a corner case,
+that you hadn't quite thought of.
+It's perfectly fine for that to happen, but when it happens,
+when you say to yourself, "Wait a minute, what if the width and height
+are the same?"
+You need to immediately do a couple things.
+First, write an example for it.
+Then decide what the behavior is.
+And I'm going to decide in this case that if your width and height are
+the same, you're not tall.
+So write the example, write the expected result, fix the purpose.
+
+Height is greater than width, so that it's unambiguous in the purpose.
+And if what you decided required you to change the function,
+change the function.
+In this case, it didn't, but if I had decided this the other way,
+I would have to change that to a greater than or equal.
+And now I'll run the tests again.
+Now all three tests are passing.
+So that's the design of that function.
+That works when I run it, and the tests pass.
+All my code is evaluated, so I've got good test coverage.
+So I'm pretty good here.
+At this point, I just want to make one minor detail
+point, which is whenever you have an expression of the form if something,
+true, false, you can always replace that by just this simpler thing.
+
+Let me comment this one out bracket, comment, out, with semicolons.
+Why are these two the same?
+Well, look.
+This one says if this expression evaluates to true, then produce true.
+Otherwise, if this expression evaluates to false, then produce false.
+So that's really just the same as the expression itself.
+Either this expression evaluates to true or it evaluates to false.
+So whenever you have if, something, true, false,
+you could just replace it with the question itself.
+And in a normal program, once you've done something like that,
+you would clean this up.
+You'd delete that out from there, and in a couple weeks,
+you also won't leave the stub and template behind.

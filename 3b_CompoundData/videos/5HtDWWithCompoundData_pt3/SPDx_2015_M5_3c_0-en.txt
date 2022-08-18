@@ -1,0 +1,213 @@
+
+GREGOR KICZALES: So here I'm in Cowabunga v.2,
+and it's got the data definition we did before.
+And it's got a main function that calls big-bang with the three
+handlers on tick two drawn on key.
+And I've given those functions the names next-cow, render-cow, and handle-key.
+And here's the wish list entries.
+The signatures are formulaic, of course.
+Once we know that the changing world state is
+represented by a type called cow, all these signatures come automatically.
+But I did spend some time thinking about the purposes that I put in here.
+So I said for next-cow that it increases the cow-x by dx,
+and it bounces off the edges, just to remind me
+that when the cow gets to the edge it has to turn around.
+In this one I said, place the appropriate cow image on MTS
+at its current position and center y.
+And appropriate here is reminding me that sometimes I
+use the cow that faces right, and sometimes I
+use the count it faces left.
+And for handle-key, I put reverse the direction of cow travel
+when the space bar is pressed.
+At this point we're set up to go, out and all
+has to happen is to complete the design of these three functions.
+There are a couple interesting things that
+happen in the design of these functions, though.
+So I'm going to go ahead and work through next-cow and render-cow in more
+detail so that you could see how that plays out.
+So now I need to work on wish list until it's done.
+And the first wish list entry is for next-cow, so let me start with that.
+I've already got the signature purpose and stub.
+I need to work on the examples.
+So let's see, examples are going to look something like this, next.
+Cow, they're always going to consume some sort of cow,
+and they're always going to produce some sort of cow.
+So that's kind of the skeleton of an example.
+Let's try to fill them in some.
+Let's see, a simple case is that the cow is somewhere
+in the middle of the screen.
+Let's just assume that 20 is less than the full width.
+And it's moving at a velocity of 3, which
+means it's moving three pixels to the right each time.
+And that means that on the next tick that cow
+should be at 20 plus 3, and still moving at the same velocity.
+So that's a cow in the middle, moving left to right.
+Let's do a cow in the middle that's moving right to left.
+Let's see, that cow would just be at minus 20 and 3,
+and still moving right to left.
+See, that's those two cases.
+These are middle cases.
+I said in the analysis that we'd let the cow go all the way to the edge
+of the box, without changing direction.
+So let's do that case next.
+Let me make some more copies of this, before I edit it.
+So let's see, we might have a cow moving from left to right
+that's just about to get all the way to the edge of the box.
+So that might be a cow, for example, that's at width minus 3
+and moving three pixels to the right per tick.
+So that cow, after this tick, will be all the way to width,
+and still think it's moving towards the right.
+It hasn't balanced yet, because we said we were going
+to let it get all the way to the edge.
+It'll bounce the next time.
+
+And another cow might be, let's see, it might be at 3,
+moving with SPEED minus 3.
+
+And that means that when this tick is done, it'll be all the way at 0
+and still think it's going to head towards the left, even though it's not.
+It'll bounce on the next tick.
+So these are somewhere-- how would we describe these cases?
+These are cases where the cow reaches the very edge.
+And now it seems like there's going to be two more cases for where
+the cow would actually pass the edge.
+
+Let's see, there's a case where the cow might be at, let's say, width minus 2,
+moving 3 to the right each time.
+And what are we going to do with that cow?
+
+Well, let's put it all the way at the edge,
+but now headed back towards the center.
+It needs to change its direction now.
+So we'll change it direction to that.
+We'll basically make it reverse its direction,
+because it actually tried to leave the box,
+and now it's going to be at the edge but it's
+going to be heading towards the center of the box again.
+And the corresponding case, of course, is
+that there's a cow at 2 that's headed towards the left.
+And we'll say, no, no, no, you can't leave the box.
+You stay at the edge of the box, and now you're heading the other way.
+So these are cows that these two cows, they try these cases,
+try to pass the edge.
+
+Let's see, are all of those well formed?
+They are all well formed.
+
+Now, you can see the case is a little bit complicated.
+That's a feature of this design method, which
+is that I'm working out all these complex boundary
+cases before I actually get to coding the general purpose function.
+I've got some concrete examples to help me understand the function,
+and I've got tests for when I get the function going.
+So now let's see.
+Let's go get the template.
+
+There's the template for a cow.
+
+And I've got these notes here in the template.
+I'll make a note to myself that says, I took template from cow.
+I'll rename this function to next-cow, and I've
+got a note for myself that says that the template has the two fields,
+and it also tells me the types of the fields,
+to remind me what's going on there.
+
+Now, let's think about the examples for a second.
+What do the examples tell us, in terms of how many cases of cow behavior
+there are?
+In all four of these cases, the cow really
+keeps doing whatever it was doing.
+Here it goes from 20 to 23, and its direction doesn't change.
+Here it goes from 20 to 17, and its direction doesn't change.
+Here it goes from width minus 3 to width, its direction doesn't change.
+Here it goes from 3 to 0, but its direction doesn't change.
+These four are all really the same case.
+They're just the keep doing what you're doing case.
+But these two are different.
+This is the case where the cow tries to leave the right hand edge of the box,
+and this is the case where the cow tries to leave the left hand edge of the box.
+
+So my next step in building the template for this function
+is I'm going to give myself a three case cond.
+I'm going to say cond, on and then each case,
+now that I know what these types are, I'll just delete this note.
+And then in each case I'll give myself two copies
+of the template to work with, the question version and the answer
+version.
+
+And I'll have three of these.
+
+So now let me see, how do I think about these cases?
+Well, this case here is the case where if the cow kept going,
+it would leave the box by the right edge.
+It would go too far.
+So what does that mean, it would go too far?
+Well, it means that if I took the cow's current exposition
+and I added the dx to it, this expression here
+is what the cow's position would be if it just kept going.
+And in this case, what happens is that if the cow just kept going,
+then its position would end up being greater than width.
+The cow would leave the right edge of the box.
+And of course, we don't want the cow to do that.
+We want the cow to be a nice, docile creature that stays inside the box.
+And so instead of letting it leave the box,
+we're going to say, no, no, no, no, no.
+You're going to be a new cow that is going
+to be right at the edge of the box, and your new velocity
+will basically be the opposite of your current velocity.
+And in racket, if you call the minus primitive with a single argument,
+it just changes the sign of the number.
+So if you called minus with 3, it gives you minus 3.
+If you call minus with minus 6, it gives you 6.
+So this changes the direction of the cow,
+and this puts it right at the edge of the box.
+So that's this case here.
+Now, let's look at this case here.
+Well, this is a case where if you let the cow just
+keep going-- this is the cow that just keeps going-- then
+it would end up outside the left edge of the box.
+It's position would end up less than 0.
+And of course, we don't want the cow to do that.
+We want it to stay in the box.
+So we're going to say no.
+Instead, we're going to have a cow that's
+at the very left edge of the box.
+
+And once again, we're just going to flip its direction around.
+
+So that's this case.
+And now all these other cases are just the cow
+keeps doing whatever it was doing.
+So we don't need a question here, we'll just put an else.
+
+And we'll say, well, the new cow is a cow that
+keeps doing whatever it was doing-- that's plus cow of x, and cow of dx.
+
+This is the same expression we used here and here,
+to see where will the cow end up if we just let it keep going?
+Well, this cow is going to just keep going.
+And its new dx is just going to be the same, as is old dx,
+because it's just going to keep going.
+
+Let's try all our tests now.
+Oops, this make is wrong.
+This is just to make-cow.
+
+All six tests pass.
+
+Now look, this in some sense is the most complicated function
+we've designed so far.
+Now, it's complicated entirely due to domain knowledge.
+It's complicated, because the geometry of an object moving
+back and forth across a box and handling the edge conditions right
+is a bit complicated.
+But notice something important.
+If you break it down into all of these six examples,
+and then you realize those that six examples are really just three cases,
+then it isn't complicated.
+The design method really worked for us here.
+It told us to do the examples first, which
+broke the problem down, and helped us then take the template
+and put structure onto it.
+Here's an example of the design method making a moderately difficult problem
+a lot easier.

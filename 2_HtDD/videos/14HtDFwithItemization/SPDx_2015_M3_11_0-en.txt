@@ -1,0 +1,188 @@
+
+GREGOR KICZALES: The problem in count-down-to-display-starter is
+to design a function that consumes the countdown type we defined earlier,
+and produces a little image of the current state of the countdown.
+It might be something that would display on your phone
+if you were watching the new year's eve countdown.
+So again, the first step of the recipe is signature purpose stub.
+We can do that quickly.
+We're going to consume a countdown.
+We're going to produce an image.
+
+It's going to produce a nice image of current state of countdown.
+The stub is what we want to call the function, countdown
+to image of a countdown.
+And the stub for functions that produce an image-- I
+think it's kind of nice to make the stub just produce a blank image.
+And the way I make a blank image is I make a square of size zero.
+And it could be any color you want since it's a size zero.
+But I make it like that.
+That's our stub, let's run it.
+Where this function is not defined this square right here.
+Oh this is the bug about saying require 2htdp/image.
+If we go to the top of the file, sure enough there's no require there.
+So we'll say require 2htdp/image.
+
+We'll run that.
+OK, now we're OK.
+So this is a good example of why we check the well formulas of stubs.
+And in general, why we want to run our code as often as you can.
+The sooner you find a little mistake, the easier it is to fix.
+It's easier find one mistake now, and another mistake in a minute,
+and another mistake in a minute, then it is to find all three of them
+in three minutes.
+So run your code as often as you can is the general rule we're going to use.
+OK, so now we're going to do examples.
+The question is how many examples do we need and what should they be?
+So again, you can get some guidance for this by going to the how to design data
+page.
+
+Going down to the section on itemization, because this
+is an itemization.
+And the guidance here that says that there should be at least as many
+tests as there are cases in the itemization.
+And if they are intervals in the itemization
+then there should be tests at all points of variance in the interval.
+Let's go back to the code and I'll show you what that means.
+Well, we know there are at least three tests.
+So let's quickly do that. check expect countdown to image of some value.
+Some value, I'll just make three of these.
+We know there's at least three.
+Let's see, the first one corresponds to this first case of the type comment
+false, so that's false.
+So now let's see, what should countdown to image
+produce when the countdown isn't running?
+Because remember, the interpretation tells
+me this means the countdown has not yet started.
+So if the countdown hasn't yet started, I don't know,
+there's lots of things we could produce.
+Let's just produce that blank image again.
+
+You could produce something fancier than this.
+The goal here is not to make the best possible version of this function,
+but to understand what the design of this functions about.
+So that'll be the first case.
+And now we need a case for this interval.
+Now, we're supposed to test every point of variance in the interval.
+Conceivably we could test with one somewhere
+in the middle like five and 10.
+But in this particular function, the behavior
+doesn't meaningfully vary across the interval.
+Sure we're going to display one at one, and 10 at 10, and three at three,
+but we're always going to display the number.
+So it's going to really be enough to have a single test for this interval.
+Maybe at five.
+Now the question is what do we want to display?
+Well let's see, we need an image.
+And there's a function called text, which can turn a string into an image.
+And there's a function called number->string that can turn a number
+into its string.
+
+So if we made a text of some size-- right now
+I'm just going to put the size of the text here,
+we'll see next week that the right thing to do is define a constant for this.
+But I'm just going to put the size right there.
+
+So what this is saying is it's saying if we countdown to image of five,
+we should produce the text of the number five in font size 24 and it's black.
+And what are we going to do if the countdown is complete?
+Complete is the third case.
+Well I say for that we'll just say text of happy new year.
+
+And that'll also be 24, but maybe it'll be some brighter color like red.
+Now a very important thing has happened here,
+which is I've really worked out the behavior of this function
+using the concrete examples.
+So before I write in the actual code of the function,
+we did a lot of the designing of the behavior of this function.
+So that's the examples.
+Let's run them.
+Right, they all run, but some are failing.
+That means they're well formed.
+
+So now this was this stub.
+Let's comment it out.
+Let's put a note that says use template from countdown.
+Let's get that template.
+
+We'll copy it down here, and let's see, we rename it.
+
+We rename it countdown to image.
+So in the false case while this corresponds to this example,
+so that's just that black image again.
+
+In this case let's see, we're going to convert see whatever it is.
+
+This will just be text of here's number to string of see size 24 and black.
+
+And when conds get complicated like this we tend to put the question
+and answer on separate lines.
+That makes the cond easier to read.
+And then this final case that corresponds to this example.
+Which is just text.
+
+Happy New Year 24 red.
+
+Let's see what's happening here.
+Let's try it.
+number-to-string, this function is not yet defined.
+
+I didn't get the error here though.
+Oh, right, the doctor racket version of this function is named with an arrow,
+like this.
+
+One of the tests didn't pass.
+Happy Near Year differs from Happy-- oh I didn't put the exclamation marks in.
+
+Now let's try.
+I'll save it and run it, and all three tests passed.
+Notice I had to fix two bugs there.
+In each case what I did was I read the warning message,
+or I read the failing test.
+I look at the highlighted code.
+And I used that to give me an idea of what the problem was and how to fix it.
+The key thing about having bugs in the code
+is just to expect that that's part of it.
+Don't get upset about it.
+Don't worry about it.
+It happens all the time.
+It's just part of it.
+The very best programmers in the world have bugs in their code.
+Fixing it is part of designing good programs.
+And we're going to talk more as we go through the course about techniques
+for finding the bug as our programs get more and more sophisticated.
+
+Now again, notice that the data definition
+told us there were three cases.
+It's an itemization that includes an interval.
+That gave us the template.
+It also gave us the examples.
+And it helped us fill in the template for the function.
+A lot starts with the data definition.
+Let me show you one little side point here.
+We saw that doctor racket names its number
+to string function number arrow string.
+And we named our countdown to image function countdown to image.
+That's because this naming convention here
+is something you're not going to get away
+with in other programming languages.
+So I wanted you to see this naming convention too.
+But if you wanted to rename this function, let me show you a neat trick.
+What you're going to do is you are going to click on check syntax here.
+And now when I hover over countdown to image
+here it shows me all the calls to it.
+When I hover over one of these it shows me the definition that defines it.
+Now what I'm going to do is on the Mac I'm going to Control click,
+on Windows I'd right click.
+
+And I go to Rename Countdown to Image.
+
+And I'll rename it up here using other naming convention.
+And notice how it fixed all of them.
+But notice how I didn't fix the one that was in this comment.
+It only fixes the ones that aren't commented out.
+So now if you want to you've got the function named the other way.
+This renaming command that I used is a thing called refactoring.
+And it's very useful when programs start to get
+big to have tools like that for doing things like re-namings.
+We'll talk more about that as we go on in the course.

@@ -1,0 +1,119 @@
+
+GREGOR KICZALES: What I want to do now is the same thing
+we've done with all the other beginning student language constructs we've seen,
+which is to go over in a little bit more detail
+the rules for forming function definitions and function calls,
+and also the rules for evaluating function calls.
+Before I get to those rules, I just want to show you
+something, which is where you could find all the rules for the BSL language.
+If you go to the course web page and you scroll here to the Languages tab,
+then this page has all the rules for the BSL language including
+how to form all the kinds of expressions we've seen
+and the rules for evaluating them and so on.
+The rule for forming a function definition is simple.
+We start with open paren define because it's a definition.
+And then we have paren and the name of the function
+followed by the names of the parameters.
+In the example we have so far, we just have one parameter c.
+But we'll define other functions later that have more than one parameter.
+And then we close that paren-- so this first part
+has open paren, the name of the function, the name of the parameters,
+and we close that paren.
+And then-- and we always put it on a new line--
+we have an expression which forms the body of the function.
+So here's the example we've seen so far.
+Define, the name of the function is bulb, the parameter is c,
+and here's the body of the function.
+To form a function call expression, we put open paren,
+the name of a defined function, and then we
+put some number of expressions corresponding
+to the number of parameters the function has.
+So for our bulb function, which has a single parameter,
+we put a single expression after the bulb name.
+And those expressions are all called operands.
+To show you how the rules for evaluation related to functions work,
+you're going to first start by getting a somewhat simpler example.
+What I've got here is a call to bulb, where it's argument,
+instead of already being a value, is going to be
+another call, a primitive call.
+And I'm also going to set up by putting the rules for evaluating functions
+and primitive calls here on the right.
+So let's see.
+We look at open paren bulb and that tells us
+that we've got a function call.
+So the rule for evaluating a function call
+is to first reduce the operands to values.
+So now let's go look at the first operand.
+The first operand is open paren string append.
+So that's a primitive call.
+So we now look at the rules for evaluating a primitive call.
+And the first rule is to reduce operands to values again.
+Notice that the rule-- the first rule for function calls and primitive calls
+is the same.
+You reduce the operands to values.
+Well, let's see.
+The string re and the string d are both already values.
+So now we can apply the string append primitive.
+And the first full step in the evaluation
+is that we now have bulb with an operand of the value red.
+
+So now, going back to the function call roles,
+we have now reduced the first operand to a value.
+So we reduced all the operands to value.
+And now we're going to replace the function
+call by the body of the function-- so I've copied the body of the function
+down here-- but in the body of the function
+we're going to replace every occurrence of the parameter
+c by the argument-- the corresponding argument-- to the function,
+in this case, red.
+
+And now what do we have?
+Well, open paren circle, this is a call to a primitive.
+So notice the function call is completely gone now.
+Once we replaced the call with its body, we just
+work on evaluating the replaced body.
+This is a call to a primitive.
+The first rule for a primitive is to reduce all the operands to values.
+There's three operands in this case and they are all already values.
+
+So now, the second step of a call to a primitive
+is to just apply the primitive to the values.
+And the value of that primitive call is a red circle.
+And now all we've got is a value so evaluation stops.
+
+Let me just point one thing out to you about the way
+I've done this hand step by step evaluation.
+By writing all of the different steps of the evaluation in the definitions
+window this way, what I can do now is actually run this.
+And since there's four steps to the evaluation,
+I should see the same result four times.
+Because when Racket starts here and runs to the end
+it gets a red circle, when it starts here and runs to the end
+it gets a red circle, when it starts here and runs to the end
+it gets a red circle, and when it starts with a red circle and runs to the end
+it gets a red circle.
+So if you do your step by step evaluation exercises in the Definitions
+window like this and then run it, you can kind of
+check whether you've got the right step by step evaluation
+because you should see the same value repeated each time.
+
+Now you understand how to define functions
+and you know the rules for evaluating function calls.
+As I said at the beginning, functions are
+going to be incredibly important to all of our Racket programs
+so it's really important that you understand how they work.
+So if it's ever unclear to you, just come back to this video
+and also be sure to work the practice problems that
+are associated with this video.
+Just as an aside so you understand how powerful functions are,
+one of the most important theoretical results in computer science
+says that if you have a language that just has functions-- just functions,
+no strings, no numbers, just functions-- you
+could actually write any program that can be written in any language.
+Now, you know that's a theoretical result that makes academics happy.
+A language like that would be pretty cumbersome to program
+in so you would never do it.
+Back in practical terms now.
+We want functions, we want strings, we want images, we want numbers,
+we want all of that.
+Even so, functions are pretty central to the whole game.

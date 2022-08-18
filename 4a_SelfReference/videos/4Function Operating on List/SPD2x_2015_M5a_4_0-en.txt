@@ -1,0 +1,123 @@
+
+GREGOR KICZALES: So now we're going to design a function that
+operates on ListOfString, and remember what I said in the last video,
+we still don't have all the changes we need to the how
+to design function recipe to do this, so there's going to be a place in here
+where I'm going to make a lucky guess, and that lucky guess is
+going to turn out splendidly for me.
+And then in the next video, I'm going to come back and really
+explain away all those lucky guesses so that you can make them too.
+We're starting where we left off in the last video.
+We have a data definition for ListOfString, and that's
+the type that we're using to represent lists of Quidditch teams,
+but remember there were three things about this data definition
+that I said I would talk more about later,
+and that'll be in the next video.
+One was this self reference here at the top,
+one was the fact that I put in this funny call to fn-for-los here,
+and the last thing is I didn't say what template rule caused
+me to put that fn-for-los.
+Now if we go down a little farther in this starter file,
+there's a second problem, and the problem here
+is we want to know whether your list of favorite Quidditch teams includes UBC.
+So we're going to design a function that consumes ListOfString and produces
+true if the list includes UBC.
+So this is a how to design function problem, so let's just get going.
+Signature first, it's going to consume a list of favorite Quidditch teams,
+so that's ListOfString.
+That's how we're representing that, and it's
+going to produce true if the list includes UBC,
+so that means it's going to produce a Boolean.
+
+And let's see, we'll say produce true if los, we'll call it, includes UBC,
+and stop is defined-- let's say we'll call this function contains-ubc?
+los, and we'll make the stop produce false.
+We'll say that that's the stub.
+Now let's do some examples.
+We can get some inspiration from the data examples
+that we have in the list of string data definition.
+So empty is definitely a list of strings, so let's try that.
+Let's say contains-ubc?
+
+of empty.
+We want to check expected that.
+Well, let's see, does the empty list contain UBC?
+Well, no it doesn't.
+So that's easy, that's false.
+Here's another one.
+Check expect contains-ubc?
+
+outcomes of cons McGill empty.
+
+Well no, UBC is not in there either.
+Let's make one that UBC is in.
+Check expect contains-ubc?
+
+cons UBC empty.
+
+That's true.
+Let's make one that UBC is in but not in the first position.
+
+So let's say UBC is in that list, so that'll be true.
+So we'll run that, make sure those examples are well formed, and they are.
+Two are failing.
+Now let's see, let's go get the template,
+and we'll comment out the stub, we'll rename the template.
+
+Now it's time to code the body.
+So let's see, contains UBC if los is empty.
+That's this first case, then intuition the purpose, and this first example,
+all three tell me that the result in that case is false.
+Now what about this second case?
+So this is the case where, let's see, it's compound.
+This is the case where we have an actual cons, and this first of the cons
+will be a string, so that's a case like this,
+where we have Miguel as the first element of the list,
+or it's a case like this where we have UBC as the first element of a list.
+So in that case, we would produce false, in that case we would produce true.
+So let's see, it seems like-- or it could
+be this case here where is in the beginning of the list,
+but we need to keep looking.
+So it seems like we need an IF, and there is the IF,
+and it seems like what we want to know is, is the first thing in the list UBC?
+So if the first thing in the list is UBC,
+that's this case here, where the first thing in the list is UBC.
+If the first thing in the list is UBC, then in that case
+we should produce true.
+
+Now what do we need to do here?
+What do we need to do in this case?
+This is the case where the first thing in the list is not UBC,
+so that's a case like this one, where the first thing in the list is not UBC,
+and it's also a case like this one, where the first thing the list
+is not UBC.
+In this case, UBC isn't anywhere in the list, but in this case,
+UBC is in the rest of the list.
+So it seems like what we need to do here is we've got the rest of the list.
+It seems like we need to go look in the rest of the list
+to see whether the rest of the list contains UBC.
+That way, in this case, when we go look in empty,
+there won't be UBC there, so it will produce false, and in this case,
+when we go look in cons UBC empty, we'll find the UBC and produce true.
+So what we need right here-- what we need fn for los to be,
+is we need fn for los to be a function, then if we give it a list of strings,
+it will tell us whether UBC is in that list.
+It will be nice to have such a function.
+
+Well, we do-- or I should say we almost do.
+It says right here that there's a function that consumes list of string
+and produces a Boolean, and it produces true if the list includes UBC,
+and all of this says that the name of that function is contains UBC,
+so since there is a function that does that-- it says right there,
+there is-- I can just make this contains UBC,
+and now I'm done writing that function.
+Let's run it.
+All four tests pass.
+You may find that surprising.
+A funny thing happened here, which is we wrote a function that used itself.
+This idea, which is called recursion, is deeply
+connected to the idea we saw in the last video, which
+was self reference in type comment.
+For now, I'm just going to leave this video
+as it is, say that we're done doing this function, and then in the next video
+I'll talk about why this all worked out.

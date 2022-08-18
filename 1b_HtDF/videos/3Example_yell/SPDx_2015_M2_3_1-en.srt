@@ -1,0 +1,212 @@
+0
+00:00:00,000 --> 00:00:04,110
+
+
+1
+00:00:04,110 --> 00:00:06,110
+GREGOR KICZALES: In this video I'm going to work
+
+2
+00:00:06,110 --> 00:00:10,500
+through a relatively straightforward How to Design Functions problem.
+
+3
+00:00:10,500 --> 00:00:12,300
+So this video would be a really good chance
+
+4
+00:00:12,300 --> 00:00:18,800
+for you to practice what you saw in the HtDF full speed and slow motion videos.
+
+5
+00:00:18,800 --> 00:00:22,080
+Just get the starter file and start working the problem
+
+6
+00:00:22,080 --> 00:00:25,060
+yourself and every now and then run the video
+
+7
+00:00:25,060 --> 00:00:28,030
+to kind of catch up to where you are in the problem
+
+8
+00:00:28,030 --> 00:00:30,370
+so that you can see that you're doing it kind of the way
+
+9
+00:00:30,370 --> 00:00:34,260
+that I'm doing it in the video myself.
+
+10
+00:00:34,260 --> 00:00:37,960
+OK, this first function is going to be simple, a lot like double.
+
+11
+00:00:37,960 --> 00:00:42,000
+We need to design a function called yell that consumes strings like hello
+
+12
+00:00:42,000 --> 00:00:45,630
+and produces strings like hello bang where the exclamation
+
+13
+00:00:45,630 --> 00:00:48,040
+mark has been added to the end.
+
+14
+00:00:48,040 --> 00:00:51,700
+So, let's see, the signature of this function is it consumes String
+
+15
+00:00:51,700 --> 00:00:55,170
+and it produces String.
+
+16
+00:00:55,170 --> 00:01:03,170
+What it's supposed to do is produce string
+
+17
+00:01:03,170 --> 00:01:08,825
+with bang added to end of supplied string.
+
+18
+00:01:08,825 --> 00:01:12,320
+
+
+19
+00:01:12,320 --> 00:01:14,500
+And that's a little cumbersome, purpose statements
+
+20
+00:01:14,500 --> 00:01:16,791
+are often cumbersome the first time you write it, let's
+
+21
+00:01:16,791 --> 00:01:18,740
+see if we can do better than that.
+
+22
+00:01:18,740 --> 00:01:27,730
+What if we just say add bang to the end of s,
+
+23
+00:01:27,730 --> 00:01:32,730
+where s is the name of the parameter in the stub.
+
+24
+00:01:32,730 --> 00:01:34,675
+So that's simple, add bang to the end of s.
+
+25
+00:01:34,675 --> 00:01:37,480
+
+
+26
+00:01:37,480 --> 00:01:39,550
+OK, let's write a check-expect.
+
+27
+00:01:39,550 --> 00:01:51,980
+Check-expect yell with hello that better produce hello bang like that.
+
+28
+00:01:51,980 --> 00:02:07,020
+And check-expect yell with bye had better produce bye bang like that.
+
+29
+00:02:07,020 --> 00:02:11,070
+Now, we run the tests, run the check-expects.
+
+30
+00:02:11,070 --> 00:02:12,700
+And both are failing.
+
+31
+00:02:12,700 --> 00:02:14,690
+But the key thing is both are running, so that
+
+32
+00:02:14,690 --> 00:02:17,580
+tells me that they're well-formed.
+
+33
+00:02:17,580 --> 00:02:20,810
+So I'll just ignore the fact they're failing for now,
+
+34
+00:02:20,810 --> 00:02:23,510
+I really just wanted to know if they were running.
+
+35
+00:02:23,510 --> 00:02:27,390
+And now what we'll do is we'll comment out this stub
+
+36
+00:02:27,390 --> 00:02:30,140
+and we'll label it as being the stub.
+
+37
+00:02:30,140 --> 00:02:35,830
+Let's see, the template for this function is define yell of s,
+
+38
+00:02:35,830 --> 00:02:37,970
+body of the template is . . .
+
+39
+00:02:37,970 --> 00:02:40,390
+s.
+
+40
+00:02:40,390 --> 00:02:45,030
+And what I'm going to do is select the template, make a copy of it,
+
+41
+00:02:45,030 --> 00:02:49,860
+paste the copy here, comment out the template
+
+42
+00:02:49,860 --> 00:02:51,955
+and label it as being the template.
+
+43
+00:02:51,955 --> 00:02:54,330
+Later in the course, you won't have to leave the template
+
+44
+00:02:54,330 --> 00:02:57,410
+behind but for now we find that it's helpful.
+
+45
+00:02:57,410 --> 00:03:03,090
+There's the template, and now I need to edit it.
+
+46
+00:03:03,090 --> 00:03:05,760
+Oh yeah, what this function does is it produces a new string
+
+47
+00:03:05,760 --> 00:03:08,300
+by adding bang to the end of s.
+
+48
+00:03:08,300 --> 00:03:16,770
+So that's just going to be string and s and bang like that.
+
+49
+00:03:16,770 --> 00:03:21,980
+Now we'll run it again, and both tests pass.
+
+50
+00:03:21,980 --> 00:03:25,250
+So there you go, that's design of the yell function following the HtDF
+
+51
+00:03:25,250 --> 00:03:26,645
+recipe.
+
+52
+00:03:26,645 --> 00:03:27,145
+
+

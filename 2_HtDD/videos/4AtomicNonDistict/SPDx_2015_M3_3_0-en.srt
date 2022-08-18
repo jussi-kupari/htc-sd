@@ -1,0 +1,528 @@
+0
+00:00:00,000 --> 00:00:04,799
+
+
+1
+00:00:04,799 --> 00:00:08,090
+GREGOR KICZALES: Now we're going to work through an example of designing a data
+
+2
+00:00:08,090 --> 00:00:11,770
+definition from scratch using the How to Design Data
+
+3
+00:00:11,770 --> 00:00:16,850
+recipe and the accompanying Data-Driven-Templates recipe.
+
+4
+00:00:16,850 --> 00:00:19,860
+It's going to be a simpler example than the traffic light example
+
+5
+00:00:19,860 --> 00:00:21,830
+you saw earlier in the week.
+
+6
+00:00:21,830 --> 00:00:24,300
+What we're going to do over the next couple of lessons
+
+7
+00:00:24,300 --> 00:00:29,415
+is build up our skills to designing more complicated data definitions like that.
+
+8
+00:00:29,415 --> 00:00:34,610
+What I've got is the CityName starter from the HtDD module web page,
+
+9
+00:00:34,610 --> 00:00:38,770
+and it says, imagine that I'm designing a program that, among other things,
+
+10
+00:00:38,770 --> 00:00:42,650
+has information about the names of cities in its problem domain.
+
+11
+00:00:42,650 --> 00:00:47,380
+Design a data definition to represent the name of a city.
+
+12
+00:00:47,380 --> 00:00:50,820
+So the key first thing that we do when we design a data definition
+
+13
+00:00:50,820 --> 00:00:55,030
+is to work out the form of the information we're trying to represent.
+
+14
+00:00:55,030 --> 00:00:57,660
+And it might even be good to just write down a couple examples.
+
+15
+00:00:57,660 --> 00:01:02,430
+Maybe I'll put a little comment box right here,
+
+16
+00:01:02,430 --> 00:01:03,730
+and I'll write some example.
+
+17
+00:01:03,730 --> 00:01:08,420
+So one example city name is Vancouver, and another example city name
+
+18
+00:01:08,420 --> 00:01:10,580
+is Boston for example.
+
+19
+00:01:10,580 --> 00:01:11,950
+And these are all information.
+
+20
+00:01:11,950 --> 00:01:17,020
+
+
+21
+00:01:17,020 --> 00:01:19,645
+OK, now the question is how am I going to represent that.
+
+22
+00:01:19,645 --> 00:01:21,825
+What I'm going to do is go to the course website,
+
+23
+00:01:21,825 --> 00:01:25,070
+and I'm going to go to the Design Recipes page,
+
+24
+00:01:25,070 --> 00:01:29,120
+and this again provides me an index into all the design recipes.
+
+25
+00:01:29,120 --> 00:01:31,460
+And I'll go to the How To Design Data recipe.
+
+26
+00:01:31,460 --> 00:01:34,004
+
+
+27
+00:01:34,004 --> 00:01:36,170
+And this web page, I won't go through in detail now.
+
+28
+00:01:36,170 --> 00:01:38,045
+I'm just going to work through it by example,
+
+29
+00:01:38,045 --> 00:01:40,420
+but you should review it on your own.
+
+30
+00:01:40,420 --> 00:01:44,257
+It tells me about the basic parts of every data definition,
+
+31
+00:01:44,257 --> 00:01:46,215
+and I'll pick this up later and set it down off
+
+32
+00:01:46,215 --> 00:01:49,230
+to the right when we're working in DrRacket.
+
+33
+00:01:49,230 --> 00:01:53,520
+And the key thing it helps me do is decide what kind of data definition
+
+34
+00:01:53,520 --> 00:01:59,290
+to use based on the form of the information that we need to represent.
+
+35
+00:01:59,290 --> 00:02:01,710
+Now remember, we're trying to represent city names, things
+
+36
+00:02:01,710 --> 00:02:04,390
+like Vancouver and Boston.
+
+37
+00:02:04,390 --> 00:02:07,340
+And the thing about that information is that it's atomic,
+
+38
+00:02:07,340 --> 00:02:10,759
+and what I mean by atomic is you can't take it apart
+
+39
+00:02:10,759 --> 00:02:15,350
+into pieces that are still meaningfully part of the same problem domain.
+
+40
+00:02:15,350 --> 00:02:20,880
+So yes, it's true, I can take the city name Boston apart into the letters
+
+41
+00:02:20,880 --> 00:02:26,040
+B-O-S-T-O-N, but those aren't meaningfully part of a city name
+
+42
+00:02:26,040 --> 00:02:26,540
+in a sense.
+
+43
+00:02:26,540 --> 00:02:30,420
+They're not like neighborhoods of the city or something like that.
+
+44
+00:02:30,420 --> 00:02:36,400
+So this information is atomic, and the way
+
+45
+00:02:36,400 --> 00:02:40,890
+we represent atomic information is with a type comment that looks like this.
+
+46
+00:02:40,890 --> 00:02:46,060
+We simply have a new type name, and we say
+
+47
+00:02:46,060 --> 00:02:50,580
+what underlying primitive atomic data it's going to be represented as.
+
+48
+00:02:50,580 --> 00:03:00,380
+So going back over here DrRacket, I'm going to say city name is string.
+
+49
+00:03:00,380 --> 00:03:04,370
+A good way to represent this information is using strings,
+
+50
+00:03:04,370 --> 00:03:12,290
+so for example if we do this, the data that represents the city name Vancouver
+
+51
+00:03:12,290 --> 00:03:18,370
+is going to be the string Vancouver, and the data that represents the city
+
+52
+00:03:18,370 --> 00:03:22,640
+and Boston is going to be the string Boston.
+
+53
+00:03:22,640 --> 00:03:25,240
+So here's my type comment, CityName is String,
+
+54
+00:03:25,240 --> 00:03:29,410
+and now I need to provide interpretations so I type Interp.
+
+55
+00:03:29,410 --> 00:03:31,690
+And for simple atomic data, the interpretation
+
+56
+00:03:31,690 --> 00:03:35,270
+is often fairly simple, especially for a case like this.
+
+57
+00:03:35,270 --> 00:03:39,510
+We're just going to say the name of a city.
+
+58
+00:03:39,510 --> 00:03:42,910
+
+
+59
+00:03:42,910 --> 00:03:45,790
+Now the next part of the data definition is something
+
+60
+00:03:45,790 --> 00:03:48,060
+that we didn't see in the last example, and we'll
+
+61
+00:03:48,060 --> 00:03:51,320
+talk about why that is more in a couple videos.
+
+62
+00:03:51,320 --> 00:03:55,020
+But we want to provide some examples of how the data definition represents
+
+63
+00:03:55,020 --> 00:03:56,760
+information.
+
+64
+00:03:56,760 --> 00:04:01,450
+So what I'm going to do is I'm going to say to define City Name one is,
+
+65
+00:04:01,450 --> 00:04:05,410
+well, one good example is Boston.
+
+66
+00:04:05,410 --> 00:04:13,080
+And define City Name two, and another good example is Vancouver.
+
+67
+00:04:13,080 --> 00:04:16,930
+Now I'll be honest with you, providing examples of really simple data
+
+68
+00:04:16,930 --> 00:04:20,380
+definitions like this doesn't do that much work,
+
+69
+00:04:20,380 --> 00:04:23,600
+but again, we're learning the recipe now so that'll help
+
+70
+00:04:23,600 --> 00:04:26,530
+us more with more complicated examples.
+
+71
+00:04:26,530 --> 00:04:28,990
+And fairly soon we'll have data definitions
+
+72
+00:04:28,990 --> 00:04:31,930
+where examples really are going to help us understand the data
+
+73
+00:04:31,930 --> 00:04:33,600
+definition better.
+
+74
+00:04:33,600 --> 00:04:36,660
+So there's the examples.
+
+75
+00:04:36,660 --> 00:04:39,540
+The next step of the recipe is to produce
+
+76
+00:04:39,540 --> 00:04:43,430
+the template for this data definition.
+
+77
+00:04:43,430 --> 00:04:46,890
+Now to produce the template, what I do I go back to the course website,
+
+78
+00:04:46,890 --> 00:04:54,270
+and I go to the Design Recipes page, and I get the Data Driven Templates rules.
+
+79
+00:04:54,270 --> 00:04:59,640
+So here's the Data Driven Templates recipe, and the way this works is it
+
+80
+00:04:59,640 --> 00:05:03,370
+says for a given type name the data-driven template looks like this.
+
+81
+00:05:03,370 --> 00:05:06,000
+
+
+82
+00:05:06,000 --> 00:05:08,510
+So what I do is I say define fn-for-city-name.
+
+83
+00:05:08,510 --> 00:05:12,400
+
+
+84
+00:05:12,400 --> 00:05:15,740
+And we're going to be quite particular about the name of the template.
+
+85
+00:05:15,740 --> 00:05:18,620
+Naming the template directly after the type name
+
+86
+00:05:18,620 --> 00:05:23,000
+is going to turn out to help us quite a bit later on in the course.
+
+87
+00:05:23,000 --> 00:05:27,800
+And I'll pick as a parameter name for this template cn,
+
+88
+00:05:27,800 --> 00:05:31,261
+and now I've got to do something about the body here.
+
+89
+00:05:31,261 --> 00:05:33,011
+And what I'm also going to do is I'm going
+
+90
+00:05:33,011 --> 00:05:38,675
+to write Template rules used like this.
+
+91
+00:05:38,675 --> 00:05:43,480
+And now looking back at the Data Driven Templates page, what I see
+
+92
+00:05:43,480 --> 00:05:47,810
+is the way to produce the body is to follow the rules in this table.
+
+93
+00:05:47,810 --> 00:05:49,920
+What I do is I go to the type comment.
+
+94
+00:05:49,920 --> 00:05:54,600
+I look at the first word after is, so that's string.
+
+95
+00:05:54,600 --> 00:05:58,820
+And then I start working in this table from there.
+
+96
+00:05:58,820 --> 00:06:02,360
+Now the string is what's called an atomic, non-distinct type.
+
+97
+00:06:02,360 --> 00:06:05,220
+The best way to understand what non-distinct means is
+
+98
+00:06:05,220 --> 00:06:07,620
+to wait for a couple more videos, and then we'll
+
+99
+00:06:07,620 --> 00:06:10,140
+see what distinct examples are.
+
+100
+00:06:10,140 --> 00:06:15,030
+But string is right here, so this is the row of the table that I'm going to use,
+
+101
+00:06:15,030 --> 00:06:16,910
+and I'm not inside of a cond.
+
+102
+00:06:16,910 --> 00:06:21,660
+You'll see what it means to be inside a cond again in a couple of videos.
+
+103
+00:06:21,660 --> 00:06:24,990
+But for the body, I'm just going to say dot dot dot x,
+
+104
+00:06:24,990 --> 00:06:27,900
+where x is the actual parameter name.
+
+105
+00:06:27,900 --> 00:06:33,415
+So the body of this template is just going to be dot dot dot cn.
+
+106
+00:06:33,415 --> 00:06:36,600
+
+
+107
+00:06:36,600 --> 00:06:41,230
+And I'm also going to right here the template rule that I used,
+
+108
+00:06:41,230 --> 00:06:44,290
+and the rule that I used was the atomic non-distinct rule.
+
+109
+00:06:44,290 --> 00:06:49,690
+
+
+110
+00:06:49,690 --> 00:06:53,532
+And I'm also going to write the part of the type comment
+
+111
+00:06:53,532 --> 00:06:55,740
+that matched that rule, which in this case is string.
+
+112
+00:06:55,740 --> 00:06:59,146
+
+
+113
+00:06:59,146 --> 00:07:01,920
+And now I'm going to run this.
+
+114
+00:07:01,920 --> 00:07:04,440
+And there's nothing really to run, but the key thing
+
+115
+00:07:04,440 --> 00:07:07,070
+is I didn't get any errors.
+
+116
+00:07:07,070 --> 00:07:11,640
+If for example, if I had made a mistake like I left a parenthesis off there,
+
+117
+00:07:11,640 --> 00:07:14,170
+then I would get an error right now.
+
+118
+00:07:14,170 --> 00:07:19,210
+And I would fix this poorly-formed template right now,
+
+119
+00:07:19,210 --> 00:07:24,050
+so I'll fix this poorly-formed template right now.
+
+120
+00:07:24,050 --> 00:07:27,166
+And now I've got this running properly, and what
+
+121
+00:07:27,166 --> 00:07:30,290
+I'll do is I'll comment out the template because we're never actually going
+
+122
+00:07:30,290 --> 00:07:32,450
+to call this template function, we're just
+
+123
+00:07:32,450 --> 00:07:37,000
+going to copy it into later function designs.
+
+124
+00:07:37,000 --> 00:07:39,670
+And I'll get rid of this now, this scratch work,
+
+125
+00:07:39,670 --> 00:07:44,390
+because that's already really captured in the data definition.
+
+126
+00:07:44,390 --> 00:07:45,400
+So there you go.
+
+127
+00:07:45,400 --> 00:07:48,620
+I've completed a first data definition by following the How
+
+128
+00:07:48,620 --> 00:07:56,660
+To Design Data recipe using also the Data Driven Templates recipe.
+
+129
+00:07:56,660 --> 00:07:58,940
+In the next video, we'll design a function
+
+130
+00:07:58,940 --> 00:08:02,020
+that uses this data definition.
+
+131
+00:08:02,020 --> 00:08:03,369
+
+

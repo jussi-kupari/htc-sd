@@ -1,0 +1,444 @@
+0
+00:00:00,000 --> 00:00:00,184
+
+
+1
+00:00:00,184 --> 00:00:01,850
+GREGOR KICZALES: So there's my examples.
+
+2
+00:00:01,850 --> 00:00:04,300
+Now we'll set up to do the template.
+
+3
+00:00:04,300 --> 00:00:11,220
+Define fn-for-countdown c.
+
+4
+00:00:11,220 --> 00:00:15,305
+They'll be somebody template rules used.
+
+5
+00:00:15,305 --> 00:00:22,569
+
+
+6
+00:00:22,569 --> 00:00:24,860
+So now we have to go find the first template rule used.
+
+7
+00:00:24,860 --> 00:00:27,150
+And again we always start by looking at the word right
+
+8
+00:00:27,150 --> 00:00:29,360
+after is in the type comment.
+
+9
+00:00:29,360 --> 00:00:31,410
+And that word is one of.
+
+10
+00:00:31,410 --> 00:00:35,400
+So if we go find the template rules page,
+
+11
+00:00:35,400 --> 00:00:38,400
+again we can find that by following this link,
+
+12
+00:00:38,400 --> 00:00:43,880
+the data driven templates recipe link-- The one of role
+
+13
+00:00:43,880 --> 00:00:46,700
+is the rule we're going to use this because this is an itemization.
+
+14
+00:00:46,700 --> 00:00:49,990
+The one of role is also what we used for enumerations,
+
+15
+00:00:49,990 --> 00:00:52,690
+so we know how it starts out.
+
+16
+00:00:52,690 --> 00:00:54,590
+It's going to tell us to make a cond with one
+
+17
+00:00:54,590 --> 00:00:58,200
+clause per subclass of the one of.
+
+18
+00:00:58,200 --> 00:01:02,490
+So I'll go back over to the code now, and I'll say cond
+
+19
+00:01:02,490 --> 00:01:05,960
+and there's three subclasses.
+
+20
+00:01:05,960 --> 00:01:08,005
+So there'll be three question answer pairs.
+
+21
+00:01:08,005 --> 00:01:15,030
+
+
+22
+00:01:15,030 --> 00:01:21,050
+And I'll say that the rule that I used was one of three cases.
+
+23
+00:01:21,050 --> 00:01:25,370
+
+
+24
+00:01:25,370 --> 00:01:27,830
+OK, so now I go to the first case.
+
+25
+00:01:27,830 --> 00:01:30,900
+The first case is false.
+
+26
+00:01:30,900 --> 00:01:33,930
+Well false is an atomic distinct value.
+
+27
+00:01:33,930 --> 00:01:37,960
+And I need a predicate for the question that tests for false.
+
+28
+00:01:37,960 --> 00:01:43,762
+It turns out there is a predicate that tests whether a value is exactly false.
+
+29
+00:01:43,762 --> 00:01:45,720
+So back at the code I could put that predicate,
+
+30
+00:01:45,720 --> 00:01:49,870
+and I can say false question mark c.
+
+31
+00:01:49,870 --> 00:01:52,200
+This is atomic distinct so dot dot dot.
+
+32
+00:01:52,200 --> 00:01:55,660
+
+
+33
+00:01:55,660 --> 00:02:02,270
+Atomic distinct false.
+
+34
+00:02:02,270 --> 00:02:07,320
+So now for the second sub case, so let's see, this is an interval.
+
+35
+00:02:07,320 --> 00:02:11,220
+So going back to the data templates page, for interval I
+
+36
+00:02:11,220 --> 00:02:14,350
+need an appropriate predicate.
+
+37
+00:02:14,350 --> 00:02:16,600
+So this is a predicate that for example tells
+
+38
+00:02:16,600 --> 00:02:20,370
+me is it a number between one and 10.
+
+39
+00:02:20,370 --> 00:02:22,580
+But I have to be a little careful here.
+
+40
+00:02:22,580 --> 00:02:31,440
+If I just make this predicate be and one is less than or equal to C,
+
+41
+00:02:31,440 --> 00:02:38,480
+and C is less than or equal to 10, and let
+
+42
+00:02:38,480 --> 00:02:41,600
+me just do the answer clause quickly so we'll have that out of way.
+
+43
+00:02:41,600 --> 00:02:49,340
+Since this is an atomic non-distinct, this would be dot dot dot c.
+
+44
+00:02:49,340 --> 00:02:53,140
+That might be what you write, but this particular itemization
+
+45
+00:02:53,140 --> 00:02:56,350
+is called a mixed data itemization.
+
+46
+00:02:56,350 --> 00:03:00,250
+It's a mixed date itemization because there's different kinds of data in it.
+
+47
+00:03:00,250 --> 00:03:03,460
+Not all three clauses are numbers.
+
+48
+00:03:03,460 --> 00:03:08,030
+The first clause, the data is a boolean, the second clause it's a number,
+
+49
+00:03:08,030 --> 00:03:10,734
+in the third it's a string.
+
+50
+00:03:10,734 --> 00:03:12,150
+So I have to be very careful here.
+
+51
+00:03:12,150 --> 00:03:17,920
+Because if I call this template with c being the string complete, this less
+
+52
+00:03:17,920 --> 00:03:24,470
+than or equal right here, this less than or equal is going to blow up.
+
+53
+00:03:24,470 --> 00:03:27,290
+Because you can't call less than or equal giving it
+
+54
+00:03:27,290 --> 00:03:30,530
+a string as an argument.
+
+55
+00:03:30,530 --> 00:03:33,250
+So because this is a mixed data itemization,
+
+56
+00:03:33,250 --> 00:03:38,540
+we have to guard this less than or equal against being called
+
+57
+00:03:38,540 --> 00:03:41,350
+with a value that isn't a number.
+
+58
+00:03:41,350 --> 00:03:44,600
+The way we're going to guard it is we're going to say well,
+
+59
+00:03:44,600 --> 00:03:47,730
+you're only this middle case if you're a number
+
+60
+00:03:47,730 --> 00:03:49,990
+and you are a number between one and 10.
+
+61
+00:03:49,990 --> 00:03:52,560
+So I'm going to add one more test to the and.
+
+62
+00:03:52,560 --> 00:03:59,880
+
+
+63
+00:03:59,880 --> 00:04:05,630
+So now if I call fun for countdown with false this template will go there.
+
+64
+00:04:05,630 --> 00:04:09,150
+If I call fun for countdown with a number that's between one and 10,
+
+65
+00:04:09,150 --> 00:04:11,356
+this template will go there.
+
+66
+00:04:11,356 --> 00:04:14,930
+So now I've done the the code properly, and I need
+
+67
+00:04:14,930 --> 00:04:18,870
+to add the template role that I used.
+
+68
+00:04:18,870 --> 00:04:26,440
+Atomic non distinct and it's this interval right here.
+
+69
+00:04:26,440 --> 00:04:27,627
+I'll just copy it.
+
+70
+00:04:27,627 --> 00:04:32,880
+
+
+71
+00:04:32,880 --> 00:04:35,980
+Now going back over to the data templates page
+
+72
+00:04:35,980 --> 00:04:38,580
+there's a note here that says it is permissible to use else
+
+73
+00:04:38,580 --> 00:04:42,540
+for the last question for itemization's and large enumerations.
+
+74
+00:04:42,540 --> 00:04:45,130
+This is an itemization.
+
+75
+00:04:45,130 --> 00:04:47,370
+So we're allowed to use else for the last question.
+
+76
+00:04:47,370 --> 00:04:54,430
+What that means is, right here for this question I'm allowed to put else.
+
+77
+00:04:54,430 --> 00:04:58,260
+I don't have to put a question that tests whether C is actually
+
+78
+00:04:58,260 --> 00:05:00,140
+the string complete.
+
+79
+00:05:00,140 --> 00:05:02,390
+Let me do the answer quickly.
+
+80
+00:05:02,390 --> 00:05:07,160
+This complete is an atomic distinct, so the answer's going to be that.
+
+81
+00:05:07,160 --> 00:05:09,660
+Now let me talk about why I'm allowed to put this else here,
+
+82
+00:05:09,660 --> 00:05:11,810
+and it's really important.
+
+83
+00:05:11,810 --> 00:05:15,710
+In this course, if you have written a well formed type
+
+84
+00:05:15,710 --> 00:05:18,780
+comment like countdown, and you later say
+
+85
+00:05:18,780 --> 00:05:22,470
+that a function consumes a countdown, then you
+
+86
+00:05:22,470 --> 00:05:27,790
+can count on the function being called with a legal countdown.
+
+87
+00:05:27,790 --> 00:05:33,050
+So what that means is when this template runs in some specific function,
+
+88
+00:05:33,050 --> 00:05:38,130
+if C isn't false, and C isn't a number between one and 10,
+
+89
+00:05:38,130 --> 00:05:40,910
+then C is guaranteed to be the string complete.
+
+90
+00:05:40,910 --> 00:05:45,510
+You don't have to actually test here whether C is the string complete.
+
+91
+00:05:45,510 --> 00:05:50,130
+What we're saying is that having taken the trouble to do type comment,
+
+92
+00:05:50,130 --> 00:05:54,200
+and having taken the trouble to specify the signature of a function,
+
+93
+00:05:54,200 --> 00:05:56,865
+you can count on that being respected.
+
+94
+00:05:56,865 --> 00:05:59,240
+The reason that's a reasonable thing to do in this course
+
+95
+00:05:59,240 --> 00:06:02,095
+is the other programming languages that you will use
+
+96
+00:06:02,095 --> 00:06:04,470
+is a part of the programming language implementation call
+
+97
+00:06:04,470 --> 00:06:07,480
+the compiler, which will actually enforce that rule
+
+98
+00:06:07,480 --> 00:06:10,290
+to make sure that it's always true.
+
+99
+00:06:10,290 --> 00:06:13,300
+So it's a reasonable rule for you to start counting on here.
+
+100
+00:06:13,300 --> 00:06:15,880
+So now that I've done this last case I do
+
+101
+00:06:15,880 --> 00:06:20,130
+need to go and add my template rule used, which is atomic distinct.
+
+102
+00:06:20,130 --> 00:06:22,790
+
+
+103
+00:06:22,790 --> 00:06:24,570
+And it's this complete here.
+
+104
+00:06:24,570 --> 00:06:29,670
+
+
+105
+00:06:29,670 --> 00:06:32,660
+So let's see, I'll run it to make sure everything's well formed.
+
+106
+00:06:32,660 --> 00:06:35,240
+I don't get any errors, so it is well formed.
+
+107
+00:06:35,240 --> 00:06:38,710
+And I will comment out that piece of it.
+
+108
+00:06:38,710 --> 00:06:40,010
+Save the file.
+
+109
+00:06:40,010 --> 00:06:45,100
+And now, I've got the data definition for this countdown type.
+
+110
+00:06:45,100 --> 00:06:48,555
+
+

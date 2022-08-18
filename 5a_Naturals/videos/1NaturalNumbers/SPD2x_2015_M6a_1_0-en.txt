@@ -1,0 +1,219 @@
+
+GREGOR KICZALES: Here's a question for you.
+How many natural numbers are there?
+Put it this way.
+If I'm using a natural number to represent your position in line,
+how big could that be?
+One?
+10?
+A thousand?
+That's a pretty long lineup, but it could be.
+The answer is that there's an arbitrary number of natural numbers.
+We just don't know how big it could be.
+And what that tells us is that we ought to be
+able to design a well-formed self-referential data
+definition for natural numbers.
+And what that tells us is we ought to be able to design a lot of functions
+on natural numbers really easily.
+That's what we're going to do in this video.
+First, I need to tell you about a primitive function in racket you
+might not have seen yet called add one.
+Let's see 0 is 0 Add 1 of 0 is 1.
+And add 1 of add 1 of 0 is 2.
+And so on.
+So add 1 takes a natural number and adds 1 to it.
+And there's another function, sub 1.
+If I take sub 1 of 2, I get 1.
+If i take sub 1 of sub 1 of 2, I get 0.
+In a funny kind of way, add 1 is a little bit like cons.
+Cons takes a short list and gives you a list 1 longer.
+And sub 1 is a little bit like rest.
+Rest takes a list that's at least 1 long and gives you a list that's 1 shorter.
+So think of add 1 as building a natural number up
+to the next biggest natural number.
+And think of sub 1 as taking a natural number down
+to the next smallest natural number.
+I'm in natural starter dot racket.
+And what I have here is a self-referential data definition
+for natural.
+Previously, we took the type natural to be primitive.
+Now we're giving a definition for that type.
+And it says, look a natural is 1 of 0.
+That's the base case for natural, right?
+That's the smallest natural.
+Or it's add 1 of natural.
+So, if you look at the examples, example n0 is 0.
+And natural 1 is add 1 of n0.
+That's 1.
+And add 1 of n1 is 2.
+And I think you could clearly see here, I
+can get a natural number as big as I want this way.
+This well-formed self-referential data definition
+will let me build up to as big a natural number as I want.
+But I also have to be able to take a natural number back apart.
+And I already told you how that's going to work.
+Add 1 makes it bigger.
+Sub 1 is going to make it smaller.
+So now let's look at the template.
+Template rules used, it starts with a 1 of in two cases.
+So that got me the cond.
+The first case is atomic distinct 0.
+There is a predicate 0 question mark in BSL that tests whether a number is 0.
+So that got me the 0 question mark and the dot dot dot.
+And then, as I said, there's kind of this funny compound,
+this kind of funny cons like thing, add 1, that takes a natural
+and makes the next biggest natural.
+So I'm treating this is as a compound.
+But it's a funny compound because there isn't first and rest.
+There's just rest.
+There's just sub 1.
+So there is the self-reference because once I stripped the add 1 off
+with sub 1, I'm left with a natural.
+So that's the self-reference in this type comment.
+That's the self-reference rule.
+And the presence of that self-reference is
+why there's a natural recursion here in the template function.
+Now, I've got a little bit of the template commented out here.
+Just ignore that for now.
+The part that's not commented out is what the template rules
+are telling us to produce.
+So now we've got the type comment, the well-formed self-referential type
+comment, and we've got a template.
+Let's design some functions that operate on naturals.
+
+Let's see, the first one is a function that consumes natural.
+
+And it produces the sum of the natural, up to and including n.
+Let's see.
+That's going to be a natural, because if you add up any number of naturals
+you get a natural.
+Produce some of natural 0 and inclusive.
+
+Define, we'll call it sum n and the stub is 0.
+Let's see.
+Check expect.
+This is a self-referential data definition.
+So our first check expect should be for the base case, which is 0.
+The sum of 0 to 0 is 0.
+
+We need one that's at least 2 long, in this case, 2 long means at least 2
+in size.
+But let's just do some of 1 for now.
+If I add up 0 and 1, that's 1.
+
+Let's do 3 now.
+So let's see, if I add 0, 1, 2, and 3, that's that.
+Which is 6.
+There's some good check expects.
+They fail, but they're well-formed.
+
+Let's get this template, copy it down, and I'll
+take this part that isn't supposed to be there out.
+We'll rename the template, rename the natural recursion.
+And let's see.
+What am I supposed to do here?
+The base case result is 0.
+
+And what does sum do?
+Well, these I actually kind of put in the wrong order, didn't I?
+This really happens in the other order because we start with the big end,
+and we go down.
+So this is really 3, 2, 1, 0.
+The natural recursion, in this particular case,
+the natural recursion is going to be the sum of plus 2, 1, and 0.
+That's going to be the natural recursion.
+So what do I have to do with the natural recursion
+in order to get the result I want?
+
+Oh, I see.
+I have to add.
+And then there's something missing from the template, which is actually n.
+I need n.
+I'm allowed to add it to the template.
+Remember, a template is a skeleton of what you have available.
+In this case, the template didn't show us that we have the entire n available.
+But we do have it available.
+Let's try it.
+Well, 3 tests passed.
+OK, let's do the other one.
+What we need to do is design a function that consumes natural number, n,
+and produces a list of all the naturals of the form cons n, cons n minus 1,
+all the way down to empty, but doesn't include 0.
+OK?
+Let's do that.
+Consume natural.
+Produce list of natural.
+I'm not going to do a data definition for list of natural
+because we're producing it, not consuming it.
+So I don't need the template for it.
+I think you could produce the data definition for list of natural
+if you wanted to do it right now.
+It's not necessarily needed for a simple list type that we're going to produce.
+So produce cons and cons n minus 1, all the way down to empty.
+Not including 0.
+To find we'll call it 2 list, n, it'll produce empty as its stub.
+Let's do some examples.
+Well, again, we'll start with the base case.
+Whoops, not 2 list of empty it consumes natural.
+It produces empty.
+So let's see, 2 list of 0.
+It's not supposed to include the 0, the base case.
+0 is the base case, but we don't include it.
+We'll produce empty.
+Gee, that's kind of funny what's going on there.
+Let's do the next one, just to be sure we have a clear in our mind.
+2 list of 1.
+Well, let's see.
+We're never supposed to include 0 in the result.
+But there's nothing that says we're not supposed to include 1 in the result.
+So this looks to me like it should be cons, 1, and empty.
+And that makes sense because the next number after 1 will be 0.
+That's going to produce empty.
+So its cons 1 onto the result of the natural recursion empty.
+That looks pretty good.
+The rule is we have to do one that's at least 2 long, though.
+So let's do that.
+2 list of 2 is cons 2 cons 1 empty.
+
+That looks pretty good.
+Let's run them to be sure they're well-formed.
+They fail, so they're well-formed.
+We'll go up here and get the template again.
+Command E let's me see more space.
+
+I'll take out this part that the template's not opposed to have in it.
+
+I rename the template and the natural recursion.
+Let's see, the base case result is empty.
+And what's the result in the case of recursion?
+Well, I'm supposed to cons.
+
+This is always-- that's the natural recursion in the case of 1.
+That's the result of the natural recursion case of 2.
+So I'm supposed to cons the current number itself
+onto the natural recursion.
+
+Run that, and it works.
+Oops, I forgot to comment out the stub.
+
+All six tests pass.
+Now at this point, having done two of these-- or maybe after I
+wait till I've done 10 of them.
+But if you do 10 of them, you'll see that it's always
+nice to have the actual, natural number.
+So even though the template rules themselves didn't put it
+in the template, what I'm going to do now is go back to the template
+and put it in, along with a note that says, template rules don't put this in.
+
+But it seems to be used a lot, so we added it.
+The key thing that happened in this video
+is we had this insight that there's an arbitrary number of natural numbers.
+So that means a well-formed self-referential data definition
+should describe the natural numbers.
+So that produced a template with a natural recursion in it.
+And once we had that template for the natural recursion,
+these functions actually were super easy to write.
+So have some fun writing some more these functions
+that operate on natural numbers.
+I think you'll find that they go pretty quickly because the template really
+gets you almost all the way there.

@@ -1,0 +1,251 @@
+
+GREGOR KICZALES: In this middle part of the tuition graphing problem,
+nothing fundamentally new is going to happen, but something super important
+is going to happen anyways.
+This video is really going to show the importance of doing examples
+before the function definition.
+In this video, what we want is complicated enough
+that I'm going to spend quite a lot of time just getting the examples right.
+And once I do that, the function definition itself will be a lot easier.
+So this is a demonstration of the power of the way the method puts examples
+before function definitions.
+Now I'm in tuition graph v3, and that has the complete data definitions
+for both school and ListofSchool.
+And now it's time to go design the first of the functions.
+So remember, what we're supposed to do is
+to design a function that consumes information about schools.
+In other words, it consumes a value of type ListofSchool,
+and it's got to produce a bar chart kind of like this one.
+So what I'm going to do in order to avoid
+scrolling so much, because scrolling makes people seasick,
+I know, is I'm just going to copy that and bring it
+all the way down here to my functions part,
+and I'll just stick it in a comment for now.
+It's just to remind us what we're trying to do.
+So let's see, we're designing a function.
+It consumes ListofSchool, and it's going to produce an image like that.
+So that's what that has to do.
+And let's see, produce bar chart showing names and tuitions
+of the consumed schools.
+Let's do a stub.
+Define-- we'll call it chart, and it consumes a list of school.
+And what I use for the stub for functions that produce image is this.
+
+White, there we go.
+Great.
+The stub is well-formed.
+Now let's try to do some examples.
+Well, it's a function operating on a list.
+It's a function operating on a self-referential data definition.
+So the base case test should be first.
+
+So what are you supposed to produce if I hand you an empty list of schools?
+Well, you've got to produce an image.
+So I'm going to produce this same dummy value that the stub happens to produce,
+and that'll be the base case result.
+Let's do another example.
+Let's say check-expect.
+Now, the rule is two long, so let's go ahead and do one that's two long.
+Check-expect chart.
+You know what?
+Let's do one that's one long first.
+It's tempting to do the two long one, but let's do the one long one first.
+It'll be simpler.
+Chart columns.
+And now we need some school.
+Make-school.
+You can use any name you want.
+We'll just call it S1 for now because it'll be simple.
+Make a school called S1 in which the tuition is-- I don't know, 999.
+OK?
+Let's not make it 999.
+Let's make it some nice more round number than that, like 800.
+Just keeping things easy to work with here, easy, not cute.
+So if I've got to chart that, then what do I want to see?
+Hmm.
+Well, I know that the base case result is this.
+
+The question is, what's the contribution of this one school here?
+Hmm.
+Well, let's think about that.
+What is the contribution of that?
+Well, we want to see that text.
+That's for sure.
+Whoops.
+Remember, there's that function text.
+We want to see the text of S1, the name of the school.
+And how big do we want the text to be?
+Well, you might remember that there was a constant up here, FONT-SIZE,
+that I used.
+
+So let me say that it's of size FONT-SIZE.
+And there's another constant, FONT-COLOR.
+
+So that's going to get me the name S1.
+But let's see here.
+That's going to give it to me horizontally,
+and I want this to be vertically.
+So I need to rotate that.
+So let me rotate it.
+
+I need to rotate it that way.
+I can never remember which way the rotation is.
+I'll say minus 90.
+But see, that gets me part of it.
+That gets me just the text.
+And I've got to put them all next to each other,
+so it seems like there's a beside here.
+Now let me show you something.
+I know I'm not done yet, but I'm going to run this anyways.
+And that first test passed.
+This test failed because rotate expects an angle
+in degrees as its first argument.
+Oh, I've got the arguments in the wrong order.
+So I'll put this over here.
+
+What I wanted to show you there is as examples become more complicated,
+and especially once they involve images, you
+can go ahead and run them even before they're
+complete just to see if the part you have makes sense.
+You'll catch errors like wrong order of arguments to rotate.
+Catch them right now.
+Finding a mistake right after you make it is easier
+than finding it five minutes later.
+So that's why I ran that then.
+Let's run it again.
+The test is failing, which we expected.
+But let's just take a look at what the image is to see
+if it's starting to look right for us.
+Well, I've got S1.
+That part's not bad.
+But it's rotated the wrong way.
+That's what I was almost guaranteed to get wrong was
+the direction of the rotation.
+All right.
+That's starting to look better.
+But that's just getting me the S.
+Now, remember, remember, remember, remember, this little box around here
+is not actually part of my result. This box is put here by the test window.
+See how the test window puts a box there and a box there around the base result?
+That box is not actually part of my result.
+So there's something missing here.
+One is that I want that color bar and the other is that I want that box.
+
+Let's see.
+Let's try to make the color bar.
+
+Now see, this is putting that next to that.
+It seems like what I also need is to put the color bar.
+So that's going to be something like rectangle.
+
+And how wide is it?
+Well, I have a constant for that-- BAR-WIDTH, BAR-WIDTH.
+And it's going to be some fraction of 800.
+Remember, I have that thing called Y-SCALE?
+What I'm going to do is I'm going to multiply 800 times the Y-SCALE.
+
+That gets me the bar height.
+And then there's the BAR-COLOR, and I want that to be solid.
+So now I've got the text and the bar, but I need to line those up.
+Now, here's a thing you probably wouldn't have remembered.
+But there's a primitive, very useful here,
+called overlay dash align center bottom.
+
+And that's going to put that color bar and that text lined up, I think,
+nicely.
+Let's try it.
+
+Rectangle expects mode as a third argument.
+Oh, I've got them in the wrong order here.
+
+What do we got?
+Hmm.
+The color bar isn't very high, is it?
+
+I'm multiplying 800 times the Y-SCALE.
+
+Oh, 800 isn't a very high tuition.
+8,000 is a higher tuition.
+Let's use 8,000.
+Try that.
+
+Now we're almost there.
+This is almost like what we have here, except there's
+no black box around the color bar.
+So let me add a black box too.
+We'll say rectangle BAR-WIDTH times 800 Y-SCALE-- oh, not 800, 8,000.
+800's a pretty good deal for tuition.
+Outline black, and that's going to be that outline there.
+Now let's see what we got.
+Hey, that's looking better.
+That does look like one of the bars that we're interested in.
+
+Now, notice something very, very important here.
+That was kind of complicated.
+In fact, you may not feel comfortable with it yet.
+And if you don't feel comfortable with it, what I would do
+is stop the video right here and replay it.
+Let me read it through first, and then replay it.
+All it's saying is it's saying, listen, in order to make one bar,
+take three things and align their bottom centers.
+That's what's getting everything shifted to the bottom here.
+Align their bottom centers so that it says
+the text-- that's the name of the school--
+a black outline of the right size, in other words, BAR-WIDTH, and then
+the tuition times the scaling factor, and then the actual color
+text, BAR-WIDTH, and then the tuition times the scaling factor.
+And this whole thing here is producing just the one bar.
+And what this is saying is it's saying, oh, well,
+put all of that next to the base case result. So that's one check-expect.
+
+That was so hard to produce that for the second example, for the times
+two example, what I'm going to do is I'm going
+to make the second school be S2, except it's going to come first in the list.
+And then that's going to be cons-ed onto make-school S1, the original example,
+8,000, which will be cons-ed onto empty.
+So now I've got a list that's two long.
+The second school in the list is the one we had before.
+The first school in the list is the new one.
+And I'm just going to take this value here and adjust it to be what I want.
+
+So this school is called S2, and 12,000 is its tuition.
+And now let's look at that.
+Two tests are failing.
+That's what we'd expect.
+But they're really starting to look right now.
+Oh, wait, that didn't align properly.
+That floated up.
+Oh, yeah.
+Because remember, that's why we had to use--
+we used overlay align because we wanted to get the individual components
+of the bar to be lined up right.
+But beside isn't good enough either.
+We need to use beside slash align bottom.
+
+And here we'll use beside slash align bottom.
+
+Now it's looking better.
+
+In previous weeks, people sometimes were like, I
+don't understand why we do the examples before we do the function.
+Here is why we do the examples before we do the function right here.
+This problem is hard enough that figuring out specific examples
+takes time.
+We got to figure out how we want to draw.
+Gee, we didn't use the right drawing function.
+Gee, we got the wrong order of arguments to this function.
+There's a whole bunch of stuff we had to figure out for the specific examples.
+Trying to write the general-purpose function
+is always harder than writing a specific example.
+So if you're working on a problem where the specific examples are hard,
+it's just crazy to try to write the general-purpose function first.
+The whole idea of this "doing the examples first" method
+is do the simplest things first.
+Because in hard problems, even the simplest things aren't that simple.
+So here is why we're doing the examples first.
+Because these examples are a little bit complicated.
+The examples force us to figure out what it
+is we really want-- exactly how we want things to line up,
+exactly how we want things to look, what it is we really want.
+And once we know what we really want, coding the function definition
+is a lot easier.

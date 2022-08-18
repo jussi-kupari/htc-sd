@@ -1,0 +1,104 @@
+
+GREGOR KICZALES: We previously saw how to construct a template for a mixed
+data itemization.
+And we saw that because there can be different data
+types in the itemization, we end up having to put a guard.
+For example, in the second case of the cond.
+We have the number?
+guard to make sure that we don't accidentally
+hand the string complete to this less than or equal to right here.
+The number?
+is making sure that this number isn't going to be the string complete.
+And we saw that in the last case, we can just
+put else, because it's the last case.
+You can always put else for the last case of an itemization.
+But it turns out that you can simplify this template a little bit more.
+And here's why.
+Notice that there's only one case here of natural numbers.
+The middle case is natural numbers between 1 and 10.
+So because it's between 1 and 10 that we put the two less than
+or equal to calls.
+That gets us to between 1 and 10.
+And it's because we want to be sure not to hand the string complete to that
+that we put the number?
+guard.
+But because there's only one that subcategory of numbers,
+it actually turns out that all we need is the number?
+guard.
+We can get rid of the and and these two calls to less than or equal to
+and just simplify this second question in the template to number
+question mark.
+Because think about it.
+What this says is it says, well, if it's false, then that's the first case.
+And if it's a number, then that's the second case,
+because there's only one subcategory that is numbers.
+So I don't need to bother to ask whether it's between 1 and 10.
+It's the only subcategory of numbers.
+And then there's only one case left for else.
+Here's one more example of the kinds of simplification
+we can do for the templates in mixed data itemization.
+I've got a data definition here which is supposed
+to represent the condition of a traffic light which is either disabled
+or it's red, yellow, green.
+And so in this data definition, we've used a mixed data itemization.
+False means disabled.
+And the strings red, yellow, green mean the color of light.
+So this is an itemization that includes an enumeration in some sense, which
+is fine.
+That fits the definition of an itemization.
+Let's construct the template.
+So let's see.
+It's going to start out as one of four cases.
+And so that's a four case cond.
+The first case is atomic distinct false.
+So the question is now false?
+tl and dot, dot, dot.
+And the next three cases are all atomic distinctions and now they're strings.
+
+And I'll just fill them all in quickly.
+Now, because this is mixed data itemization,
+then the rule is that we should guard these string equals.
+We have to say something like and string?
+mark tl string=?
+tl to red.
+That would be the question and dot, dot, dot would be the answer.
+And we would do that three times.
+
+So now that's good.
+We've guarded these string equals.
+But we can do this think simpler here.
+Once we get to this red, there are no more data types left,
+other than string.
+Everything from here on out is going to be some form of string.
+And so there's an additional rule.
+Which is if all the remaining cases are the same data type,
+then you don't need the guards.
+That guard, that guard, and that guard, none of those have to be there.
+So we can take them back out like this.
+We'll take them out.
+And we end up with this simpler template.
+Now let's be clear.
+These simplifications of the template, they're not essential.
+The template we had 30 seconds ago was perfectly good.
+It worked.
+It would never have any problems.
+But this one is a little bit simpler.
+So there's two rules for simplifying mixed data itemization templates.
+The first rule is that if a given subclass is
+the last subclass of its type, which is what happened here,
+this natural 110 is the last subclass that's a natural,
+we don't need the 110 part of the test.
+We can just have the guard.
+So we reduce that question to number?.
+The second rule is that if all the remaining cases are of a given type,
+then we can eliminate all the guards.
+So this just became the string=?, the string=?, the string=?,
+we didn't have the and string?
+question mark.
+Again, what's essential in mixed data itemizations
+is that you put the guards in to start with.
+Without the guards, the template isn't going to work properly.
+These two rules for further simplification of the templates
+are good, but they're not absolutely essential.
+They'll get you code, which is also correct, a little bit simpler.
+But the main thing you want is the code that's correct in the first place.

@@ -1,0 +1,756 @@
+0
+00:00:00,000 --> 00:00:05,580
+
+
+1
+00:00:05,580 --> 00:00:09,230
+GREGOR KICZALES: The problem in count-down-to-display-starter is
+
+2
+00:00:09,230 --> 00:00:13,550
+to design a function that consumes the countdown type we defined earlier,
+
+3
+00:00:13,550 --> 00:00:17,210
+and produces a little image of the current state of the countdown.
+
+4
+00:00:17,210 --> 00:00:19,460
+It might be something that would display on your phone
+
+5
+00:00:19,460 --> 00:00:22,150
+if you were watching the new year's eve countdown.
+
+6
+00:00:22,150 --> 00:00:25,040
+So again, the first step of the recipe is signature purpose stub.
+
+7
+00:00:25,040 --> 00:00:26,625
+We can do that quickly.
+
+8
+00:00:26,625 --> 00:00:29,827
+We're going to consume a countdown.
+
+9
+00:00:29,827 --> 00:00:31,160
+We're going to produce an image.
+
+10
+00:00:31,160 --> 00:00:34,240
+
+
+11
+00:00:34,240 --> 00:00:42,650
+It's going to produce a nice image of current state of countdown.
+
+12
+00:00:42,650 --> 00:00:46,100
+The stub is what we want to call the function, countdown
+
+13
+00:00:46,100 --> 00:00:50,960
+to image of a countdown.
+
+14
+00:00:50,960 --> 00:00:54,477
+And the stub for functions that produce an image-- I
+
+15
+00:00:54,477 --> 00:00:57,310
+think it's kind of nice to make the stub just produce a blank image.
+
+16
+00:00:57,310 --> 00:01:02,600
+And the way I make a blank image is I make a square of size zero.
+
+17
+00:01:02,600 --> 00:01:05,400
+And it could be any color you want since it's a size zero.
+
+18
+00:01:05,400 --> 00:01:08,326
+But I make it like that.
+
+19
+00:01:08,326 --> 00:01:11,740
+That's our stub, let's run it.
+
+20
+00:01:11,740 --> 00:01:16,780
+Where this function is not defined this square right here.
+
+21
+00:01:16,780 --> 00:01:21,510
+Oh this is the bug about saying require 2htdp/image.
+
+22
+00:01:21,510 --> 00:01:25,810
+If we go to the top of the file, sure enough there's no require there.
+
+23
+00:01:25,810 --> 00:01:27,410
+So we'll say require 2htdp/image.
+
+24
+00:01:27,410 --> 00:01:30,720
+
+
+25
+00:01:30,720 --> 00:01:32,580
+We'll run that.
+
+26
+00:01:32,580 --> 00:01:34,570
+OK, now we're OK.
+
+27
+00:01:34,570 --> 00:01:38,540
+So this is a good example of why we check the well formulas of stubs.
+
+28
+00:01:38,540 --> 00:01:42,490
+And in general, why we want to run our code as often as you can.
+
+29
+00:01:42,490 --> 00:01:46,280
+The sooner you find a little mistake, the easier it is to fix.
+
+30
+00:01:46,280 --> 00:01:49,370
+It's easier find one mistake now, and another mistake in a minute,
+
+31
+00:01:49,370 --> 00:01:53,030
+and another mistake in a minute, then it is to find all three of them
+
+32
+00:01:53,030 --> 00:01:54,480
+in three minutes.
+
+33
+00:01:54,480 --> 00:02:00,550
+So run your code as often as you can is the general rule we're going to use.
+
+34
+00:02:00,550 --> 00:02:03,910
+OK, so now we're going to do examples.
+
+35
+00:02:03,910 --> 00:02:07,860
+The question is how many examples do we need and what should they be?
+
+36
+00:02:07,860 --> 00:02:11,300
+So again, you can get some guidance for this by going to the how to design data
+
+37
+00:02:11,300 --> 00:02:11,799
+page.
+
+38
+00:02:11,799 --> 00:02:14,100
+
+
+39
+00:02:14,100 --> 00:02:16,980
+Going down to the section on itemization, because this
+
+40
+00:02:16,980 --> 00:02:19,550
+is an itemization.
+
+41
+00:02:19,550 --> 00:02:22,530
+And the guidance here that says that there should be at least as many
+
+42
+00:02:22,530 --> 00:02:25,860
+tests as there are cases in the itemization.
+
+43
+00:02:25,860 --> 00:02:28,640
+And if they are intervals in the itemization
+
+44
+00:02:28,640 --> 00:02:32,420
+then there should be tests at all points of variance in the interval.
+
+45
+00:02:32,420 --> 00:02:35,350
+Let's go back to the code and I'll show you what that means.
+
+46
+00:02:35,350 --> 00:02:39,330
+Well, we know there are at least three tests.
+
+47
+00:02:39,330 --> 00:02:47,560
+So let's quickly do that. check expect countdown to image of some value.
+
+48
+00:02:47,560 --> 00:02:49,700
+Some value, I'll just make three of these.
+
+49
+00:02:49,700 --> 00:02:52,810
+We know there's at least three.
+
+50
+00:02:52,810 --> 00:02:56,610
+Let's see, the first one corresponds to this first case of the type comment
+
+51
+00:02:56,610 --> 00:03:00,790
+false, so that's false.
+
+52
+00:03:00,790 --> 00:03:03,930
+So now let's see, what should countdown to image
+
+53
+00:03:03,930 --> 00:03:05,740
+produce when the countdown isn't running?
+
+54
+00:03:05,740 --> 00:03:07,490
+Because remember, the interpretation tells
+
+55
+00:03:07,490 --> 00:03:11,452
+me this means the countdown has not yet started.
+
+56
+00:03:11,452 --> 00:03:13,660
+So if the countdown hasn't yet started, I don't know,
+
+57
+00:03:13,660 --> 00:03:15,400
+there's lots of things we could produce.
+
+58
+00:03:15,400 --> 00:03:17,265
+Let's just produce that blank image again.
+
+59
+00:03:17,265 --> 00:03:20,460
+
+
+60
+00:03:20,460 --> 00:03:23,810
+You could produce something fancier than this.
+
+61
+00:03:23,810 --> 00:03:27,020
+The goal here is not to make the best possible version of this function,
+
+62
+00:03:27,020 --> 00:03:30,920
+but to understand what the design of this functions about.
+
+63
+00:03:30,920 --> 00:03:33,440
+So that'll be the first case.
+
+64
+00:03:33,440 --> 00:03:37,300
+And now we need a case for this interval.
+
+65
+00:03:37,300 --> 00:03:41,590
+Now, we're supposed to test every point of variance in the interval.
+
+66
+00:03:41,590 --> 00:03:44,650
+Conceivably we could test with one somewhere
+
+67
+00:03:44,650 --> 00:03:47,480
+in the middle like five and 10.
+
+68
+00:03:47,480 --> 00:03:51,120
+But in this particular function, the behavior
+
+69
+00:03:51,120 --> 00:03:53,900
+doesn't meaningfully vary across the interval.
+
+70
+00:03:53,900 --> 00:03:59,390
+Sure we're going to display one at one, and 10 at 10, and three at three,
+
+71
+00:03:59,390 --> 00:04:02,100
+but we're always going to display the number.
+
+72
+00:04:02,100 --> 00:04:05,420
+So it's going to really be enough to have a single test for this interval.
+
+73
+00:04:05,420 --> 00:04:07,850
+Maybe at five.
+
+74
+00:04:07,850 --> 00:04:11,860
+Now the question is what do we want to display?
+
+75
+00:04:11,860 --> 00:04:15,510
+Well let's see, we need an image.
+
+76
+00:04:15,510 --> 00:04:21,740
+And there's a function called text, which can turn a string into an image.
+
+77
+00:04:21,740 --> 00:04:28,190
+And there's a function called number->string that can turn a number
+
+78
+00:04:28,190 --> 00:04:29,065
+into its string.
+
+79
+00:04:29,065 --> 00:04:31,920
+
+
+80
+00:04:31,920 --> 00:04:35,090
+So if we made a text of some size-- right now
+
+81
+00:04:35,090 --> 00:04:37,650
+I'm just going to put the size of the text here,
+
+82
+00:04:37,650 --> 00:04:41,250
+we'll see next week that the right thing to do is define a constant for this.
+
+83
+00:04:41,250 --> 00:04:43,260
+But I'm just going to put the size right there.
+
+84
+00:04:43,260 --> 00:04:48,560
+
+
+85
+00:04:48,560 --> 00:04:52,510
+So what this is saying is it's saying if we countdown to image of five,
+
+86
+00:04:52,510 --> 00:04:59,830
+we should produce the text of the number five in font size 24 and it's black.
+
+87
+00:04:59,830 --> 00:05:03,270
+And what are we going to do if the countdown is complete?
+
+88
+00:05:03,270 --> 00:05:06,900
+Complete is the third case.
+
+89
+00:05:06,900 --> 00:05:11,370
+Well I say for that we'll just say text of happy new year.
+
+90
+00:05:11,370 --> 00:05:13,880
+
+
+91
+00:05:13,880 --> 00:05:19,605
+And that'll also be 24, but maybe it'll be some brighter color like red.
+
+92
+00:05:19,605 --> 00:05:21,480
+Now a very important thing has happened here,
+
+93
+00:05:21,480 --> 00:05:24,210
+which is I've really worked out the behavior of this function
+
+94
+00:05:24,210 --> 00:05:26,410
+using the concrete examples.
+
+95
+00:05:26,410 --> 00:05:29,190
+So before I write in the actual code of the function,
+
+96
+00:05:29,190 --> 00:05:33,500
+we did a lot of the designing of the behavior of this function.
+
+97
+00:05:33,500 --> 00:05:34,500
+So that's the examples.
+
+98
+00:05:34,500 --> 00:05:36,640
+Let's run them.
+
+99
+00:05:36,640 --> 00:05:39,104
+Right, they all run, but some are failing.
+
+100
+00:05:39,104 --> 00:05:40,395
+That means they're well formed.
+
+101
+00:05:40,395 --> 00:05:43,870
+
+
+102
+00:05:43,870 --> 00:05:46,520
+So now this was this stub.
+
+103
+00:05:46,520 --> 00:05:48,840
+Let's comment it out.
+
+104
+00:05:48,840 --> 00:05:58,320
+Let's put a note that says use template from countdown.
+
+105
+00:05:58,320 --> 00:05:59,695
+Let's get that template.
+
+106
+00:05:59,695 --> 00:06:03,040
+
+
+107
+00:06:03,040 --> 00:06:08,980
+We'll copy it down here, and let's see, we rename it.
+
+108
+00:06:08,980 --> 00:06:13,050
+
+
+109
+00:06:13,050 --> 00:06:14,790
+We rename it countdown to image.
+
+110
+00:06:14,790 --> 00:06:20,180
+So in the false case while this corresponds to this example,
+
+111
+00:06:20,180 --> 00:06:22,130
+so that's just that black image again.
+
+112
+00:06:22,130 --> 00:06:30,560
+
+
+113
+00:06:30,560 --> 00:06:38,365
+In this case let's see, we're going to convert see whatever it is.
+
+114
+00:06:38,365 --> 00:06:41,150
+
+
+115
+00:06:41,150 --> 00:06:51,950
+This will just be text of here's number to string of see size 24 and black.
+
+116
+00:06:51,950 --> 00:06:56,730
+
+
+117
+00:06:56,730 --> 00:07:00,240
+And when conds get complicated like this we tend to put the question
+
+118
+00:07:00,240 --> 00:07:01,640
+and answer on separate lines.
+
+119
+00:07:01,640 --> 00:07:04,080
+That makes the cond easier to read.
+
+120
+00:07:04,080 --> 00:07:10,290
+And then this final case that corresponds to this example.
+
+121
+00:07:10,290 --> 00:07:11,455
+Which is just text.
+
+122
+00:07:11,455 --> 00:07:14,170
+
+
+123
+00:07:14,170 --> 00:07:18,700
+Happy New Year 24 red.
+
+124
+00:07:18,700 --> 00:07:21,410
+
+
+125
+00:07:21,410 --> 00:07:24,130
+Let's see what's happening here.
+
+126
+00:07:24,130 --> 00:07:26,280
+Let's try it.
+
+127
+00:07:26,280 --> 00:07:29,490
+number-to-string, this function is not yet defined.
+
+128
+00:07:29,490 --> 00:07:32,140
+
+
+129
+00:07:32,140 --> 00:07:35,440
+I didn't get the error here though.
+
+130
+00:07:35,440 --> 00:07:39,640
+Oh, right, the doctor racket version of this function is named with an arrow,
+
+131
+00:07:39,640 --> 00:07:40,140
+like this.
+
+132
+00:07:40,140 --> 00:07:46,340
+
+
+133
+00:07:46,340 --> 00:07:48,320
+One of the tests didn't pass.
+
+134
+00:07:48,320 --> 00:07:54,740
+Happy Near Year differs from Happy-- oh I didn't put the exclamation marks in.
+
+135
+00:07:54,740 --> 00:07:59,260
+
+
+136
+00:07:59,260 --> 00:08:00,040
+Now let's try.
+
+137
+00:08:00,040 --> 00:08:04,600
+I'll save it and run it, and all three tests passed.
+
+138
+00:08:04,600 --> 00:08:07,720
+Notice I had to fix two bugs there.
+
+139
+00:08:07,720 --> 00:08:10,710
+In each case what I did was I read the warning message,
+
+140
+00:08:10,710 --> 00:08:13,680
+or I read the failing test.
+
+141
+00:08:13,680 --> 00:08:16,490
+I look at the highlighted code.
+
+142
+00:08:16,490 --> 00:08:21,320
+And I used that to give me an idea of what the problem was and how to fix it.
+
+143
+00:08:21,320 --> 00:08:23,480
+The key thing about having bugs in the code
+
+144
+00:08:23,480 --> 00:08:26,090
+is just to expect that that's part of it.
+
+145
+00:08:26,090 --> 00:08:27,180
+Don't get upset about it.
+
+146
+00:08:27,180 --> 00:08:28,260
+Don't worry about it.
+
+147
+00:08:28,260 --> 00:08:29,470
+It happens all the time.
+
+148
+00:08:29,470 --> 00:08:30,690
+It's just part of it.
+
+149
+00:08:30,690 --> 00:08:34,130
+The very best programmers in the world have bugs in their code.
+
+150
+00:08:34,130 --> 00:08:37,419
+Fixing it is part of designing good programs.
+
+151
+00:08:37,419 --> 00:08:40,460
+And we're going to talk more as we go through the course about techniques
+
+152
+00:08:40,460 --> 00:08:43,293
+for finding the bug as our programs get more and more sophisticated.
+
+153
+00:08:43,293 --> 00:08:46,450
+
+
+154
+00:08:46,450 --> 00:08:49,780
+Now again, notice that the data definition
+
+155
+00:08:49,780 --> 00:08:51,260
+told us there were three cases.
+
+156
+00:08:51,260 --> 00:08:54,300
+It's an itemization that includes an interval.
+
+157
+00:08:54,300 --> 00:08:56,740
+That gave us the template.
+
+158
+00:08:56,740 --> 00:08:58,820
+It also gave us the examples.
+
+159
+00:08:58,820 --> 00:09:01,630
+And it helped us fill in the template for the function.
+
+160
+00:09:01,630 --> 00:09:04,230
+A lot starts with the data definition.
+
+161
+00:09:04,230 --> 00:09:06,990
+Let me show you one little side point here.
+
+162
+00:09:06,990 --> 00:09:09,410
+We saw that doctor racket names its number
+
+163
+00:09:09,410 --> 00:09:12,500
+to string function number arrow string.
+
+164
+00:09:12,500 --> 00:09:18,950
+And we named our countdown to image function countdown to image.
+
+165
+00:09:18,950 --> 00:09:20,880
+That's because this naming convention here
+
+166
+00:09:20,880 --> 00:09:22,588
+is something you're not going to get away
+
+167
+00:09:22,588 --> 00:09:24,200
+with in other programming languages.
+
+168
+00:09:24,200 --> 00:09:27,170
+So I wanted you to see this naming convention too.
+
+169
+00:09:27,170 --> 00:09:31,080
+But if you wanted to rename this function, let me show you a neat trick.
+
+170
+00:09:31,080 --> 00:09:36,240
+What you're going to do is you are going to click on check syntax here.
+
+171
+00:09:36,240 --> 00:09:38,810
+And now when I hover over countdown to image
+
+172
+00:09:38,810 --> 00:09:42,220
+here it shows me all the calls to it.
+
+173
+00:09:42,220 --> 00:09:46,731
+When I hover over one of these it shows me the definition that defines it.
+
+174
+00:09:46,731 --> 00:09:49,480
+Now what I'm going to do is on the Mac I'm going to Control click,
+
+175
+00:09:49,480 --> 00:09:50,800
+on Windows I'd right click.
+
+176
+00:09:50,800 --> 00:09:54,000
+
+
+177
+00:09:54,000 --> 00:09:56,855
+And I go to Rename Countdown to Image.
+
+178
+00:09:56,855 --> 00:09:59,380
+
+
+179
+00:09:59,380 --> 00:10:06,420
+And I'll rename it up here using other naming convention.
+
+180
+00:10:06,420 --> 00:10:09,110
+And notice how it fixed all of them.
+
+181
+00:10:09,110 --> 00:10:13,480
+But notice how I didn't fix the one that was in this comment.
+
+182
+00:10:13,480 --> 00:10:18,220
+It only fixes the ones that aren't commented out.
+
+183
+00:10:18,220 --> 00:10:21,600
+So now if you want to you've got the function named the other way.
+
+184
+00:10:21,600 --> 00:10:26,750
+This renaming command that I used is a thing called refactoring.
+
+185
+00:10:26,750 --> 00:10:29,340
+And it's very useful when programs start to get
+
+186
+00:10:29,340 --> 00:10:35,500
+big to have tools like that for doing things like re-namings.
+
+187
+00:10:35,500 --> 00:10:38,910
+We'll talk more about that as we go on in the course.
+
+188
+00:10:38,910 --> 00:10:39,872
+
+

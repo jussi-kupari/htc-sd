@@ -1,0 +1,130 @@
+
+GREGOR KICZALES: In this video, I'm going
+to step back from the details of the functions operating on lists
+that we've been designing and give you a more abstract way of looking
+at those functions.
+Now, what do I mean when I say abstract?
+Well, I mean a view of those functions that's less detailed
+but still captures the essential structure
+and still tells us something important about what they do.
+In this video, I'm not making any changes or additions
+to the design recipes.
+You're still going to design functions that operate on lists the same way.
+What this video does do is give you a new perspective on why
+does functions work and how their templates sets them up to work.
+And so what I want you to do is take this material now and maybe
+watch it again once or twice in the next couple weeks.
+And I think it'll really help you designing functions
+that operate on all kinds of arbitrary size data,
+to understand how those functions work and what their templates do for them.
+So far this week, we've seen two list types-- list of string and list
+of number.
+Both of them have welf-formed self reference because of the self reference
+in the type comments.
+Both of them also have a natural recursion in the template functions.
+In fact, these two types are very similar to each other.
+They really only differ in the name of the type of value included,
+strings in one case, number in the other case.
+So for what I want to talk about now, we can just look at one of them.
+We'll just look at list of number.
+Again, we see that it has a self reference
+in the type comment, which leads to a natural recursion in the template.
+What I want to do now is look for a minute
+and how the three functions we've designed so far
+each fill the different holes in the template.
+Here's what I mean by that.
+If we look at some on the left and the [INAUDIBLE] for list of number template
+on the right, then we look at what are called,
+for now, the red hole in the template.
+I'm going to give it a better name in a minute.
+But for now, we'll just call it the red space in the template.
+In the sum function, the red space gets filled with zero.
+The green space gets filled with plus.
+Nothing changes in the blue space.
+We just leave it the way it was.
+Count starts off quite similar to some.
+It fills the red space with zero, the green space with plus,
+but it changes what happens in the blue space.
+Whereas in sum, we add the first of lon into the natural recursion.
+In count, we just add one into the natural recursion.
+Now, let's look at contains UBC.
+In contains UBC, the red space is false.
+And look what I've done here with the blue and the green.
+For the blue, I've said that what happens in this function
+is that it wraps string equals question mark to UBC around first of los,
+and I'm calling that the blue.
+And I've got green stuff both before and after the blue.
+It's that if expression with its true answer and its false answer.
+Why am I doing that?
+Well, here's why.
+Let me now talk about the name that I want
+to give to each of these three spots in the template.
+I'm going to call the red spot base because, really,
+what's sitting in the red spot is the base case
+result of this function-- what the function produces in the base case.
+For some, the base case result is zero.
+For count, the base case result is zero.
+And for contains UBC, the base case result is false.
+That's fairly straightforward.
+The blue, I'm going to call the contribution of the first,
+or the contribution of the first to the overall result. So in the case of some,
+each first element of the list, or each element of the list when it's its turn
+to be first, contributes itself to the overall result.
+Because sum is sitting there, adding together all the numbers in the list.
+
+Now, how does that contribution work?
+Well, that's what combination means.
+Combination refers to the way in which the final function combines
+the contribution of the first with the result of the natural recursion.
+So in the case of some, the combination is
+to add the contribution of the first, which is itself,
+to the result of the natural recursion.
+Let's look at count for a second.
+We already saw that the base case result of count is zero.
+What's the contribution of first in the case of count?
+Well, it's one.
+When we count the number of elements in the list,
+we don't care what each element is.
+We just care that it exists.
+So each element contributes one to the overall result.
+And the combination is still plus.
+Now that we understand better what the blue and green are,
+the contribution of the first and the way in which that contribution is
+combined with the natural recursion, now you
+could see why I colored things the way I did in contains UBC.
+The contribution of the first is just to say is this element,
+is the first element of the list equal to UBC?
+And the combination is to say, well, if the contribution of the first
+is true, then produce true.
+If the contribution of the first is false,
+then produce the natural recursion.
+Now, why am I talking about this now?
+After all, you've just designed three list functions.
+This may seem a bit too hard for right now.
+The reason I'm doing this now is to give you a bit of a preview of something
+we're going to do in a couple weeks.
+In a couple weeks, you're going to see that because we've been working really
+systematically with well-formed type comments, which produced templates
+in a well-defined way.
+So that a lot of our functions that operate on lists
+and other arbitrary size data have a common form,
+it's going to be possible for us to write functions like some, and count,
+and contains UBC, really, in just one line of code.
+You will write them by basically talking about how
+to fill the spaces in this table.
+Now, we're not ready to do that now.
+And I'm not trying to say that you need to do that now.
+You don't need to be able to design one of these functions
+just by filling in the table.
+The reason I'm showing you this now is so
+that when you design these functions the way we've talked about this week,
+you follow the whole recipe, and you write out the template in detail,
+and then you fill it in based on the examples.
+Maybe when you're done designing the functions,
+think for a minute about how that function's row in this table
+would look.
+And I think that'll help you as we go on form a more general view of what
+these functions are.
+So then in a couple weeks when we get to what's called function abstraction,
+you'll really be ready to see how it simplifies
+the writing of these functions.

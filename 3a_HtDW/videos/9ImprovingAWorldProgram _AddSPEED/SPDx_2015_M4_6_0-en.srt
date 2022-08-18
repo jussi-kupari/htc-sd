@@ -1,0 +1,456 @@
+0
+00:00:00,000 --> 00:00:04,990
+
+
+1
+00:00:04,990 --> 00:00:08,780
+GREGOR KICZALES: As I mentioned before, programs are always changing.
+
+2
+00:00:08,780 --> 00:00:11,720
+Or put it this way, if you're fortunate enough
+
+3
+00:00:11,720 --> 00:00:14,445
+to design a program that other people really want to use,
+
+4
+00:00:14,445 --> 00:00:16,070
+they're going to want you to change it.
+
+5
+00:00:16,070 --> 00:00:20,220
+They going to want you to make it better and better and better.
+
+6
+00:00:20,220 --> 00:00:24,750
+In this video, what I'm going to do is make a change to the cat program,
+
+7
+00:00:24,750 --> 00:00:27,350
+give it some better functionality.
+
+8
+00:00:27,350 --> 00:00:30,920
+And what you're going to see is that that careful design that we did
+
+9
+00:00:30,920 --> 00:00:34,050
+is going to help make that change easy to manage.
+
+10
+00:00:34,050 --> 00:00:37,970
+What we'll do is we'll run the change right through the whole recipe,
+
+11
+00:00:37,970 --> 00:00:42,410
+starting with the analysis, and then going onto the code.
+
+12
+00:00:42,410 --> 00:00:44,570
+We've got our cat program.
+
+13
+00:00:44,570 --> 00:00:47,260
+And we can run it as we saw by saying main of 0,
+
+14
+00:00:47,260 --> 00:00:50,292
+where 0 is the initial state of the world.
+
+15
+00:00:50,292 --> 00:00:53,000
+But there's something about this cat program I don't really like,
+
+16
+00:00:53,000 --> 00:00:55,750
+which is the cat is moving a little bit too slowly.
+
+17
+00:00:55,750 --> 00:00:59,230
+I just don't have time to wait for it to get there.
+
+18
+00:00:59,230 --> 00:01:03,820
+So let's see about revising the program to make the cat move more quickly.
+
+19
+00:01:03,820 --> 00:01:07,350
+As I mentioned in the last video, if we think about this program,
+
+20
+00:01:07,350 --> 00:01:10,200
+and we think about the analysis that we started with,
+
+21
+00:01:10,200 --> 00:01:12,469
+one of the things we worked very hard to do
+
+22
+00:01:12,469 --> 00:01:14,510
+was to make sure there was a clear correspondence
+
+23
+00:01:14,510 --> 00:01:16,920
+between the analysis and the program.
+
+24
+00:01:16,920 --> 00:01:18,780
+So the constants in the program correspond
+
+25
+00:01:18,780 --> 00:01:21,850
+to what we identified in the analysis.
+
+26
+00:01:21,850 --> 00:01:26,260
+The data definitions in the program represent the changing information
+
+27
+00:01:26,260 --> 00:01:28,950
+that we identified in the analysis.
+
+28
+00:01:28,950 --> 00:01:32,750
+The Big Bang in the program has the Big Bang options
+
+29
+00:01:32,750 --> 00:01:35,120
+identified in the analysis.
+
+30
+00:01:35,120 --> 00:01:39,150
+And the Handler functions play their roles with respect
+
+31
+00:01:39,150 --> 00:01:44,130
+to the changing information and the interaction with Big Bang.
+
+32
+00:01:44,130 --> 00:01:48,440
+The facts that we've kept this clear correspondence between the program
+
+33
+00:01:48,440 --> 00:01:52,720
+and the analysis means that we can use the analysis
+
+34
+00:01:52,720 --> 00:01:55,650
+as a kind of abbreviation-- or the technical term
+
+35
+00:01:55,650 --> 00:01:58,160
+would be a model of the program.
+
+36
+00:01:58,160 --> 00:02:02,260
+We can think about what we need to do to the program
+
+37
+00:02:02,260 --> 00:02:06,342
+by starting doing it with the analysis.
+
+38
+00:02:06,342 --> 00:02:07,050
+So let's do that.
+
+39
+00:02:07,050 --> 00:02:11,760
+The problem we have is that the cat's moving too slowly.
+
+40
+00:02:11,760 --> 00:02:15,000
+Some sense what happened here when I look back at the analysis
+
+41
+00:02:15,000 --> 00:02:22,450
+is we can say, hey, the cat's speed was an unidentified constant.
+
+42
+00:02:22,450 --> 00:02:25,770
+There is this constant called the cat speed.
+
+43
+00:02:25,770 --> 00:02:29,670
+The cat's moving one pixel per clock tick.
+
+44
+00:02:29,670 --> 00:02:35,529
+If we identify that as a constant-- so if we add speed to the analysis here,
+
+45
+00:02:35,529 --> 00:02:37,570
+then we're going to have an opportunity to change
+
+46
+00:02:37,570 --> 00:02:40,730
+that speed to something more than 1.
+
+47
+00:02:40,730 --> 00:02:46,140
+And if we use the speed over here in the on-tick Handler function,
+
+48
+00:02:46,140 --> 00:02:50,760
+then changing that constant value will control the speed of the cat.
+
+49
+00:02:50,760 --> 00:02:53,520
+So now that we've updated the analysis.
+
+50
+00:02:53,520 --> 00:02:56,630
+Let's just go through and do it to the program.
+
+51
+00:02:56,630 --> 00:03:00,240
+Well, the first thing is there needs to be a speed constant.
+
+52
+00:03:00,240 --> 00:03:04,830
+So I'll go right here and I'll add the constant speed.
+
+53
+00:03:04,830 --> 00:03:06,750
+And 1 was too slow.
+
+54
+00:03:06,750 --> 00:03:08,510
+So let's say 3.
+
+55
+00:03:08,510 --> 00:03:11,170
+The great thing about it being constant like this
+
+56
+00:03:11,170 --> 00:03:15,230
+is if we think later that 3 is not enough, we can change it again.
+
+57
+00:03:15,230 --> 00:03:17,390
+So I've checked off this part of the analysis
+
+58
+00:03:17,390 --> 00:03:20,600
+where I was supposed to add the speed constant.
+
+59
+00:03:20,600 --> 00:03:22,550
+And in the notes I made on the analysis, it
+
+60
+00:03:22,550 --> 00:03:27,820
+says I also need to go look at the on-tick handler.
+
+61
+00:03:27,820 --> 00:03:30,710
+So I scroll down here to Big Bang.
+
+62
+00:03:30,710 --> 00:03:34,870
+And the on-tick handler is called advance-cat.
+
+63
+00:03:34,870 --> 00:03:39,400
+And if this was a big program, then I'll show you Racket has a tool I can use,
+
+64
+00:03:39,400 --> 00:03:42,010
+which is I click Check Syntax.
+
+65
+00:03:42,010 --> 00:03:45,740
+I click right on advance-cat.
+
+66
+00:03:45,740 --> 00:03:48,480
+And I can jump to the definition of advance-cat.
+
+67
+00:03:48,480 --> 00:03:50,890
+It wasn't a big program, so I didn't need that help.
+
+68
+00:03:50,890 --> 00:03:53,440
+But if it was a big program that would help.
+
+69
+00:03:53,440 --> 00:03:56,890
+Another way to do it is you can go right up here
+
+70
+00:03:56,890 --> 00:03:59,010
+and search through all the definitions.
+
+71
+00:03:59,010 --> 00:04:00,850
+Jump right to advance-cat.
+
+72
+00:04:00,850 --> 00:04:04,070
+Now, I'm going to quickly replay the how to design functions
+
+73
+00:04:04,070 --> 00:04:06,230
+recipe with this new constant in mind.
+
+74
+00:04:06,230 --> 00:04:07,590
+The signature doesn't change.
+
+75
+00:04:07,590 --> 00:04:09,420
+The purpose changes.
+
+76
+00:04:09,420 --> 00:04:21,000
+We're going to produce the next cat by advancing it speed pixels to the right.
+
+77
+00:04:21,000 --> 00:04:22,140
+So let's see.
+
+78
+00:04:22,140 --> 00:04:24,240
+The stub didn't change.
+
+79
+00:04:24,240 --> 00:04:25,620
+The check expects changed.
+
+80
+00:04:25,620 --> 00:04:30,810
+Now this is instead of being advanced cat three produces four,
+
+81
+00:04:30,810 --> 00:04:34,290
+this should be advanced cat of three-- now
+
+82
+00:04:34,290 --> 00:04:37,631
+you might be tempted to put a six here.
+
+83
+00:04:37,631 --> 00:04:39,380
+But that's not what I'm going to put here.
+
+84
+00:04:39,380 --> 00:04:43,300
+I'm going to put plus 3 SPEED.
+
+85
+00:04:43,300 --> 00:04:48,740
+That way when I go change the speed constant, this check expect
+
+86
+00:04:48,740 --> 00:04:50,650
+will automatically be the right thing.
+
+87
+00:04:50,650 --> 00:04:54,420
+And this way this check expect really corresponds to the purpose.
+
+88
+00:04:54,420 --> 00:04:56,360
+It says whatever this speed constant happens
+
+89
+00:04:56,360 --> 00:04:59,500
+to be that's how much we're supposed to advance the cat by.
+
+90
+00:04:59,500 --> 00:05:03,350
+So let's see, advance cat, the template doesn't change.
+
+91
+00:05:03,350 --> 00:05:04,940
+Here's the body of the function.
+
+92
+00:05:04,940 --> 00:05:08,930
+And this 1 just becomes SPEED.
+
+93
+00:05:08,930 --> 00:05:11,680
+I can run my test pass.
+
+94
+00:05:11,680 --> 00:05:15,370
+And now I can say main of 0.
+
+95
+00:05:15,370 --> 00:05:16,660
+And I have a speedier cat.
+
+96
+00:05:16,660 --> 00:05:21,901
+
+
+97
+00:05:21,901 --> 00:05:25,150
+So the important thing to take away from this video is programs always change.
+
+98
+00:05:25,150 --> 00:05:26,540
+I said that before.
+
+99
+00:05:26,540 --> 00:05:30,670
+Programs always change, because people want them to be better all the time.
+
+100
+00:05:30,670 --> 00:05:34,080
+And so that means we want it to be easy to change programs.
+
+101
+00:05:34,080 --> 00:05:38,350
+And in the case of these world programs, where we have this analysis
+
+102
+00:05:38,350 --> 00:05:43,090
+working hard to make the structure of the program
+
+103
+00:05:43,090 --> 00:05:47,700
+match the structure of the analysis made it really easy
+
+104
+00:05:47,700 --> 00:05:50,930
+to go back and make this change, because the analysis
+
+105
+00:05:50,930 --> 00:05:53,400
+became kind of a model of the program.
+
+106
+00:05:53,400 --> 00:05:57,120
+And we could think about what we needed to do the program first
+
+107
+00:05:57,120 --> 00:06:01,250
+at the model level, first using this analysis picture,
+
+108
+00:06:01,250 --> 00:06:08,570
+and then quickly run through the program catching it up to the new analysis.
+
+109
+00:06:08,570 --> 00:06:13,190
+This ability to work on programs by reasoning about them at a model level
+
+110
+00:06:13,190 --> 00:06:16,790
+is one of the things that really separates program designers for people
+
+111
+00:06:16,790 --> 00:06:19,300
+who write code that just happens to work.
+
+112
+00:06:19,300 --> 00:06:22,606
+And we're going to talk about it a lot more in the course as we go forward.
+
+113
+00:06:22,606 --> 00:06:23,106
+
+

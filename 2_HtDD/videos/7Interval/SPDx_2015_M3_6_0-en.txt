@@ -1,0 +1,132 @@
+
+GREGOR KICZALES: In this video, I'm going
+to talk about the next form of data definition, which
+is called an interval.
+So this is really just an example of how to design
+data and data-driven templates problem.
+I've got the seat-num starter file open.
+And because this is a How to Design Data problem, I'm going to put the How
+to Design Data definition's recipe here, off to the right.
+And over in my browser window, I've got the
+How to Design Data recipe page open.
+Back at the problem.
+So imagine we're designing a program to manage ticket sales for a theater.
+And we want to represent the seat number in a row.
+And each row has 32 seats.
+So it's a boring theater-- that's what this comment here means, that it's
+a perfectly rectangular theater.
+And we need to represent a seat number.
+So if you think about that, a row looks like this.
+And the seat number is going to be something like 1 or 2
+or 3, all the way up to 32.
+Since these are seat numbers and not indexes in a string,
+let's use the normal kind of numbers that people like, where they start at 1
+and go to 32.
+So the question is, that's the information--
+the information is numbers from 1 to 32 that are going to be seat numbers.
+How are we going to represent that?
+Well, if we go over to the How to Design Data web page-- and again,
+this is a web page that you should read ahead of time.
+I'm going to be using it in a mode where I already know how to use it.
+But I'm going to scroll down to this table that says,
+when the form of the information to be represented is atomic-- well,
+this is atomic.
+Seat numbers are going to be something like 1 or 2.
+And that's atomic.
+But I'm going to keep reading, because sometimes there's
+something more specific.
+And here it is-- when it's numbers within a certain range.
+And that's exactly what this case is.
+It's numbers like 1, 2, 3, all the way up to 32.
+So it's numbers within a certain range.
+And there's a kind of data definition for that called an interval.
+So here we go to intervals.
+And now an interval type comment looks something
+like this-- there's a type name and then we're
+going to say a kind of number and then a notation for talking about the range.
+Let me jump back over here to DrRacket and do it.
+And I'll talk about that notation as I go.
+So let's see.
+We're going to say something like, SeatNum is.
+And then these are integers between 1 and 32.
+And what's going on with these square brackets
+is the square brackets mean inclusive.
+So this means the integer's starting at 1, including
+1, going up to 32, including 32.
+Let me just show you some variations on this,
+so you'll understand all of what we can say.
+For one thing, this could be natural, because natural numbers
+are integers that start at 0.
+So I could say natural here-- NaturalNatural[1, 32], IntegerInteger[1, 32]--
+they're the same.
+But some other variations-- for example, if I said something like
+NumberNumber[1, 32]-- well, that's going to be a lot more things,
+because numbers include real numbers, like 1.3 and 1.4 and 1.5.
+And we don't have that with seat numbers.
+We really need naturals or integers here.
+If I said Natural[1, 32), then that wouldn't include the 32,
+because a round bracket means up-to but not including.
+So square means inclusive and round means not inclusive.
+So there we go.
+There's our type comment.
+
+Now I've got to say, interpret this.
+So what's the interpretation here?
+
+Well, let's see.
+These are seat numbers in a row.
+And I might know some more information about that.
+In particular, what I might know is that 1 and 32 are aisle seats.
+
+Or I might know something else about the theater.
+But anything that would help me understand
+exactly what the numbers 1, 32, and all the numbers in between mean
+is what I would put in the interpretation.
+Now let me make some examples.
+
+I'll say seat number one and I'll just call that 1.
+And seat number two might be 12.
+And seat number three might be 32.
+And the reason we're going to do multiple examples in this case--
+sometimes it's nice to have examples that illustrate specific things.
+So this might be an aisle.
+And this is a middle.
+
+And this is an aisle, for example.
+You always want to have at least one example.
+And you should have other examples if they're illustrative.
+And again, as I said when we were doing the CityName data definition,
+as data definitions become richer, examples
+will become more important and more useful.
+So we've got the type comment, the interpretation, and the examples--
+now we have to do the template.
+So I'll start the template like this-- define fn-or-seat-num.
+
+And there's going to be some body there.
+And I'll also start the template process like this,
+by saying template rules used.
+
+And now I'm set to do the template.
+I'll go back over here to the Data Definitions page.
+I'll follow this link to the Data-driven Templates page.
+And now I've got to look down and find this form of data-- an interval.
+Intervals are atomic, non-distinct.
+So we're going to end up using the same template rule here
+that we used for city name, which is just open paren, dot dot
+dot, and the parameter name.
+So we go back here.
+
+You say, open paren, dot dot dot, the parameter name, which is seat-num.
+And here we say, atomic non-distinct.
+
+And I always like to put after the colon here exactly what part of the type
+comment it was caused us to do that.
+You'll see, starting in the next data definition
+we do, when data definitions get more complicated, why we're doing that.
+There we go.
+That data definition is complete.
+I'm going to run it now, just to make sure everything's well-formed.
+I didn't get any errors, so everything is well-formed.
+I'll put a comment like that there.
+
+And we're good to go.

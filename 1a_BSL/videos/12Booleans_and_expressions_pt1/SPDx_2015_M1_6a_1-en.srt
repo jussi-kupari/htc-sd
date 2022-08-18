@@ -1,0 +1,284 @@
+0
+00:00:00,000 --> 00:00:04,604
+
+
+1
+00:00:04,604 --> 00:00:06,770
+GREGOR KICZALES: If you've ever played 20 questions,
+
+2
+00:00:06,770 --> 00:00:11,070
+you know that the answer to true-false questions can really say a lot.
+
+3
+00:00:11,070 --> 00:00:14,110
+And in fact, in computer programs, true-false questions
+
+4
+00:00:14,110 --> 00:00:16,760
+turn out to be fundamental.
+
+5
+00:00:16,760 --> 00:00:20,990
+In this video, what I want to do is talk about a new kind of value
+
+6
+00:00:20,990 --> 00:00:23,040
+called a boolean that's going to represent
+
+7
+00:00:23,040 --> 00:00:25,850
+the answer to true-false questions.
+
+8
+00:00:25,850 --> 00:00:29,930
+I'm also going to talk about a number of primitive true-false questions
+
+9
+00:00:29,930 --> 00:00:33,000
+and a new expression in Racket called if that's
+
+10
+00:00:33,000 --> 00:00:36,770
+going to let us make our programs produce different values depending
+
+11
+00:00:36,770 --> 00:00:40,020
+on the answer to true-false questions.
+
+12
+00:00:40,020 --> 00:00:43,900
+Boolean values are going to represent the answer to true-false questions
+
+13
+00:00:43,900 --> 00:00:47,270
+so you shouldn't be surprised to find that there's two boolean values.
+
+14
+00:00:47,270 --> 00:00:50,880
+And in the beginning student language we write them this way.
+
+15
+00:00:50,880 --> 00:00:55,210
+True is the value that represents the true answer to a true-false question.
+
+16
+00:00:55,210 --> 00:00:58,910
+And False is the value that represents a false answer.
+
+17
+00:00:58,910 --> 00:01:02,870
+And since they're values, if we run them-- if we evaluate them-- we
+
+18
+00:01:02,870 --> 00:01:05,470
+get the value themselves.
+
+19
+00:01:05,470 --> 00:01:05,970
+OK.
+
+20
+00:01:05,970 --> 00:01:08,612
+Let me comment those out.
+
+21
+00:01:08,612 --> 00:01:10,570
+That's how we're going to represent the answer.
+
+22
+00:01:10,570 --> 00:01:11,900
+What are the questions?
+
+23
+00:01:11,900 --> 00:01:13,816
+Well, let me just set myself up here a bit.
+
+24
+00:01:13,816 --> 00:01:19,780
+I'll give myself two constants, WIDTH and HEIGHT,
+
+25
+00:01:19,780 --> 00:01:23,950
+and I'll just make them both be 100.
+
+26
+00:01:23,950 --> 00:01:24,820
+OK?
+
+27
+00:01:24,820 --> 00:01:28,720
+So here's a true-false question.
+
+28
+00:01:28,720 --> 00:01:31,060
+Here's a primitive called greater than.
+
+29
+00:01:31,060 --> 00:01:37,230
+And if we say greater than WIDTH HEIGHT and evaluate that,
+
+30
+00:01:37,230 --> 00:01:40,730
+run that, we get false because width is 100,
+
+31
+00:01:40,730 --> 00:01:44,110
+height is 100 and 100 isn't greater than 100.
+
+32
+00:01:44,110 --> 00:01:48,140
+On the other hand, here's another primitive.
+
+33
+00:01:48,140 --> 00:01:52,440
+greater than or equal WIDTH HEIGHT.
+
+34
+00:01:52,440 --> 00:01:56,180
+And if we run that now, we get false for the first one
+
+35
+00:01:56,180 --> 00:02:02,720
+and true for the second one because 100 is greater than or equal to 100.
+
+36
+00:02:02,720 --> 00:02:08,259
+These kinds of primitives that produce a true-false value
+
+37
+00:02:08,259 --> 00:02:09,479
+are often called predicates.
+
+38
+00:02:09,479 --> 00:02:12,645
+So we would say the greater-than is a predicate and greater-than-or-equal-to
+
+39
+00:02:12,645 --> 00:02:14,860
+is a predicate.
+
+40
+00:02:14,860 --> 00:02:17,920
+And there's lots of others.
+
+41
+00:02:17,920 --> 00:02:22,970
+You could say equals 1 2 or equals 1 1.
+
+42
+00:02:22,970 --> 00:02:27,450
+Let me just comment these two out so they don't confuse us.
+
+43
+00:02:27,450 --> 00:02:30,760
+Or greater-than 3 9.
+
+44
+00:02:30,760 --> 00:02:36,000
+And we'll run that and equals 1 2 is giving us false, equals 1 1
+
+45
+00:02:36,000 --> 00:02:41,060
+is giving us true, and greater-than 3 9 is giving us false.
+
+46
+00:02:41,060 --> 00:02:42,440
+And there's lots of others.
+
+47
+00:02:42,440 --> 00:02:47,260
+And I'll remind you that the 1x lecture video will show you
+
+48
+00:02:47,260 --> 00:02:50,620
+how to discover more of them.
+
+49
+00:02:50,620 --> 00:02:53,400
+Let me just show you a couple more.
+
+50
+00:02:53,400 --> 00:03:00,090
+I'll comment this out now so it doesn't confuse us.
+
+51
+00:03:00,090 --> 00:03:02,230
+There are some that operate on strings.
+
+52
+00:03:02,230 --> 00:03:10,220
+So for example, you can say, string-equals foo bar.
+
+53
+00:03:10,220 --> 00:03:15,930
+And that's false because those two strings are not equal.
+
+54
+00:03:15,930 --> 00:03:18,590
+What if I want to ask questions about images?
+
+55
+00:03:18,590 --> 00:03:19,520
+So let's see.
+
+56
+00:03:19,520 --> 00:03:21,690
+Suppose I want to have two images like this.
+
+57
+00:03:21,690 --> 00:03:34,850
+I1 is a rectangle that's 10 by 20 and it's solid and it's red.
+
+58
+00:03:34,850 --> 00:03:43,970
+And I2 is a rectangle and it's 20 by 10 and it's solid and it's blue.
+
+59
+00:03:43,970 --> 00:03:49,830
+
+
+60
+00:03:49,830 --> 00:03:52,600
+Suppose I want to know which image is thinner.
+
+61
+00:03:52,600 --> 00:04:02,896
+I could say, less-than image-width I1, image-width I2.
+
+62
+00:04:02,896 --> 00:04:06,600
+And I could run that.
+
+63
+00:04:06,600 --> 00:04:11,100
+Let's see, rectangle this function is not defined.
+
+64
+00:04:11,100 --> 00:04:14,030
+Oh, this is the usual mistake where I wanted to use Image Functions
+
+65
+00:04:14,030 --> 00:04:16,390
+and I forgot to put a require.
+
+66
+00:04:16,390 --> 00:04:18,619
+I'll just go put require to 2htdp/image.
+
+67
+00:04:18,619 --> 00:04:21,700
+
+
+68
+00:04:21,700 --> 00:04:25,710
+And now if I run this, I'm getting true meaning
+
+69
+00:04:25,710 --> 00:04:28,980
+that the width of I1-- which is 10-- is less than
+
+70
+00:04:28,980 --> 00:04:31,690
+the width of I2-- which is 20.
+

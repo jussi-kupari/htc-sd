@@ -1,0 +1,192 @@
+
+GREGOR KICZALES: In this last video on the bar chart problem,
+we're going to start by coding the body of the chart function.
+We're very quickly going to run into the natural helper in the template
+and that's going to force us to split the chart function into two functions.
+But don't worry.
+We're not going to lose all that work we did on the examples.
+
+OK, so let's see.
+I've got the signature.
+I've got the purpose.
+I've got to stop.
+I've got the examples.
+It's time to write function, the actual function definition.
+So let me go get the template because this function consumes list of school,
+comment out the stub.
+
+Now, let's see-- I copy down the template I rename the function
+and I rename the natural recursion.
+I'll start with the base case.
+Well, what happens in the base case?
+What happens when the list is empty?
+Well, what happens when the list is empty is just this thing right here.
+It's just this.
+In fact, you're allowed to copy from the examples to the function,
+not the other way around.
+So we'll put that right there so we don't type it.
+Now, remember the thing I showed you earlier this week.
+I can actually test this now.
+And tests are going to fail.
+Tests are going to fail.
+But the first test that failed is actually the second one.
+The base case test has now run properly.
+It's not too surprising, because the base case of this function
+wasn't very complicated.
+But the base case is running.
+Now, what we do here?
+Well, let's look at this.
+For a case where there's a school, where there's one school or maybe--
+and then some rest of the list, here's a case
+where there's one school and some rest of the list.
+Let me change the line breaking so it's like that.
+We do besides /align bottom of some complicated thing to do with
+the school, and then the result of the natural recursion.
+Well, besides /align bottom seems like the combination.
+
+So that's the combination.
+That's the natural recursion.
+So this whole complicated thing here, we've got to get that in here.
+Now, watch this.
+This is the consequence of the reference rule.
+This is what it means for something to be a natural helper.
+When you're working on a function like this
+and you see that you have to do something complicated with the school,
+you have to do something complicated with the referred to type.
+Remember, los refers to school.
+List of school refers to school.
+And here, I have to do something complicated with a school.
+When you've got this natural helper in the template, it's telling you,
+don't do it here.
+Do it elsewhere.
+Make somebody else do it.
+Punt.
+Wait.
+What it's telling you is, make a wish.
+So instead of trying to do the whole school thing here,
+I'm just going to make a wish.
+I'm going to say, I wish there was a function called
+make bar that consumed a school and produced a single bar.
+I just wish that function existed.
+And just as we have before, whenever we wish for a function,
+right now is when I write the wish list entry.
+So let's see-- I'm handing it a school, because first LOS produces a school.
+So it gets a school.
+It has to produce an image.
+It has to produce the bar for a single school in the bar chart.
+In the stub-- it's a wish list, so we'll put bang bang bang.
+And the stub is defined make bar s.
+And then the stop for a function that produces
+an image will say square 0 solid white.
+
+And now I've wished for it.
+And I can run the test for chart right now.
+Now they're going to fail.
+They're going to fail, because the actual values are this.
+The actual values have nothing in them, because make bar
+keeps making these blank images.
+But in some very real sense now, chart is done,
+or at least chart looks like it's done, if only we have make bar,
+then chart would probably run unless there's some mistakes in it.
+What happened here is I wished for what's called a helper function.
+And the reason I did that goes back to that picture
+we saw about the type comments for these types and the templates.
+Right here in this type comment, there's a reference.
+And the reference produces a natural helper in the template.
+And what that meant was when we got here-- I'll back it up a second.
+
+We got here and we were thinking about doing this complicated stuff
+for the individual school.
+But the template was saying, fun for school.
+And what fun for school says to us is it says, no, no, no.
+If what you have to do with school is complicated, don't do it here.
+Wish for it.
+And that's why we decided to wish for it.
+Now, what's the actual rule for complicated?
+You should go check the recipe pages for the reference rule for this.
+But the basic rule is, if you have to call more than one function that
+operates on school, make a helper.
+So if it turned out that all you needed to do here,
+for example, was call a selector on school,
+you wouldn't need to make a new function.
+If it turns out that the new function you need already exists,
+then you don't need to make another one.
+You could call a function that already exists.
+But the idea here is that whenever I see fun for school in the template,
+I want to see a single call to a function that consumes school.
+Let's just finish this up now.
+We're almost done.
+Let's see-- make bar.
+Check expect.
+
+Make bar.
+Now all this work I did up here to figure out
+exactly what I want to see for an individual school,
+I'm allowed to reuse that work now.
+
+I'm allowed to do this and say, I know what I want that to look like.
+I figured it out before.
+I want it to look like this.
+
+So there's a single check expect.
+I only need one.
+
+Let me go get the template for school.
+
+I'll comment out the stub.
+I'll rename this function.
+
+And I got to do this whole complicated thing.
+Overlay, align of center bottom and then rotate 90.
+And then the text of the school name-- there's
+where the school name comes in for s1, font size, font color, that's the name.
+And then let's see what else do we got.
+We've got a rectangle-- whoops, not a capital rectangle--
+rectangle of the bar width and times the tuition,
+whatever the tuition is, the Y scale.
+
+And that rectangle is outlined in black.
+And there's another rectangle, which is the same size
+but it's solid-- and bar color.
+
+Let's try that.
+All four tests pass.
+All four tests pass.
+Let me show it to you down here just so you really see it.
+If I say chart on LOS 1, I get blank because that's the base case.
+But if I say chart LOS 2, I get that little chart.
+So two things about this example-- really important to see.
+One, we've seen before but it's always worth remembering,
+which is when we were doing the examples,
+it might have seemed to you, when are we going
+to get there, when are we going to get there, when we going to get there?
+But notice how at the end it all happened really fast.
+That's because we spent so much time figuring out
+what we really, really wanted when we were doing the examples.
+So that's an old point.
+We've seen that point before.
+The new point has to do with the reference relationship in these types.
+Because these types have a reference relationship in them,
+the template for list of school has a natural helper in it.
+And what that meant was that we were sitting right here,
+trying to figure out how to do this complicated thing with a single school.
+The template was staring us in the face saying, fun for school, which means,
+don't do the complicated thing here.
+Do it in a helper.
+So we wished for a helper, then we designed the helper,
+and we were all done.
+What we've seen in this sample is something
+that's really critical to good software design, which
+is that the structure of the information flows
+all the way through to the structure of the functions in the program.
+What we saw at the beginning was that we decided
+the structure of the information was naturally
+information about schools and information
+about an arbitrary number of those schools.
+And what that did was it put a reference relationship in the type comment.
+And that reference relationship in the type comment led to a natural helper
+in the templates, which led to a helper function call in the actual functions.
+So what's really key here, designing data
+is actually making important decisions about the design of functions.
+And we're going to see that again and again
+in the next few weeks of the course.

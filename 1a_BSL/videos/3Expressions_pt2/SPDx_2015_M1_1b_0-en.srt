@@ -1,0 +1,232 @@
+0
+00:00:00,000 --> 00:00:00,500
+
+
+1
+00:00:00,500 --> 00:00:03,900
+GREGOR KICZALES: Let me just quickly show you how I think about it.
+
+2
+00:00:03,900 --> 00:00:13,582
+Given the formula, I know that I need to square 3, and I need to square 4,
+
+3
+00:00:13,582 --> 00:00:18,920
+and I need to add those together, and I need
+
+4
+00:00:18,920 --> 00:00:22,784
+to take the square root of that whole thing.
+
+5
+00:00:22,784 --> 00:00:27,310
+And if I run that, I get 5.
+
+6
+00:00:27,310 --> 00:00:30,310
+Sure enough.
+
+7
+00:00:30,310 --> 00:00:33,560
+Let me say a word here about math.
+
+8
+00:00:33,560 --> 00:00:35,810
+The Pythagorean theorem here is pretty much
+
+9
+00:00:35,810 --> 00:00:38,290
+the hardest math we're going to do in this whole course.
+
+10
+00:00:38,290 --> 00:00:42,280
+And that's important because you need to know that to design a lot of programs,
+
+11
+00:00:42,280 --> 00:00:44,080
+you don't need to know a lot of math.
+
+12
+00:00:44,080 --> 00:00:48,065
+You can be a very good program designer without knowing a lot of math.
+
+13
+00:00:48,065 --> 00:00:49,940
+There are certain kinds of programs, programs
+
+14
+00:00:49,940 --> 00:00:52,400
+in graphics or vision or machine learning,
+
+15
+00:00:52,400 --> 00:00:55,120
+where you do need to know a lot of math.
+
+16
+00:00:55,120 --> 00:00:58,470
+That's because you need to understand that domain.
+
+17
+00:00:58,470 --> 00:01:00,690
+We won't do a lot of math in this course, though.
+
+18
+00:01:00,690 --> 00:01:03,920
+The Pythagorean theorem here is about the hardest we'll do.
+
+19
+00:01:03,920 --> 00:01:06,400
+There is, however, one little detail I need to tell you.
+
+20
+00:01:06,400 --> 00:01:11,280
+A little bit more math, and then we'll go on.
+
+21
+00:01:11,280 --> 00:01:18,030
+If I take the square root of 2 and run that-- look at this funny thing
+
+22
+00:01:18,030 --> 00:01:21,040
+Racket is telling me that I see.
+
+23
+00:01:21,040 --> 00:01:23,120
+Why is that?
+
+24
+00:01:23,120 --> 00:01:26,230
+Well, you may know that the square root of 2 is an irrational number.
+
+25
+00:01:26,230 --> 00:01:28,100
+And what it means to be an irrational number
+
+26
+00:01:28,100 --> 00:01:32,890
+is that it takes infinite space to write the number down.
+
+27
+00:01:32,890 --> 00:01:35,180
+Well, computers are not infinite in size.
+
+28
+00:01:35,180 --> 00:01:36,990
+They're quite finite in size.
+
+29
+00:01:36,990 --> 00:01:39,000
+So it has no way of representing a number that
+
+30
+00:01:39,000 --> 00:01:41,450
+takes infinite space to write it down.
+
+31
+00:01:41,450 --> 00:01:44,530
+So what this means-- this sharp sign "I" and a number means
+
+32
+00:01:44,530 --> 00:01:46,320
+it's an inexact number.
+
+33
+00:01:46,320 --> 00:01:49,140
+It's telling you that the number is pretty close to this number
+
+34
+00:01:49,140 --> 00:01:51,340
+here, but not exactly.
+
+35
+00:01:51,340 --> 00:01:53,900
+And you may see numbers like that crop up.
+
+36
+00:01:53,900 --> 00:01:54,870
+Don't worry about it.
+
+37
+00:01:54,870 --> 00:01:57,289
+It'll usually come up in some kinds of graphic programs,
+
+38
+00:01:57,289 --> 00:02:00,080
+and you won't be able to see the difference between the two numbers
+
+39
+00:02:00,080 --> 00:02:00,580
+anyways.
+
+40
+00:02:00,580 --> 00:02:03,050
+
+
+41
+00:02:03,050 --> 00:02:03,680
+OK.
+
+42
+00:02:03,680 --> 00:02:06,498
+Now you've seen how to write expressions that operate on numbers.
+
+43
+00:02:06,498 --> 00:02:08,539
+At this point you should have a pretty good sense
+
+44
+00:02:08,539 --> 00:02:11,430
+of how to write such expressions, and an intuitive understanding
+
+45
+00:02:11,430 --> 00:02:14,010
+of what they're going to evaluate to.
+
+46
+00:02:14,010 --> 00:02:17,090
+In the next video, we're going to look at the more precise rules
+
+47
+00:02:17,090 --> 00:02:20,285
+that Racket uses for evaluating them.
+
+48
+00:02:20,285 --> 00:02:23,070
+You may wonder at this point are there more primitives that
+
+49
+00:02:23,070 --> 00:02:24,000
+operate on numbers?
+
+50
+00:02:24,000 --> 00:02:27,780
+And the answer is that there are lots, lots, and lots and lots.
+
+51
+00:02:27,780 --> 00:02:31,250
+Far more than you could hope to learn at this point.
+
+52
+00:02:31,250 --> 00:02:33,610
+But if you want to discover some of those primitives,
+
+53
+00:02:33,610 --> 00:02:36,520
+I suggest you jump ahead to the video on discovering
+
+54
+00:02:36,520 --> 00:02:38,980
+primitives that comes later this week.
+
+55
+00:02:38,980 --> 00:02:42,550
+Of course, it's also fine to just stick with the primitives we learn now-- plus
+
+56
+00:02:42,550 --> 00:02:45,880
+and times and minus and square and square root.
+
+57
+00:02:45,880 --> 00:02:47,439
+
+

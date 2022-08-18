@@ -1,0 +1,200 @@
+
+GREGOR KICZALES: Now I'm going to finish the first version of the Cat program.
+That's going to involve designing two functions.
+So in that way, it's going to be quite familiar.
+We'll go through the HtDF recipe twice.
+But we're going to be designing those functions in the context of a partially
+complete larger program.
+That's something that gets to be more and more important as we go forward.
+As the programs get bigger, we often have lots of incomplete functions
+that we need to finish before we're done.
+And the most important thing in this video
+is going to be how to use the Wishlist mechanism to keep track
+of that work that remains to be done.
+We have a constants part of the file, which we know corresponds
+to the constants part of the analysis.
+We have a data definitions part of the file that includes a world state
+type, Cat, which we know corresponds to the changing information
+part of the analysis.
+We have a main function that calls big-bang
+with two options, on-tick and to-draw.
+Now, if we've forgotten exactly what we have to do,
+I'll just search for three exclamation marks.
+And very quickly, I see exactly what I have to do.
+And if this program was larger, I could go here and say, show program contour.
+And I'd see off to the right a picture of the whole program.
+And you can barely see it there, but the places
+where the search has found three exclamation marks are highlighted.
+So if I had a very big program, I could go over here and quickly
+jump to those places like that.
+I'll hide that for now because we don't have that big a program.
+So now what do I have to do?
+Well, this tells me, hey, you're partway through an HtDF problem.
+Here's the problem.
+You've got a function that consumes a Cat and produces a Cat.
+This is an HtDF problem consuming Cat.
+It consumes Cat, produces Cat, produces the next cat
+by advancing it one pixel to the right.
+If I'm a little bit unsure about what a Cat is,
+I can scroll up here to the data definitions
+and see, oh, a cat is number, and here are some good examples.
+And it's interpreted as the exposition of the cat in screen coordinates.
+OK well, signature purpose, stub.
+The next step is examples.
+Let's see what's a good first example.
+We'll say check expect advance-cat of, I don't know, three.
+
+And we advance it by one pixel to the right.
+So that should produce four.
+And let's see.
+This function behaves consistently independent of the number we get it.
+So I really should only need one test.
+I'll run the test to make sure that they're well-formed.
+The test is running but failing, so it's well-formed.
+This was the stub.
+I'll comment it out.
+I'll say, use template from Cat.
+I'll go up here and get the template.
+
+I'll copy it.
+
+I'll just label this as being the stub.
+I rename this to advance-cat, and let's see.
+I've got to fill in the dots.
+I advance it one pixel to the right.
+Oh, this is just plus c 1.
+Or if you want, there happens to be a function called add1.
+We could just use that.
+But I'll just say plus c 1.
+Now I'll run again.
+My test passed.
+So let's see, I've done that piece of the wishlist.
+I go back again looking for three exclamation marks.
+Here's another function.
+It consumes Cat and produces Image.
+And it's supposed to render the cat image at an appropriate place on MTS.
+And now I say to myself, well, what's the cat image?
+I'll look up in the constants.
+Oh yeah, there's a thing called CAT_IMAGE.
+
+And I'll say to myself, well, what's the appropriate place?
+I'll go look at the cat data definition.
+Cat is number, so cat itself is a number.
+And I interpret that as the x position.
+So I've got the x position.
+And I remember now that the y position doesn't change,
+so I'll look in the constants for it too.
+There it is, CTR-Y. So now I've got a pretty good idea
+about how this is going to work.
+
+Signature purpose stub, the next thing is examples.
+So check expect, render of some cat.
+Let's say 4.
+What's that supposed to produce?
+So render 4 does what?
+Well, there is this primitive called place-image.
+And what we need to do is we need to take the image of the cat, which
+is cat image.
+We need to put it at a certain xy location, which is 4 and CTR-Y.
+And the background that we're going to put it on is MTS.
+
+Now, I wrote that quickly because I remember exactly how place-image works.
+If it takes you longer to write the expected result for a render function,
+don't worry about that at all.
+You're figuring out how the image functions
+work, what you're going to use in order to produce the image you want.
+Time spent here on this example translates
+into time saved when you do the actual function.
+So let me run this.
+
+And we have a failing test, which is what we'd expect.
+One thing that's nice to do with these render functions
+is actually look at the failing tests.
+Let's see.
+We're getting an empty scene, because the stub always
+produces the empty scene.
+But what's useful to do-- let me just make
+this bigger-- is to look at the expected result and see if our test makes sense.
+That seems about right.
+We've got a cat there that's nose is a little bit off the edge.
+Remember, place-image places the center of cat image--
+in other words, the center of this cat-- at the specified position.
+So it's putting the center of the cat at 4
+and CTR-Y. The CTR-Y part is definitely right.
+And as I said, because the nose is a little bit off
+and I can see the beginning of that eye, I think it is about 4.
+So that seems about right.
+We'll know for sure soon.
+
+OK, let's see.
+Let's finish up.
+This is the stub.
+We're going to use the template from cat.
+Let's go get that template.
+
+We'll rename this to render.
+And let's see.
+We need to render the cat image in an appropriate place on MTS.
+Cat is itself the x-coordinate.
+So looking at the signature, the purpose, and the example,
+what I can see is that this is place-image cat image.
+
+c is itself, the x-coordinate, CTR-Y and MTS.
+
+I'll run that.
+Both my tests are passing.
+And now what I'd like to do is actually run the World program.
+So going back to main, I can call main.
+And the initial world state is whatever cat I give it,
+whatever x-coordinate I give it.
+So it probably makes sense to maybe call it with 0 to start.
+So I run the program, and then I get this interaction window down here.
+And I go main of 0, and there's my cat walking across the screen.
+And now that I have a clear sense in my mind of what's a good default way
+to start this program, what I'm going to do is go back to the main function
+and say, start the world with main of 0, just as a way of telling
+people what's a good way to start it.
+I actually could have put in that start the world with main 0 at the beginning,
+because as soon as we knew what the cat data definition was,
+we knew that 0 would be a good default value.
+I just waited to the end here.
+So there we go.
+We've got a complete, running world program.
+One of things I hope you saw here is that by working systematically,
+at any moment in time, our work was very focused.
+Even though we did a lot, at every moment in time,
+we were only doing one thing.
+That's what working systematically did for us.
+So when we were working on the domain analysis,
+even then there were parts of it.
+We worked on the constant information, then we did the changing information.
+Then we did the big bang options, and that gave us the domain analysis.
+As we started building the program, first we did the constants,
+then we did the data definition for changing information.
+Then we set up the main function and the wishlist
+for our big bang option handlers.
+And then we worked that wishlist one function at a time.
+This is really important as programs get big.
+And remember, programs get big.
+Cars have millions of lines of code in them.
+The big benefit of having a systematic process
+is it lets you work on one thing at a time
+and know that it's all going to work out.
+Because in this case, when we were done and we said main of 0, bang.
+We got a running world program.
+And also let me repeat a point I made earlier about templates.
+Because we have a process, some parts of the work we do
+don't really necessarily end up as specific sub-parts
+of the final program.
+So the domain analysis itself isn't in the program.
+It's something we wrote on a piece of paper.
+But it was part of the process that got us there.
+That's just like the template.
+The template kind of disappears into the final function definition,
+but the template is part of the process.
+It gets us there.
+People who design design methods, so that's
+a kind of meta-design, that's one of the things they work on
+is, how can there be elements of the design that
+get you there even though they disappear in the final artifact?
+We'll talk more about that as we go along.

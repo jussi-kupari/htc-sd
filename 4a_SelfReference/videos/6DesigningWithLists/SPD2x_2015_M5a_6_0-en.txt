@@ -1,0 +1,223 @@
+
+GREGOR KICZALES: So now I'm going to work through a few design
+problems involving lists.
+As always, when I work through these problems,
+there is going to be some parts of it that are pretty familiar, things
+that you'll already know how to do.
+And then there will be parts that are about the new list material.
+So what I recommend you do and in fact, I've
+said this before, I always recommend you do this, is get the starter file
+and work through it with me.
+And now, in these problems, you might even try stopping the video for a bit
+and working ahead and then starting the video
+and comparing what you did to what I did.
+Again, that's always a good idea.
+But don't worry about it if you get stuck and need to start the video.
+After all, these are really the first list design
+problems that I've asked you to do.
+So you should expect it to take some time
+to master this new part of the recipe.
+There's a three-part problem here having to do with all the owls in the owlery.
+First, there's a data definition problem where
+we need to design a data definition to represent the weights of all the owls
+and then we're going to design two functions that operate on that data.
+As I go through this, and really whenever
+you're working on a design problem, you should have a copy of the design
+recipe pages opened up and maybe off to the side
+next to your Dr. Racket window.
+So let me start first by dividing my file
+into two parts, one part for data definitions
+and one part for the functions.
+
+And now let's get to the data definition.
+Let's see, we're going to represent the weight of all the owls in the owlery.
+We don't know how many owls there's going to be,
+so we need arbitrary size data, so we need
+a well-formed, self-referential data definition.
+Here we go.
+Listed number is one of either empty because that's the base case or conds
+number on list of number.
+That's the self-reference case there.
+For the interpretation, we'll say that each number in the list
+is an owl weight and with numbers, it's always good to say the units,
+so we'll say that's it's an owl weight in ounces.
+And let's see, we'll have a couple of examples.
+In one example, we always put the base case example first
+in the data examples, so we'll say LON 1 is empty and LON 2, I don't know,
+let's make it 2 LON and one owl will weigh 60 ounces
+and the other owl will weigh 42 ounces.
+Now, we'll do the template, fun for LON.
+
+Let's see, the first rule is one of because there's two cases,
+so that gets us a cond with two cases.
+The second rule is atomic distinct for empty,
+so that gets us the empty question mark predicated
+and dot, dot, dot in the answer.
+Next we've got compound because the conds is a compound.
+
+It's a conds of a number, which is each element
+of the list is a number and list of number, which is the self reference.
+
+So in the template, we take apart the conds.
+
+First of LON is just number, but rest of LON
+is self referenced, so the self reference rule comes in.
+
+And we wrap rest of LON into a natural recursion
+we call to the very same template function.
+We run it, there's no errors, so it's well formed.
+We comment out the template.
+There we go.
+We've got the complete data definition.
+And again, because there's arbitrary size information,
+we need arbitrary size data, so there's a well-formed, self referential, tight
+comment and a natural recursion in the template.
+Now, let's go design the functions.
+Let's see, the first function is going to consume the weights of some owls
+and produced the total weight of all those owls.
+So let's see.
+It's going to consume list of number because that's the type that we're
+using to represent the weights of an arbitrary number of owls
+and it's going to produce, well, the weight of a number of owls
+is the sum of a bunch of numbers, so that's number.
+
+Produce total weight of owls in consumed list.
+So we take a bunch of owls, we produce the total weight.
+The stub is defined, let's call this function sumLON
+and this stub will just produced 0.
+We'll call that the stub.
+Now, let's produce some examples.
+There's a rule that for functions operating on arbitrary-size data,
+the base case example should be first, so let's do that.
+Check expect sum of empty, well, the sum of the weights
+in an empty list of weights is 0.
+Let's do another example.
+We'll do an example with just a single owl in it.
+So let's say the sum of maybe a list of owls that has this 160-ounce owl in it
+is what?
+Well, that's 60 and this might be a good place
+to be a little bit more elaborate about it.
+The reason it's 60 is because it's 60 plus the sum
+of all the owls in the rest of the list, which in this case is empty.
+So it's really 60 because it's 60 plus 0.
+Let's do one more.
+
+Sum of-- let's see conds 60, conds 42, and empty.
+Well, what's that going to be?
+Well, it's 60 plus the sum of the rest, which is 42,
+plus the sum of its rest, which is 0.
+You don't have to write that out like that, of course.
+You could just write it like this because that's clearly what it is,
+but by writing it the other way, I'm starting to think out in my mind,
+well, how is this going to work?
+I'm always going to add the first weight to the total all the other weights.
+Let me run those examples.
+They're well formed.
+I'll go and get the template.
+
+I bring the template down.
+I comment out the stub.
+I rename the template and I'm especially careful to rename
+the natural recursion.
+Now, let's see.
+The sum of an empty list of weights is 0, otherwise,
+the sum of another list of weights, it looks like it
+whatever the first weight is plus the sum of the remaining weights
+or the sum of the rest of the list.
+So that's the first weight right there in this first example, for example.
+That's going to be 60.
+And again, in this first example here, that whole natural recursion
+is going to be 0, so now, I know what goes here.
+I just add these together.
+I add the first weight to the sum of the remaining weights.
+Let me get rid of these notes now.
+
+All tests pass.
+Notice what I did is I trusted the natural recursion
+and I used the examples to help me think about what
+I did with the first item of the list and what
+I did with the result of the natural recursion.
+I don't ever let myself think about what I'm
+going to do with the rest of the list.
+What I think about is what am I going to do
+with the result of the natural recursion.
+So there's that function done.
+Let's now do the second function, which is
+design a function that consumes the weights of owls
+and produces the total number of owls.
+
+So let's see.
+The signature is, it consumes the weight of an arbitrary number of owls,
+so that's represented as list of number.
+And it produces how many weights there are in the list,
+or how many owls are represented.
+Well, that's not number.
+That's a natural number because it's 0, 1, or 2.
+It's something like that.
+So that's natural.
+Reduce total number of weights in consumed list.
+
+We'll call this function count.
+There's the stub.
+Now, let's do examples.
+Again, there's a rule that the base case should be first, so check expect,
+count.
+If I count the number of weights in an empty list of weights, that 0.
+Now, let's see.
+I can use the same examples as I used last time or different ones.
+Let's use different ones, check, expect count, conds 12, empty.
+Well, how many weights are there in that list?
+Well, there's just one, so I could just write 1
+or I can remind myself that the reason there's one
+is because there's one for the first weight in the list, the 12,
+and then there is 0 for the weights in the rest.
+So I could write it like that.
+
+Let's see.
+Check, expect, count, conds 35, conds 12,
+empty, and here there is one for the 35 and then
+there's whatever is in the rest, which we already know is plus 1 and 0.
+I could write that like that.
+I'll run it and my tests are well formed.
+
+So let me go get the template.
+
+I will copy the template down.
+Let me give myself a little more room to work here.
+I'll copy the template down, I'll comment out the stub
+and then I'll rename the template and the natural recursion.
+Now, let's see.
+If I'm trying to count how many weights there are in an empty list of weights,
+well, that test and just intuition tells me that's 0.
+
+And now, I'm trying to count the weights in a list that
+actually has elements in it.
+Well, the first weight, I don't really care what the first weight is.
+I just am counting the fact there is a weight.
+So that's going to be replaced by just one.
+That's what this is telling me here.
+In sum, we use the actual weight, so that stayed as first in LON.
+But in count, we're not using the actual weight,
+we're just using the existence of the weight.
+So we're going to put a 1 there.
+And now, I'm going to deliberately make a mistake
+because I want to show you something about the two long lists row.
+The mistake I'm going to make here is just
+make this be plus 1 and then I'll look at this
+and incorrectly decide to throw away the natural recursion and just put 0.
+And now I'll run it and when I run it, this test is passing.
+
+It's only the test that's too long that's failing
+and that's why we have that rule about having a test for lists that
+are too long because if you make a mistake throwing out
+the natural recursion, then you're one long tests will often run properly.
+So now, let me go back and pretend I didn't make that mistake.
+I'll close this.
+I'll just back up a little bit to where I was about to make that mistake.
+Here I was.
+And now I say to myself, well, I add 1 to-- and now what do I do?
+I trust the natural recursion.
+The natural recursion will be the right answer for the rest of the list,
+so I'm just going to trust it.
+I add one to whatever it produces.
+I run and all six tests pass.

@@ -1,0 +1,292 @@
+0
+00:00:00,000 --> 00:00:01,380
+
+
+1
+00:00:01,380 --> 00:00:03,730
+GREGOR KICZALES: OK, that's the basics about strings.
+
+2
+00:00:03,730 --> 00:00:08,290
+What I'd like to do now is go look at some basics about images.
+
+3
+00:00:08,290 --> 00:00:10,860
+So what I'll do is I'll make a new Tab.
+
+4
+00:00:10,860 --> 00:00:14,170
+DrRacket has lots of different kinds of image functions.
+
+5
+00:00:14,170 --> 00:00:17,822
+In order to tell it we want to use the ones for this course,
+
+6
+00:00:17,822 --> 00:00:20,380
+we're going to type at the top of this file and any file
+
+7
+00:00:20,380 --> 00:00:24,140
+in this course that uses image functions: require 2htdp/image.
+
+8
+00:00:24,140 --> 00:00:27,840
+
+
+9
+00:00:27,840 --> 00:00:29,870
+And what this is telling DrRacket is it means
+
+10
+00:00:29,870 --> 00:00:34,510
+we want to use the image functions that come from the second edition of the How
+
+11
+00:00:34,510 --> 00:00:36,360
+to Design Programs book.
+
+12
+00:00:36,360 --> 00:00:38,540
+So it's a little bit of a mouthful, but you can just
+
+13
+00:00:38,540 --> 00:00:42,550
+type that at the top of any file in which we're using image functions.
+
+14
+00:00:42,550 --> 00:00:44,940
+Now there's lots and lots of image primitives.
+
+15
+00:00:44,940 --> 00:00:46,550
+Some of them make images.
+
+16
+00:00:46,550 --> 00:00:48,810
+For example, the Circle primitive.
+
+17
+00:00:48,810 --> 00:00:51,880
+The first argument to circle is the radius in screen
+
+18
+00:00:51,880 --> 00:00:53,820
+coordinates, or pixels.
+
+19
+00:00:53,820 --> 00:00:57,100
+The second argument to Circle says whether the circle
+
+20
+00:00:57,100 --> 00:00:58,980
+should be solid or an outline.
+
+21
+00:00:58,980 --> 00:01:01,740
+The third argument is a color.
+
+22
+00:01:01,740 --> 00:01:08,580
+So that expression there produces that red circle.
+
+23
+00:01:08,580 --> 00:01:12,630
+So we call the primitive circle, we get a red circle.
+
+24
+00:01:12,630 --> 00:01:17,030
+And there's lots of similar shapes. rectangle-- rectangle
+
+25
+00:01:17,030 --> 00:01:20,280
+takes a width and a height.
+
+26
+00:01:20,280 --> 00:01:22,830
+And it can take outline or solid.
+
+27
+00:01:22,830 --> 00:01:27,320
+And we can try some of our other colors.
+
+28
+00:01:27,320 --> 00:01:29,310
+There we've got a rectangle.
+
+29
+00:01:29,310 --> 00:01:31,070
+And there's just a whole bunch of them.
+
+30
+00:01:31,070 --> 00:01:33,550
+I'm not going to go through all of them right now.
+
+31
+00:01:33,550 --> 00:01:37,480
+Another one that's quite useful, though, is called text.
+
+32
+00:01:37,480 --> 00:01:44,820
+Text takes a string, for example, Hello, and a font size, like 24.
+
+33
+00:01:44,820 --> 00:01:47,175
+And another color, like orange.
+
+34
+00:01:47,175 --> 00:01:50,090
+
+
+35
+00:01:50,090 --> 00:01:56,790
+It produces-- this is now an image of the string
+
+36
+00:01:56,790 --> 00:02:00,110
+Hello in font size 24, color orange.
+
+37
+00:02:00,110 --> 00:02:04,240
+So this is an image, not a string.
+
+38
+00:02:04,240 --> 00:02:08,900
+So that's a bunch of useful primitives for making images.
+
+39
+00:02:08,900 --> 00:02:13,610
+Let me talk about some things we can do with the images once we have them made.
+
+40
+00:02:13,610 --> 00:02:15,255
+One useful primitive is above.
+
+41
+00:02:15,255 --> 00:02:18,290
+
+
+42
+00:02:18,290 --> 00:02:25,127
+So if I say above-- we'll make a circle of size 10 that's solid and red.
+
+43
+00:02:25,127 --> 00:02:26,960
+And I'll make you another couple of circles.
+
+44
+00:02:26,960 --> 00:02:32,300
+What I'll do is I'll do this easily by cutting and pasting,
+
+45
+00:02:32,300 --> 00:02:34,360
+and then I'll just change the sizes.
+
+46
+00:02:34,360 --> 00:02:38,990
+Let's say we'll make this one 20, and we'll make this one 30.
+
+47
+00:02:38,990 --> 00:02:41,690
+And to make it pretty, we can change the colors, too.
+
+48
+00:02:41,690 --> 00:02:45,920
+
+
+49
+00:02:45,920 --> 00:02:48,510
+There we go.
+
+50
+00:02:48,510 --> 00:02:53,770
+So now what happens when I run that is I get this stack of the images.
+
+51
+00:02:53,770 --> 00:02:58,160
+Above takes all the images that it receives as arguments,
+
+52
+00:02:58,160 --> 00:03:02,430
+and it stacks them one on top of the other.
+
+53
+00:03:02,430 --> 00:03:07,910
+So above is kind of a version of string-append for images.
+
+54
+00:03:07,910 --> 00:03:10,390
+But since images can be arrayed in lots of different ways,
+
+55
+00:03:10,390 --> 00:03:11,930
+there's lots of other functions.
+
+56
+00:03:11,930 --> 00:03:15,468
+So in addition to above, there is, for example, beside.
+
+57
+00:03:15,468 --> 00:03:20,110
+And if I run that, I get that shape.
+
+58
+00:03:20,110 --> 00:03:24,776
+In addition to Beside, there's a thing called overlay.
+
+59
+00:03:24,776 --> 00:03:25,276
+Overlay.
+
+60
+00:03:25,276 --> 00:03:28,590
+
+
+61
+00:03:28,590 --> 00:03:33,990
+If I run that, overlay stacks them on top of each other.
+
+62
+00:03:33,990 --> 00:03:36,730
+There's lots and lots of primitives that operate on images,
+
+63
+00:03:36,730 --> 00:03:40,010
+and as you do the homework exercises this week,
+
+64
+00:03:40,010 --> 00:03:42,380
+you'll get a chance to look them up and play with them.
+
+65
+00:03:42,380 --> 00:03:45,570
+But for example, there's functions that make ellipses and stars
+
+66
+00:03:45,570 --> 00:03:48,510
+and triangles and things like that.
+
+67
+00:03:48,510 --> 00:03:52,752
+And you can line images up and put them next to each other in different ways.
+
+68
+00:03:52,752 --> 00:03:54,960
+But these are good set of basic functions right here:
+
+69
+00:03:54,960 --> 00:03:59,840
+circle, rectangle, text, overlay, above, and beside.
+
+70
+00:03:59,840 --> 00:04:02,290
+So I've got another little exercise you can do here
+
+71
+00:04:02,290 --> 00:04:07,020
+to test your understanding about primitives that operate on images.
+
+72
+00:04:07,020 --> 00:04:09,010
+
+

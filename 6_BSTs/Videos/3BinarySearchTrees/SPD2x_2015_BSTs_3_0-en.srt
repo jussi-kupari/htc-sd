@@ -1,0 +1,568 @@
+0
+00:00:00,000 --> 00:00:04,895
+
+
+1
+00:00:04,895 --> 00:00:06,770
+GREGOR KICZALES: In the last video, we looked
+
+2
+00:00:06,770 --> 00:00:08,910
+at how to represent information about an arbitrary
+
+3
+00:00:08,910 --> 00:00:13,800
+number of accounts using a list, where each account has a number and account
+
+4
+00:00:13,800 --> 00:00:15,210
+name.
+
+5
+00:00:15,210 --> 00:00:18,850
+At the end of that video, I asked you write a function that would look up
+
+6
+00:00:18,850 --> 00:00:23,610
+an account number in such a list and produce either the account name,
+
+7
+00:00:23,610 --> 00:00:26,740
+if it could find it, or produce false, if it couldn't.
+
+8
+00:00:26,740 --> 00:00:28,930
+So I hope you've done that, and I hope that gave you
+
+9
+00:00:28,930 --> 00:00:33,750
+some better understanding of what that representation of accounts
+
+10
+00:00:33,750 --> 00:00:36,260
+would be like.
+
+11
+00:00:36,260 --> 00:00:37,960
+Now, let me ask you a question.
+
+12
+00:00:37,960 --> 00:00:40,510
+Suppose we had a list like that, of accounts.
+
+13
+00:00:40,510 --> 00:00:44,890
+And suppose the list is long, really long.
+
+14
+00:00:44,890 --> 00:00:47,750
+And I don't mean 365 along.
+
+15
+00:00:47,750 --> 00:00:53,780
+Maybe I mean 365,000 long, or I'll just call it n, for now.
+
+16
+00:00:53,780 --> 00:00:56,570
+The question I want to ask you is, how long does it
+
+17
+00:00:56,570 --> 00:01:01,680
+take to find an account in that list?
+
+18
+00:01:01,680 --> 00:01:05,010
+Well, let's see, if I get lucky, and I'm looking for account number one,
+
+19
+00:01:05,010 --> 00:01:08,180
+then I only have to look at the first account in the list to find it.
+
+20
+00:01:08,180 --> 00:01:10,150
+So that was pretty lucky.
+
+21
+00:01:10,150 --> 00:01:13,600
+If I get a little less lucky, and I'm looking for account number four,
+
+22
+00:01:13,600 --> 00:01:18,020
+then I only have to look at the first two accounts in the list to find it.
+
+23
+00:01:18,020 --> 00:01:22,030
+If I get less lucky and I'm looking at, say, account number 14,
+
+24
+00:01:22,030 --> 00:01:24,596
+I've got to look at five accounts.
+
+25
+00:01:24,596 --> 00:01:29,260
+If I really get unlucky, and I'm looking at account 365,
+
+26
+00:01:29,260 --> 00:01:34,220
+I have to look at all n accounts in the list before I get to 365,
+
+27
+00:01:34,220 --> 00:01:36,950
+because I have to check each of the ones that come before it,
+
+28
+00:01:36,950 --> 00:01:42,160
+to see that, oh no, they're not account 365.
+
+29
+00:01:42,160 --> 00:01:46,970
+So on average, if I have average luck, I'm
+
+30
+00:01:46,970 --> 00:01:49,830
+going to have to look at n over 2 of the accounts,
+
+31
+00:01:49,830 --> 00:01:52,837
+because sometimes I'll be lucky, and I'll be looking for the first one.
+
+32
+00:01:52,837 --> 00:01:55,670
+And sometimes I'll be unlucky, and I'll be looking for the last one.
+
+33
+00:01:55,670 --> 00:01:57,940
+And everything else in the middle will happen.
+
+34
+00:01:57,940 --> 00:02:02,190
+And so on average, I'm going to look at n over 2 of the accounts.
+
+35
+00:02:02,190 --> 00:02:05,100
+So that's not so good.
+
+36
+00:02:05,100 --> 00:02:10,530
+If I have 365,000 accounts, then any time I look up an account number,
+
+37
+00:02:10,530 --> 00:02:14,180
+I'm going to have to look at half of 365,000.
+
+38
+00:02:14,180 --> 00:02:15,850
+That's not really good enough.
+
+39
+00:02:15,850 --> 00:02:19,040
+It seems like we ought to be able to do better.
+
+40
+00:02:19,040 --> 00:02:22,780
+Well, one idea would be to sort the list by account number,
+
+41
+00:02:22,780 --> 00:02:26,265
+so that account number one comes first, then three, and four, and seven.
+
+42
+00:02:26,265 --> 00:02:29,430
+And so it's just in increasing order of account number.
+
+43
+00:02:29,430 --> 00:02:31,780
+That would take some work to get it sorted,
+
+44
+00:02:31,780 --> 00:02:34,950
+but it seems like that might be a good idea.
+
+45
+00:02:34,950 --> 00:02:36,450
+The problem is that doesn't help me.
+
+46
+00:02:36,450 --> 00:02:38,640
+It doesn't help at all, not at all.
+
+47
+00:02:38,640 --> 00:02:40,440
+And here's why.
+
+48
+00:02:40,440 --> 00:02:45,290
+The way lists work, remember that with lists, we just have first and rest.
+
+49
+00:02:45,290 --> 00:02:50,450
+So the only way we can traverse the list is in order, from beginning to end.
+
+50
+00:02:50,450 --> 00:02:53,930
+So whether the list is sorted or not, on average, we're
+
+51
+00:02:53,930 --> 00:02:57,620
+going to have to look at half the accounts in order to find the one
+
+52
+00:02:57,620 --> 00:02:59,080
+we want.
+
+53
+00:02:59,080 --> 00:03:01,810
+So sorting is not going to help.
+
+54
+00:03:01,810 --> 00:03:06,800
+Or actually, what I should say is, sorting alone isn't going to help.
+
+55
+00:03:06,800 --> 00:03:08,686
+Here's another idea.
+
+56
+00:03:08,686 --> 00:03:12,700
+Let's imagine that we start with a sorted list.
+
+57
+00:03:12,700 --> 00:03:19,640
+And then, we'll take the middle of the list, in this case, that's 10y.
+
+58
+00:03:19,640 --> 00:03:25,190
+We'll take the middle of the list, and we'll split the list around the middle,
+
+59
+00:03:25,190 --> 00:03:28,982
+so that we leave the middle up top, like this.
+
+60
+00:03:28,982 --> 00:03:30,690
+On the left-hand side, we're going to put
+
+61
+00:03:30,690 --> 00:03:33,194
+everything that came before the middle.
+
+62
+00:03:33,194 --> 00:03:35,110
+And on the right-hand side, we're going to put
+
+63
+00:03:35,110 --> 00:03:38,086
+everything that came after the middle.
+
+64
+00:03:38,086 --> 00:03:41,990
+And so the important thing, here, is that in this left-hand list,
+
+65
+00:03:41,990 --> 00:03:45,380
+this one down below on the left, all those
+
+66
+00:03:45,380 --> 00:03:49,090
+have an account number less than the middle, less than 10.
+
+67
+00:03:49,090 --> 00:03:52,420
+In the right-hand lower list, all of those
+
+68
+00:03:52,420 --> 00:03:56,760
+have an account number bigger than 10.
+
+69
+00:03:56,760 --> 00:03:59,450
+So that's kind of neat.
+
+70
+00:03:59,450 --> 00:04:00,710
+We can do it again.
+
+71
+00:04:00,710 --> 00:04:03,180
+For each of those lists, we can take the middle.
+
+72
+00:04:03,180 --> 00:04:07,240
+So in the left-hand case, it's 3 I-L-K, and in the right-hand case,
+
+73
+00:04:07,240 --> 00:04:11,030
+it's 42 I-L-Y. And we'll do the same thing.
+
+74
+00:04:11,030 --> 00:04:13,640
+
+
+75
+00:04:13,640 --> 00:04:17,170
+And we could keep doing that, until we get to the point
+
+76
+00:04:17,170 --> 00:04:20,380
+where there's no lists left, where at each level,
+
+77
+00:04:20,380 --> 00:04:25,730
+all we have is a single account number and name.
+
+78
+00:04:25,730 --> 00:04:29,910
+And now, I'm going to draw these lines in.
+
+79
+00:04:29,910 --> 00:04:34,096
+And this is a thing called a binary search tree.
+
+80
+00:04:34,096 --> 00:04:36,460
+And the important thing about a binary search tree
+
+81
+00:04:36,460 --> 00:04:38,620
+is that every single what's sometimes called
+
+82
+00:04:38,620 --> 00:04:44,680
+a node, all the accounts in the left subtree of that node
+
+83
+00:04:44,680 --> 00:04:49,921
+have a number less than the root, and all the accounts in the right subtree
+
+84
+00:04:49,921 --> 00:04:51,420
+have a number greater than the root.
+
+85
+00:04:51,420 --> 00:04:56,390
+So everything in this part, over here, has an account number less than 10.
+
+86
+00:04:56,390 --> 00:05:04,490
+Similarly everything in this part, here, below and to the right of 3 I-L-K,
+
+87
+00:05:04,490 --> 00:05:08,120
+has an account number greater than three.
+
+88
+00:05:08,120 --> 00:05:12,270
+And this rule, here, is called an invariant,
+
+89
+00:05:12,270 --> 00:05:15,330
+and it holds true over the entire tree.
+
+90
+00:05:15,330 --> 00:05:17,820
+That's what it means for it to be an invariant.
+
+91
+00:05:17,820 --> 00:05:19,820
+It's true over the entire tree.
+
+92
+00:05:19,820 --> 00:05:22,400
+
+
+93
+00:05:22,400 --> 00:05:25,129
+Now, if I construct a tree like this-- we don't quite yet
+
+94
+00:05:25,129 --> 00:05:26,670
+know how we're going to represent it.
+
+95
+00:05:26,670 --> 00:05:29,000
+This is all information.
+
+96
+00:05:29,000 --> 00:05:32,180
+But imagining that this is information, let's
+
+97
+00:05:32,180 --> 00:05:38,080
+think abstractly about how long it would take to find something in such a tree.
+
+98
+00:05:38,080 --> 00:05:39,682
+Well, let's see.
+
+99
+00:05:39,682 --> 00:05:42,640
+Suppose I'm looking-- suppose it's going to be the worst possible case.
+
+100
+00:05:42,640 --> 00:05:46,160
+I'm going to look for 14, for example.
+
+101
+00:05:46,160 --> 00:05:48,580
+Well, I look at 10.
+
+102
+00:05:48,580 --> 00:05:52,980
+And 10 isn't 14, so I'm not there.
+
+103
+00:05:52,980 --> 00:05:55,870
+But 14 is greater than 10, so I'm going to completely ignore
+
+104
+00:05:55,870 --> 00:05:58,840
+the left-hand part of the tree.
+
+105
+00:05:58,840 --> 00:06:02,830
+And now, I'm going to go down to the right branch of the tree.
+
+106
+00:06:02,830 --> 00:06:03,330
+Let's see.
+
+107
+00:06:03,330 --> 00:06:08,720
+42 isn't 14, so I'm not there.
+
+108
+00:06:08,720 --> 00:06:11,230
+But 14 is less than 42.
+
+109
+00:06:11,230 --> 00:06:14,740
+So at this point, I'm going to ignore the entire right-hand branch
+
+110
+00:06:14,740 --> 00:06:16,720
+of the tree.
+
+111
+00:06:16,720 --> 00:06:19,620
+And I'll go down the left-hand branch.
+
+112
+00:06:19,620 --> 00:06:20,120
+Let's see.
+
+113
+00:06:20,120 --> 00:06:25,750
+27 isn't 14, so I'm not there.
+
+114
+00:06:25,750 --> 00:06:30,140
+But 14 is less than 27, so I'll ignore the right-hand branch of the tree.
+
+115
+00:06:30,140 --> 00:06:33,890
+There happens not to be one, so ignoring it doesn't do much, but I'll ignore it.
+
+116
+00:06:33,890 --> 00:06:37,070
+And I go down the left branch.
+
+117
+00:06:37,070 --> 00:06:37,570
+Let's see.
+
+118
+00:06:37,570 --> 00:06:38,520
+14 is 14.
+
+119
+00:06:38,520 --> 00:06:39,020
+I'm there.
+
+120
+00:06:39,020 --> 00:06:42,000
+I produce LLP.
+
+121
+00:06:42,000 --> 00:06:46,260
+And if I ever get to a branch which has nothing in it--
+
+122
+00:06:46,260 --> 00:06:48,420
+suppose I've been looking for 28, for example.
+
+123
+00:06:48,420 --> 00:06:51,504
+If I've been looking for 28, then when I got here, to 27,
+
+124
+00:06:51,504 --> 00:06:53,920
+I would have tried to go to go down the right-hand branch.
+
+125
+00:06:53,920 --> 00:06:57,490
+And there's nothing there, and so I would produce false.
+
+126
+00:06:57,490 --> 00:07:01,673
+So how long does it take to find something in that tree?
+
+127
+00:07:01,673 --> 00:07:03,797
+Well, notice that at each step of the process, when
+
+128
+00:07:03,797 --> 00:07:09,330
+we didn't find what we were looking for, we eliminated about half the tree.
+
+129
+00:07:09,330 --> 00:07:15,470
+So each time, the tree gets smaller by half, as compared to the list.
+
+130
+00:07:15,470 --> 00:07:19,290
+Each time, the list got smaller by one, but here, each time, the tree
+
+131
+00:07:19,290 --> 00:07:21,342
+gets smaller by half.
+
+132
+00:07:21,342 --> 00:07:23,770
+And so what that means is that in this world,
+
+133
+00:07:23,770 --> 00:07:31,100
+on average, we're going to have to look at log n of the size of the tree,
+
+134
+00:07:31,100 --> 00:07:34,960
+because the tree keeps getting smaller by half each time.
+
+135
+00:07:34,960 --> 00:07:38,500
+And so we're going to find our answer a lot faster in something like this,
+
+136
+00:07:38,500 --> 00:07:44,090
+if, of course, we can find a way to represent it as data.
+
+137
+00:07:44,090 --> 00:07:47,352
+Right now, we're talking about an abstract piece of information.
+
+138
+00:07:47,352 --> 00:07:49,435
+And we've done an abstract analysis of how long it
+
+139
+00:07:49,435 --> 00:07:51,270
+would take to find something in it.
+
+140
+00:07:51,270 --> 00:07:54,441
+We'll try to implement it in the next video.
+
+141
+00:07:54,441 --> 00:07:54,940
+
+
